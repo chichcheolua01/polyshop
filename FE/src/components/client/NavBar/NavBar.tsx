@@ -40,8 +40,8 @@ const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
           />
           <NavBarItem
             label="Sản phẩm"
-            onClick={() => navigate("/products")}
-            active={location.pathname === "/products"}
+            onClick={() => navigate("/list-product")}
+            active={location.pathname === "/list-product"}
           />
           <NavBarItem
             label="Giới thiệu"
