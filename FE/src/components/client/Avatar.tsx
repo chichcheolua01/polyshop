@@ -6,10 +6,10 @@ const Avatar = ({ src }: AvatarProps) => {
   return (
     <>
       <img
-        width="30"
-        height="30"
+        width="100"
+        height="100"
         alt="Avatar"
-        className="rounded-full"
+        className="rounded-full max-w-[2rem]"
         src={src || "/images/user.jpg"}
       />
     </>
