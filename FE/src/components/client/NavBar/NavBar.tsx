@@ -49,30 +49,28 @@ const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
           </Container>
         </div>
 
-        {!isScrolled ? (
-          <div className="flex flex-row gap-8 justify-center p-3">
-            <NavBarItem
-              label="Trang chủ"
-              onClick={() => navigate("/")}
-              active={location.pathname === "/"}
-            />
-            <NavBarItem
-              label="Sản phẩm"
-              onClick={() => navigate("/products")}
-              active={location.pathname === "/products"}
-            />
-            <NavBarItem
-              label="Giới thiệu"
-              onClick={() => navigate("/introduce")}
-              active={location.pathname === "/introduce"}
-            />
-            <NavBarItem
-              label="Liên hệ"
-              onClick={() => navigate("/contact")}
-              active={location.pathname === "/contact"}
-            />
-          </div>
-        ) : null}
+        <div className="flex flex-row gap-8 justify-center p-3">
+          <NavBarItem
+            label="Trang chủ"
+            onClick={() => navigate("/")}
+            active={location.pathname === "/"}
+          />
+          <NavBarItem
+            label="Sản phẩm"
+            onClick={() => navigate("/list-product")}
+            active={location.pathname === "/list-product"}
+          />
+          <NavBarItem
+            label="Giới thiệu"
+            onClick={() => navigate("/introduce")}
+            active={location.pathname === "/introduce"}
+          />
+          <NavBarItem
+            label="Liên hệ"
+            onClick={() => navigate("/contact")}
+            active={location.pathname === "/contact"}
+          />
+        </div>
       </div>
     </>
   );
