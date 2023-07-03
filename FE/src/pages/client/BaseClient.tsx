@@ -6,7 +6,7 @@ const BaseClient = () => {
   return (
     <>
       <NavBar />
-      <div>
+      <div className="pt-24">
         <Outlet />
       </div>
     </>
