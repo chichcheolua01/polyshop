@@ -48,6 +48,24 @@ const HomePage = () => {
       image:
         "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/p/oppo-reno8t-vang1-thumb-600x600.jpg",
     },
+    {
+      _id: "product6",
+      name: "OPPO Reno8 T 5G (8GB - 128GB)",
+      price: 8490000,
+      original_price: 9490000,
+      stars: 4,
+      image:
+        "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/p/oppo-reno8t-vang1-thumb-600x600.jpg",
+    },
+    {
+      _id: "product7",
+      name: "OPPO Reno8 T 5G (8GB - 128GB)",
+      price: 8490000,
+      original_price: 9490000,
+      stars: 4,
+      image:
+        "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/p/oppo-reno8t-vang1-thumb-600x600.jpg",
+    },
   ];
 
   return (
