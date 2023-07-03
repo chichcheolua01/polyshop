@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 import Input from "../../../components/auth/Input";
 import { useNavigate } from "react-router-dom";
@@ -14,11 +14,7 @@ const LoginPage = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="bg-white bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-          <nav className="px-12 py-5" onClick={() => navigate("/")}>
-            <img src="/images/logo.png" className="h-12" alt="Logo" />
-          </nav>
-
+        <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
           <h2 className="text-white text-4xl mb-8 font-semibold">Đăng nhập</h2>
 
           <div className="flex flex-col gap-4">
@@ -29,6 +25,7 @@ const LoginPage = () => {
               value={email}
               onChange={(e: any) => setEmail(e.target.value)}
             />
+
             <Input
               type="password"
               id="password"
@@ -42,6 +39,7 @@ const LoginPage = () => {
             >
               Đăng nhập
             </button>
+
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div
                 onClick={() => alert("Google")}
@@ -49,20 +47,22 @@ const LoginPage = () => {
               >
                 <FcGoogle size={32} />
               </div>
+
               <div
-                onClick={() => alert("Github")}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+                onClick={() => alert("Facebook")}
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition text-blue-600"
               >
-                <FaGithub size={32} />
+                <FaFacebook size={32} />
               </div>
             </div>
+
             <p className="text-neutral-500 mt-12">
               Bạn chưa có tài khoản
               <span
                 onClick={() => navigate("/auth/register")}
                 className="text-white ml-1 hover:underline cursor-pointer"
               >
-                Đăng ký tài khoản
+                Đăng ký ngay
               </span>
               .
             </p>

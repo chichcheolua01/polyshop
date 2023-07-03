@@ -1,12 +1,10 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const BaseAuth = () => {
-  const navigate = useNavigate();
-
   return (
     <>
-      <div className="relative h-full w-full">
-        <div className="bg-black w-full h-full lg:bg-opacity-50">
+      <div className="relative h-screen w-full bg-[url('/images/back.avif')] bg-no-repeat bg-center bg-fixed bg-cover">
+        <div className="bg-gray-30 w-full h-full lg:bg-opacity-30 pt-3">
           <Outlet />
         </div>
       </div>
