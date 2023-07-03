@@ -7,7 +7,7 @@ import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
 type NavBarProps = {
-  currentUser?: null;
+  currentUser?: any | null;
 };
 
 const NavBar = ({ currentUser }: NavBarProps) => {
