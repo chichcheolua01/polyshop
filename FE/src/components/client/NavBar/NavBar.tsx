@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { AiOutlineMail } from "react-icons/ai";
+import { FiPhoneCall } from "react-icons/fi";
 
 import Logo from "../../Logo";
 import Search from "./Search";
@@ -14,6 +18,19 @@ type NavBarProps = {
 const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
