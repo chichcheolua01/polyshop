@@ -4,10 +4,12 @@ import { Drawer } from "antd";
 import CartDrawnItem from "./CartDrawnItem";
 import Button from "../Button";
 
+import { ICart } from "../../../interface/cart";
+
 type CartDrawnProps = {
   isOpen: boolean;
   onClose: () => void;
-  carts?: { products: any[]; totalPrice: number } | null | undefined;
+  carts?: ICart | null | undefined;
 };
 
 const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
@@ -54,7 +56,10 @@ const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
                 </div>
               </div>
 
-              <Button label="Thanh toán" onClick={() => navigate("checkOut")} />
+              <Button
+                label="Thanh toán"
+                onClick={() => navigate("/checkout")}
+              />
             </div>
           </div>
         </Drawer>

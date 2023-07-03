@@ -4,7 +4,7 @@ import { notification } from "antd";
 
 type Props = {
   productId?: string;
-  userId?: any | null;
+  userId?: string | null;
 };
 
 const HeartButton = ({ productId, userId }: Props) => {

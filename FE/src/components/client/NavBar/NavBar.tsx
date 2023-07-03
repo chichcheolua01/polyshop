@@ -6,11 +6,12 @@ import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
+import { ICart } from "../../../interface/cart";
 
 type NavBarProps = {
   currentUser?: null;
   onOpen: () => void;
-  carts: any[];
+  carts: ICart;
 };
 
 const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {

@@ -1,7 +1,8 @@
 import { InputNumber } from "antd";
+import { IProductCart } from "../../../interface/cart";
 
 type CartDrawnItemProps = {
-  product: { name: string; image: string; price: number; quantity: number };
+  product: IProductCart;
 };
 
 const CartDrawnItem = ({ product }: CartDrawnItemProps) => {

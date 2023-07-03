@@ -7,11 +7,12 @@ import { FiShoppingCart } from "react-icons/fi";
 
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
+import { ICart } from "../../../interface/cart";
 
 type UserMenuProps = {
   currentUser: any | null;
   onClick: () => void;
-  carts: any[];
+  carts: ICart;
 };
 
 const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
