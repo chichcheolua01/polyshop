@@ -16,7 +16,7 @@ const ProductCard = ({ product }: Props) => {
 
   return (
     <>
-      <div className="col-span-1 cursor-pointer group shadow-xl rounded-xl p-3 shadow-xl border">
+      <div className="col-span-1 cursor-pointer group shadow-xl rounded-xl p-3 border">
         <div className="flex flex-col gap-2 w-full">
           <div className="flex flex-row justify-between">
             {discount > 0 && (

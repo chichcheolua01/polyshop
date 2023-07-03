@@ -1,8 +1,10 @@
 import { InputNumber } from "antd";
 
-type Props = {};
+type CartDrawnItemProps = {
+  product: { name: string; image: string; price: number; quantity: number };
+};
 
-const CartDrawnItem = (props: Props) => {
+const CartDrawnItem = ({ product }: CartDrawnItemProps) => {
   const onChange = (value: number | null) => {
     console.log(value);
   };
@@ -12,21 +14,19 @@ const CartDrawnItem = (props: Props) => {
       <div className="flex flex-row gap-2 w-full p-1">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
           <img
+            src={product.image}
             width={100}
             height={100}
             alt="Product"
             className="object-cover group-hover:scale-110 transition"
-            src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/a/samsung-galaxy-20-fe_4_.jpg"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <div className="font-semibold text-sm pt-3">
-            Samsung Galaxy S20 FE 256GB
-          </div>
+          <div className="font-semibold text-sm pt-3">{product.name}</div>
 
           <div className="font-bold text-red-500">
-            {(6990000).toLocaleString("vi-VN")}₫
+            {product.price.toLocaleString("vi-VN")}₫
           </div>
 
           <div className="flex items-center gap-2">
@@ -35,7 +35,7 @@ const CartDrawnItem = (props: Props) => {
             <InputNumber
               min={1}
               max={10}
-              defaultValue={3}
+              defaultValue={product.quantity}
               onChange={onChange}
             />
           </div>

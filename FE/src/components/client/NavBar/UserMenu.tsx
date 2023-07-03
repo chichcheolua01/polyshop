@@ -11,9 +11,10 @@ import MenuItem from "./MenuItem";
 type UserMenuProps = {
   currentUser: any | null;
   onClick: () => void;
+  carts: any[];
 };
 
-const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +36,7 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
           >
-            <Badge count={10} size="small">
+            <Badge count={carts?.products?.length} size="small">
               <FiShoppingCart size={25} />
             </Badge>
           </div>

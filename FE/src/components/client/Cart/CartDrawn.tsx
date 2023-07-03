@@ -1,12 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { Drawer } from "antd";
+
 import CartDrawnItem from "./CartDrawnItem";
+import Button from "../Button";
 
 type CartDrawnProps = {
   isOpen: boolean;
   onClose: () => void;
+  carts?: { products: any[]; totalPrice: number } | null | undefined;
 };
 
-const CartDrawn = ({ isOpen, onClose }: CartDrawnProps) => {
+const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
@@ -17,12 +23,15 @@ const CartDrawn = ({ isOpen, onClose }: CartDrawnProps) => {
           open={isOpen}
         >
           <div className="h-[65vh] overflow-y-auto">
-            <CartDrawnItem />
-            <CartDrawnItem />
-            <CartDrawnItem />
-            <CartDrawnItem />
-            <CartDrawnItem />
-            <CartDrawnItem />
+            {carts && carts.products && carts.products.length > 0 ? (
+              carts.products.map((product) => (
+                <CartDrawnItem key={product._id} product={product} />
+              ))
+            ) : (
+              <div className="flex justify-center">
+                <span>Không có sản phẩm nào trong giỏ hàng</span>
+              </div>
+            )}
           </div>
 
           <div className="absolute left-0 bottom-0 w-full border-t p-4">
@@ -35,13 +44,17 @@ const CartDrawn = ({ isOpen, onClose }: CartDrawnProps) => {
 
                 <div className="flex justify-between">
                   <span className="font-bold">Tổng phụ:</span>
-                  <span className="text-gray-500">100000</span>
+                  <span className="text-gray-500">
+                    {(carts &&
+                      carts.totalPrice &&
+                      carts.totalPrice.toLocaleString("vi-VN")) ||
+                      0}
+                    ₫
+                  </span>
                 </div>
               </div>
 
-              <button className="bg-rose-500 w-full rounded-xl p-3 hover:bg-rose-600">
-                <span className="text-white">Thanh toán</span>
-              </button>
+              <Button label="Thanh toán" onClick={() => navigate("checkOut")} />
             </div>
           </div>
         </Drawer>
