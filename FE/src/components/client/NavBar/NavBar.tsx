@@ -1,7 +1,7 @@
-import Container from "../Container";
-import Logo from "../Logo";
+import Logo from "../../Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import Container from "../Container";
 
 type NavBarProps = {
   currentUser?: null;

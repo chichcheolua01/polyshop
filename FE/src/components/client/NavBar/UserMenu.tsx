@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { FiShoppingCart } from "react-icons/fi";
 
 import Avatar from "../Avatar";
@@ -21,10 +20,21 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
     <>
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
-          <div onClick={toggleOpen} className="flex hidden md:block">
-            <div>{currentUser ? currentUser.name : <div>Xin chào!</div>}</div>
+          <div className="hidden md:block text-sm font-semibold py-3 px-4">
+            Admin
+          </div>
 
+          <div
+            onClick={toggleOpen}
+            className="md:py-1 md:px-2 border-[1px] border-neutral-200 rounded-full cursor-pointer hover:shadow-md transition"
+          >
             <Avatar src={currentUser?.image} />
+          </div>
+
+          <div className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer">
+            <div className="flex">
+              <FiShoppingCart size={20} />
+            </div>
           </div>
 
           {isOpen && (
@@ -33,24 +43,16 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                 {currentUser ? (
                   <>
                     <MenuItem
-                      label="My trips"
+                      label="Thông tin cá nhân"
                       onClick={() => navigate("/trips")}
                     />
                     <MenuItem
-                      label="My favorites"
+                      label="Đơn hàng"
                       onClick={() => navigate("/favorites")}
-                    />
-                    <MenuItem
-                      label="My reservations"
-                      onClick={() => navigate("/reservations")}
-                    />
-                    <MenuItem
-                      label="My properties"
-                      onClick={() => navigate("/properties")}
                     />
                     <hr />
                     <MenuItem
-                      label="Logout"
+                      label="Đăng xuất"
                       onClick={() => alert("Đăng xuất")}
                     />
                   </>

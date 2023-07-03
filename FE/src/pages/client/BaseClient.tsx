@@ -1,9 +1,14 @@
 import { Outlet } from "react-router-dom";
 
+import NavBar from "../../components/client/NavBar/NavBar";
+
 const BaseClient = () => {
   return (
     <>
-      <Outlet />
+      <NavBar />
+      <div>
+        <Outlet />
+      </div>
     </>
   );
 };
