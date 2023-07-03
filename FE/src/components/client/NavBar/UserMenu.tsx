@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Badge } from "antd";
 
 import { AiOutlineBell } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
@@ -25,14 +26,18 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
           <div className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5">
-            <AiOutlineBell size={20} />
+            <Badge count={10} size="small" color="#52c41a">
+              <AiOutlineBell size={25} />
+            </Badge>
           </div>
 
           <div
             onClick={onClick}
             className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
           >
-            <FiShoppingCart size={20} />
+            <Badge count={10} size="small">
+              <FiShoppingCart size={25} />
+            </Badge>
           </div>
 
           <div
