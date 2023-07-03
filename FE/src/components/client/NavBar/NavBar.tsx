@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { AiOutlineMail } from "react-icons/ai";
+import { FiPhoneCall } from "react-icons/fi";
 
 import Logo from "../../Logo";
 import Search from "./Search";
@@ -14,6 +18,19 @@ type NavBarProps = {
 const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -32,28 +49,30 @@ const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
           </Container>
         </div>
 
-        <div className="flex flex-row gap-8 justify-center p-3">
-          <NavBarItem
-            label="Trang chủ"
-            onClick={() => navigate("/")}
-            active={location.pathname === "/"}
-          />
-          <NavBarItem
-            label="Sản phẩm"
-            onClick={() => navigate("/products")}
-            active={location.pathname === "/products"}
-          />
-          <NavBarItem
-            label="Giới thiệu"
-            onClick={() => navigate("/introduce")}
-            active={location.pathname === "/introduce"}
-          />
-          <NavBarItem
-            label="Liên hệ"
-            onClick={() => navigate("/contact")}
-            active={location.pathname === "/contact"}
-          />
-        </div>
+        {!isScrolled ? (
+          <div className="flex flex-row gap-8 justify-center p-3">
+            <NavBarItem
+              label="Trang chủ"
+              onClick={() => navigate("/")}
+              active={location.pathname === "/"}
+            />
+            <NavBarItem
+              label="Sản phẩm"
+              onClick={() => navigate("/products")}
+              active={location.pathname === "/products"}
+            />
+            <NavBarItem
+              label="Giới thiệu"
+              onClick={() => navigate("/introduce")}
+              active={location.pathname === "/introduce"}
+            />
+            <NavBarItem
+              label="Liên hệ"
+              onClick={() => navigate("/contact")}
+              active={location.pathname === "/contact"}
+            />
+          </div>
+        ) : null}
       </div>
     </>
   );
