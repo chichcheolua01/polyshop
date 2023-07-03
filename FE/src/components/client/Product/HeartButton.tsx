@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { notification } from "antd";
 
 type Props = {
   productId?: string;
@@ -7,14 +8,24 @@ type Props = {
 };
 
 const HeartButton = ({ productId, userId }: Props) => {
+  const [api, contextHolder] = notification.useNotification();
+
   const [hasFavorite, setHasFavorite] = useState(false);
 
   const toggleFavorite = () => {
-    setHasFavorite(!hasFavorite);
+    if (!userId) {
+      api.open({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!.",
+      });
+    } else {
+      setHasFavorite(!hasFavorite);
+    }
   };
 
   return (
     <>
+      {contextHolder}
       <div
         onClick={toggleFavorite}
         className="relative hover:opacity-80 transition cursor-pointer"

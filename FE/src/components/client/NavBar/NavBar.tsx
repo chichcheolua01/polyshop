@@ -8,9 +8,10 @@ import NavBarItem from "./NavBarItem";
 
 type NavBarProps = {
   currentUser?: null;
+  onOpen: () => void;
 };
 
-const NavBar = ({ currentUser }: NavBarProps) => {
+const NavBar = ({ currentUser, onOpen }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,7 +27,7 @@ const NavBar = ({ currentUser }: NavBarProps) => {
                 <Search />
               </div>
 
-              <UserMenu currentUser={currentUser} />
+              <UserMenu currentUser={currentUser} onClick={onOpen} />
             </div>
           </Container>
         </div>

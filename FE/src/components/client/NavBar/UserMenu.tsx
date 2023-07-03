@@ -9,15 +9,17 @@ import MenuItem from "./MenuItem";
 
 type UserMenuProps = {
   currentUser: any | null;
+  onClick: () => void;
 };
 
-const UserMenu = ({ currentUser }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
+
   return (
     <>
       <div className="relative">
@@ -26,7 +28,10 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             <AiOutlineBell size={20} />
           </div>
 
-          <div className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5">
+          <div
+            onClick={onClick}
+            className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
+          >
             <FiShoppingCart size={20} />
           </div>
 
