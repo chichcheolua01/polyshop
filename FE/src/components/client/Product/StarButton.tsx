@@ -1,31 +1,14 @@
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { Rate } from "antd";
 
 type Props = {
   star?: number;
+  disabled?: boolean;
 };
 
-const StarButton = ({ star }: Props) => {
-  const renderStars = () => {
-    const filledStars = star || 0;
-
-    const stars = [];
-
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        i < filledStars ? (
-          <AiFillStar key={`filled-${i}`} className="text-yellow-500" />
-        ) : (
-          <AiOutlineStar key={`empty-${i}`} />
-        )
-      );
-    }
-
-    return stars;
-  };
-
+const StarButton = ({ star, disabled }: Props) => {
   return (
     <>
-      <div className="flex">{renderStars()}</div>
+      <Rate allowHalf disabled={disabled} defaultValue={star} />
     </>
   );
 };

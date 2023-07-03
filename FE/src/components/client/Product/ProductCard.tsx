@@ -56,7 +56,7 @@ const ProductCard = ({ product }: Props) => {
           </div>
 
           <div className="font-light text-neutral-500 flex flex-row-reverse">
-            <StarButton star={product.stars} />
+            <StarButton star={product.stars} disabled />
           </div>
         </div>
       </div>
