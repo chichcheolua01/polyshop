@@ -1,5 +1,8 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Badge } from "antd";
+
+import { AiOutlineBell } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
 import Avatar from "../Avatar";
@@ -7,34 +10,41 @@ import MenuItem from "./MenuItem";
 
 type UserMenuProps = {
   currentUser: any | null;
+  onClick: () => void;
 };
 
-const UserMenu = ({ currentUser }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
+
   return (
     <>
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
-          <div className="hidden md:block text-sm font-semibold py-3 px-4">
-            Admin
+          <div className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5">
+            <Badge count={10} size="small" color="#52c41a">
+              <AiOutlineBell size={25} />
+            </Badge>
+          </div>
+
+          <div
+            onClick={onClick}
+            className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
+          >
+            <Badge count={10} size="small">
+              <FiShoppingCart size={25} />
+            </Badge>
           </div>
 
           <div
             onClick={toggleOpen}
-            className="md:py-1 md:px-2 border-[1px] border-neutral-200 rounded-full cursor-pointer hover:shadow-md transition"
+            className="md:px-5 md:py-1 border-[1px] border-neutral-200 rounded-full cursor-pointer hover:shadow-md transition"
           >
             <Avatar src={currentUser?.image} />
-          </div>
-
-          <div className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer">
-            <div className="flex">
-              <FiShoppingCart size={20} />
-            </div>
           </div>
 
           {isOpen && (
