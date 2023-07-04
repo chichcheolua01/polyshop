@@ -9,7 +9,11 @@ const HomePage = () => {
   );
 
   const computer = products.filter(
-    (product) => product.category.slug === "Máy tính"
+    (product) => product.category.slug === "Máy tính sách tay"
+  );
+
+  const watch = products.filter(
+    (product) => product.category.slug === "Đồng hồ"
   );
 
   return (
@@ -17,6 +21,8 @@ const HomePage = () => {
       <Container>
         <ProductList title="Điện thoại nổi bật nhất" products={phone} />
         <ProductList title="Máy tính nổi bật nhất" products={computer} />
+
+        <ProductList title="Đồng hồ nổi bật nhất" products={watch} />
       </Container>
     </>
   );
