@@ -2,12 +2,12 @@ import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { notification } from "antd";
 
-type Props = {
+type HeartButtonProps = {
   productId?: string;
   userId?: string | null;
 };
 
-const HeartButton = ({ productId, userId }: Props) => {
+const HeartButton = ({ productId, userId }: HeartButtonProps) => {
   const [api, contextHolder] = notification.useNotification();
 
   const [hasFavorite, setHasFavorite] = useState(false);

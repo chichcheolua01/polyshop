@@ -1,12 +1,12 @@
 import { IProduct } from "../../../interface/product";
 import ProductCard from "./ProductCard";
 
-type Props = {
+type ProductListProps = {
   title?: string;
   products: IProduct[];
 };
 
-const ProductList = ({ title, products }: Props) => {
+const ProductList = ({ title, products }: ProductListProps) => {
   return (
     <>
       <div className="space-y-4">
