@@ -2,26 +2,26 @@ export const carts = {
   products: [
     {
       product: {
-        _id: "product2",
-        price: 13690000,
-        inventory: 10,
-        name: "iPhone 12 64GB | Chính hãng VN/A",
+        _id: "product18",
+        price: 26290000,
+        inventory: 500,
+        name: "Laptop MSI Katana 15 B13VEK-252VN",
         image:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/_/1_252.jpg",
+          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_8__1_76.png",
       },
-      quantity: 10,
+      quantity: 2,
     },
     {
       product: {
-        _id: "product8",
-        price: 16490000,
-        inventory: 100,
-        name: "Apple MacBook Air M1 256GB 2020 I Chính hãng Apple Việt Nam",
+        _id: "product19",
+        price: 18490000,
+        inventory: 5000,
+        name: "Apple Watch Ultra 49mm Viền Titan - Dây cao su",
         image:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/a/i/air_m2.png",
+          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/a/p/apple_gps_10_.png",
       },
-      quantity: 10,
+      quantity: 1,
     },
   ],
-  totalPrice: 11680000,
+  totalPrice: 44780000,
 };
