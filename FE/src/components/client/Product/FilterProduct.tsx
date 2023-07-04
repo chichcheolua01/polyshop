@@ -27,7 +27,11 @@ const FilterProduct = ({ filterSlug, categories }: FilterProductProps) => {
         <div className="p-3">
           <span className="text-base font-medium md:mr-0 mr-3">Danh mục</span>
 
-          <Radio.Group onChange={onChangeSlug} value={slug}>
+          <Radio.Group
+            onChange={onChangeSlug}
+            value={slug}
+            className="flex flex-row md:flex-col gap-1 mt-2"
+          >
             {filterSlug.map((item) => (
               <Radio key={item} value={item}>
                 {item}
@@ -44,7 +48,7 @@ const FilterProduct = ({ filterSlug, categories }: FilterProductProps) => {
           <Radio.Group
             onChange={onChangeCategory}
             value={category}
-            style={{ width: "70%" }}
+            className="grid grid-cols-4 md:flex md:flex-col gap-1 mt-2"
           >
             {categories.map((category) => (
               <Radio key={category._id} value={category.name}>

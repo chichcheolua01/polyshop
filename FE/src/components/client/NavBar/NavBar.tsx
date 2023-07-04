@@ -39,7 +39,7 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
   );
 
   const body = (
-    <div className="flex flex-row gap-10">
+    <div className="flex flex-row gap-20 p-5">
       {slugs.map((slug) => (
         <div key={slug}>
           <Link
@@ -49,14 +49,14 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
             {slug}
           </Link>
 
-          <div className="flex flex-col mt-3">
+          <div className="flex flex-col mt-3 gap-3">
             {categories
               .filter((category) => category.slug === slug)
               .map((category) => (
                 <Link
                   key={category._id}
-                  className="hover:text-rose-500"
-                  to={`list-product?category=${category.name}`}
+                  className="text-gray-500 font-normal text-xs hover:text-rose-500"
+                  to={`list-product?slug=${category.slug}`}
                 >
                   <span className="text-base ">{category.name}</span>
                 </Link>
