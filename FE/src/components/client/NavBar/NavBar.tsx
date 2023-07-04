@@ -42,7 +42,12 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
     <div className="flex flex-row gap-10">
       {slugs.map((slug) => (
         <div key={slug}>
-          <h3 className="font-bold text-base">{slug}</h3>
+          <Link
+            to={`list-product?slug=${slug}`}
+            className="font-bold text-base hover:text-rose-500"
+          >
+            {slug}
+          </Link>
 
           <div className="flex flex-col mt-3">
             {categories
@@ -51,7 +56,7 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
                 <Link
                   key={category._id}
                   className="hover:text-rose-500"
-                  to={`list-product/${category.slug}?category=${category.name}`}
+                  to={`list-product?category=${category.name}`}
                 >
                   <span className="text-base ">{category.name}</span>
                 </Link>
