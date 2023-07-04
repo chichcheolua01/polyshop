@@ -25,8 +25,8 @@ const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
       >
         <div className="h-[65vh] overflow-y-auto">
           {carts && carts.products && carts.products.length > 0 ? (
-            carts.products.map((product) => (
-              <CartDrawnItem key={product._id} product={product} />
+            carts.products.map((cartItem) => (
+              <CartDrawnItem key={cartItem.product._id} cartItem={cartItem} />
             ))
           ) : (
             <div className="flex justify-center">

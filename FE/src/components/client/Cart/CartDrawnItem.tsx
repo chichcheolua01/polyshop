@@ -1,21 +1,21 @@
 import { InputNumber } from "antd";
-import { IProductCart } from "../../../interface/cart";
+import { ICartItem } from "../../../interface/cart";
 
 type CartDrawnItemProps = {
-  product: IProductCart;
+  cartItem: ICartItem;
 };
 
-const CartDrawnItem = ({ product }: CartDrawnItemProps) => {
+const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
   const onChange = (value: number | null) => {
     console.log(value);
   };
 
   return (
     <>
-      <div className="flex flex-row gap-2 w-full p-1">
+      <div className="flex flex-row gap-2 w-full mb-1 border rounded-xl p-2">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
           <img
-            src={product.image}
+            src={cartItem.product.image}
             width={100}
             height={100}
             alt="Product"
@@ -23,13 +23,13 @@ const CartDrawnItem = ({ product }: CartDrawnItemProps) => {
           />
         </div>
 
-        <div className="flex flex-col gap-2 truncate w-2/3">
-          <span className="font-semibold text-sm break-all">
-            {product.name}
+        <div className="flex flex-col gap-2 w-2/3">
+          <span className="font-semibold text-sm break-all truncate">
+            {cartItem.product.name}
           </span>
 
           <span className="font-bold text-[#ff424e] text-base">
-            {product.price.toLocaleString("vi-VN")}₫
+            {cartItem.product.price.toLocaleString("vi-VN")}₫
           </span>
 
           <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ const CartDrawnItem = ({ product }: CartDrawnItemProps) => {
             <InputNumber
               min={1}
               max={10}
-              defaultValue={product.quantity}
+              defaultValue={cartItem.quantity}
               onChange={onChange}
             />
           </div>

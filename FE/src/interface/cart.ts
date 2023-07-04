@@ -1,6 +1,10 @@
 export interface ICart {
-  products: IProductCart[];
+  products: ICartItem[];
   totalPrice: number;
+}
+export interface ICartItem {
+  product: IProductCart;
+  quantity: number;
 }
 
 export interface IProductCart {
@@ -8,5 +12,4 @@ export interface IProductCart {
   name: string;
   price: number;
   image: string;
-  quantity: number;
 }

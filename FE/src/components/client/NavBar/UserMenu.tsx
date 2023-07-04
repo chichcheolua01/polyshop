@@ -37,7 +37,7 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
           >
-            <Badge count={carts?.products?.length} size="small">
+            <Badge count={carts.products?.length} size="small">
               <FiShoppingCart size={25} />
             </Badge>
           </div>
