@@ -2,32 +2,23 @@ import { Radio } from "antd";
 
 import { ICategories } from "../../../interface/category";
 import { RadioChangeEvent } from "antd/es/radio";
+import { useState } from "react";
 
 type FilterProductProps = {
-  searchSlug?: string;
   filterSlug: string[];
-  searchCategory: string;
-  searchSort: string;
   categories: ICategories[];
-  updateURL: (slug: string | undefined, category: string, sort: string) => void;
 };
 
-const FilterProduct = ({
-  searchSlug,
-  filterSlug,
-  categories,
-  searchCategory,
-  searchSort,
-  updateURL,
-}: FilterProductProps) => {
+const FilterProduct = ({ filterSlug, categories }: FilterProductProps) => {
+  const [category, setCategory] = useState("");
+  const [slug, setSlug] = useState("");
+
   const onChangeCategory = (e: RadioChangeEvent) => {
-    const selectedCategory = e.target.value;
-    updateURL(searchSlug, selectedCategory, searchSort);
+    setCategory(e.target.value);
   };
 
   const onChangeSlug = (e: RadioChangeEvent) => {
-    const selectedSlug = e.target.value;
-    updateURL(selectedSlug, searchCategory, searchSort);
+    setSlug(e.target.value);
   };
 
   return (
@@ -36,7 +27,7 @@ const FilterProduct = ({
         <div className="p-3">
           <span className="text-base font-medium md:mr-0 mr-3">Danh mục</span>
 
-          <Radio.Group onChange={onChangeSlug} value={searchSlug}>
+          <Radio.Group onChange={onChangeSlug} value={slug}>
             {filterSlug.map((item) => (
               <Radio key={item} value={item}>
                 {item}
@@ -52,16 +43,14 @@ const FilterProduct = ({
 
           <Radio.Group
             onChange={onChangeCategory}
-            value={searchCategory}
+            value={category}
             style={{ width: "70%" }}
           >
-            {categories
-              .filter((category) => category.slug === searchSlug)
-              .map((category) => (
-                <Radio key={category._id} value={category.name}>
-                  {category.name}
-                </Radio>
-              ))}
+            {categories.map((category) => (
+              <Radio key={category._id} value={category.name}>
+                {category.name}
+              </Radio>
+            ))}
           </Radio.Group>
         </div>
       </div>
