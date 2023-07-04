@@ -1,5 +1,4 @@
 import { Radio } from "antd";
-import { useNavigate } from "react-router-dom";
 
 import { ICategories } from "../../../interface/category";
 import { RadioChangeEvent } from "antd/es/radio";
@@ -7,31 +6,33 @@ import { RadioChangeEvent } from "antd/es/radio";
 type FilterProductProps = {
   searchSlug?: string;
   filterSlug: string[];
-  searchValue: string;
+  searchCategory: string;
+  searchSort: string;
   categories: ICategories[];
+  updateURL: (slug: string | undefined, category: string, sort: string) => void;
 };
 
 const FilterProduct = ({
   searchSlug,
   filterSlug,
   categories,
-  searchValue,
+  searchCategory,
+  searchSort,
+  updateURL,
 }: FilterProductProps) => {
-  const navigate = useNavigate();
-
   const onChangeCategory = (e: RadioChangeEvent) => {
     const selectedCategory = e.target.value;
-    navigate(`/list-product/${searchSlug}?category=${selectedCategory}`);
+    updateURL(searchSlug, selectedCategory, searchSort);
   };
 
   const onChangeSlug = (e: RadioChangeEvent) => {
     const selectedSlug = e.target.value;
-    navigate(`/list-product/${selectedSlug}`);
+    updateURL(selectedSlug, searchCategory, searchSort);
   };
 
   return (
     <>
-      <div className="bg-[#ffffff] rounded-xl">
+      <div className="bg-[#ffffff] rounded-xl w-auto md:w-[50rem] mt-3 md:mt-0">
         <div className="p-3">
           <span className="text-base font-medium md:mr-0 mr-3">Danh mục</span>
 
@@ -49,7 +50,11 @@ const FilterProduct = ({
             Thương hiệu
           </span>
 
-          <Radio.Group onChange={onChangeCategory} value={searchValue}>
+          <Radio.Group
+            onChange={onChangeCategory}
+            value={searchCategory}
+            style={{ width: "70%" }}
+          >
             {categories
               .filter((category) => category.slug === searchSlug)
               .map((category) => (
