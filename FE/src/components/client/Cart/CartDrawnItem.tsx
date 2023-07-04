@@ -37,7 +37,7 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
 
             <InputNumber
               min={1}
-              max={10}
+              max={cartItem.product.inventory}
               defaultValue={cartItem.quantity}
               onChange={onChange}
             />

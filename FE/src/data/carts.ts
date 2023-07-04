@@ -2,23 +2,25 @@ export const carts = {
   products: [
     {
       product: {
-        _id: "product6",
-        name: "Điện thoại Tecno SPARK GO 2023 4GB/64GB - Helio A22 | 5000 mAh | 6,6 HD+| Cảm ứng vân tay | Hàng chính hãng | Bảo hành chính hãng 13 tháng",
-        price: 2490000,
+        _id: "product2",
+        price: 13690000,
+        inventory: 10,
+        name: "iPhone 12 64GB | Chính hãng VN/A",
         image:
-          "https://salt.tikicdn.com/cache/750x750/ts/product/6b/76/cb/ecff31e6f31b96158b9002eb74b76e3b.jpg.webp",
+          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/_/1_252.jpg",
       },
       quantity: 10,
     },
     {
       product: {
-        _id: "product3",
-        name: "Xiaomi 12T 8GB 128GB",
-        price: 9190000,
+        _id: "product8",
+        price: 16490000,
+        inventory: 100,
+        name: "Apple MacBook Air M1 256GB 2020 I Chính hãng Apple Việt Nam",
         image:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/x/i/xiaomi-12t-den_1.jpg",
+          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/a/i/air_m2.png",
       },
-      quantity: 5,
+      quantity: 10,
     },
   ],
   totalPrice: 11680000,
