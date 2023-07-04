@@ -1,22 +1,45 @@
+import { Popover } from "antd";
+
 type NavBarItemProps = {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   active?: boolean;
+  bodyPopover?: any;
 };
 
-const NavBarItem = ({ label, onClick, active }: NavBarItemProps) => {
+const NavBarItem = ({
+  label,
+  onClick,
+  active,
+  bodyPopover,
+}: NavBarItemProps) => {
   return (
     <>
-      <div
-        onClick={onClick}
-        className={
-          active
-            ? "text-rose-500 cursor-default"
-            : "text-black hover:text-rose-500 cursor-pointer transition"
-        }
-      >
-        {label}
-      </div>
+      {bodyPopover ? (
+        <Popover content={bodyPopover}>
+          <div
+            className={
+              active
+                ? "text-rose-500 cursor-default"
+                : "text-black hover:text-rose-500 cursor-pointer transition"
+            }
+            onClick={onClick}
+          >
+            {label}
+          </div>
+        </Popover>
+      ) : (
+        <div
+          onClick={onClick}
+          className={
+            active
+              ? "text-rose-500 cursor-default"
+              : "text-black hover:text-rose-500 cursor-pointer transition"
+          }
+        >
+          {label}
+        </div>
+      )}
     </>
   );
 };

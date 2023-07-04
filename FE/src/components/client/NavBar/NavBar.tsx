@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 import Logo from "../../Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
+
 import { ICart } from "../../../interface/cart";
+
+import { categories } from "../../../data/categories";
 
 type NavBarProps = {
   currentUser?: null;
@@ -30,6 +33,34 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const slugs = Array.from(
+    new Set(categories.map((category) => category.slug))
+  );
+
+  const body = (
+    <div className="flex flex-row gap-10">
+      {slugs.map((slug) => (
+        <div key={slug}>
+          <h3 className="font-bold text-base">{slug}</h3>
+
+          <div className="flex flex-col mt-3">
+            {categories
+              .filter((category) => category.slug === slug)
+              .map((category) => (
+                <Link
+                  key={category._id}
+                  className="hover:text-rose-500"
+                  to={`list-product/${category.slug}?category=${category.name}`}
+                >
+                  <span className="text-base ">{category.name}</span>
+                </Link>
+              ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -61,8 +92,8 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
             />
             <NavBarItem
               label="Sản phẩm"
-              onClick={() => navigate("/list-product")}
-              active={location.pathname === "/list-product"}
+              active={location.pathname.includes("/list-product/")}
+              bodyPopover={body}
             />
             <NavBarItem
               label="Giới thiệu"

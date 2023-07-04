@@ -22,7 +22,7 @@ function App() {
             <Route path="contact" element={<ContactPage />} />
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />
-            <Route path="list-product" element={<ListProductPage />} />
+            <Route path="list-product/:slug" element={<ListProductPage />} />
             <Route path="product-detail/:id" element={<ProductDetailPage />} />
           </Route>
 
