@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import FaqPage from "./pages/client/Faq/FaqPage";
 import BaseClient from "./pages/client/BaseClient";
 import HomePage from "./pages/client/Home/HomePage";
 import ContactPage from "./pages/client/Contact/ContactPage";
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BaseClient />}>
             <Route index element={<HomePage />} />
+            <Route path="faq" element={<FaqPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />
