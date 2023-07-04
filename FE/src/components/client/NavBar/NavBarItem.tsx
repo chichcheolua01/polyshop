@@ -21,8 +21,8 @@ const NavBarItem = ({
           <div
             className={
               active
-                ? "text-rose-500 cursor-default"
-                : "text-black hover:text-rose-500 cursor-pointer transition"
+                ? "text-black cursor-default text-base font-medium"
+                : "text-black hover:text-rose-500 cursor-pointer text-base font-medium transition"
             }
             onClick={onClick}
           >
@@ -34,8 +34,8 @@ const NavBarItem = ({
           onClick={onClick}
           className={
             active
-              ? "text-rose-500 cursor-default"
-              : "text-black hover:text-rose-500 cursor-pointer transition"
+              ? "text-black cursor-default text-base font-medium"
+              : "text-black hover:text-rose-500 cursor-pointer text-base font-medium transition"
           }
         >
           {label}

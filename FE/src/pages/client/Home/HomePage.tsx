@@ -23,15 +23,15 @@ const HomePage = () => {
         <Features />
 
         {phone && phone.length > 0 && (
-          <ProductList title="Điện thoại nổi bật nhất" products={phone} />
+          <ProductList title="Điện Thoại" products={phone} />
         )}
 
         {computer && computer.length > 0 && (
-          <ProductList title="Máy tính nổi bật nhất" products={computer} />
+          <ProductList title="Máy Tính" products={computer} />
         )}
 
         {watch && watch.length > 0 && (
-          <ProductList title="Đồng hồ nổi bật nhất" products={watch} />
+          <ProductList title="Đồng Hồ" products={watch} />
         )}
       </Container>
     </>

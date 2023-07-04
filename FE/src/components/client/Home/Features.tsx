@@ -6,9 +6,9 @@ const Features = () => {
   return (
     <>
       <div className="py-16">
-        <div className="w-10/12 grid grid-cols-3 gap-6 mx-auto justify-center">
-          <div className="border border-rose-500 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-            <LiaTruckSolid size={50} className="object-contain text-rose-500" />
+        <div className="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
+          <div className="border border-rose-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+            <LiaTruckSolid size={50} className="object-contain text-rose-400" />
 
             <div>
               <h4 className="font-medium capitalize text-lg">
@@ -19,10 +19,10 @@ const Features = () => {
             </div>
           </div>
 
-          <div className="border border-rose-500 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+          <div className="border border-rose-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
             <BiDollarCircle
               size={50}
-              className="object-contain text-rose-500"
+              className="object-contain text-rose-400"
             />
 
             <div>
@@ -32,8 +32,8 @@ const Features = () => {
             </div>
           </div>
 
-          <div className="border border-rose-500 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-            <Ri24HoursFill size={50} className="object-contain text-rose-500" />
+          <div className="border border-rose-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+            <Ri24HoursFill size={50} className="object-contain text-rose-400" />
 
             <div>
               <h4 className="font-medium capitalize text-lg">Hỗ trợ 24/7</h4>

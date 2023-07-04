@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="w-full bg-[#e6e6e6] shadow-sm mt-10">
+      <footer className="w-full bg-rose-200 mt-10">
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-10 sm:px-8 px-5 py-16">
             <FooterLink title="Thông tin và chính sách" links={link1} />

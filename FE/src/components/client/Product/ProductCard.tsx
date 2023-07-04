@@ -17,12 +17,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <>
-      <div className="col-span-1 cursor-pointer group shadow-xl rounded-xl p-3 border">
+      <div className="col-span-1 cursor-pointer group rounded-xl p-3 border hover:scale-110">
         <div className="flex flex-col justify-end gap-3 w-full">
           <div className="flex flex-row justify-between">
             {discount > 0 && (
               <div className="relative mt-[-15px] ml-[-15px]">
-                <div className="flex justify-center items-center bg-[#d70018] rounded-r-2xl px-4 py-1">
+                <div className="flex justify-center items-center bg-rose-500 rounded-r-2xl px-4 py-1">
                   <span className="text-white text-[12px] font-semibold">
                     Giảm {discount}%
                   </span>
@@ -40,7 +40,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               alt="Product"
               src={product?.image[0].base_url}
               onClick={() => navigate(`/product-detail/${product._id}`)}
-              className="object-cover h-full w-full group-hover:scale-110 transition"
+              className="object-cover h-full w-full transition"
             />
           </div>
 

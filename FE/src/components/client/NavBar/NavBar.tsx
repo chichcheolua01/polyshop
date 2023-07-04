@@ -38,13 +38,13 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
     new Set(categories.map((category) => category.slug))
   );
 
-  const body = (
+  const bodyPopover = (
     <div className="flex flex-row gap-20 p-5">
       {slugs.map((slug) => (
         <div key={slug}>
           <Link
             to={`list-product?slug=${slug}`}
-            className="font-bold text-base hover:text-rose-500"
+            className="font-bold text-lg hover:text-rose-500"
           >
             {slug}
           </Link>
@@ -55,7 +55,7 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
               .map((category) => (
                 <Link
                   key={category._id}
-                  className="text-gray-500 font-normal text-xs hover:text-rose-500"
+                  className="text-gray-500 font-medium text-base hover:text-rose-500"
                   to={`list-product?slug=${category.slug}`}
                 >
                   <span className="text-base ">{category.name}</span>
@@ -69,7 +69,7 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
 
   return (
     <>
-      <header className="fixed w-full bg-white z-10 shadow-sm">
+      <header className="fixed w-full bg-rose-300 z-10 shadow-sm">
         <div className="py-4 border-b-[1px]">
           <Container>
             <div className="flex flex-row items-center justify-between gap-3">
@@ -98,7 +98,7 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
             <NavBarItem
               label="Sản phẩm"
               active={location.pathname.includes("/list-product/")}
-              bodyPopover={body}
+              bodyPopover={bodyPopover}
             />
             <NavBarItem
               label="Giới thiệu"

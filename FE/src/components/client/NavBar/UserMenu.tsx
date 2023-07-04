@@ -26,28 +26,36 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
   const cartCount =
     carts && carts.products?.length > 0 ? carts.products.length : 0;
 
+  const notificationCount = 1;
+
   return (
     <>
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
-          <div className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5">
-            <Badge count={10} size="small" color="#52c41a">
-              <AiOutlineBell size={25} />
+          <div className="hidden md:block cursor-pointer transition md:px-5">
+            <Badge count={notificationCount} size="small">
+              <AiOutlineBell
+                size={30}
+                className="hover:text-rose-500 text-black"
+              />
             </Badge>
           </div>
 
           <div
             onClick={onClick}
-            className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
+            className="hidden md:block cursor-pointer transition md:px-5"
           >
             <Badge count={cartCount} size="small">
-              <FiShoppingCart size={25} />
+              <FiShoppingCart
+                size={30}
+                className="hover:text-rose-500 text-black"
+              />
             </Badge>
           </div>
 
           <div
             onClick={toggleOpen}
-            className="md:px-5 md:py-1 border-[1px] border-neutral-200 rounded-full cursor-pointer hover:shadow-md transition"
+            className="md:px-5 md:py-1 border-neutral-200 rounded-full cursor-pointer transition"
           >
             <Avatar src={currentUser?.image} />
           </div>

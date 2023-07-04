@@ -28,7 +28,7 @@ const HeartButton = ({ productId, userId }: HeartButtonProps) => {
       {contextHolder}
       <div
         onClick={toggleFavorite}
-        className="relative hover:opacity-80 transition cursor-pointer"
+        className="relative hover:opacity-50 transition cursor-pointer"
       >
         <AiOutlineHeart
           size={28}

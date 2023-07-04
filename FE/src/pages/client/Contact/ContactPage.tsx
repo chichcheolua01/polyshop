@@ -9,9 +9,10 @@ import Button from "../../../components/client/Button";
 const ContactPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const sendContact = () => {
-    alert("Please");
+    alert("Gửi hỗ trợ");
   };
 
   return (
@@ -50,12 +51,17 @@ const ContactPage = () => {
               </div>
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <textarea
-                  className="peer block min-h-[auto] w-full rounded border bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                  id="exampleFormControlTextarea1"
+                  className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-black bg-white border appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
+                  id="textarea"
+                  onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                    setMessage(e.target.value)
+                  }
+                  placeholder=" "
+                  value={message}
                 ></textarea>
                 <label
-                  htmlFor="exampleFormControlTextarea1"
-                  className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                  htmlFor="textarea"
+                  className="absolute text-md text-zinc-400 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-6 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3"
                 >
                   Message
                 </label>
@@ -70,7 +76,7 @@ const ContactPage = () => {
                   <div className="flex items-start">
                     <div className="shrink-0">
                       <div className="inline-block rounded-md bg-primary-100 p-4 text-primary">
-                        <FiPhoneCall size={30} />
+                        <FiPhoneCall size={30} className="text-rose-400" />
                       </div>
                     </div>
                     <div className="ml-6 grow">
@@ -86,11 +92,15 @@ const ContactPage = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
                   <div className="flex items-start">
                     <div className="shrink-0">
                       <div className="inline-block rounded-md bg-primary-100 p-4 text-primary">
-                        <FaRegMoneyBillAlt size={30} />
+                        <FaRegMoneyBillAlt
+                          size={30}
+                          className="text-rose-400"
+                        />
                       </div>
                     </div>
                     <div className="ml-6 grow">
@@ -106,11 +116,12 @@ const ContactPage = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
                   <div className="align-start flex">
                     <div className="shrink-0">
                       <div className="inline-block rounded-md bg-primary-100 p-4 text-primary">
-                        <FaRegNewspaper size={30} />
+                        <FaRegNewspaper size={30} className="text-rose-400" />
                       </div>
                     </div>
                     <div className="ml-6 grow">
@@ -124,11 +135,15 @@ const ContactPage = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
                   <div className="align-start flex">
                     <div className="shrink-0">
                       <div className="inline-block rounded-md bg-primary-100 p-4 text-primary">
-                        <BiMessageRoundedError size={30} />
+                        <BiMessageRoundedError
+                          size={30}
+                          className="text-rose-400"
+                        />
                       </div>
                     </div>
                     <div className="ml-6 grow">
