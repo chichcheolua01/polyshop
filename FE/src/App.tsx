@@ -6,7 +6,7 @@ import ContactPage from "./pages/client/Contact/ContactPage";
 import CheckOutPage from "./pages/client/CheckOut/CheckOutPage";
 import IntroducePage from "./pages/client/Introduce/IntroducePage";
 import ListProductPage from "./pages/client/ListProduct/ListProductPage";
-import ProductDetailPage from "./components/client/ProductDetail/ProductDetailPage";
+import ProductDetailPage from "./pages/client/ProductDetail/ProductDetailPage";
 
 import BaseAuth from "./pages/auth/BaseAuth";
 import LoginPage from "./pages/auth/Login/LoginPage";

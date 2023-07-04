@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import HeartButton from "./HeartButton";
-import StarButton from "./StarButton";
+import { AiFillStar } from "react-icons/ai";
 
 type Props = {
   product: any;
@@ -17,7 +17,7 @@ const ProductCard = ({ product }: Props) => {
   return (
     <>
       <div className="col-span-1 cursor-pointer group shadow-xl rounded-xl p-3 border">
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col justify-end gap-3 w-full">
           <div className="flex flex-row justify-between">
             {discount > 0 && (
               <div className="relative mt-[-15px] ml-[-15px]">
@@ -43,20 +43,44 @@ const ProductCard = ({ product }: Props) => {
             />
           </div>
 
-          <div className="font-semibold text-lg pt-3">{product.name}</div>
+          <div className="truncate">
+            <span className="font-normal text-xs break-all">
+              {product.name}
+            </span>
+          </div>
+
+          <div className="flex items-center">
+            {product.stars > 0 && (
+              <div className="flex items-center">
+                <span className="text-xs text-[#808089]">{product.stars}</span>
+
+                <span className="text-[#fdd836]">
+                  <AiFillStar />
+                </span>
+              </div>
+            )}
+
+            {product.sold > 0 && product.stars > 0 && (
+              <div className="w-[1px] h-[10px] bg-[#ebebf0] ml-[2px] mr-[4px]"></div>
+            )}
+
+            {product.sold > 0 && (
+              <span className="text-[#808089] text-xs">
+                Đã bán {product.sold}
+              </span>
+            )}
+          </div>
 
           <div className="flex flex-row items-center gap-3">
-            <div className="font-bold text-red-500">
+            <div className="font-bold text-[#ff424e] text-base">
               {product.price.toLocaleString("vi-VN")}₫
             </div>
 
-            <del className="font-medium text-gray-500">
-              {product.original_price.toLocaleString("vi-VN")}₫
-            </del>
-          </div>
-
-          <div className="font-light text-neutral-500 flex flex-row-reverse">
-            <StarButton star={product.stars} disabled />
+            {product.price !== product.original_price && (
+              <del className="font-medium text-sm text-gray-500">
+                {product.original_price.toLocaleString("vi-VN")}₫
+              </del>
+            )}
           </div>
         </div>
       </div>

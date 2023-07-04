@@ -15,12 +15,12 @@ const BaseClient = () => {
   const carts = {
     products: [
       {
-        _id: "product1",
-        name: "Samsung Galaxy S20 FE 256GB",
-        price: 6990000,
-        quantity: 10,
+        _id: "product6",
+        name: "Điện thoại Tecno SPARK GO 2023 4GB/64GB - Helio A22 | 5000 mAh | 6,6 HD+| Cảm ứng vân tay | Hàng chính hãng | Bảo hành chính hãng 13 tháng",
+        price: 2490000,
+        quantity: 5,
         image:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/a/samsung-galaxy-20-fe_4_.jpg",
+          "https://salt.tikicdn.com/cache/750x750/ts/product/6b/76/cb/ecff31e6f31b96158b9002eb74b76e3b.jpg.webp",
       },
       {
         _id: "product3",
@@ -40,9 +40,9 @@ const BaseClient = () => {
 
       <CartDrawn isOpen={openDrawn} onClose={setDrawn} carts={carts} />
 
-      <div className="pt-36">
+      <main className="pt-36">
         <Outlet />
-      </div>
+      </main>
 
       <Footer />
     </>
