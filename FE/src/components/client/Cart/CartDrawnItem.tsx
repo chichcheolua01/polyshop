@@ -23,15 +23,17 @@ const CartDrawnItem = ({ product }: CartDrawnItemProps) => {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <div className="font-semibold text-sm pt-3">{product.name}</div>
+        <div className="flex flex-col gap-2 truncate w-2/3">
+          <span className="font-semibold text-sm break-all">
+            {product.name}
+          </span>
 
-          <div className="font-bold text-red-500">
+          <span className="font-bold text-[#ff424e] text-base">
             {product.price.toLocaleString("vi-VN")}₫
-          </div>
+          </span>
 
           <div className="flex items-center gap-2">
-            <span>Số lượng:</span>
+            <span className="text-xs">Số lượng:</span>
 
             <InputNumber
               min={1}
