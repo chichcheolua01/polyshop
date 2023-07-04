@@ -11,5 +11,6 @@ export interface IProductCart {
   _id?: string;
   name: string;
   price: number;
+  inventory: number;
   image: string;
 }

@@ -98,7 +98,7 @@ export const products = [
     stars: 5,
     price: 16490000,
     category: { _id: "cate8", name: "Apple", slug: "Máy tính" },
-    inventory: 10,
+    inventory: 100,
     original_price: 18490000,
     name: "Apple MacBook Air M1 256GB 2020 I Chính hãng Apple Việt Nam",
     description:
