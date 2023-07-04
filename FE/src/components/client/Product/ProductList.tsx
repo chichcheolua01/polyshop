@@ -4,22 +4,17 @@ import ProductCard from "./ProductCard";
 type ProductListProps = {
   title?: string;
   products: IProduct[];
-  hidden?: boolean;
 };
 
-const ProductList = ({ title, products, hidden }: ProductListProps) => {
+const ProductList = ({ title, products }: ProductListProps) => {
   return (
     <>
-      <div className="space-y-4">
+      <div className="space-y-4 border rounded-xl p-3 mb-16 bg-white shadow-xl">
         {title && (
           <div className="flex flex-row justify-between">
-            <h3 className="font-bold text-3xl pt-10 uppercase">{title}</h3>
-
-            {hidden ? null : (
-              <h4 className="font-md text-md pt-10 hover:text-rose-500">
-                Xem thêm
-              </h4>
-            )}
+            <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">
+              {title}
+            </h2>
           </div>
         )}
 

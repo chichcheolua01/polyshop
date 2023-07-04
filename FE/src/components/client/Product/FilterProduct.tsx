@@ -5,11 +5,10 @@ import { RadioChangeEvent } from "antd/es/radio";
 import { useState } from "react";
 
 type FilterProductProps = {
-  filterSlug: string[];
   categories: ICategories[];
 };
 
-const FilterProduct = ({ filterSlug, categories }: FilterProductProps) => {
+const FilterProduct = ({ categories }: FilterProductProps) => {
   const [category, setCategory] = useState("");
   const [slug, setSlug] = useState("");
 
@@ -21,38 +20,46 @@ const FilterProduct = ({ filterSlug, categories }: FilterProductProps) => {
     setSlug(e.target.value);
   };
 
+  const filterSlug = [...new Set(categories.map((category) => category.slug))];
+
   return (
     <>
-      <div className="bg-[#ffffff] rounded-xl w-auto md:w-[50rem] mt-3 md:mt-0">
-        <div className="p-3">
-          <span className="text-base font-medium md:mr-0 mr-3">Danh mục</span>
+      <div>
+        <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium mt-3">
+          Danh mục
+        </h3>
 
+        <div className="space-y-2">
           <Radio.Group
             onChange={onChangeSlug}
             value={slug}
-            className="flex flex-row md:flex-col gap-1 mt-2"
+            className="flex flex-col gap-1"
           >
             {filterSlug.map((item) => (
               <Radio key={item} value={item}>
-                {item}
+                <div className="text-gray-600 cursor-pointer">{item}</div>
               </Radio>
             ))}
           </Radio.Group>
         </div>
+      </div>
 
-        <div className="p-3">
-          <span className="text-base font-medium md:mr-0 mr-3">
-            Thương hiệu
-          </span>
+      <div>
+        <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium mt-3">
+          Thương hiệu
+        </h3>
 
+        <div className="space-y-2">
           <Radio.Group
             onChange={onChangeCategory}
             value={category}
-            className="grid grid-cols-4 md:flex md:flex-col gap-1 mt-2"
+            className="flex flex-col gap-1"
           >
             {categories.map((category) => (
               <Radio key={category._id} value={category.name}>
-                {category.name}
+                <div className="text-gray-600 cursor-pointer">
+                  {category.name}
+                </div>
               </Radio>
             ))}
           </Radio.Group>

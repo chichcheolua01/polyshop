@@ -1,4 +1,5 @@
 import Container from "../../../components/client/Container";
+import Features from "../../../components/client/Home/Features";
 import ProductList from "../../../components/client/Product/ProductList";
 
 import { products } from "../../../data/products";
@@ -19,6 +20,8 @@ const HomePage = () => {
   return (
     <>
       <Container>
+        <Features />
+
         {phone && phone.length > 0 && (
           <ProductList title="Điện thoại nổi bật nhất" products={phone} />
         )}

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import Container from "../../../components/client/Container";
 import ProductInfo from "../../../components/client/Product/ProductInfo";
 import ProductList from "../../../components/client/Product/ProductList";
+import ProductComment from "../../../components/client/Product/ProductComment";
 
 import { products } from "../../../data/products";
-import ProductTab from "../../../components/client/Product/ProductTab";
 
 const ProductDetailPage = () => {
   const { id } = useParams<string>();
@@ -23,13 +23,9 @@ const ProductDetailPage = () => {
           <div className="flex flex-col gap-6">
             <ProductInfo product={product} />
 
-            <ProductList
-              products={productSimilar}
-              title="Sản phẩm cùng loại"
-              hidden
-            />
+            <ProductList products={productSimilar} title="Sản phẩm cùng loại" />
 
-            <ProductTab description={product?.description} />
+            <ProductComment />
           </div>
         </div>
       </Container>
