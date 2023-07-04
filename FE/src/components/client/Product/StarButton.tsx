@@ -1,11 +1,11 @@
 import { Rate } from "antd";
 
-type Props = {
+type StarButtonProps = {
   star?: number;
   disabled?: boolean;
 };
 
-const StarButton = ({ star, disabled }: Props) => {
+const StarButton = ({ star, disabled }: StarButtonProps) => {
   return (
     <>
       <Rate allowHalf disabled={disabled} defaultValue={star} />

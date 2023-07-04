@@ -4,11 +4,11 @@ import HeartButton from "./HeartButton";
 import { AiFillStar } from "react-icons/ai";
 import { IProduct } from "../../../interface/product";
 
-type Props = {
+type ProductCardProps = {
   product: IProduct;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
 
   const discount = Math.round(
