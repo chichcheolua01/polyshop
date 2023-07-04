@@ -17,7 +17,7 @@ const Input = ({ id, onChange, value, label, type }: InputProps) => {
           type={type}
           value={value}
           onChange={onChange}
-          className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
+          className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-black bg-white border appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
           placeholder=" "
         />
         <label
