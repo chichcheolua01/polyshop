@@ -10,9 +10,9 @@ import MenuItem from "./MenuItem";
 import { ICart } from "../../../interface/cart";
 
 type UserMenuProps = {
-  currentUser: any | null;
+  currentUser: any | null | undefined;
   onClick: () => void;
-  carts: ICart;
+  carts: ICart | null | undefined;
 };
 
 const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
@@ -22,6 +22,9 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
+
+  const cartCount =
+    carts && carts.products?.length > 0 ? carts.products.length : 0;
 
   return (
     <>
@@ -37,7 +40,7 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block text-black hover:text-rose-500 cursor-pointer transition md:px-5"
           >
-            <Badge count={carts.products?.length} size="small">
+            <Badge count={cartCount} size="small">
               <FiShoppingCart size={25} />
             </Badge>
           </div>

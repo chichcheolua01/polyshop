@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -23,7 +23,9 @@ const LoginPage = () => {
               type="email"
               label="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
             />
 
             <Input
@@ -31,7 +33,9 @@ const LoginPage = () => {
               id="password"
               label="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
             />
             <button
               onClick={() => alert("Đăng nhập")}

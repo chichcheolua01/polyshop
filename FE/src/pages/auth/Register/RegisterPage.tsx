@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -24,7 +24,9 @@ const RegisterPage = () => {
               type="name"
               label="Name"
               value={name}
-              onChange={(e: any) => setName(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setName(e.target.value)
+              }
             />
 
             <Input
@@ -32,7 +34,9 @@ const RegisterPage = () => {
               type="email"
               label="Email"
               value={email}
-              onChange={(e: any) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
             />
 
             <Input
@@ -40,7 +44,9 @@ const RegisterPage = () => {
               id="password"
               label="Password"
               value={password}
-              onChange={(e: any) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
             />
             <button
               onClick={() => alert("Đăng ký")}

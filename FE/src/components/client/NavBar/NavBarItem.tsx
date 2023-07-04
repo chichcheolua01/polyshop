@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { Popover } from "antd";
 
 type NavBarItemProps = {
   label: string;
   onClick?: () => void;
   active?: boolean;
-  bodyPopover?: any;
+  bodyPopover?: ReactNode;
 };
 
 const NavBarItem = ({

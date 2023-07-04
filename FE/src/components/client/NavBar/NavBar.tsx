@@ -12,9 +12,9 @@ import { ICart } from "../../../interface/cart";
 import { categories } from "../../../data/categories";
 
 type NavBarProps = {
-  currentUser?: null;
+  currentUser?: any | null | undefined;
   onOpen: () => void;
-  carts: ICart;
+  carts?: ICart | null | undefined;
 };
 
 const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
