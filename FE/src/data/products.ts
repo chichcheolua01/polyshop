@@ -679,4 +679,35 @@ export const products = [
       },
     ],
   },
+
+  {
+    _id: "product24",
+    sold: 30,
+    stars: 4,
+    price: 24990000,
+    inventory: 330,
+    category: { _id: "cate18", name: "Msi", slug: "Máy tính sách tay" },
+    original_price: 27990000,
+    name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+    description:
+      "Laptop MSI Crosshair 15 B12UEZ 460VN mang phong cách tương lai được lấy cảm hứng từ khoa học viễn tưởng cho trải nghiệm chơi game cực chất. Cấu hình mạnh mẽ, thiết kế ấn tượng, cùng chúng tôi khám phá thêm thông tin về chiếc laptop này nhé!",
+    image: [
+      {
+        base_url:
+          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_20_.png",
+      },
+      {
+        base_url:
+          "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/g/e/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-2.jpg",
+      },
+      {
+        base_url:
+          "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/g/e/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-3.jpg",
+      },
+      {
+        base_url:
+          "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/g/e/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-4.jpg",
+      },
+    ],
+  },
 ];
