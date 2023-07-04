@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 import HeartButton from "./HeartButton";
 import { AiFillStar } from "react-icons/ai";
+import { IProduct } from "../../../interface/product";
 
 type Props = {
-  product: any;
+  product: IProduct;
 };
 
 const ProductCard = ({ product }: Props) => {

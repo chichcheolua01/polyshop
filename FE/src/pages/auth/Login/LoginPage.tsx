@@ -23,7 +23,7 @@ const LoginPage = () => {
               type="email"
               label="Email"
               value={email}
-              onChange={(e: any) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <Input
@@ -31,7 +31,7 @@ const LoginPage = () => {
               id="password"
               label="Password"
               value={password}
-              onChange={(e: any) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               onClick={() => alert("Đăng nhập")}

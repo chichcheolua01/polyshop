@@ -1,8 +1,9 @@
+import { IProduct } from "../../../interface/product";
 import ProductCard from "./ProductCard";
 
 type Props = {
   title?: string;
-  products: any[];
+  products: IProduct[];
 };
 
 const ProductList = ({ title, products }: Props) => {

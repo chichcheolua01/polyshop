@@ -1,6 +1,6 @@
 type InputProps = {
   id: string;
-  onChange: any;
+  onChange: (e: any) => void;
   value: string;
   label: string;
   type?: string;
