@@ -19,10 +19,17 @@ const HomePage = () => {
   return (
     <>
       <Container>
-        <ProductList title="Điện thoại nổi bật nhất" products={phone} />
-        <ProductList title="Máy tính nổi bật nhất" products={computer} />
+        {phone && phone.length > 0 && (
+          <ProductList title="Điện thoại nổi bật nhất" products={phone} />
+        )}
 
-        <ProductList title="Đồng hồ nổi bật nhất" products={watch} />
+        {computer && computer.length > 0 && (
+          <ProductList title="Máy tính nổi bật nhất" products={computer} />
+        )}
+
+        {watch && watch.length > 0 && (
+          <ProductList title="Đồng hồ nổi bật nhất" products={watch} />
+        )}
       </Container>
     </>
   );
