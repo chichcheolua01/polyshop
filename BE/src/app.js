@@ -5,6 +5,8 @@ import cors from "cors";
 
 import ProductRouter from "./router/product";
 import CategoryRouter from "./router/category";
+import AuthRouter from "./router/auth";
+
 
 
 dotenv.config();
@@ -16,6 +18,8 @@ app.use(cors());
 
 app.use("/products", ProductRouter);
 app.use("/category", CategoryRouter);
+app.use("/auth", AuthRouter);
+
 
 
 mongoose.connect(process.env.DB_URL);
