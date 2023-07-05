@@ -4,8 +4,8 @@ import type { TabsProps } from "antd";
 
 import { BiCheckShield } from "react-icons/bi";
 
-import { Button, Input } from "../..";
-import { IUser } from "../../../interface";
+import { Button, Input } from "../../..";
+import { IUser } from "../../../../interface";
 
 type ChangePasswordProps = {
   currentUser: IUser | null;

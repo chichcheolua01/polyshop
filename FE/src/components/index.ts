@@ -25,16 +25,16 @@ import ProductInfo from "./client/Product/ProductInfo";
 import ProductList from "./client/Product/ProductList";
 import StarButton from "./client/Product/StarButton";
 
-import Account from "./client/Profile/Account";
-import Information from "./client/Profile/Information";
-import MyAccount from "./client/Profile/MyAccount";
+import Account from "./client/Profile/Account/Account";
+import Information from "./client/Profile/Account/Information";
+import MyAccount from "./client/Profile/Account/MyAccount";
 import NavProfile from "./client/Profile/NavProfile";
-import ChangePassword from "./client/Profile/ChangePassword";
-import Order from "./client/Profile/Order";
-import OrderHistory from "./client/Profile/OrderHistory";
-import OrderAddress from "./client/Profile/OrderAddress";
-import Payment from "./client/Profile/Payment";
-import Voucher from "./client/Profile/Voucher";
+import ChangePassword from "./client/Profile/Account/ChangePassword";
+import Order from "./client/Profile/Order/Order";
+import OrderHistory from "./client/Profile/Order/OrderHistory";
+import OrderAddress from "./client/Profile/Order/OrderAddress";
+import Payment from "./client/Profile/Payment/Payment";
+import Voucher from "./client/Profile/Payment/Voucher";
 import Favorite from "./client/Profile/Favorite";
 
 import Avatar from "./client/Avatar";

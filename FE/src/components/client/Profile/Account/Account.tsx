@@ -1,6 +1,6 @@
 import MyAccount from "./MyAccount";
 
-import { IUser } from "../../../interface";
+import { IUser } from "../../../../interface";
 
 type AccountProps = {
   currentUser: IUser | null;

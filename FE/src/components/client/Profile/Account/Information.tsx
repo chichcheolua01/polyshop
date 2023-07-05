@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import { Button, Input } from "../..";
+import { Button, Input } from "../../..";
 
-import { IUser } from "../../../interface";
+import { IUser } from "../../../../interface";
 
 type InformationProps = {
   currentUser: IUser | null;
