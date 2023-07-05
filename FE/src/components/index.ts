@@ -36,6 +36,8 @@ import OrderAddress from "./client/Profile/Order/OrderAddress";
 import Payment from "./client/Profile/Payment/Payment";
 import Voucher from "./client/Profile/Payment/Voucher";
 import Favorite from "./client/Profile/Favorite";
+import ListCard from "./client/Profile/Payment/ListCard";
+import Card from "./client/Profile/Payment/Card";
 
 import Avatar from "./client/Avatar";
 import Button from "./Button";
@@ -79,4 +81,6 @@ export {
   Button,
   Container,
   Logo,
+  ListCard,
+  Card,
 };
