@@ -3,14 +3,16 @@ import { AiOutlineRight } from "react-icons/ai";
 
 import { Container, FilterProduct, ProductList } from "../../../components";
 
-import { ICategories, IProduct } from "../../../interface";
+import { ICategories, IProduct, IUser } from "../../../interface";
 
 type ListProductPageProps = {
+  currentUser: IUser | null;
   listProducts: IProduct[] | null;
   listCategories: ICategories[] | null;
 };
 
 const ListProductPage = ({
+  currentUser,
   listProducts,
   listCategories,
 }: ListProductPageProps) => {
@@ -44,7 +46,10 @@ const ListProductPage = ({
               </select>
 
               <div className="shadow-2xl rounded-xl">
-                <ProductList products={listProducts} />
+                <ProductList
+                  products={listProducts}
+                  currentUser={currentUser}
+                />
               </div>
             </div>
           </div>

@@ -99,7 +99,10 @@ function App() {
                 path="information"
                 element={<Information currentUser={currentUser} />}
               />
-              <Route path="change-password" element={<ChangePassword />} />
+              <Route
+                path="change-password"
+                element={<ChangePassword currentUser={currentUser} />}
+              />
               <Route path="orders" element={<Order />} />
               <Route path="order-history" element={<OrderHistory />} />
               <Route path="order-address" element={<OrderAddress />} />
@@ -113,6 +116,7 @@ function App() {
               path="list-product"
               element={
                 <ListProductPage
+                  currentUser={currentUser}
                   listProducts={products}
                   listCategories={categories}
                 />

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { notification } from "antd";
+import { useEffect, useState } from "react";
+import { message, notification } from "antd";
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
@@ -13,23 +13,41 @@ type HeartButtonProps = {
 const HeartButton = ({ productId, user }: HeartButtonProps) => {
   const [api, contextHolder] = notification.useNotification();
 
-  const [hasFavorite, setHasFavorite] = useState(
-    user?.favorite.some((favorite) => favorite.productId === productId)
-  );
+  const [hasFavorite, setHasFavorite] = useState(false);
 
   const toggleFavorite = () => {
     if (!user) {
-      api.open({
+      api.warning({
         message: "Bạn chưa đăng nhập",
-        description: "Vui lòng đăng nhập để thực hiện hành động này!.",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
       });
-    } else {
-      console.log(productId);
-      console.log(user);
 
-      setHasFavorite(!hasFavorite);
+      return;
+    }
+
+    if (hasFavorite) {
+      message.warning("Hủy yêu thích thành công!");
+
+      setHasFavorite(false);
+    } else {
+      message.success("Yêu thích thành công!");
+
+      setHasFavorite(true);
     }
   };
+
+  useEffect(() => {
+    let isFavorite = false;
+
+    if (user && user.favorite) {
+      isFavorite = user.favorite.some(
+        (favorite) => favorite.productId === productId
+      );
+    }
+
+    setHasFavorite(isFavorite || false);
+  }, [productId, user]);
 
   return (
     <>

@@ -24,6 +24,11 @@ export const users = [
         userId: "user1",
         productId: "product10",
       },
+      {
+        _id: "favorite3",
+        userId: "user1",
+        productId: "product15",
+      },
     ],
     role: "Admin",
   },
