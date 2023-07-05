@@ -26,6 +26,9 @@ dependencies:
   mongoose:
     specifier: ^7.3.1
     version: 7.3.1
+  nodemailer:
+    specifier: ^6.9.3
+    version: 6.9.3
   vite:
     specifier: ^4.3.9
     version: 4.3.9
@@ -1012,6 +1015,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /nodemailer@6.9.3:
+    resolution: {integrity: sha512-fy9v3NgTzBngrMFkDsKEj0r02U7jm6XfC3b52eoNV+GCrGj+s8pt5OqhiJdWKuw51zCTdiNR/IUD1z33LIIGpg==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nopt@5.0.0:

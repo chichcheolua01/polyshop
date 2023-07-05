@@ -6,6 +6,8 @@ import cors from "cors";
 import ProductRouter from "./router/product";
 import CategoryRouter from "./router/category";
 import AuthRouter from "./router/auth";
+import contactRouter from "./router/contact";
+
 
 
 
@@ -19,6 +21,7 @@ app.use(cors());
 app.use("/products", ProductRouter);
 app.use("/category", CategoryRouter);
 app.use("/auth", AuthRouter);
+app.use("/contact",contactRouter);
 
 
 
