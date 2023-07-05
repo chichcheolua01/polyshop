@@ -12,7 +12,7 @@ const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {
       <div className="h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
         <img
           className="relative object-cover w-full h-full rounded-xl"
-          src="/images/card-1.png"
+          src="/images/card/card-1.png"
         />
 
         <div className="w-full px-8 absolute top-8">
@@ -22,7 +22,7 @@ const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {
               <p className="font-medium tracking-widest">{name}</p>
             </div>
 
-            <img className="w-14 h-14" src="/images/master-card.png" />
+            <img className="w-14 h-14" src="/images/card/master-card.png" />
           </div>
           <div className="pt-1">
             <p className="font-light">Card Number</p>
