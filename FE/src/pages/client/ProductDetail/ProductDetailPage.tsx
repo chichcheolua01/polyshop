@@ -7,7 +7,7 @@ import {
   ProductList,
 } from "../../../components";
 
-import { products } from "../../../data/products";
+import { products } from "../../../data";
 
 const ProductDetailPage = () => {
   const { id } = useParams<string>();

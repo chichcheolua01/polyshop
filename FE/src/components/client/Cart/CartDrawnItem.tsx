@@ -1,6 +1,6 @@
 import { InputNumber } from "antd";
 
-import { ICartItem } from "../../../interface/cart";
+import { ICartItem } from "../../../interface";
 
 type CartDrawnItemProps = {
   cartItem: ICartItem;

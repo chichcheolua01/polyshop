@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { CartDrawn, Footer, NavBar } from "../../components";
 
-import { carts } from "../../data/carts";
+import { carts, categories } from "../../data";
 
 const BaseClient = () => {
   const [openDrawn, setOpenDrawn] = useState(false);
@@ -15,7 +15,7 @@ const BaseClient = () => {
   return (
     <>
       <div className="bg-gray-100">
-        <NavBar onOpen={setDrawn} carts={carts} />
+        <NavBar onOpen={setDrawn} carts={carts} categories={categories} />
 
         <CartDrawn isOpen={openDrawn} onClose={setDrawn} carts={carts} />
 

@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
+
 import { AiOutlineProfile, AiOutlineGift } from "react-icons/ai";
 import { BsCreditCard } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";

@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-import { IProduct } from "../../../interface/product";
+import { IProduct } from "../../../interface";
 
 type ProductListProps = {
   title?: string;

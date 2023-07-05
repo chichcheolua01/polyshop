@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 
 import HeartButton from "./HeartButton";
 
-import { IProduct } from "../../../interface/product";
+import { IProduct } from "../../../interface";
 
 type ProductCardProps = {
   product: IProduct;

@@ -7,17 +7,16 @@ import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
-import { ICart } from "../../../interface/cart";
-
-import { categories } from "../../../data/categories";
+import { ICart, ICategories } from "../../../interface";
 
 type NavBarProps = {
   currentUser?: any | null | undefined;
   onOpen: () => void;
   carts?: ICart | null | undefined;
+  categories: ICategories[];
 };
 
-const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
+const NavBar = ({ currentUser, onOpen, carts, categories }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);

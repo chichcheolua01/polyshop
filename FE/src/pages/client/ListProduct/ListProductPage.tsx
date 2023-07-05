@@ -3,8 +3,7 @@ import { AiOutlineRight } from "react-icons/ai";
 
 import { Container, FilterProduct, ProductList } from "../../../components";
 
-import { products } from "../../../data/products";
-import { categories } from "../../../data/categories";
+import { categories, products } from "../../../data";
 
 const ListProductPage = () => {
   return (

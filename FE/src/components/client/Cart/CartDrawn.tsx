@@ -1,10 +1,10 @@
 import { Drawer } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../Button";
+import Button from "../../Button";
 import CartDrawnItem from "./CartDrawnItem";
 
-import { ICart } from "../../../interface/cart";
+import { ICart } from "../../../interface";
 
 type CartDrawnProps = {
   isOpen: boolean;

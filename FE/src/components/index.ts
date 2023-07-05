@@ -1,4 +1,4 @@
-import Input from "./auth/Input";
+import Input from "./Input";
 
 import CartDrawn from "./client/Cart/CartDrawn";
 import CartDrawnItem from "./client/Cart/CartDrawnItem";
@@ -38,7 +38,7 @@ import Voucher from "./client/Profile/Voucher";
 import Favorite from "./client/Profile/Favorite";
 
 import Avatar from "./client/Avatar";
-import Button from "./client/Button";
+import Button from "./Button";
 import Container from "./client/Container";
 
 import Logo from "./Logo";

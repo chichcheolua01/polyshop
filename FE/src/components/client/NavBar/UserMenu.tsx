@@ -8,7 +8,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
-import { ICart } from "../../../interface/cart";
+import { ICart } from "../../../interface";
 
 type UserMenuProps = {
   currentUser: any | null | undefined;

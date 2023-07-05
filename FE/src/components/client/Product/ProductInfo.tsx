@@ -4,11 +4,11 @@ import { InputNumber } from "antd";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-import Button from "../Button";
+import Button from "../../Button";
 import StarButton from "./StarButton";
 import HeartButton from "./HeartButton";
 
-import { IProduct } from "../../../interface/product";
+import { IProduct } from "../../../interface";
 
 type ProductInfoProps = {
   product?: IProduct;

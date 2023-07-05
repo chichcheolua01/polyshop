@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
 
-import Avatar from "../../../components/client/Avatar";
+import Avatar from "../Avatar";
 
 interface Profile {
   title: string;

@@ -1,6 +1,6 @@
 import { Container, Features, Offer, ProductList } from "../../../components";
 
-import { products } from "../../../data/products";
+import { products } from "../../../data";
 
 const HomePage = () => {
   const phone = products.filter(

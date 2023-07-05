@@ -2,7 +2,7 @@ import { Radio } from "antd";
 import { useState } from "react";
 import { RadioChangeEvent } from "antd/es/radio";
 
-import { ICategories } from "../../../interface/category";
+import { ICategories } from "../../../interface";
 
 type FilterProductProps = {
   categories: ICategories[];
