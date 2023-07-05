@@ -1,5 +1,5 @@
 type AvatarProps = {
-  src: string | null | undefined;
+  src?: string | null | undefined;
 };
 
 const Avatar = ({ src }: AvatarProps) => {

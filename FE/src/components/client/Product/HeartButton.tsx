@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { notification } from "antd";
+
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 type HeartButtonProps = {
   productId?: string;

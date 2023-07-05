@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import Container from "../../../components/client/Container";
-import ProductInfo from "../../../components/client/Product/ProductInfo";
-import ProductList from "../../../components/client/Product/ProductList";
-import ProductComment from "../../../components/client/Product/ProductComment";
+import {
+  Container,
+  ProductComment,
+  ProductInfo,
+  ProductList,
+} from "../../../components";
 
 import { products } from "../../../data/products";
 

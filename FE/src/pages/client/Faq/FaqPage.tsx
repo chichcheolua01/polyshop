@@ -1,5 +1,4 @@
-import Container from "../../../components/client/Container";
-import ShowFaq from "./ShowFaq";
+import { Container, ShowFaq } from "../../../components";
 
 const FaqPage = () => {
   return (

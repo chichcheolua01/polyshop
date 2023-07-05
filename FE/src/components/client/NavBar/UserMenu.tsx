@@ -1,12 +1,13 @@
+import { Badge } from "antd";
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Badge } from "antd";
 
 import { AiOutlineBell } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
+
 import { ICart } from "../../../interface/cart";
 
 type UserMenuProps = {
@@ -26,36 +27,36 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
   const cartCount =
     carts && carts.products?.length > 0 ? carts.products.length : 0;
 
-  const notificationCount = 1;
+  const notificationCount = 2;
 
   return (
     <>
       <div className="relative">
-        <div className="flex flex-row items-center gap-3">
-          <div className="hidden md:block cursor-pointer transition md:px-5">
+        <div className="flex flex-row items-center gap-3 ">
+          <div className="hidden md:block cursor-pointer transition ">
             <Badge count={notificationCount} size="small">
               <AiOutlineBell
-                size={30}
-                className="hover:text-rose-500 text-black"
+                size={26}
+                className="hover:text-rose-300 text-black"
               />
             </Badge>
           </div>
 
           <div
             onClick={onClick}
-            className="hidden md:block cursor-pointer transition md:px-5"
+            className="hidden md:block cursor-pointer transition px-4"
           >
             <Badge count={cartCount} size="small">
               <FiShoppingCart
-                size={30}
-                className="hover:text-rose-500 text-black"
+                size={22}
+                className="hover:text-rose-300 text-black"
               />
             </Badge>
           </div>
 
           <div
             onClick={toggleOpen}
-            className="md:px-5 md:py-1 border-neutral-200 rounded-full cursor-pointer transition"
+            className="md:px-4 hover:shadow md:py-1 border-neutral-200 rounded-full cursor-pointer transition"
           >
             <Avatar src={currentUser?.image} />
           </div>

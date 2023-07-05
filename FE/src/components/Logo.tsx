@@ -6,9 +6,9 @@ const Logo = () => {
   return (
     <>
       <img
-        className="hidden md:block cursor-pointer max-w-[3rem]"
+        className="hidden md:block cursor-pointer"
         onClick={() => navigate("/")}
-        src="/images/logo.png"
+        src="/images/logo.webp"
         height="100"
         width="100"
         alt="Logo"

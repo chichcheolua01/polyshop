@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import HeartButton from "./HeartButton";
 import { AiFillStar } from "react-icons/ai";
+
+import HeartButton from "./HeartButton";
+
 import { IProduct } from "../../../interface/product";
 
 type ProductCardProps = {

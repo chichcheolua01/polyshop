@@ -1,6 +1,7 @@
 import { Image } from "antd";
 import { useState } from "react";
 import { InputNumber } from "antd";
+
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import Button from "../Button";
@@ -109,7 +110,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
                   onClick={() => alert("Thành công!")}
                 />
 
-                <button className="rounded-full w-16 h-14 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <HeartButton />
                 </button>
               </div>

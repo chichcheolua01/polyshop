@@ -1,8 +1,8 @@
 import { Radio } from "antd";
+import { useState } from "react";
+import { RadioChangeEvent } from "antd/es/radio";
 
 import { ICategories } from "../../../interface/category";
-import { RadioChangeEvent } from "antd/es/radio";
-import { useState } from "react";
 
 type FilterProductProps = {
   categories: ICategories[];

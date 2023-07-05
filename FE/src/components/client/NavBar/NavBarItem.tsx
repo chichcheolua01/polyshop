@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { Popover } from "antd";
+import { ReactNode } from "react";
 
 type NavBarItemProps = {
   label: string;
@@ -18,28 +18,28 @@ const NavBarItem = ({
     <>
       {bodyPopover ? (
         <Popover content={bodyPopover}>
-          <div
+          <button
             className={
               active
-                ? "text-black cursor-default text-base font-medium"
-                : "text-black hover:text-rose-500 cursor-pointer text-base font-medium transition"
+                ? "text-white font-semibold"
+                : "text-black hover:text-white transition font-semibold"
             }
             onClick={onClick}
           >
             {label}
-          </div>
+          </button>
         </Popover>
       ) : (
-        <div
+        <button
           onClick={onClick}
           className={
             active
-              ? "text-black cursor-default text-base font-medium"
-              : "text-black hover:text-rose-500 cursor-pointer text-base font-medium transition"
+              ? "text-white font-semibold"
+              : "text-black hover:text-white transition font-semibold"
           }
         >
           {label}
-        </div>
+        </button>
       )}
     </>
   );

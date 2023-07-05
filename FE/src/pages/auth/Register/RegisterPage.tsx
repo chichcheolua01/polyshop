@@ -1,10 +1,10 @@
 import { useState, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 
-import Input from "../../../components/auth/Input";
-import { useNavigate } from "react-router-dom";
+import { Button, Input } from "../../../components";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -48,12 +48,7 @@ const RegisterPage = () => {
                 setPassword(e.target.value)
               }
             />
-            <button
-              onClick={() => alert("Đăng ký")}
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
-            >
-              Đăng ký
-            </button>
+            <Button label="Đăng ký" onClick={() => alert("Đăng ký")} />
 
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div

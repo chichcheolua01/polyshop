@@ -1,9 +1,7 @@
 import { GoHome } from "react-icons/go";
 import { AiOutlineRight } from "react-icons/ai";
 
-import Container from "../../../components/client/Container";
-import ProductList from "../../../components/client/Product/ProductList";
-import FilterProduct from "../../../components/client/Product/FilterProduct";
+import { Container, FilterProduct, ProductList } from "../../../components";
 
 import { products } from "../../../data/products";
 import { categories } from "../../../data/categories";

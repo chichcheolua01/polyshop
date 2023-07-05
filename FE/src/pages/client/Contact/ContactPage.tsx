@@ -3,8 +3,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { BiMessageRoundedError } from "react-icons/bi";
 import { FaRegMoneyBillAlt, FaRegNewspaper } from "react-icons/fa";
 
-import Input from "../../../components/auth/Input";
-import Button from "../../../components/client/Button";
+import { Button, Input } from "../../../components";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -17,7 +16,7 @@ const ContactPage = () => {
 
   return (
     <>
-      <div className="container md:px-6 bg-gray-100 p-10">
+      <div className="container md:px-6 p-10">
         <section className="border rounded-xl p-5 bg-white">
           <div className="flex justify-center">
             <div className="text-center md:max-w-xl lg:max-w-3xl">

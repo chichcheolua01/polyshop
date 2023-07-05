@@ -44,21 +44,21 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
         <div key={slug}>
           <Link
             to={`list-product?slug=${slug}`}
-            className="font-bold text-lg hover:text-rose-500"
+            className="hover:text-rose-500 font-bold text-lg"
           >
             {slug}
           </Link>
 
-          <div className="flex flex-col mt-3 gap-3">
+          <div className="flex flex-col mt-3 gap-2">
             {categories
               .filter((category) => category.slug === slug)
               .map((category) => (
                 <Link
                   key={category._id}
-                  className="text-gray-500 font-medium text-base hover:text-rose-500"
+                  className="hover:text-rose-500"
                   to={`list-product?slug=${category.slug}`}
                 >
-                  <span className="text-base ">{category.name}</span>
+                  <span className="">{category.name}</span>
                 </Link>
               ))}
           </div>
@@ -69,13 +69,13 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
 
   return (
     <>
-      <header className="fixed w-full bg-rose-300 z-10 shadow-sm">
-        <div className="py-4 border-b-[1px]">
+      <header className="fixed w-full z-10 shadow-sm">
+        <div className="py-4 bg-white">
           <Container>
-            <div className="flex flex-row items-center justify-between gap-3">
+            <div className="flex flex-row items-center justify-between gap-10">
               <Logo />
 
-              <div className="w-3/4">
+              <div className="w-full relative">
                 <Search />
               </div>
 
@@ -89,32 +89,38 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
         </div>
 
         {!isScrolled ? (
-          <div className="flex flex-row gap-8 justify-center p-3">
-            <NavBarItem
-              label="Trang chủ"
-              onClick={() => navigate("/")}
-              active={location.pathname === "/"}
-            />
-            <NavBarItem
-              label="Sản phẩm"
-              active={location.pathname.includes("/list-product/")}
-              bodyPopover={bodyPopover}
-            />
-            <NavBarItem
-              label="Giới thiệu"
-              onClick={() => navigate("/introduce")}
-              active={location.pathname === "/introduce"}
-            />
-            <NavBarItem
-              label="Liên hệ"
-              onClick={() => navigate("/contact")}
-              active={location.pathname === "/contact"}
-            />
-            <NavBarItem
-              label="FAQ"
-              onClick={() => navigate("/faq")}
-              active={location.pathname === "/faq"}
-            />
+          <div className="bg-rose-300">
+            <Container>
+              <div className="flex p-3 justify-center">
+                <div className="flex flex-row gap-8">
+                  <NavBarItem
+                    label="Trang chủ"
+                    onClick={() => navigate("/")}
+                    active={location.pathname === "/"}
+                  />
+                  <NavBarItem
+                    label="Sản phẩm"
+                    active={location.pathname.includes("/list-product/")}
+                    bodyPopover={bodyPopover}
+                  />
+                  <NavBarItem
+                    label="Giới thiệu"
+                    onClick={() => navigate("/introduce")}
+                    active={location.pathname === "/introduce"}
+                  />
+                  <NavBarItem
+                    label="Liên hệ"
+                    onClick={() => navigate("/contact")}
+                    active={location.pathname === "/contact"}
+                  />
+                  <NavBarItem
+                    label="FAQ"
+                    onClick={() => navigate("/faq")}
+                    active={location.pathname === "/faq"}
+                  />
+                </div>
+              </div>
+            </Container>
           </div>
         ) : null}
       </header>

@@ -1,17 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BaseAuth,
+  BaseClient,
+  CheckOutPage,
+  ContactPage,
+  FaqPage,
+  HomePage,
+  IntroducePage,
+  ListProductPage,
+  LoginPage,
+  ProductDetailPage,
+  ProfilePage,
+  RegisterPage,
+} from "./pages";
 
-import FaqPage from "./pages/client/Faq/FaqPage";
-import BaseClient from "./pages/client/BaseClient";
-import HomePage from "./pages/client/Home/HomePage";
-import ContactPage from "./pages/client/Contact/ContactPage";
-import CheckOutPage from "./pages/client/CheckOut/CheckOutPage";
-import IntroducePage from "./pages/client/Introduce/IntroducePage";
-import ListProductPage from "./pages/client/ListProduct/ListProductPage";
-import ProductDetailPage from "./pages/client/ProductDetail/ProductDetailPage";
-
-import BaseAuth from "./pages/auth/BaseAuth";
-import LoginPage from "./pages/auth/Login/LoginPage";
-import RegisterPage from "./pages/auth/Register/RegisterPage";
+import { Account, Information } from "./components";
 
 function App() {
   return (
@@ -22,6 +25,12 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="faq" element={<FaqPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="profile" element={<ProfilePage />}>
+              <Route index element={<Account />} />
+              <Route path="account" element={<Account />} />
+              <Route path="information" element={<Information />} />
+              <Route path="change-password" element={<Information />} />
+            </Route>
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />
             <Route path="list-product" element={<ListProductPage />} />

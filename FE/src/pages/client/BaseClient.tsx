@@ -1,9 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
-import NavBar from "../../components/client/NavBar/NavBar";
-import Footer from "../../components/client/Footer/Footer";
-import CartDrawn from "../../components/client/Cart/CartDrawn";
+import { CartDrawn, Footer, NavBar } from "../../components";
 
 import { carts } from "../../data/carts";
 
@@ -16,15 +14,17 @@ const BaseClient = () => {
 
   return (
     <>
-      <NavBar onOpen={setDrawn} carts={carts} />
+      <div className="bg-gray-100">
+        <NavBar onOpen={setDrawn} carts={carts} />
 
-      <CartDrawn isOpen={openDrawn} onClose={setDrawn} carts={carts} />
+        <CartDrawn isOpen={openDrawn} onClose={setDrawn} carts={carts} />
 
-      <main className="pt-36">
-        <Outlet />
-      </main>
+        <main className="pt-36">
+          <Outlet />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 };

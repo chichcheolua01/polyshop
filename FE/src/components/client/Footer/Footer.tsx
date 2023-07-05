@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
 import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
 
 import Container from "../Container";
-import "./Footer.css";
 import FooterLink from "./FooterLink";
+
+import "./Footer.css";
 
 const Footer = () => {
   const link1 = [
