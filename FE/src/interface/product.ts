@@ -3,20 +3,20 @@ export interface IProduct {
   sold: number;
   stars: number;
   price: number;
-  category: ICategory;
+  category: ICategoryProduct;
   inventory: number;
   original_price: number;
   name: string;
   description: string;
-  image: IImage[];
+  image: IImageProduct[];
 }
 
-export interface ICategory {
+export interface ICategoryProduct {
   _id: string;
   name: string;
   slug: string;
 }
 
-export interface IImage {
+export interface IImageProduct {
   base_url: string;
 }

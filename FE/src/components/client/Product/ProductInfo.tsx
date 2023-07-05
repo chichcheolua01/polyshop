@@ -11,7 +11,7 @@ import HeartButton from "./HeartButton";
 import { IProduct } from "../../../interface";
 
 type ProductInfoProps = {
-  product?: IProduct;
+  product?: IProduct | null;
 };
 
 const ProductInfo = ({ product }: ProductInfoProps) => {

@@ -1,9 +1,9 @@
 import { InputNumber } from "antd";
 
-import { ICartItem } from "../../../interface";
+import { IItemCart } from "../../../interface";
 
 type CartDrawnItemProps = {
-  cartItem: ICartItem;
+  cartItem: IItemCart;
 };
 
 const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {

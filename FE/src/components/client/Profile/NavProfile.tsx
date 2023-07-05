@@ -1,36 +1,29 @@
-import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
 
 import Avatar from "../Avatar";
 
-interface Profile {
-  title: string;
-  url: string;
-  Icon: IconType;
-  list?: { name: string; url: string }[];
-}
+import { IProfile, IUser } from "../../../interface";
 
 type NavProfileProps = {
-  name?: string;
-  image?: string;
+  user: IUser | null;
   path?: string;
-  profile: Profile[];
+  profile: IProfile[];
 };
 
-const NavProfile = ({ name, image, path, profile }: NavProfileProps) => {
+const NavProfile = ({ user, path, profile }: NavProfileProps) => {
   return (
     <>
       <div className="px-4 py-3 shadow flex items-center gap-4 bg-white">
         <div className="flex-shrink-0">
-          <Avatar src={image} />
+          <Avatar src={user?.image} />
         </div>
 
         <div className="flex-grow">
           <p className="text-gray-600">Hello,</p>
 
-          <h4 className="text-gray-800 font-medium">{name}</h4>
+          <h4 className="text-gray-800 font-medium">{user?.name}</h4>
         </div>
 
         <div className="block md:hidden">

@@ -1,8 +1,8 @@
 export interface ICart {
-  products: ICartItem[];
+  products: IItemCart[];
   totalPrice: number;
 }
-export interface ICartItem {
+export interface IItemCart {
   product: IProductCart;
   quantity: number;
 }

@@ -7,16 +7,20 @@ import {
   ProductList,
 } from "../../../components";
 
-import { products } from "../../../data";
+import { IProduct } from "../../../interface";
 
-const ProductDetailPage = () => {
+type ProductDetailPageProps = {
+  listProducts: IProduct[] | null;
+};
+
+const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
   const { id } = useParams<string>();
 
-  const product = products.find((prod) => prod._id === id);
+  const product = listProducts && listProducts.find((prod) => prod._id === id);
 
-  const productSimilar = products.filter(
-    (prod) => prod.category._id === product?.category._id
-  );
+  const productSimilar =
+    listProducts &&
+    listProducts.filter((prod) => prod.category._id === product?.category._id);
 
   return (
     <>

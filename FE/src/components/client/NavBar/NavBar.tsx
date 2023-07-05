@@ -7,16 +7,16 @@ import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
-import { ICart, ICategories } from "../../../interface";
+import { ICart, ICategories, IUser } from "../../../interface";
 
 type NavBarProps = {
-  currentUser?: any | null | undefined;
+  currentUser?: IUser | null;
   onOpen: () => void;
-  carts?: ICart | null | undefined;
-  categories: ICategories[];
+  cart: ICart | null;
+  listCategories: ICategories[] | null;
 };
 
-const NavBar = ({ currentUser, onOpen, carts, categories }: NavBarProps) => {
+const NavBar = ({ currentUser, onOpen, cart, listCategories }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +34,7 @@ const NavBar = ({ currentUser, onOpen, carts, categories }: NavBarProps) => {
   }, []);
 
   const slugs = Array.from(
-    new Set(categories.map((category) => category.slug))
+    new Set(listCategories && listCategories.map((category) => category.slug))
   );
 
   const bodyPopover = (
@@ -49,17 +49,18 @@ const NavBar = ({ currentUser, onOpen, carts, categories }: NavBarProps) => {
           </Link>
 
           <div className="flex flex-col mt-3 gap-2">
-            {categories
-              .filter((category) => category.slug === slug)
-              .map((category) => (
-                <Link
-                  key={category._id}
-                  className="hover:text-rose-500"
-                  to={`list-product?slug=${category.slug}`}
-                >
-                  <span className="">{category.name}</span>
-                </Link>
-              ))}
+            {listCategories &&
+              listCategories
+                .filter((category) => category.slug === slug)
+                .map((category) => (
+                  <Link
+                    key={category._id}
+                    className="hover:text-rose-500"
+                    to={`list-product?slug=${category.slug}`}
+                  >
+                    <span className="">{category.name}</span>
+                  </Link>
+                ))}
           </div>
         </div>
       ))}
@@ -81,7 +82,7 @@ const NavBar = ({ currentUser, onOpen, carts, categories }: NavBarProps) => {
               <UserMenu
                 currentUser={currentUser}
                 onClick={onOpen}
-                carts={carts}
+                cart={cart}
               />
             </div>
           </Container>

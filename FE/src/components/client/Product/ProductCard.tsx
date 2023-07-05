@@ -4,13 +4,14 @@ import { AiFillStar } from "react-icons/ai";
 
 import HeartButton from "./HeartButton";
 
-import { IProduct } from "../../../interface";
+import { IProduct, IUser } from "../../../interface";
 
 type ProductCardProps = {
   product: IProduct;
+  currentUser?: IUser | null ;
 };
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, currentUser }: ProductCardProps) => {
   const navigate = useNavigate();
 
   const discount = Math.round(
@@ -33,7 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
 
             <div className="w-auto">
-              <HeartButton />
+              <HeartButton productId={product._id} user={currentUser} />
             </div>
           </div>
 
