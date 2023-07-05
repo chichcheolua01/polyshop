@@ -10,6 +10,7 @@ import ShowFaq from "./client/Faq/ShowFaq";
 import Footer from "./client/Footer/Footer";
 import FooterLink from "./client/Footer/FooterLink";
 
+import Banner from "./client/Home/Banner";
 import Features from "./client/Home/Features";
 import Offer from "./client/Home/Offer";
 
@@ -52,6 +53,7 @@ import Container from "./client/Container";
 
 export {
   Input,
+  Banner,
   CartDrawn,
   CartDrawnItem,
   ShowFaq,

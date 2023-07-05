@@ -1,4 +1,10 @@
-import { Container, Features, Offer, ProductList } from "../../../components";
+import {
+  Banner,
+  Container,
+  Features,
+  Offer,
+  ProductList,
+} from "../../../components";
 
 import { IProduct, IUser } from "../../../interface";
 
@@ -25,6 +31,8 @@ const HomePage = ({ currentUser, listProducts }: HomePageProps) => {
   return (
     <>
       <Container>
+        <Banner />
+
         {phone && phone.length > 0 && (
           <ProductList
             title="Điện Thoại"
