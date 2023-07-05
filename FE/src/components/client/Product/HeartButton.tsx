@@ -3,23 +3,30 @@ import { notification } from "antd";
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
+import { IUser } from "../../../interface";
+
 type HeartButtonProps = {
   productId?: string;
-  userId?: string | null;
+  user?: IUser | null;
 };
 
-const HeartButton = ({ productId, userId }: HeartButtonProps) => {
+const HeartButton = ({ productId, user }: HeartButtonProps) => {
   const [api, contextHolder] = notification.useNotification();
 
-  const [hasFavorite, setHasFavorite] = useState(false);
+  const [hasFavorite, setHasFavorite] = useState(
+    user?.favorite.some((favorite) => favorite.productId === productId)
+  );
 
   const toggleFavorite = () => {
-    if (!userId) {
+    if (!user) {
       api.open({
         message: "Bạn chưa đăng nhập",
         description: "Vui lòng đăng nhập để thực hiện hành động này!.",
       });
     } else {
+      console.log(productId);
+      console.log(user);
+
       setHasFavorite(!hasFavorite);
     }
   };

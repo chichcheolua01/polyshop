@@ -4,4 +4,9 @@ export const favorites = [
     userId: "user1",
     productId: "product1",
   },
+  {
+    _id: "favorite2",
+    userId: "user1",
+    productId: "product10",
+  },
 ];

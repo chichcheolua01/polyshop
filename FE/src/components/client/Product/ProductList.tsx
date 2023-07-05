@@ -1,13 +1,14 @@
 import ProductCard from "./ProductCard";
 
-import { IProduct } from "../../../interface";
+import { IProduct, IUser } from "../../../interface";
 
 type ProductListProps = {
   title?: string;
-  products: IProduct[];
+  products: IProduct[] | null;
+  currentUser?: IUser | null;
 };
 
-const ProductList = ({ title, products }: ProductListProps) => {
+const ProductList = ({ title, products, currentUser }: ProductListProps) => {
   return (
     <>
       <div className="space-y-4 rounded-xl p-5 mb-16 bg-white">
@@ -18,9 +19,14 @@ const ProductList = ({ title, products }: ProductListProps) => {
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-7 gap-y-10">
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
+          {products &&
+            products.map((product) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                currentUser={currentUser}
+              />
+            ))}
         </div>
       </div>
     </>

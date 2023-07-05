@@ -5,7 +5,7 @@ import { RadioChangeEvent } from "antd/es/radio";
 import { ICategories } from "../../../interface";
 
 type FilterProductProps = {
-  categories: ICategories[];
+  categories: ICategories[] | null;
 };
 
 const FilterProduct = ({ categories }: FilterProductProps) => {
@@ -20,7 +20,9 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
     setSlug(e.target.value);
   };
 
-  const filterSlug = [...new Set(categories.map((category) => category.slug))];
+  const filterSlug = [
+    ...new Set(categories && categories.map((category) => category.slug)),
+  ];
 
   return (
     <>
@@ -55,13 +57,14 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
             value={category}
             className="flex flex-col gap-1"
           >
-            {categories.map((category) => (
-              <Radio key={category._id} value={category.name}>
-                <div className="text-gray-600 cursor-pointer">
-                  {category.name}
-                </div>
-              </Radio>
-            ))}
+            {categories &&
+              categories.map((category) => (
+                <Radio key={category._id} value={category.name}>
+                  <div className="text-gray-600 cursor-pointer">
+                    {category.name}
+                  </div>
+                </Radio>
+              ))}
           </Radio.Group>
         </div>
       </div>

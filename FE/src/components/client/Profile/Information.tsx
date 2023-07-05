@@ -1,14 +1,27 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { Button, Input } from "../..";
 
-const Information = () => {
-  const [name, setName] = useState("Lương");
-  const [email, setEmail] = useState("tranluong460@gmail.com");
-  const [address, setAddress] = useState(
-    "Đại Mão - Đại Thành - Hiệp Hòa - Bắc Giang"
-  );
-  const [phone, setPhone] = useState("0367370371");
+import { IUser } from "../../../interface";
+
+type InformationProps = {
+  currentUser: IUser | null;
+};
+
+const Information = ({ currentUser }: InformationProps) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name || "");
+      setEmail(currentUser.email || "");
+      setAddress(currentUser.address || "");
+      setPhone(currentUser.phone || "");
+    }
+  }, [currentUser]);
 
   return (
     <>

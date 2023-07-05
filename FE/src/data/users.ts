@@ -6,7 +6,8 @@ export const users = [
     password: "hashPasswordAdmin",
     phone: "0312345678",
     address: "Hà nội",
-    image: "image1",
+    image:
+      "https://res.cloudinary.com/book-hotel/image/upload/v1687264620/AETT3080_apf04c.jpg",
     order: [
       {
         _id: "order1",
@@ -15,6 +16,13 @@ export const users = [
     favorite: [
       {
         _id: "favorite1",
+        userId: "user1",
+        productId: "product1",
+      },
+      {
+        _id: "favorite2",
+        userId: "user1",
+        productId: "product10",
       },
     ],
     role: "Admin",

@@ -8,15 +8,15 @@ import { FiShoppingCart } from "react-icons/fi";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
-import { ICart } from "../../../interface";
+import { ICart, IUser } from "../../../interface";
 
 type UserMenuProps = {
-  currentUser: any | null | undefined;
+  currentUser?: IUser | null;
   onClick: () => void;
-  carts: ICart | null | undefined;
+  cart: ICart | null;
 };
 
-const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick, cart }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
   }, []);
 
   const cartCount =
-    carts && carts.products?.length > 0 ? carts.products.length : 0;
+    cart && cart.products?.length > 0 ? cart.products.length : 0;
 
   const notificationCount = 2;
 

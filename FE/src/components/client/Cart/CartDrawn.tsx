@@ -9,10 +9,10 @@ import { ICart } from "../../../interface";
 type CartDrawnProps = {
   isOpen: boolean;
   onClose: () => void;
-  carts?: ICart | null | undefined;
+  cart: ICart | null;
 };
 
-const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
+const CartDrawn = ({ isOpen, onClose, cart }: CartDrawnProps) => {
   const navigate = useNavigate();
 
   return (
@@ -24,8 +24,8 @@ const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
         open={isOpen}
       >
         <div className="h-[65vh] overflow-y-auto">
-          {carts && carts.products && carts.products.length > 0 ? (
-            carts.products.map((cartItem) => (
+          {cart && cart.products && cart.products.length > 0 ? (
+            cart.products.map((cartItem) => (
               <CartDrawnItem key={cartItem.product._id} cartItem={cartItem} />
             ))
           ) : (
@@ -46,9 +46,9 @@ const CartDrawn = ({ isOpen, onClose, carts }: CartDrawnProps) => {
               <div className="flex justify-between">
                 <span className="font-bold">Tổng phụ:</span>
                 <span className="text-gray-500">
-                  {(carts &&
-                    carts.totalPrice &&
-                    carts.totalPrice.toLocaleString("vi-VN")) ||
+                  {(cart &&
+                    cart.totalPrice &&
+                    cart.totalPrice.toLocaleString("vi-VN")) ||
                     0}
                   ₫
                 </span>

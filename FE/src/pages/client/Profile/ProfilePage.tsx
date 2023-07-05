@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { IconType } from "react-icons";
 
 import { AiOutlineProfile, AiOutlineGift } from "react-icons/ai";
 import { BsCreditCard } from "react-icons/bs";
@@ -7,20 +6,19 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 import { Container, NavProfile } from "../../../components";
 
-interface Profile {
-  title: string;
-  url: string;
-  Icon: IconType;
-  list?: { name: string; url: string }[];
-}
+import { IProfile, IUser } from "../../../interface";
 
-const ProfilePage = () => {
+type ProfilePageProps = {
+  currentUser: IUser | null;
+};
+
+const ProfilePage = ({ currentUser }: ProfilePageProps) => {
   const location = useLocation();
   const path = location.pathname.substring(
     location.pathname.lastIndexOf("/") + 1
   );
 
-  const profile: Profile[] = [
+  const profile: IProfile[] = [
     {
       title: "Quản lý tài khoản",
       url: "account",
@@ -74,12 +72,7 @@ const ProfilePage = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 items-start gap-3 pt-4 pb-16">
           <div className="md:col-span-3 p-3">
-            <NavProfile
-              name="Lương"
-              image="/images/logo.webp"
-              path={path}
-              profile={profile}
-            />
+            <NavProfile user={currentUser} path={path} profile={profile} />
           </div>
 
           <div className="md:col-span-9 p-3">

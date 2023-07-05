@@ -3,9 +3,15 @@ import { useState } from "react";
 
 import { CartDrawn, Footer, NavBar } from "../../components";
 
-import { carts, categories } from "../../data";
+import { ICart, ICategories, IUser } from "../../interface";
 
-const BaseClient = () => {
+type BaseClientProps = {
+  cart: ICart | null;
+  currentUser: IUser | null;
+  listCategories: ICategories[] | null;
+};
+
+const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
   const [openDrawn, setOpenDrawn] = useState(false);
 
   const setDrawn = () => {
@@ -15,9 +21,14 @@ const BaseClient = () => {
   return (
     <>
       <div className="bg-gray-100">
-        <NavBar onOpen={setDrawn} carts={carts} categories={categories} />
+        <NavBar
+          onOpen={setDrawn}
+          cart={cart}
+          listCategories={listCategories}
+          currentUser={currentUser}
+        />
 
-        <CartDrawn isOpen={openDrawn} onClose={setDrawn} carts={carts} />
+        <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
 
         <main className="pt-36">
           <Outlet />

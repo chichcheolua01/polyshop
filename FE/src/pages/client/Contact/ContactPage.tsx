@@ -49,7 +49,7 @@ const ContactPage = () => {
                   }
                 />
               </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
+              <div className="relative mb-6">
                 <textarea
                   className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-black bg-white border appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
                   id="textarea"

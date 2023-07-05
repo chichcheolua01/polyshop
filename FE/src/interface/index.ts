@@ -1,19 +1,31 @@
 import { ICart } from "./cart";
-import { ICartItem } from "./cart";
+import { IItemCart } from "./cart";
 import { IProductCart } from "./cart";
 
 import { ICategories } from "./category";
 
 import { IProduct } from "./product";
-import { ICategory } from "./product";
-import { IImage } from "./product";
+import { ICategoryProduct } from "./product";
+import { IImageProduct } from "./product";
+
+import { IUser } from "./user";
+import { IOrderUser } from "./user";
+import { IFavoriteUser } from "./user";
+
+import { IProfile } from "./profile";
+import { IProfileList } from "./profile";
 
 export type {
   ICart,
-  ICartItem,
+  IItemCart,
   IProductCart,
   ICategories,
   IProduct,
-  ICategory,
-  IImage,
+  ICategoryProduct,
+  IImageProduct,
+  IUser,
+  IOrderUser,
+  IFavoriteUser,
+  IProfile,
+  IProfileList,
 };

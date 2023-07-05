@@ -3,9 +3,17 @@ import { AiOutlineRight } from "react-icons/ai";
 
 import { Container, FilterProduct, ProductList } from "../../../components";
 
-import { categories, products } from "../../../data";
+import { ICategories, IProduct } from "../../../interface";
 
-const ListProductPage = () => {
+type ListProductPageProps = {
+  listProducts: IProduct[] | null;
+  listCategories: ICategories[] | null;
+};
+
+const ListProductPage = ({
+  listProducts,
+  listCategories,
+}: ListProductPageProps) => {
   return (
     <>
       <div className="py-3">
@@ -23,7 +31,7 @@ const ListProductPage = () => {
           <div className="flex gap-3 pt-5">
             <div className="col-span-1 bg-white px-4 pb-6 shadow-2xl rounded-xl overflow-hidden w-1/3">
               <div className="divide-y divide-gray-200 space-y-5">
-                <FilterProduct categories={categories} />
+                <FilterProduct categories={listCategories} />
               </div>
             </div>
 
@@ -36,7 +44,7 @@ const ListProductPage = () => {
               </select>
 
               <div className="shadow-2xl rounded-xl">
-                <ProductList products={products} />
+                <ProductList products={listProducts} />
               </div>
             </div>
           </div>

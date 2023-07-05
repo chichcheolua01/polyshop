@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 type MyAccountProps = {
   title: string;
   url: string;
+  text: string | null;
+  email?: string;
+  phone?: string;
 };
 
-const MyAccount = ({ title, url }: MyAccountProps) => {
+const MyAccount = ({ title, url, text, email, phone }: MyAccountProps) => {
   return (
     <>
       <div className="shadow rounded bg-white px-4 pt-6 pb-8">
@@ -18,11 +21,11 @@ const MyAccount = ({ title, url }: MyAccountProps) => {
         </div>
 
         <div className="space-y-1">
-          <h4 className="text-gray-700 font-medium">Lương</h4>
+          <h4 className="text-gray-700 font-medium">{text}</h4>
 
-          <p className="text-gray-700">Email</p>
+          <p className="text-gray-700">{email}</p>
 
-          <p className="text-gray-700">Phone</p>
+          <p className="text-gray-700">{phone}</p>
         </div>
       </div>
     </>
