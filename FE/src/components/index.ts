@@ -29,6 +29,13 @@ import Account from "./client/Profile/Account";
 import Information from "./client/Profile/Information";
 import MyAccount from "./client/Profile/MyAccount";
 import NavProfile from "./client/Profile/NavProfile";
+import ChangePassword from "./client/Profile/ChangePassword";
+import Order from "./client/Profile/Order";
+import OrderHistory from "./client/Profile/OrderHistory";
+import OrderAddress from "./client/Profile/OrderAddress";
+import Payment from "./client/Profile/Payment";
+import Voucher from "./client/Profile/Voucher";
+import Favorite from "./client/Profile/Favorite";
 
 import Avatar from "./client/Avatar";
 import Button from "./client/Button";
@@ -61,6 +68,13 @@ export {
   Information,
   MyAccount,
   NavProfile,
+  ChangePassword,
+  Order,
+  OrderHistory,
+  OrderAddress,
+  Payment,
+  Voucher,
+  Favorite,
   Avatar,
   Button,
   Container,

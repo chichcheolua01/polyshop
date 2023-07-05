@@ -14,7 +14,17 @@ import {
   RegisterPage,
 } from "./pages";
 
-import { Account, Information } from "./components";
+import {
+  Account,
+  ChangePassword,
+  Favorite,
+  Information,
+  Order,
+  OrderAddress,
+  OrderHistory,
+  Payment,
+  Voucher,
+} from "./components";
 
 function App() {
   return (
@@ -29,7 +39,13 @@ function App() {
               <Route index element={<Account />} />
               <Route path="account" element={<Account />} />
               <Route path="information" element={<Information />} />
-              <Route path="change-password" element={<Information />} />
+              <Route path="change-password" element={<ChangePassword />} />
+              <Route path="orders" element={<Order />} />
+              <Route path="order-history" element={<OrderHistory />} />
+              <Route path="order-address" element={<OrderAddress />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="voucher" element={<Voucher />} />
+              <Route path="favorite" element={<Favorite />} />
             </Route>
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />

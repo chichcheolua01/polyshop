@@ -56,8 +56,8 @@ const ProfilePage = () => {
       Icon: BsCreditCard,
       list: [
         {
-          name: "Thông tin thanh toán",
-          url: "billing",
+          name: "voucher",
+          url: "voucher",
         },
       ],
     },
