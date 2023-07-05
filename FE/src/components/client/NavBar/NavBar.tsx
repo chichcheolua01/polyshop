@@ -7,13 +7,13 @@ import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
-import { ICart, ICategories, IUser } from "../../../interface";
+import { ICart, ICategoryProduct, IUser } from "../../../interface";
 
 type NavBarProps = {
   currentUser?: IUser | null;
   onOpen: () => void;
   cart: ICart | null;
-  listCategories: ICategories[] | null;
+  listCategories: ICategoryProduct[] | null;
 };
 
 const NavBar = ({ currentUser, onOpen, cart, listCategories }: NavBarProps) => {

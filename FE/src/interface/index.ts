@@ -2,8 +2,6 @@ import { ICart } from "./cart";
 import { IItemCart } from "./cart";
 import { IProductCart } from "./cart";
 
-import { ICategories } from "./category";
-
 import { IProduct } from "./product";
 import { ICategoryProduct } from "./product";
 import { IImageProduct } from "./product";
@@ -20,7 +18,6 @@ export type {
   ICart,
   IItemCart,
   IProductCart,
-  ICategories,
   IProduct,
   ICategoryProduct,
   IImageProduct,
