@@ -68,11 +68,15 @@ const UserMenu = ({ currentUser, onClick, carts }: UserMenuProps) => {
                   <>
                     <MenuItem
                       label="Thông tin cá nhân"
-                      onClick={() => navigate("/trips")}
+                      onClick={() => navigate("/profile")}
                     />
                     <MenuItem
-                      label="Đơn hàng"
-                      onClick={() => navigate("/favorites")}
+                      label="Đơn hàng của tôi"
+                      onClick={() => navigate("/profile/orders")}
+                    />
+                    <MenuItem
+                      label="Sản phẩm yêu thích"
+                      onClick={() => navigate("/profile/favorite")}
                     />
                     <hr />
                     <MenuItem

@@ -113,11 +113,6 @@ const NavBar = ({ currentUser, onOpen, carts }: NavBarProps) => {
                     onClick={() => navigate("/contact")}
                     active={location.pathname === "/contact"}
                   />
-                  <NavBarItem
-                    label="FAQ"
-                    onClick={() => navigate("/faq")}
-                    active={location.pathname === "/faq"}
-                  />
                 </div>
               </div>
             </Container>

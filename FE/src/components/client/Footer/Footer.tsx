@@ -19,7 +19,7 @@ const Footer = () => {
   ];
 
   const link2 = [
-    { name: "Ưu đãi thanh toán", url: "/" },
+    { name: "FAQ", url: "/faq" },
     { name: "Chính sách Bảo hành", url: "/" },
     { name: "Dịch vụ bảo hành mở rộng", url: "/" },
     { name: "Dịch vụ bảo hành điện thoại", url: "/" },
@@ -39,7 +39,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-10 sm:px-8 px-5 py-16">
             <FooterLink title="Thông tin và chính sách" links={link1} />
 
-            <FooterLink title="Dịch vụ và thông tin khác" links={link2} />
+            <FooterLink title="Hỗ trợ" links={link2} />
 
             <FooterLink title="Liên hệ" links={link3} />
           </div>
