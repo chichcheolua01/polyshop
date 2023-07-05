@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 import { AiFillStar } from "react-icons/ai";
 
-import HeartButton from "./HeartButton";
+import HeartButton from "../HeartButton";
 
-import { IProduct, IUser } from "../../../interface";
+import { IProduct, IUser } from "../../../../interface";
 
 type ProductCardProps = {
   product: IProduct;
-  currentUser?: IUser | null ;
+  currentUser?: IUser | null;
 };
 
 const ProductCard = ({ product, currentUser }: ProductCardProps) => {

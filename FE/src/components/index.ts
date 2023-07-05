@@ -19,12 +19,15 @@ import NavBarItem from "./client/NavBar/NavBarItem";
 import Search from "./client/NavBar/Search";
 import UserMenu from "./client/NavBar/UserMenu";
 
-import FilterProduct from "./client/Product/FilterProduct";
+import ProductComment from "./client/Product/ProductDetail/ProductComment";
+import ProductDescription from "./client/Product/ProductDetail/ProductDescription";
+import ProductInfo from "./client/Product/ProductDetail/ProductInfo";
+
+import FilterProduct from "./client/Product/ProductList/FilterProduct";
+import ProductCard from "./client/Product/ProductList/ProductCard";
+import ProductList from "./client/Product/ProductList/ProductList";
+
 import HeartButton from "./client/Product/HeartButton";
-import ProductCard from "./client/Product/ProductCard";
-import ProductComment from "./client/Product/ProductComment";
-import ProductInfo from "./client/Product/ProductInfo";
-import ProductList from "./client/Product/ProductList";
 import StarButton from "./client/Product/StarButton";
 
 import Account from "./client/Profile/Account/Account";
@@ -72,6 +75,7 @@ export {
   Information,
   MyAccount,
   NavProfile,
+  ProductDescription,
   ChangePassword,
   Order,
   OrderHistory,

@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-import { IProduct, IUser } from "../../../interface";
+import { IProduct, IUser } from "../../../../interface";
 
 type ProductListProps = {
   title?: string;
