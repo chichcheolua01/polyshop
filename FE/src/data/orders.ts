@@ -18,4 +18,17 @@ export const orders = [
     totalPrice: 48680000,
     status: "Đang giao hàng",
   },
+  {
+    _id: "order2",
+    products: [
+      {
+        _id: "product1",
+        name: "iPhone 14 Pro Max 128GB | Chính hãng VN/A",
+        price: 24690000,
+        quantity: 10,
+      },
+    ],
+    totalPrice: 246900000,
+    status: "Đang xử lý",
+  },
 ];

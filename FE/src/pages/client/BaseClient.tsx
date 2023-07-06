@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import { CartDrawn, Footer, NavBar } from "../../components";
 
@@ -20,7 +20,7 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
 
   return (
     <>
-      <div className="bg-none">
+      <div className="bg-gray-100">
         <NavBar
           onOpen={setDrawn}
           cart={cart}

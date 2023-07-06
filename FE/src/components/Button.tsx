@@ -3,10 +3,10 @@ import { IconType } from "react-icons";
 interface ButtonProps {
   label: string;
   onClick: () => void;
-  disabled?: boolean;
-  outline?: boolean;
-  small?: boolean;
   icon?: IconType;
+  small?: boolean;
+  outline?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -6,12 +6,12 @@ const Logo = () => {
   return (
     <>
       <img
-        className="hidden md:block cursor-pointer"
-        onClick={() => navigate("/")}
-        src="/images/logo.webp"
-        height="100"
-        width="100"
         alt="Logo"
+        width="100"
+        height="100"
+        src="/images/logo.webp"
+        onClick={() => navigate("/")}
+        className="hidden md:block cursor-pointer"
       />
     </>
   );

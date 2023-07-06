@@ -46,10 +46,12 @@ const ProductComment = (props: ProductCommentProps) => {
 
               <textarea
                 id="comment"
+                value={comment}
                 rows={5}
-                className="px-0 w-full text-sm text-gray-900 border-0 pt-3 focus:ring-0 focus:outline-none"
-                placeholder="Nhập bình luận của bạn ..."
                 required
+                placeholder="Nhập bình luận của bạn ..."
+                onChange={(e) => setComment(e.target.value)}
+                className="px-0 w-full text-sm text-gray-900 border-0 pt-3 focus:ring-0 focus:outline-none"
               />
             </div>
 

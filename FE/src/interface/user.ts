@@ -14,6 +14,16 @@ export interface IUser {
 
 export interface IOrderUser {
   _id?: string;
+  products: IProductsOrderUser[];
+  totalPrice: number;
+  status: string;
+}
+
+export interface IProductsOrderUser {
+  _id?: string;
+  name: string;
+  price: number;
+  quantity: number;
 }
 
 export interface IFavoriteUser {

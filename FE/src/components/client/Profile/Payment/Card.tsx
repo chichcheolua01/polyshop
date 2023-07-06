@@ -1,9 +1,9 @@
 type CardProps = {
+  cvv: number;
   name: string;
   number: number;
-  startDate: string;
   endDate: string;
-  cvv: number;
+  startDate: string;
 };
 
 const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {

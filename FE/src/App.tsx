@@ -29,7 +29,7 @@ import {
   Voucher,
 } from "./components";
 
-import { ICart, ICategories, IProduct, IUser } from "./interface";
+import { ICart, ICategoryProduct, IProduct, IUser } from "./interface";
 
 import { users, categories, products, carts } from "./data";
 
@@ -37,9 +37,9 @@ function App() {
   const [cart, setCart] = useState<ICart | null>(null);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   const [listProducts, seListProducts] = useState<IProduct[] | null>(null);
-  const [listCategories, setListCategories] = useState<ICategories[] | null>(
-    null
-  );
+  const [listCategories, setListCategories] = useState<
+    ICategoryProduct[] | null
+  >(null);
 
   useEffect(() => {
     function fetchUsers() {
