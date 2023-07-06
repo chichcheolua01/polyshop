@@ -1,5 +1,6 @@
-import { Avatar, List, Space, Rate } from "antd";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { Avatar, List, Space, Rate } from "antd";
 import { AiFillLike, AiFillMessage } from "react-icons/ai";
 
 import { Button } from "../../..";
@@ -90,7 +91,7 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
             >
               <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
-                title={<a href={item.href}>{item.title}</a>}
+                title={<Link to={item.href}>{item.title}</Link>}
                 description={item.description}
               />
               {item.content}
