@@ -8,6 +8,7 @@ import CategoryRouter from "./router/category";
 import AuthRouter from "./router/auth";
 import CommentRouter from './router/comment'
 import contactRouter from "./router/contact";
+import ChangePasswordRouter from "./router/changePassword";
 
 
 
@@ -24,6 +25,9 @@ app.use("/category", CategoryRouter);
 app.use("/auth", AuthRouter);
 app.use("/comment", CommentRouter);
 app.use("/contact", contactRouter);
+// đổi mật khẩu
+app.use("/", ChangePasswordRouter);
+
 
 
 
