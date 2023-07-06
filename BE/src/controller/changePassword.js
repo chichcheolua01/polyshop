@@ -46,7 +46,7 @@ export const resetPassword = async (req, res) => {
         // console.log(token);
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         // console.log(decoded);
-        const user = await User.findOne({ _id: decoded.id });
+        const user = await User.findOne({ email: decoded.email });
 
         if (!user) {
             return res.status(404).json({
