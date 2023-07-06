@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-import { AiOutlineProfile, AiOutlineGift } from "react-icons/ai";
 import { BsCreditCard } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
+import { AiOutlineProfile, AiOutlineGift } from "react-icons/ai";
 
 import { Container, NavProfile } from "../../../components";
 
@@ -54,6 +54,10 @@ const ProfilePage = ({ currentUser }: ProfilePageProps) => {
       url: "payment",
       Icon: BsCreditCard,
       list: [
+        {
+          name: "Thẻ ngân hàng",
+          url: "list-card",
+        },
         {
           name: "voucher",
           url: "voucher",

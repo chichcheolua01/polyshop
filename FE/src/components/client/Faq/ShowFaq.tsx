@@ -2,8 +2,8 @@ import { useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 
 type ShowFaqProps = {
-  header: string;
   text: string;
+  header: string;
 };
 
 const ShowFaq = ({ header, text }: ShowFaqProps) => {

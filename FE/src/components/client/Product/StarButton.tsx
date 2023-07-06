@@ -1,7 +1,7 @@
 import { Rate } from "antd";
 
 type StarButtonProps = {
-  star?: number;
+  star: number | undefined;
   disabled?: boolean;
 };
 

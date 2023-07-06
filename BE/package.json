@@ -17,6 +17,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.3.1",
+    "nodemailer": "^6.9.3",
     "vite": "^4.3.9",
     "vite-plugin-node": "^3.0.2"
   }

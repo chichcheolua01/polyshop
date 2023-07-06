@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 
 type NavBarItemProps = {
   label: string;
-  onClick?: () => void;
   active?: boolean;
+  onClick?: () => void;
   bodyPopover?: ReactNode;
 };
 

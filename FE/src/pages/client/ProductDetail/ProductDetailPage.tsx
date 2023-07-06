@@ -1,8 +1,11 @@
+import { Tabs } from "antd";
+import type { TabsProps } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
   Container,
   ProductComment,
+  ProductDescription,
   ProductInfo,
   ProductList,
 } from "../../../components";
@@ -22,6 +25,27 @@ const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
     listProducts &&
     listProducts.filter((prod) => prod.category._id === product?.category._id);
 
+  const items: TabsProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <>
+          <div className="text-black text-xl">Thông tin sản phẩm</div>
+        </>
+      ),
+      children: <ProductDescription />,
+    },
+    {
+      key: "2",
+      label: (
+        <>
+          <div className="text-black text-xl">Bình luận sản phẩm</div>
+        </>
+      ),
+      children: <ProductComment />,
+    },
+  ];
+
   return (
     <>
       <Container>
@@ -31,7 +55,15 @@ const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
 
             <ProductList products={productSimilar} title="Sản phẩm cùng loại" />
 
-            <ProductComment />
+            <div className="bg-white rounded-xl p-5">
+              <Tabs
+                defaultActiveKey="1"
+                tabPosition="top"
+                items={items}
+                size="large"
+                type="card"
+              />
+            </div>
           </div>
         </div>
       </Container>

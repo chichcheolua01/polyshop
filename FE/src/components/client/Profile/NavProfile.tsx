@@ -8,8 +8,8 @@ import { IProfile, IUser } from "../../../interface";
 
 type NavProfileProps = {
   user: IUser | null;
-  path?: string;
   profile: IProfile[];
+  path?: string;
 };
 
 const NavProfile = ({ user, path, profile }: NavProfileProps) => {

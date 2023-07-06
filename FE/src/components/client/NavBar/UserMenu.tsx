@@ -11,9 +11,9 @@ import MenuItem from "./MenuItem";
 import { ICart, IUser } from "../../../interface";
 
 type UserMenuProps = {
-  currentUser?: IUser | null;
-  onClick: () => void;
   cart: ICart | null;
+  onClick: () => void;
+  currentUser?: IUser | null;
 };
 
 const UserMenu = ({ currentUser, onClick, cart }: UserMenuProps) => {

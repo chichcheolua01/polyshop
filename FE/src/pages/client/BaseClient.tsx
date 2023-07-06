@@ -1,14 +1,14 @@
-import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import { CartDrawn, Footer, NavBar } from "../../components";
 
-import { ICart, ICategories, IUser } from "../../interface";
+import { ICart, ICategoryProduct, IUser } from "../../interface";
 
 type BaseClientProps = {
   cart: ICart | null;
   currentUser: IUser | null;
-  listCategories: ICategories[] | null;
+  listCategories: ICategoryProduct[] | null;
 };
 
 const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
