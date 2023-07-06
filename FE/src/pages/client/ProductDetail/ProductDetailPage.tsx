@@ -42,7 +42,9 @@ const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
           <div className="text-black text-xl">Bình luận sản phẩm</div>
         </>
       ),
-      children: <ProductComment />,
+      children: product && product.comments.length > 0 && (
+        <ProductComment comments={product.comments} />
+      ),
     },
   ];
 

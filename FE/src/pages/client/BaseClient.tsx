@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import { CartDrawn, Footer, NavBar } from "../../components";
+import {
+  Button,
+  CartDrawn,
+  Footer,
+  Input,
+  Modal,
+  NavBar,
+} from "../../components";
 
 import { ICart, ICategoryProduct, IUser } from "../../interface";
 
@@ -12,15 +19,55 @@ type BaseClientProps = {
 };
 
 const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
+  const [email, setEmail] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
 
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
 
+  const bodyModal = (
+    <>
+      <div className="w-full text-center">
+        <h2 className="uppercase font-semibold text-4xl mb-5">
+          Giảm giá <span className="text-rose-500">30%</span>
+        </h2>
+
+        <span className="text-base text-gray-500">
+          Đăng ký nhận thông tin tin để nhận thông tin cập nhật về sản phẩm mới.
+        </span>
+
+        <div className="pt-5">
+          <div className="flex flex-col md:flex-row items-center gap-5 md:gap-1">
+            <div className="w-full">
+              <Input
+                id="email"
+                value={email}
+                label="Nhập email của bạn"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="w-1/4">
+              <Button label="Đăng ký" onClick={() => alert("Đăng ký")} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="bg-[url(/images/background.avif)] bg-cover bg-fixed bg-center bg-no-repeat">
+        <Modal
+          isOpen={isOpen}
+          body={bodyModal}
+          background={true}
+          onClose={() => setIsOpen(false)}
+        />
+
         <NavBar
           onOpen={setDrawn}
           cart={cart}
