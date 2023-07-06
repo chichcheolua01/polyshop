@@ -78,8 +78,8 @@ const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
             )}
           </div>
 
-          <div className="flex flex-row gap-3 items-center">
-            <div className="font-bold text-[#ff424e] text-base">
+          <div className="flex flex-row gap-2 items-center">
+            <div className="font-bold text-base text-[#ff424e]">
               {product.price.toLocaleString("vi-VN")}₫
             </div>
 
