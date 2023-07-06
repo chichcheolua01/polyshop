@@ -46,6 +46,7 @@ const ListProductPage = ({
 
               <div className="shadow-2xl rounded-xl">
                 <ProductList
+                  grid
                   products={listProducts}
                   favoriteUser={favoriteUser}
                 />

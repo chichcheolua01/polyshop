@@ -6,9 +6,15 @@ type ProductListProps = {
   title?: string;
   products: IProduct[] | null;
   favoriteUser: IFavoriteUser[] | undefined;
+  grid?: boolean;
 };
 
-const ProductList = ({ title, products, favoriteUser }: ProductListProps) => {
+const ProductList = ({
+  grid = false,
+  title,
+  products,
+  favoriteUser,
+}: ProductListProps) => {
   return (
     <>
       <div className="space-y-4 rounded-xl p-5 mb-8 bg-white">
@@ -18,7 +24,15 @@ const ProductList = ({ title, products, favoriteUser }: ProductListProps) => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-7 gap-y-10">
+        <div
+          className={`grid grid-cols-1 gap-x-7 gap-y-10
+          ${
+            grid
+              ? "sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+              : "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+          }
+          `}
+        >
           {products &&
             products.map((product) => (
               <ProductCard
