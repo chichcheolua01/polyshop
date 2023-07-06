@@ -1,4 +1,5 @@
 import { Tabs } from "antd";
+import { useState } from "react";
 import type { TabsProps } from "antd";
 import { useParams } from "react-router-dom";
 
@@ -12,7 +13,6 @@ import {
 } from "../../../components";
 
 import { IProduct } from "../../../interface";
-import { useState } from "react";
 
 type ProductDetailPageProps = {
   listProducts: IProduct[] | null;
