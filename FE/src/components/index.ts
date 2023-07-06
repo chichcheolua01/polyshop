@@ -1,3 +1,4 @@
+import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
 import Input from "./Input";
 import Loading from "./Loading";
@@ -55,6 +56,7 @@ import Container from "./client/Container";
 import Modal from "./client/Modal";
 
 export {
+  Breadcrumb,
   Button,
   Input,
   Loading,
