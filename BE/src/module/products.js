@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
+    sold: {
+        type: Number
+    },
+    stars: {
+        type: Number
+    },
+    inventory: {
+        type: Number,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -14,38 +24,17 @@ const productSchema = new mongoose.Schema({
         min: 0,
         required: true,
     },
-    quantity: {
-        type: Number,
-        min: 0,
-        required: true,
-    },
+
     description: {
         type: String,
         required: true
     },
-    short_description: {
-        type: String,
-        required: false,
-    },
-    images: [
+    image: [
         {
             base_url: {
                 type: String,
                 required: true,
-            },
-            is_gallery: Boolean,
-            label: {
-                type: String,
-                default: null,
-            },
-            large_url: String,
-            medium_url: String,
-            position: {
-                type: String,
-                default: null,
-            },
-            small_url: String,
-            thumbnail_url: String,
+            }
         },
     ],
     category: {

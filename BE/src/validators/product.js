@@ -10,18 +10,14 @@ export const productSchema = joi
             .min(1)
             .required()
             .messages(errorMessages("Giá gốc")),
-        quantity: joi
+        inventory: joi
             .number()
             .min(0)
             .required()
             .messages(errorMessages("Số lượng")),
-        short_description: joi
-            .string()
-            .required()
-            .messages(errorMessages("Mô tả ngắn")),
         description: joi.string().required().messages(errorMessages("Mô tả")),
         category: joi.string().required().messages(errorMessages("Danh mục")),
-        images: joi
+        image: joi
             .array()
             .min(1)
             .required()
@@ -29,13 +25,6 @@ export const productSchema = joi
                 joi.object({
                     _id: joi.string().optional(),
                     base_url: joi.string().required().messages(errorMessages("Ảnh gốc")),
-                    is_gallery: joi.boolean().optional(),
-                    label: joi.string().allow(null).optional(),
-                    large_url: joi.string().optional(),
-                    medium_url: joi.string().optional(),
-                    position: joi.string().allow(null).optional(),
-                    small_url: joi.string().optional(),
-                    thumbnail_url: joi.string().optional(),
                 })
             )
             .messages(errorMessages("Ảnh")),
