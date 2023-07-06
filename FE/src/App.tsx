@@ -24,7 +24,6 @@ import {
   Information,
   Order,
   OrderAddress,
-  OrderHistory,
   Payment,
   Voucher,
 } from "./components";
@@ -108,7 +107,6 @@ function App() {
                 element={<ChangePassword currentUser={currentUser} />}
               />
               <Route path="orders" element={<Order />} />
-              <Route path="order-history" element={<OrderHistory />} />
               <Route path="order-address" element={<OrderAddress />} />
               <Route path="payment" element={<Payment />} />
               <Route path="voucher" element={<Voucher />} />

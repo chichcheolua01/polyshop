@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type CardProps = {
   cvv: number;
   name: string;
@@ -7,48 +9,119 @@ type CardProps = {
 };
 
 const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [newName, setNewName] = useState(name);
+  const [newNumber, setNewNumber] = useState(`${number}`);
+  const [newStartDate, setNewStartDate] = useState(startDate);
+  const [newEndDate, setNewEndDate] = useState(endDate);
+  const [newCvv, setNewCvv] = useState(`${cvv}`);
+
+  const toggleEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
     <>
-      <div className="h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-        <img
-          className="relative object-cover w-full h-full rounded-xl"
-          src="/images/card/card-1.png"
-        />
-
-        <div className="w-full px-8 absolute top-8">
+      <div className="h-auto p-5 w-full m-auto rounded-xl relative text-white transition-transform transform hover:scale-110">
+        <div className="bg-cover bg-fixed rounded-xl p-10 bg-[url(/images/card/card-1.png)]">
           <div className="flex justify-between">
-            <div className="">
+            <div>
               <p className="font-light">Name</p>
-              <p className="font-medium tracking-widest">{name}</p>
+              {isEdit ? (
+                <input
+                  type="text"
+                  value={newName}
+                  className="text-white outline-none bg-gradient-to-r from-[#335af3] to-[#487cf5] tracking-widest font-medium"
+                  onChange={(e) => setNewName(e.target.value)}
+                />
+              ) : (
+                <p className="font-medium tracking-widest">{name}</p>
+              )}
             </div>
 
             <img className="w-14 h-14" src="/images/card/master-card.png" />
           </div>
           <div className="pt-1">
             <p className="font-light">Card Number</p>
-            <p className="font-medium tracking-more-wider">{number}</p>
+            {isEdit ? (
+              <input
+                type="number"
+                value={newNumber}
+                className="text-white outline-none bg-gradient-to-r from-[#3054f2] to-[#4476f5] tracking-widest font-medium"
+                onChange={(e) => setNewNumber(e.target.value)}
+              />
+            ) : (
+              <p className="font-medium tracking-widest">{number}</p>
+            )}
           </div>
           <div className="pt-6 pr-6">
-            <div className="flex justify-between">
-              <div className="">
+            <div className="grid grid-cols-3 gap-3">
+              <div>
                 <p className="font-light text-xs">Valid</p>
-                <p className="font-medium tracking-wider text-sm">
-                  {startDate}
-                </p>
+                {isEdit ? (
+                  <input
+                    type="text"
+                    value={newStartDate}
+                    className="text-white outline-none bg-gradient-to-r from-[#2f53f2] to-[#3b67f3] font-medium w-full tracking-widest"
+                    onChange={(e) => setNewStartDate(e.target.value)}
+                  />
+                ) : (
+                  <p className="font-medium tracking-widest">{startDate}</p>
+                )}
               </div>
 
-              <div className="">
+              <div>
                 <p className="font-light text-xs">Expiry</p>
-                <p className="font-medium tracking-wider text-sm">{endDate}</p>
+                {isEdit ? (
+                  <input
+                    type="text"
+                    value={newEndDate}
+                    className="text-white outline-none bg-gradient-to-r from-[#3a65f4] to-[#4577f5] w-full tracking-widest font-medium"
+                    onChange={(e) => setNewEndDate(e.target.value)}
+                  />
+                ) : (
+                  <p className="font-medium tracking-widest">{endDate}</p>
+                )}
               </div>
 
-              <div className="">
+              <div>
                 <p className="font-light text-xs">CVV</p>
-                <p className="font-bold tracking-more-wider text-sm">{cvv}</p>
+                {isEdit ? (
+                  <input
+                    type="number"
+                    value={newCvv}
+                    className="text-white outline-none bg-gradient-to-r from-[#4678f6] to-[#5c92f8] tracking-widest font-medium w-full"
+                    onChange={(e) => setNewCvv(e.target.value)}
+                  />
+                ) : (
+                  <p className="font-medium tracking-widest">{cvv}</p>
+                )}
               </div>
             </div>
           </div>
         </div>
+
+        {isEdit ? (
+          <div className="absolute bottom-8 right-10 flex justify-end gap-5">
+            <button
+              className="mt-3 hover:text-rose-500"
+              onClick={() => alert("Sửa")}
+            >
+              Lưu
+            </button>
+
+            <button className="mt-3 hover:text-rose-500" onClick={toggleEdit}>
+              Hủy
+            </button>
+          </div>
+        ) : (
+          <div className="absolute bottom-8 right-10 flex justify-end gap-5">
+            <button className="mt-3 hover:text-rose-500" onClick={toggleEdit}>
+              Sửa
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

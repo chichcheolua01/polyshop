@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
 
 import Avatar from "../Avatar";
+import { MenuItem } from "../..";
 
 import { IProfile, IUser } from "../../../interface";
 
@@ -13,6 +15,13 @@ type NavProfileProps = {
 };
 
 const NavProfile = ({ user, path, profile }: NavProfileProps) => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen((value) => !value);
+  }, []);
+
   return (
     <>
       <div className="px-4 py-3 shadow flex items-center justify-between flex-row gap-4 bg-white rounded-xl">
@@ -26,9 +35,26 @@ const NavProfile = ({ user, path, profile }: NavProfileProps) => {
           <h4 className="text-gray-800 font-medium">{user?.name}</h4>
         </div>
 
-        <div className="block md:hidden">
-          <AiOutlineMenu />
+        <div className="md:hidden block" onClick={toggleOpen}>
+          <AiOutlineMenu size={30} />
         </div>
+
+        {isOpen && (
+          <div className="z-10 absolute top-56 right-10 rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm">
+            <div className="flex flex-col cursor-pointer">
+              {profile.map((item) => (
+                <MenuItem
+                  key={item.title}
+                  label={item.title}
+                  icon={item.Icon}
+                  active={path === item.url}
+                  onClick={() => navigate(`/profile/${item.url}`)}
+                  menuDrop={item.list}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="hidden md:block mt-6 bg-white shadow p-4 divide-y divide-gray-200 space-y-4 text-gray-500 rounded-xl">

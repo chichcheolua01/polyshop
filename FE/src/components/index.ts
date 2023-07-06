@@ -43,7 +43,6 @@ import MyAccount from "./client/Profile/Account/MyAccount";
 
 import Order from "./client/Profile/Order/Order";
 import OrderAddress from "./client/Profile/Order/OrderAddress";
-import OrderHistory from "./client/Profile/Order/OrderHistory";
 
 import Card from "./client/Profile/Payment/Card";
 import ListCard from "./client/Profile/Payment/ListCard";
@@ -92,7 +91,6 @@ export {
   MyAccount,
   Order,
   OrderAddress,
-  OrderHistory,
   Card,
   ListCard,
   Voucher,
