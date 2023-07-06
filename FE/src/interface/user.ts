@@ -44,4 +44,5 @@ export interface ICardUser {
   start_date: string;
   end_date: string;
   cvv: number;
+  main: boolean;
 }

@@ -3,7 +3,7 @@ import LoginPage from "./auth/Login/LoginPage";
 import RegisterPage from "./auth/Register/RegisterPage";
 
 import BaseClient from "./client/BaseClient";
-import CheckOutPage from "./client/CheckOut/CheckOutPage";
+import CheckoutPage from "./client/Checkout/CheckoutPage";
 import ContactPage from "./client/Contact/ContactPage";
 import FaqPage from "./client/Faq/FaqPage";
 import HomePage from "./client/Home/HomePage";
@@ -17,7 +17,7 @@ export {
   LoginPage,
   RegisterPage,
   BaseClient,
-  CheckOutPage,
+  CheckoutPage,
   ContactPage,
   FaqPage,
   HomePage,

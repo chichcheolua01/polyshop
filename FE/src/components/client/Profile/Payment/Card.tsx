@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Checkbox } from "antd";
+
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 type CardProps = {
   cvv: number;
@@ -6,9 +9,10 @@ type CardProps = {
   number: number;
   endDate: string;
   startDate: string;
+  main: boolean;
 };
 
-const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {
+const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const [newName, setNewName] = useState(name);
@@ -16,15 +20,34 @@ const Card = ({ name, number, startDate, endDate, cvv }: CardProps) => {
   const [newStartDate, setNewStartDate] = useState(startDate);
   const [newEndDate, setNewEndDate] = useState(endDate);
   const [newCvv, setNewCvv] = useState(`${cvv}`);
+  const [newMain, setNewMain] = useState(main);
 
   const toggleEdit = () => {
     setIsEdit(!isEdit);
   };
 
+  const onChange = (e: CheckboxChangeEvent) => {
+    setNewMain(e.target.checked);
+  };
+
   return (
     <>
       <div className="h-auto p-5 w-full m-auto rounded-xl relative text-white transition-transform transform hover:scale-110">
-        <div className="bg-cover bg-fixed rounded-xl p-10 bg-[url(/images/card/card-1.png)]">
+        {isEdit ? (
+          <div className="absolute top-8 right-10">
+            <Checkbox onChange={onChange} defaultChecked={newMain} />
+          </div>
+        ) : null}
+
+        <div
+          className={`bg-cover bg-fixed rounded-xl p-10
+          ${
+            main
+              ? "bg-[url(/images/card/card-1.png)]"
+              : "bg-[url(/images/card/card-2.png)]"
+          }
+          `}
+        >
           <div className="flex justify-between">
             <div>
               <p className="font-light">Name</p>

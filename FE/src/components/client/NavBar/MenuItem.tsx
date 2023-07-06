@@ -6,8 +6,8 @@ import { IconType } from "react-icons";
 type MenuItemProps = {
   label: string;
   icon?: IconType;
-  active: boolean;
-  menuDrop: IProfileList[] | undefined;
+  active?: boolean;
+  menuDrop?: IProfileList[] | undefined;
   onClick: () => void;
 };
 

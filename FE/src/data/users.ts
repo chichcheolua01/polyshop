@@ -16,6 +16,7 @@ export const users = [
         start_date: "10/18",
         end_date: "10/22",
         cvv: 123,
+        main: true,
       },
       {
         _id: "card2",
@@ -24,6 +25,7 @@ export const users = [
         start_date: "10/19",
         end_date: "10/23",
         cvv: 123,
+        main: false,
       },
     ],
     order: [

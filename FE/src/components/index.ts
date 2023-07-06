@@ -7,6 +7,10 @@ import Logo from "./Logo";
 import CartDrawn from "./client/Cart/CartDrawn";
 import CartDrawnItem from "./client/Cart/CartDrawnItem";
 
+import CheckoutCard from "./client/Checkout/CheckoutCard";
+import CheckoutOrder from "./client/Checkout/CheckoutOrder";
+import CheckoutDelivery from "./client/Checkout/CheckoutDelivery";
+
 import ShowFaq from "./client/Faq/ShowFaq";
 
 import Footer from "./client/Footer/Footer";
@@ -58,10 +62,13 @@ import Modal from "./client/Modal";
 
 export {
   Breadcrumb,
+  CheckoutCard,
+  CheckoutOrder,
   Button,
   Input,
   Loading,
   Logo,
+  CheckoutDelivery,
   CartDrawn,
   CartDrawnItem,
   ShowFaq,

@@ -17,6 +17,7 @@ const ListCard = ({ currentUser }: ListCardProps) => {
               startDate={card.start_date}
               endDate={card.end_date}
               cvv={card.cvv}
+              main={card.main}
             />
           ))}
       </div>

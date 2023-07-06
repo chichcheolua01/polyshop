@@ -40,6 +40,8 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+
+    setOpenDrawn(false);
   }, [location.pathname]);
 
   const bodyModal = (

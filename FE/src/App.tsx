@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   BaseAuth,
   BaseClient,
-  CheckOutPage,
+  CheckoutPage,
   ContactPage,
   FaqPage,
   HomePage,
@@ -116,7 +116,10 @@ function App() {
                 element={<ListCard currentUser={currentUser} />}
               />
             </Route>
-            <Route path="checkout" element={<CheckOutPage />} />
+            <Route
+              path="checkout"
+              element={<CheckoutPage currentUser={currentUser} />}
+            />
             <Route path="introduce" element={<IntroducePage />} />
             <Route
               path="list-product"
