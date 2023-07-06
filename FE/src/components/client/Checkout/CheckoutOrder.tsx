@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ICart } from "../../../interface";
 
 type CheckoutOrderProps = {
@@ -29,9 +30,12 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
                   <img src={product.product.image} alt="Product" />
                 </div>
                 <div className="col-span-2 flex flex-col gap-2">
-                  <h4 className="text-base font-semibold">
+                  <Link
+                    to={`/product-detail/${product.product._id}`}
+                    className="text-base font-semibold hover:text-rose-500"
+                  >
                     {product.product.name}
-                  </h4>
+                  </Link>
                   <p className="text-gray-500 text-base">x{product.quantity}</p>
                   <p className="text-rose-500 text-base font-semibold">
                     {product.product.price}
