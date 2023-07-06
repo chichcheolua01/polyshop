@@ -6,12 +6,12 @@ import {
   CartDrawn,
   Footer,
   Input,
+  Loading,
   Modal,
   NavBar,
 } from "../../components";
 
 import { ICart, ICategoryProduct, IUser } from "../../interface";
-import Loading from "../../components/Loading";
 
 type BaseClientProps = {
   cart: ICart | null;
