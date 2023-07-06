@@ -16,6 +16,8 @@ import Banner from "./client/Home/Banner";
 import Features from "./client/Home/Features";
 import Offer from "./client/Home/Offer";
 
+import IntroduceCard from "./client/Introduce/IntroduceCard";
+
 import MenuItem from "./client/NavBar/MenuItem";
 import NavBar from "./client/NavBar/NavBar";
 import NavBarItem from "./client/NavBar/NavBarItem";
@@ -69,6 +71,7 @@ export {
   Banner,
   Features,
   Offer,
+  IntroduceCard,
   MenuItem,
   NavBar,
   NavBarItem,

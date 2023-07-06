@@ -1,7 +1,11 @@
 import { GoHome } from "react-icons/go";
 import { AiOutlineRight } from "react-icons/ai";
 
-const Breadcrumb = () => {
+type BreadcrumbProps = {
+  text: string;
+};
+
+const Breadcrumb = ({ text }: BreadcrumbProps) => {
   return (
     <>
       <div className="px-10 p-5 flex items-center gap-1 bg-white w-full rounded-xl">
@@ -11,7 +15,7 @@ const Breadcrumb = () => {
           <AiOutlineRight />
         </span>
 
-        <p className="text-gray-600 font-semibold text-lg">Sản phẩm</p>
+        <p className="text-gray-600 font-semibold text-lg">{text}</p>
       </div>
     </>
   );

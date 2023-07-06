@@ -19,7 +19,7 @@ const ContactPage = () => {
     <>
       <Container>
         <div className="mt-5">
-          <Breadcrumb />
+          <Breadcrumb text="Hỗ trợ" />
         </div>
 
         <div className="border rounded-xl p-5 mt-5 bg-white">

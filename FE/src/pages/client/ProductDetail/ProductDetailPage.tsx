@@ -4,6 +4,7 @@ import type { TabsProps } from "antd";
 import { useParams } from "react-router-dom";
 
 import {
+  Breadcrumb,
   Button,
   Container,
   ProductComment,
@@ -92,6 +93,10 @@ const ProductDetailPage = ({
     <>
       <Container>
         <div className="max-w-screen-xl mx-auto">
+          <div className="mb-5 mt-2">
+            <Breadcrumb text="Thông tin sản phẩm" />
+          </div>
+
           <div className="flex flex-col gap-6">
             <ProductInfo product={product} currentUser={currentUser} />
 

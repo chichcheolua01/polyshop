@@ -23,7 +23,7 @@ const ListProductPage = ({
     <>
       <div className="py-3">
         <Container>
-          <Breadcrumb />
+          <Breadcrumb text="Danh sách sản phẩm" />
 
           <div className="flex gap-3 pt-5">
             <div className="col-span-1 hidden md:block bg-white px-4 pb-6 shadow-2xl rounded-xl overflow-hidden w-1/3">
