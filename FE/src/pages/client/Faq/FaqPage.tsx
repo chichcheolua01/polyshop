@@ -2,8 +2,8 @@ import { Container, ShowFaq } from "../../../components";
 
 const FaqPage = () => {
   return (
-    <section className="relative overflow-hidden pt-10 bg-white">
-      <Container>
+    <Container>
+      <section className="relative overflow-hidden pt-10 bg-white rounded-xl my-5 p-10">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
@@ -54,8 +54,8 @@ const FaqPage = () => {
             </div>
           </div>
         </div>
-      </Container>
-    </section>
+      </section>
+    </Container>
   );
 };
 

@@ -1,26 +1,36 @@
-import { Avatar, List, Space, Rate } from "antd";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { Avatar, List, Space, Rate } from "antd";
 import { AiFillLike, AiFillMessage } from "react-icons/ai";
 
 import { Button } from "../../..";
+import { ICommentsProduct } from "../../../../interface";
 
-type ProductCommentProps = {};
+type ProductCommentProps = {
+  comments: ICommentsProduct[];
+};
 
-const ProductComment = (props: ProductCommentProps) => {
+const ProductComment = ({ comments }: ProductCommentProps) => {
   const [comment, setComment] = useState("");
 
-  const listComment = Array.from({ length: 3 }).map(() => ({
+  const listComment = comments.map((cmt) => ({
     href: "/profile",
-    title: `Trần Văn Lương`,
-    avatar: `https://res.cloudinary.com/book-hotel/image/upload/v1687264620/AETT3080_apf04c.jpg`,
+    like: cmt.like,
+    feedback: cmt.feedback.length,
+    title: cmt.user.name,
+    avatar: cmt.user.image,
     description: (
-      <Rate allowHalf disabled={true} defaultValue={4} className="text-base" />
+      <Rate
+        allowHalf
+        disabled={true}
+        defaultValue={cmt.evaluate}
+        className="text-base"
+      />
     ),
-    content:
-      "Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.",
+    content: cmt.comment,
   }));
 
-  const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  const IconText = ({ icon, text }: { icon: React.FC; text: number }) => (
     <Space className="hover:text-rose-300 text-base">
       {React.createElement(icon)}
       {text}
@@ -69,19 +79,19 @@ const ProductComment = (props: ProductCommentProps) => {
               actions={[
                 <IconText
                   icon={AiFillLike}
-                  text="156"
+                  text={item.like || 0}
                   key="list-vertical-like-o"
                 />,
                 <IconText
                   icon={AiFillMessage}
-                  text="2"
+                  text={item.feedback || 0}
                   key="list-vertical-message"
                 />,
               ]}
             >
               <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
-                title={<a href={item.href}>{item.title}</a>}
+                title={<Link to={item.href}>{item.title}</Link>}
                 description={item.description}
               />
               {item.content}

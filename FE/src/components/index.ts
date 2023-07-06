@@ -27,6 +27,7 @@ import ProductInfo from "./client/Product/ProductDetail/ProductInfo";
 import FilterProduct from "./client/Product/ProductList/FilterProduct";
 import ProductCard from "./client/Product/ProductList/ProductCard";
 import ProductList from "./client/Product/ProductList/ProductList";
+import SelectProduct from "./client/Product/ProductList/SelectProduct";
 
 import HeartButton from "./client/Product/HeartButton";
 import StarButton from "./client/Product/StarButton";
@@ -50,6 +51,7 @@ import NavProfile from "./client/Profile/NavProfile";
 
 import Avatar from "./client/Avatar";
 import Container from "./client/Container";
+import Modal from "./client/Modal";
 
 export {
   Button,
@@ -74,6 +76,7 @@ export {
   FilterProduct,
   ProductCard,
   ProductList,
+  SelectProduct,
   HeartButton,
   StarButton,
   Account,
@@ -91,4 +94,5 @@ export {
   NavProfile,
   Avatar,
   Container,
+  Modal,
 };

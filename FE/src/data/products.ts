@@ -28,6 +28,46 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/_/t_m_18.png",
       },
     ],
+    comments: [
+      {
+        _id: "comment1",
+        evaluate: 1,
+        comment: "đây là ví dụ về cách comment",
+        like: 10,
+        feedback: [
+          {
+            _id: "user2",
+            user: {
+              _id: "user2",
+              name: "UserManager",
+              image:
+                "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+            },
+            comment: "feedback user 2",
+            like: 0,
+          },
+        ],
+        user: {
+          _id: "user1",
+          name: "Administrator",
+          image:
+            "https://res.cloudinary.com/book-hotel/image/upload/v1687264620/AETT3080_apf04c.jpg",
+        },
+      },
+      {
+        _id: "comment2",
+        evaluate: 4,
+        comment: "đây là bình luận của user2",
+        like: 0,
+        feedback: [],
+        user: {
+          _id: "user2",
+          name: "UserManager",
+          image:
+            "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+        },
+      },
+    ],
   },
   {
     _id: "product2",
@@ -58,6 +98,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-kem.png",
       },
     ],
+    comments: [],
   },
   {
     _id: "product3",
@@ -88,6 +129,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/g/t/gtt7766_4_.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product4",
@@ -118,6 +160,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/o/p/oppo_find_n2_flip.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product5",
@@ -148,6 +191,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/v/i/vivo-v25-pro-5g-3.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product6",
@@ -178,6 +222,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/d/g/dgfg666_2_.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product7",
@@ -208,6 +253,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/7/3/733535867.jpeg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product8",
@@ -238,6 +284,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/4/_/4_292.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product9",
@@ -268,6 +315,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/d/c/dcdcd_1_.jpg",
       },
     ],
+    comments: [],
   },
 
   {
@@ -299,6 +347,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/m/a/macbook-pro-2021-006_4.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product11",
@@ -329,6 +378,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/4/_/4_39_28.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product12",
@@ -359,6 +409,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/_/0/_0004_46251_vostro_3510_black_ha3.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product13",
@@ -389,6 +440,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/y/u/yu_1.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product14",
@@ -419,6 +471,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/_/0/_0003_63923_laptop_lenovo_legion_5_5.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product15",
@@ -449,6 +502,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/l/a/laptop-gaming-acer-nitro-5-tiger-an515-58-773y-5.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product16",
@@ -479,6 +533,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/l/a/laptop-lg-gram-17-2021-ssd-512gb-17_2.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product17",
@@ -509,6 +564,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/l/a/laptop-huawei-matebook-14-4.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product18",
@@ -539,6 +595,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/e/text_ng_n_11__2_67.png",
       },
     ],
+    comments: [],
   },
 
   {
@@ -570,6 +627,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/1/_/1_362.png",
       },
     ],
+    comments: [],
   },
   {
     _id: "product20",
@@ -600,6 +658,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/m/sm-r925_005_side_black_titanium.png",
       },
     ],
+    comments: [],
   },
   {
     _id: "product21",
@@ -630,6 +689,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/2/_/2_235_2.jpg",
       },
     ],
+    comments: [],
   },
   {
     _id: "product22",
@@ -660,6 +720,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/e/text_ng_n_-_2023-05-24t131637.391.png",
       },
     ],
+    comments: [],
   },
   {
     _id: "product23",
@@ -678,6 +739,7 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/d/o/dong-ho-thong-minh-oppo-watch-2_2_1.jpg",
       },
     ],
+    comments: [],
   },
 
   {
@@ -709,5 +771,6 @@ export const products = [
           "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/g/e/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-4.jpg",
       },
     ],
+    comments: [],
   },
 ];

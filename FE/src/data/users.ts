@@ -77,6 +77,7 @@ export const users = [
         productId: "product15",
       },
     ],
+    comments: [{ _id: "comment1" }],
     role: "Admin",
   },
   {
@@ -86,10 +87,12 @@ export const users = [
     password: "hashPasswordUser",
     phone: "0367370371",
     address: "Bắc Giang",
-    image: "image2",
+    image:
+      "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
     cards: [],
     order: [],
     favorite: [],
+    comments: [],
     role: "User",
   },
 ];

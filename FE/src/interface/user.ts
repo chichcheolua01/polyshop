@@ -9,7 +9,12 @@ export interface IUser {
   cards: ICardUser[];
   order: IOrderUser[];
   favorite: IFavoriteUser[];
+  comments: ICommentUser[];
   role: string;
+}
+
+export interface ICommentUser {
+  _id?: string;
 }
 
 export interface IOrderUser {
