@@ -115,7 +115,15 @@ function App() {
               <Route path="order-address" element={<OrderAddress />} />
               <Route path="payment" element={<Payment />} />
               <Route path="voucher" element={<Voucher />} />
-              <Route path="favorite" element={<Favorite />} />
+              <Route
+                path="favorite"
+                element={
+                  <Favorite
+                    favorites={currentUser?.favorite}
+                    listProducts={listProducts}
+                  />
+                }
+              />
               <Route
                 path="list-card"
                 element={<ListCard cardUser={currentUser?.cards} />}

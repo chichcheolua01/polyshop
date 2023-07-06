@@ -109,6 +109,7 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
                   onClick={() => alert("Thành công!")}
+                  disabled={product?.inventory === 0}
                 />
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
