@@ -15,12 +15,12 @@ type NavProfileProps = {
 const NavProfile = ({ user, path, profile }: NavProfileProps) => {
   return (
     <>
-      <div className="px-4 py-3 shadow flex items-center gap-4 bg-white rounded-xl">
+      <div className="px-4 py-3 shadow flex items-center justify-between flex-row gap-4 bg-white rounded-xl">
         <div className="flex-shrink-0">
           <Avatar src={user?.image} />
         </div>
 
-        <div className="flex-grow">
+        <div className="flex-grow hidden md:block">
           <p className="text-gray-600">Hello,</p>
 
           <h4 className="text-gray-800 font-medium">{user?.name}</h4>
