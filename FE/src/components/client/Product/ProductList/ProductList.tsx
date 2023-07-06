@@ -6,11 +6,11 @@ type ProductListProps = {
   title?: string;
   products: IProduct[] | null;
   favoriteUser: IFavoriteUser[] | undefined;
-  grid?: boolean;
+  small?: boolean;
 };
 
 const ProductList = ({
-  grid = false,
+  small = false,
   title,
   products,
   favoriteUser,
@@ -27,9 +27,9 @@ const ProductList = ({
         <div
           className={`grid grid-cols-1 gap-x-7 gap-y-10
           ${
-            grid
-              ? "sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-              : "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+            small
+              ? "sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"
+              : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
           }
           `}
         >
