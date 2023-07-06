@@ -11,6 +11,7 @@ import {
 } from "../../components";
 
 import { ICart, ICategoryProduct, IUser } from "../../interface";
+import Loading from "../../components/Loading";
 
 type BaseClientProps = {
   cart: ICart | null;
@@ -24,6 +25,7 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
@@ -33,6 +35,11 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, [location.pathname]);
 
   const bodyModal = (
@@ -68,31 +75,37 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
 
   return (
     <>
-      <div className="bg-[url(/images/background.avif)] bg-cover bg-fixed bg-center bg-no-repeat">
-        {isHomePage ? (
-          <Modal
-            isOpen={isOpen}
-            body={bodyModal}
-            background={true}
-            onClose={() => setIsOpen(false)}
+      {isLoading ? (
+        <div className="flex items-center justify-center h-screen">
+          <Loading />
+        </div>
+      ) : (
+        <div className="bg-[url(/images/background.avif)] bg-cover bg-fixed bg-center bg-no-repeat">
+          {isHomePage ? (
+            <Modal
+              isOpen={isOpen}
+              body={bodyModal}
+              background={true}
+              onClose={() => setIsOpen(false)}
+            />
+          ) : null}
+
+          <NavBar
+            onOpen={setDrawn}
+            cart={cart}
+            listCategories={listCategories}
+            currentUser={currentUser}
           />
-        ) : null}
 
-        <NavBar
-          onOpen={setDrawn}
-          cart={cart}
-          listCategories={listCategories}
-          currentUser={currentUser}
-        />
+          <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
 
-        <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
+          <main className="pt-36">
+            <Outlet />
+          </main>
 
-        <main className="pt-36">
-          <Outlet />
-        </main>
-
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      )}
     </>
   );
 };
