@@ -1,10 +1,10 @@
 export const comments = [
   {
     _id: "comment1",
-    evaluate: 1,
+    stars: 1,
     comment: "đây là ví dụ về cách comment",
-    like: 10,
-    feedback: [
+    prefer: 10,
+    feed_back: [
       {
         _id: "user2",
         user: {
@@ -13,8 +13,8 @@ export const comments = [
           image:
             "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
         },
-        comment: "feedback user 2",
-        like: 0,
+        comment: "feed_back user 2",
+        prefer: 0,
       },
     ],
     user: {
@@ -26,10 +26,10 @@ export const comments = [
   },
   {
     _id: "comment2",
-    evaluate: 4,
+    stars: 4,
     comment: "đây là bình luận của user2",
-    like: 0,
-    feedback: [],
+    prefer: 0,
+    feed_back: [],
     user: {
       _id: "user2",
       name: "UserManager",

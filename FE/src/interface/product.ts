@@ -25,15 +25,15 @@ export interface IImageProduct {
 export interface ICommentsProduct {
   _id: string;
   user: IUserCommentProduct;
-  evaluate: number;
+  stars: number;
   comment: string;
-  like: number;
-  feedback: IFeedBackComment[];
+  prefer: number;
+  feed_back: IFeedBackComment[];
 }
 
 export interface IFeedBackComment {
   _id: string;
-  like: number;
+  prefer: number;
   comment: string;
   user: IUserCommentProduct;
 }

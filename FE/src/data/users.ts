@@ -77,7 +77,7 @@ export const users = [
         productId: "product15",
       },
     ],
-    comments: [{ _id: "comment1" }],
+    comments: [{ _id: "comment1" }, { _id: "comment2" }],
     role: "Admin",
   },
   {
