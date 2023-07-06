@@ -37,10 +37,14 @@ export const products = [
         feedback: [
           {
             _id: "user2",
-            name: "UserManager",
-            image:
-              "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
-            cmt: "feedback user 2",
+            user: {
+              _id: "user2",
+              name: "UserManager",
+              image:
+                "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+            },
+            comment: "feedback user 2",
+            like: 0,
           },
         ],
         user: {

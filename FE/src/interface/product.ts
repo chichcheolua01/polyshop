@@ -33,14 +33,13 @@ export interface ICommentsProduct {
 
 export interface IFeedBackComment {
   _id: string;
-  user: IUserCommentProduct;
-  comment: string;
   like: number;
+  comment: string;
+  user: IUserCommentProduct;
 }
 
 export interface IUserCommentProduct {
   _id: string;
   name: string;
   image: string;
-  cmt: string;
 }
