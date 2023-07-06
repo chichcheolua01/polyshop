@@ -6,10 +6,26 @@ const commentSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
-        content: {
+        comment: {
             type: String,
             required: true,
         },
+        stars: {
+            type: Number,
+        },
+        prefer: {
+            type: Number
+        },
+        feed_back: [
+            {
+                prefer: Number,
+                comment: String,
+                user: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                },
+            }
+        ]
     },
     { timestamps: true, versionKey: false }
 );
