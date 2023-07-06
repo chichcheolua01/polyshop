@@ -55,6 +55,10 @@ const ProfilePage = ({ currentUser }: ProfilePageProps) => {
       Icon: BsCreditCard,
       list: [
         {
+          name: "Thẻ ngân hàng",
+          url: "list-card",
+        },
+        {
           name: "voucher",
           url: "voucher",
         },

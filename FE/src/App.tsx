@@ -18,6 +18,7 @@ import {
 
 import {
   Account,
+  ListCard,
   ChangePassword,
   Favorite,
   Information,
@@ -109,6 +110,10 @@ function App() {
               <Route path="payment" element={<Payment />} />
               <Route path="voucher" element={<Voucher />} />
               <Route path="favorite" element={<Favorite />} />
+              <Route
+                path="list-card"
+                element={<ListCard currentUser={currentUser} />}
+              />
             </Route>
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />
