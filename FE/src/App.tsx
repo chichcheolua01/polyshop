@@ -82,7 +82,10 @@ function App() {
             <Route
               index
               element={
-                <HomePage currentUser={currentUser} listProducts={products} />
+                <HomePage
+                  currentUser={currentUser}
+                  listProducts={listProducts}
+                />
               }
             />
             <Route path="faq" element={<FaqPage />} />
@@ -122,8 +125,8 @@ function App() {
               element={
                 <ListProductPage
                   currentUser={currentUser}
-                  listProducts={products}
-                  listCategories={categories}
+                  listProducts={listProducts}
+                  listCategories={listCategories}
                 />
               }
             />
