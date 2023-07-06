@@ -1,14 +1,14 @@
 import ProductCard from "./ProductCard";
 
-import { IProduct, IUser } from "../../../../interface";
+import { IFavoriteUser, IProduct } from "../../../../interface";
 
 type ProductListProps = {
   title?: string;
   products: IProduct[] | null;
-  currentUser?: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
 };
 
-const ProductList = ({ title, products, currentUser }: ProductListProps) => {
+const ProductList = ({ title, products, favoriteUser }: ProductListProps) => {
   return (
     <>
       <div className="space-y-4 rounded-xl p-5 mb-8 bg-white">
@@ -24,7 +24,7 @@ const ProductList = ({ title, products, currentUser }: ProductListProps) => {
               <ProductCard
                 key={product._id}
                 product={product}
-                currentUser={currentUser}
+                favoriteUser={favoriteUser}
               />
             ))}
         </div>

@@ -8,14 +8,14 @@ import Button from "../../../Button";
 import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
-import { IProduct, IUser } from "../../../../interface";
+import { IFavoriteUser, IProduct } from "../../../../interface";
 
 type ProductInfoProps = {
   product?: IProduct | null;
-  currentUser: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
 };
 
-const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
+const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
 
   const onChange = (value: number | null) => {
@@ -112,7 +112,10 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
                 />
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  <HeartButton productId={product?._id} user={currentUser} />
+                  <HeartButton
+                    productId={product?._id}
+                    favoriteUser={favoriteUser}
+                  />
                 </button>
               </div>
             </div>

@@ -1,25 +1,15 @@
 import Card from "./Card";
 
-import { IUser } from "../../../../interface";
+import { ICardUser } from "../../../../interface";
 
-type ListCardProps = { currentUser: IUser | null };
+type ListCardProps = { cardUser: ICardUser[] | undefined };
 
-const ListCard = ({ currentUser }: ListCardProps) => {
+const ListCard = ({ cardUser }: ListCardProps) => {
   return (
     <>
       <div className="bg-white grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl">
-        {currentUser &&
-          currentUser.cards.map((card) => (
-            <Card
-              key={card._id}
-              name={card.card_holder_name}
-              number={card.card_number}
-              startDate={card.start_date}
-              endDate={card.end_date}
-              cvv={card.cvv}
-              main={card.main}
-            />
-          ))}
+        {cardUser &&
+          cardUser.map((card) => <Card key={card._id} card={card} />)}
       </div>
     </>
   );

@@ -11,15 +11,15 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICart, ICategoryProduct, IUser } from "../../interface";
+import { ICart, ICategoryProduct } from "../../interface";
 
 type BaseClientProps = {
   cart: ICart | null;
-  currentUser: IUser | null;
+  imageUser: string | undefined;
   listCategories: ICategoryProduct[] | null;
 };
 
-const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
+const BaseClient = ({ cart, imageUser, listCategories }: BaseClientProps) => {
   const location = useLocation();
 
   const [email, setEmail] = useState("");
@@ -94,9 +94,9 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
 
           <NavBar
             onOpen={setDrawn}
-            cart={cart}
+            cartCount={cart?.products.length || 0}
             listCategories={listCategories}
-            currentUser={currentUser}
+            imageUser={imageUser}
           />
 
           <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />

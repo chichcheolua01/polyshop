@@ -6,15 +6,21 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import { MenuItem } from "../..";
 
-import { IProfile, IUser } from "../../../interface";
+import { IProfile } from "../../../interface";
 
 type NavProfileProps = {
-  user: IUser | null;
+  nameUser: string | undefined;
+  imageUser: string | undefined;
   profile: IProfile[];
   path?: string;
 };
 
-const NavProfile = ({ user, path, profile }: NavProfileProps) => {
+const NavProfile = ({
+  nameUser,
+  imageUser,
+  path,
+  profile,
+}: NavProfileProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,13 +32,13 @@ const NavProfile = ({ user, path, profile }: NavProfileProps) => {
     <>
       <div className="px-4 py-3 shadow flex items-center justify-between flex-row gap-4 bg-white rounded-xl">
         <div className="flex-shrink-0">
-          <Avatar src={user?.image} />
+          <Avatar src={imageUser} />
         </div>
 
         <div className="flex-grow hidden md:block">
           <p className="text-gray-600">Hello,</p>
 
-          <h4 className="text-gray-800 font-medium">{user?.name}</h4>
+          <h4 className="text-gray-800 font-medium">{nameUser}</h4>
         </div>
 
         <div className="md:hidden block" onClick={toggleOpen}>

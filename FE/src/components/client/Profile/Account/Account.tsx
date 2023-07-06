@@ -29,7 +29,9 @@ const Account = ({ currentUser }: AccountProps) => {
         />
       </div>
 
-      <div className="pt-3">Đơn hàng gần đây</div>
+      <div className="bg-white rounded-xl mt-5">
+        <div className="p-3">Đơn hàng gần đây</div>
+      </div>
     </>
   );
 };

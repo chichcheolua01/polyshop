@@ -2,25 +2,21 @@ import { useState } from "react";
 import { Checkbox } from "antd";
 
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import { ICardUser } from "../../../../interface";
 
 type CardProps = {
-  cvv: number;
-  name: string;
-  number: number;
-  endDate: string;
-  startDate: string;
-  main: boolean;
+  card: ICardUser;
 };
 
-const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
+const Card = ({ card }: CardProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const [newName, setNewName] = useState(name);
-  const [newNumber, setNewNumber] = useState(`${number}`);
-  const [newStartDate, setNewStartDate] = useState(startDate);
-  const [newEndDate, setNewEndDate] = useState(endDate);
-  const [newCvv, setNewCvv] = useState(`${cvv}`);
-  const [newMain, setNewMain] = useState(main);
+  const [newName, setNewName] = useState(card.card_holder_name || "");
+  const [newNumber, setNewNumber] = useState(card.card_number || "");
+  const [newStartDate, setNewStartDate] = useState(card.start_date || "");
+  const [newEndDate, setNewEndDate] = useState(card.end_date || "");
+  const [newCvv, setNewCvv] = useState(card.cvv || "");
+  const [newMain, setNewMain] = useState(card.main || false);
 
   const toggleEdit = () => {
     setIsEdit(!isEdit);
@@ -42,7 +38,7 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
         <div
           className={`bg-cover bg-fixed rounded-xl p-10
           ${
-            main
+            card.main
               ? "bg-[url(/images/card/card-1.png)]"
               : "bg-[url(/images/card/card-2.png)]"
           }
@@ -59,7 +55,9 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
                   onChange={(e) => setNewName(e.target.value)}
                 />
               ) : (
-                <p className="font-medium tracking-widest">{name}</p>
+                <p className="font-medium tracking-widest">
+                  {card.card_holder_name}
+                </p>
               )}
             </div>
 
@@ -75,7 +73,7 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
                 onChange={(e) => setNewNumber(e.target.value)}
               />
             ) : (
-              <p className="font-medium tracking-widest">{number}</p>
+              <p className="font-medium tracking-widest">{card.card_number}</p>
             )}
           </div>
           <div className="pt-6 pr-6">
@@ -90,7 +88,9 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
                     onChange={(e) => setNewStartDate(e.target.value)}
                   />
                 ) : (
-                  <p className="font-medium tracking-widest">{startDate}</p>
+                  <p className="font-medium tracking-widest">
+                    {card.start_date}
+                  </p>
                 )}
               </div>
 
@@ -104,7 +104,7 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
                     onChange={(e) => setNewEndDate(e.target.value)}
                   />
                 ) : (
-                  <p className="font-medium tracking-widest">{endDate}</p>
+                  <p className="font-medium tracking-widest">{card.end_date}</p>
                 )}
               </div>
 
@@ -118,7 +118,7 @@ const Card = ({ name, number, startDate, endDate, cvv, main }: CardProps) => {
                     onChange={(e) => setNewCvv(e.target.value)}
                   />
                 ) : (
-                  <p className="font-medium tracking-widest">{cvv}</p>
+                  <p className="font-medium tracking-widest">{card.cvv}</p>
                 )}
               </div>
             </div>

@@ -7,14 +7,14 @@ import {
   CheckoutOrder,
   Container,
 } from "../../../components";
-import { IUser } from "../../../interface";
+import { ICardUser } from "../../../interface";
 
 type CheckoutPageProps = {
-  currentUser: IUser | null;
+  cardUser: ICardUser[] | undefined;
 };
 
-const CheckoutPage = ({ currentUser }: CheckoutPageProps) => {
-  const cardMain = currentUser?.cards.find((card) => card.main === true);
+const CheckoutPage = ({ cardUser }: CheckoutPageProps) => {
+  const cardMain = cardUser && cardUser.find((card) => card.main === true);
   const [active, setActive] = useState("Thẻ ngân hàng");
 
   const toggleActive = (text: string) => {
