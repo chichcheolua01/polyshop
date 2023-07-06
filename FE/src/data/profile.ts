@@ -38,10 +38,6 @@ export const profile = [
         name: "Thẻ ngân hàng",
         url: "list-card",
       },
-      {
-        name: "voucher",
-        url: "voucher",
-      },
     ],
   },
   {

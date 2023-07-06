@@ -45,7 +45,6 @@ import OrderAddress from "./client/Profile/Order/OrderAddress";
 import Card from "./client/Profile/Payment/Card";
 import ListCard from "./client/Profile/Payment/ListCard";
 import Payment from "./client/Profile/Payment/Payment";
-import Voucher from "./client/Profile/Payment/Voucher";
 
 import Favorite from "./client/Profile/Favorite";
 import NavProfile from "./client/Profile/NavProfile";
@@ -100,7 +99,6 @@ export {
   OrderAddress,
   Card,
   ListCard,
-  Voucher,
   Payment,
   Favorite,
   NavProfile,

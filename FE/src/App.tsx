@@ -25,7 +25,6 @@ import {
   Order,
   OrderAddress,
   Payment,
-  Voucher,
 } from "./components";
 
 import { ICart, ICategoryProduct, IProduct, IUser } from "./interface";
@@ -114,7 +113,6 @@ function App() {
               <Route path="orders" element={<Order />} />
               <Route path="order-address" element={<OrderAddress />} />
               <Route path="payment" element={<Payment />} />
-              <Route path="voucher" element={<Voucher />} />
               <Route
                 path="favorite"
                 element={
