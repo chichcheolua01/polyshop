@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import {
   Button,
@@ -19,6 +19,8 @@ type BaseClientProps = {
 };
 
 const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
+  const location = useLocation();
+
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
@@ -26,6 +28,8 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
+
+  const isHomePage = location.pathname === "/";
 
   const bodyModal = (
     <>
@@ -61,12 +65,14 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
   return (
     <>
       <div className="bg-[url(/images/background.avif)] bg-cover bg-fixed bg-center bg-no-repeat">
-        <Modal
-          isOpen={isOpen}
-          body={bodyModal}
-          background={true}
-          onClose={() => setIsOpen(false)}
-        />
+        {isHomePage ? (
+          <Modal
+            isOpen={isOpen}
+            body={bodyModal}
+            background={true}
+            onClose={() => setIsOpen(false)}
+          />
+        ) : null}
 
         <NavBar
           onOpen={setDrawn}
