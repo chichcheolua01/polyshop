@@ -4,7 +4,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { BiMessageRoundedError } from "react-icons/bi";
 import { FaRegMoneyBillAlt, FaRegNewspaper } from "react-icons/fa";
 
-import { Button, Input } from "../../../components";
+import { Breadcrumb, Button, Container, Input } from "../../../components";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -17,8 +17,12 @@ const ContactPage = () => {
 
   return (
     <>
-      <div className="container md:px-6 p-10">
-        <section className="border rounded-xl p-5 bg-white">
+      <Container>
+        <div className="mt-5">
+          <Breadcrumb />
+        </div>
+
+        <div className="border rounded-xl p-5 mt-5 bg-white">
           <div className="flex justify-center">
             <div className="text-center md:max-w-xl lg:max-w-3xl">
               <h2 className="mb-12 px-6 text-3xl font-bold">Liên hệ</h2>
@@ -162,8 +166,8 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </Container>
     </>
   );
 };

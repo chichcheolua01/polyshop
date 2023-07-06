@@ -8,13 +8,14 @@ import Button from "../../../Button";
 import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
-import { IProduct } from "../../../../interface";
+import { IProduct, IUser } from "../../../../interface";
 
 type ProductInfoProps = {
   product?: IProduct | null;
+  currentUser: IUser | null;
 };
 
-const ProductInfo = ({ product }: ProductInfoProps) => {
+const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
 
   const onChange = (value: number | null) => {
@@ -111,7 +112,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
                 />
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  <HeartButton />
+                  <HeartButton productId={product?._id} user={currentUser} />
                 </button>
               </div>
             </div>

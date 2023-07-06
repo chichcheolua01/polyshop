@@ -15,15 +15,15 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
 
   const listComment = comments.map((cmt) => ({
     href: "/profile",
-    like: cmt.like,
-    feedback: cmt.feedback.length,
+    prefer: cmt.prefer,
+    feed_back: cmt.feed_back.length,
     title: cmt.user.name,
     avatar: cmt.user.image,
     description: (
       <Rate
         allowHalf
         disabled={true}
-        defaultValue={cmt.evaluate}
+        defaultValue={cmt.stars}
         className="text-base"
       />
     ),
@@ -79,12 +79,12 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
               actions={[
                 <IconText
                   icon={AiFillLike}
-                  text={item.like || 0}
+                  text={item.prefer || 0}
                   key="list-vertical-like-o"
                 />,
                 <IconText
                   icon={AiFillMessage}
-                  text={item.feedback || 0}
+                  text={item.feed_back || 0}
                   key="list-vertical-message"
                 />,
               ]}

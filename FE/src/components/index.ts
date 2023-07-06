@@ -1,5 +1,7 @@
+import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
 import Input from "./Input";
+import Loading from "./Loading";
 import Logo from "./Logo";
 
 import CartDrawn from "./client/Cart/CartDrawn";
@@ -54,8 +56,10 @@ import Container from "./client/Container";
 import Modal from "./client/Modal";
 
 export {
+  Breadcrumb,
   Button,
   Input,
+  Loading,
   Logo,
   CartDrawn,
   CartDrawnItem,

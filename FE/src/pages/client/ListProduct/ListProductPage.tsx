@@ -1,8 +1,5 @@
-import { GoHome } from "react-icons/go";
-
-import { AiOutlineRight } from "react-icons/ai";
-
 import {
+  Breadcrumb,
   Container,
   FilterProduct,
   ProductList,
@@ -26,15 +23,7 @@ const ListProductPage = ({
     <>
       <div className="py-3">
         <Container>
-          <div className="px-10 p-5 flex items-center gap-1 bg-white w-full rounded-xl">
-            <GoHome className="text-rose-400 text-base" size={20} />
-
-            <span className="text-sm text-gray-400">
-              <AiOutlineRight />
-            </span>
-
-            <p className="text-gray-600 font-semibold text-lg">Sản phẩm</p>
-          </div>
+          <Breadcrumb />
 
           <div className="flex gap-3 pt-5">
             <div className="col-span-1 hidden md:block bg-white px-4 pb-6 shadow-2xl rounded-xl overflow-hidden w-1/3">
