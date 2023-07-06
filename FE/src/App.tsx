@@ -123,7 +123,9 @@ function App() {
             </Route>
             <Route
               path="checkout"
-              element={<CheckoutPage cardUser={currentUser?.cards} />}
+              element={
+                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
+              }
             />
             <Route path="introduce" element={<IntroducePage />} />
             <Route

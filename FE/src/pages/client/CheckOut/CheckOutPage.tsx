@@ -7,15 +7,17 @@ import {
   CheckoutOrder,
   Container,
 } from "../../../components";
-import { ICardUser } from "../../../interface";
+import { ICart, ICardUser } from "../../../interface";
 
 type CheckoutPageProps = {
   cardUser: ICardUser[] | undefined;
+  cart: ICart | null;
 };
 
-const CheckoutPage = ({ cardUser }: CheckoutPageProps) => {
+const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
   const [active, setActive] = useState("Thẻ ngân hàng");
+  const disabled = cart ? false : true;
 
   const toggleActive = (text: string) => {
     setActive(text);
@@ -73,14 +75,25 @@ const CheckoutPage = ({ cardUser }: CheckoutPageProps) => {
               </div>
 
               {active === "Thẻ ngân hàng" && (
-                <CheckoutCard cardMain={cardMain} onClick={handlePayment} />
+                <CheckoutCard
+                  cardMain={cardMain}
+                  title="Thẻ ngân hàng"
+                  onClick={handlePayment}
+                  disabled={disabled}
+                />
               )}
 
-              {active === "Thanh toán khi giao hàng" && <CheckoutDelivery />}
+              {active === "Thanh toán khi giao hàng" && (
+                <CheckoutDelivery
+                  title="Thanh toán khi giao hàng"
+                  onClick={handlePayment}
+                  disabled={disabled}
+                />
+              )}
             </div>
 
-            <div className="col-span-1">
-              <CheckoutOrder />
+            <div className="col-span-1 ">
+              <CheckoutOrder cart={cart} />
             </div>
           </div>
         </div>

@@ -4,11 +4,18 @@ import { Button, Input } from "../..";
 import { ICardUser } from "../../../interface";
 
 type CheckoutCardProps = {
+  title: string;
   cardMain: ICardUser | undefined;
   onClick: () => void;
+  disabled: boolean;
 };
 
-const CheckoutCard = ({ cardMain, onClick }: CheckoutCardProps) => {
+const CheckoutCard = ({
+  disabled,
+  title,
+  cardMain,
+  onClick,
+}: CheckoutCardProps) => {
   const [name, setName] = useState(cardMain?.card_holder_name || "");
   const [number, setNumber] = useState(cardMain?.card_number || "");
   const [startDate, setStartDate] = useState(cardMain?.start_date || "");
@@ -19,7 +26,7 @@ const CheckoutCard = ({ cardMain, onClick }: CheckoutCardProps) => {
     <>
       <div className="bg-gray-100 rounded-xl p-5 mt-10">
         <div className="flex justify-between items-center">
-          <h4 className="font-semibold text-xl">Thẻ ngân hàng</h4>
+          <h4 className="font-semibold text-xl">{title}</h4>
 
           <div className="flex flex-row">
             <div className="col-span-1">
@@ -84,7 +91,11 @@ const CheckoutCard = ({ cardMain, onClick }: CheckoutCardProps) => {
 
           <div className="flex justify-center">
             <div className="md:w-1/3 w-auto">
-              <Button label="Thanh toán" onClick={onClick} />
+              <Button
+                label="Thanh toán"
+                onClick={onClick}
+                disabled={disabled}
+              />
             </div>
           </div>
         </div>
