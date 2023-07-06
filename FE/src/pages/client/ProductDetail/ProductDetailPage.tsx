@@ -12,13 +12,17 @@ import {
   ProductList,
 } from "../../../components";
 
-import { IProduct } from "../../../interface";
+import { IProduct, IUser } from "../../../interface";
 
 type ProductDetailPageProps = {
+  currentUser: IUser | null;
   listProducts: IProduct[] | null;
 };
 
-const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
+const ProductDetailPage = ({
+  currentUser,
+  listProducts,
+}: ProductDetailPageProps) => {
   const { id } = useParams<string>();
   const [comment, setComment] = useState("");
 
@@ -89,7 +93,7 @@ const ProductDetailPage = ({ listProducts }: ProductDetailPageProps) => {
       <Container>
         <div className="max-w-screen-xl mx-auto">
           <div className="flex flex-col gap-6">
-            <ProductInfo product={product} />
+            <ProductInfo product={product} currentUser={currentUser} />
 
             <ProductList products={productSimilar} title="Sản phẩm cùng loại" />
 

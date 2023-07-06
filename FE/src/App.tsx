@@ -132,7 +132,12 @@ function App() {
             />
             <Route
               path="product-detail/:id"
-              element={<ProductDetailPage listProducts={listProducts} />}
+              element={
+                <ProductDetailPage
+                  currentUser={currentUser}
+                  listProducts={listProducts}
+                />
+              }
             />
           </Route>
 

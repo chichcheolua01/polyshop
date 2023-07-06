@@ -6,8 +6,8 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { IUser } from "../../../interface";
 
 type HeartButtonProps = {
-  productId?: string;
-  user?: IUser | null;
+  productId: string | undefined;
+  user: IUser | null;
 };
 
 const HeartButton = ({ productId, user }: HeartButtonProps) => {
