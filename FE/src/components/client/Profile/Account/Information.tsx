@@ -25,7 +25,7 @@ const Information = ({ currentUser }: InformationProps) => {
 
   return (
     <>
-      <div className="p-3 bg-white">
+      <div className="p-3 bg-white rounded-xl">
         <h4 className="text-2xl font-medium capitalize mb-4 p-4">
           Thông tin cá nhân
         </h4>

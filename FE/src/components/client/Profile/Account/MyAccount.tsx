@@ -11,7 +11,7 @@ type MyAccountProps = {
 const MyAccount = ({ title, url, text, email, phone }: MyAccountProps) => {
   return (
     <>
-      <div className="shadow rounded bg-white px-4 pt-6 pb-8">
+      <div className="shadow bg-white px-4 pt-6 pb-8 rounded-xl">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-medium text-gray-800 text-lg">{title}</h3>
 

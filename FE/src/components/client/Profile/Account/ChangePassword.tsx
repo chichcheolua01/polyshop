@@ -132,7 +132,7 @@ const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
 
   return (
     <>
-      <div className="bg-white p-3 rounded py-10">
+      <div className="bg-white p-3 rounded py-10 rounded-xl">
         <Tabs
           activeKey={step}
           tabPosition="top"

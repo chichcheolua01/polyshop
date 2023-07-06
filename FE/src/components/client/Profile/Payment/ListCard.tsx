@@ -7,7 +7,7 @@ type ListCardProps = { currentUser: IUser | null };
 const ListCard = ({ currentUser }: ListCardProps) => {
   return (
     <>
-      <div className="bg-white grid grid-cols-1 md:grid-cols-2 gap-5 p-5">
+      <div className="bg-white grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl">
         {currentUser &&
           currentUser.cards.map((card) => (
             <Card
