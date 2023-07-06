@@ -8,8 +8,8 @@ import { ICart } from "../../../interface";
 
 type CartDrawnProps = {
   isOpen: boolean;
-  onClose: () => void;
   cart: ICart | null;
+  onClose: () => void;
 };
 
 const CartDrawn = ({ isOpen, onClose, cart }: CartDrawnProps) => {

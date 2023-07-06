@@ -10,9 +10,9 @@ import NavBarItem from "./NavBarItem";
 import { ICart, ICategoryProduct, IUser } from "../../../interface";
 
 type NavBarProps = {
-  currentUser?: IUser | null;
   onOpen: () => void;
   cart: ICart | null;
+  currentUser?: IUser | null;
   listCategories: ICategoryProduct[] | null;
 };
 

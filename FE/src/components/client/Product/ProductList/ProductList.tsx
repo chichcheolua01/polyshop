@@ -11,7 +11,7 @@ type ProductListProps = {
 const ProductList = ({ title, products, currentUser }: ProductListProps) => {
   return (
     <>
-      <div className="space-y-4 rounded-xl p-5 mb-16 bg-white">
+      <div className="space-y-4 rounded-xl p-5 mb-8 bg-white">
         {title && (
           <div className="flex flex-row justify-between">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">{title}</h2>

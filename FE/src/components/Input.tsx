@@ -2,9 +2,9 @@ import { ChangeEvent } from "react";
 
 type InputProps = {
   id: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
   label: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type?: string;
 };
 
@@ -16,9 +16,9 @@ const Input = ({ id, onChange, value, label, type }: InputProps) => {
           id={id}
           type={type}
           value={value}
+          placeholder=" "
           onChange={onChange}
           className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-black bg-white border appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
-          placeholder=" "
         />
         <label
           htmlFor={id}

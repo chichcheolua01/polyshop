@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 type MyAccountProps = {
-  title: string;
   url: string;
+  title: string;
   text: string | null | undefined;
   email?: string;
   phone?: string;
