@@ -9,6 +9,8 @@ import AuthRouter from "./router/auth";
 import CommentRouter from './router/comment'
 import contactRouter from "./router/contact";
 
+import FavoriteRouter from "./router/favorites";
+
 
 
 
@@ -24,6 +26,8 @@ app.use("/category", CategoryRouter);
 app.use("/auth", AuthRouter);
 app.use("/comment", CommentRouter);
 app.use("/contact", contactRouter);
+app.use("/favorites", FavoriteRouter);
+
 
 
 
