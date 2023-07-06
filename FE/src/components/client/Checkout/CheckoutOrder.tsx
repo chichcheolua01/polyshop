@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { Button, Input } from "../..";
+
 import { ICart } from "../../../interface";
 
 type CheckoutOrderProps = {
@@ -7,6 +11,7 @@ type CheckoutOrderProps = {
 
 const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
   const total = cart && cart?.totalPrice;
+  const [discount, setDiscount] = useState("");
 
   return (
     <>
@@ -60,13 +65,26 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
           </div>
 
           <div className="flex justify-between items-center">
-            <h4 className="uppercase font-normal text-base">
-              Phí vận chuyển:{" "}
-            </h4>
+            <h4 className="uppercase font-normal text-base">Phí vận chuyển:</h4>
 
             <span className="text-lg font-semibold text-rose-500">
               {(0).toLocaleString("vi-VN")}₫
             </span>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3 mt-3">
+            <div className="col-span-2">
+              <Input
+                id="discount"
+                value={discount}
+                label="Mã giảm giá"
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+            </div>
+
+            <div className="col-span-1">
+              <Button label="Kiểm tra" onClick={() => alert("Kiểm tra")} />
+            </div>
           </div>
         </div>
 
