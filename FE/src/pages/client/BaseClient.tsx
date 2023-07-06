@@ -99,7 +99,12 @@ const BaseClient = ({ cart, imageUser, listCategories }: BaseClientProps) => {
             imageUser={imageUser}
           />
 
-          <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
+          <CartDrawn
+            isOpen={openDrawn}
+            imageUser={imageUser}
+            onClose={setDrawn}
+            cart={cart}
+          />
 
           <main className="pt-36">
             <Outlet />
