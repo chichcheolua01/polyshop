@@ -55,6 +55,7 @@ const CheckoutPage = ({ currentUser }: CheckoutPageProps) => {
               <div className="mt-10 flex flex-row gap-5">
                 {paymentMethod.map((method) => (
                   <div
+                    key={method.name}
                     className={`p-3 cursor-pointer rounded text-center flex flex-col items-center w-[150px]
                   ${
                     active === method.name ? "border border-rose-500" : "border"
