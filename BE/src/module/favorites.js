@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const favorite = new mongoose.Schema(
   {
     userId: {

@@ -23,10 +23,7 @@ const contactSchema = new mongoose.Schema(
       required: true,
     },
   },
-  {
-    timetamps: true,
-    verionKey: false,
-  }
+  { timestamps: true, versionKey: false }
 );
 
 export default mongoose.model("Contact", contactSchema);
