@@ -1,85 +1,97 @@
 import Order from "../module/order";
 import { orderSchema } from "../validators/order";
 
-const getAll = async (req,res) =>{
-    try {
-       const data = await Order.find()
-       .populate("user")
-       .populate("products.product");
-       if(!data|| !date.length === 0){
-        return res.status(404).json({
-            message:"Không có dữ liệu",
-        });
-       } 
-       return res.status(200).json({
-        message:"Thông tin các đơn hàng",
-        data,
-       });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            message:"Đã có lỗi xảy ra",
-        });
+const getAll = async (req, res) => {
+  try {
+    const data = await Order.find()
+      .populate("user")
+      .populate("products.product");
+
+    if (!data || data.length === 0) {
+      return res.status(404).json({
+        message: "Không có dữ liệu",
+      });
     }
+
+    return res.status(200).json({
+      message: "Thông tin các đơn hàng",
+      data,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Đã có lỗi xảy ra",
+    });
+  }
 };
 
-const getOne = async (req,res) =>{
-    try {
-       const data = await Order.findById(req.params.id)
-       .populate("user")
-       .populate("products.product");
-       if(!data|| !date.length === 0){
-        return res.status(404).json({
-            message:"Không tìm thấy đơn hàng",
-        });
-       } 
-       return res.status(200).json({
-        message:"Thông tin các đơn hàng",
-        data,
-       });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            message:"Đã có lỗi xảy ra",
-        });
+const getOne = async (req, res) => {
+  try {
+    const data = await Order.findById(req.params.id)
+      .populate("user")
+      .populate("products.product");
+
+    if (!data || !date.length === 0) {
+      return res.status(404).json({
+        message: "Không tìm thấy đơn hàng",
+      });
     }
+
+    return res.status(200).json({
+      message: "Thông tin các đơn hàng",
+      data,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Đã có lỗi xảy ra",
+    });
+  }
 };
 
 const create = async (req, res) => {
-    try {
-        const {error} = orderSchema.validate(req.body, {abortEarly: false});
-       if (error) {
-        const errors = error.details.map(err => err.message);
-        return res.status(400).json({
-            message: errors,
-        });
-       } 
-       let status = "Đang xử lý";
-       if(req.body.paymentMethod === "Thanh toán bằng thẻ"){
-        status = "Chờ thanh toán";
-       }
-       const order = await Order.create({ ...req.body,status });
-if(!order){
-    return res.status(404).json({
-        message: "khong tao được dơn hàng"
-    })
-}
-       return res.status(201).json({
-        message: "Tạo đơn hàng thành công",
-        orderId:order._id,
-        order,
-       });
-    } catch (err) {
-           console.log(err);
-        return res.status(500).json({
-            message:"Đã có lỗi xảy ra "+err.message,
-        });
+  try {
+    const { error } = orderSchema.validate(req.body, { abortEarly: false });
+    if (error) {
+      const errors = error.details.map((err) => err.message);
+      return res.status(400).json({
+        message: errors,
+      });
     }
+
+    let status = "Đang xử lý";
+    if (req.body.paymentMethod === "Thanh toán bằng thẻ") {
+      status = "Chờ thanh toán";
+    }
+
+    const order = await Order.create({ ...req.body, status });
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Tạo đơn hàng thất bại",
+      });
+    }
+
+    return res.status(201).json({
+      message: "Tạo đơn hàng thành công",
+      orderId: order._id,
+      order,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Đã có lỗi xảy ra " + err.message,
+    });
+  }
 };
 
 const edit = async (req, res) => {
   try {
     const { error } = orderSchema.validate(req.body, { abortEarly: false });
+
     if (error) {
       const errors = error.details.map((err) => err.message);
       return res.status(400).json({
@@ -133,21 +145,25 @@ const del = async (req, res) => {
   }
 };
 
-// lấy thông tin đơn hàng
 const findOrdersByUserId = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const orders = await Order.find({ user: userId }).populate("products.product")
+    const orders = await Order.find({ user: userId }).populate(
+      "products.product"
+    );
 
     if (orders.length === 0) {
-      return res.status(404).json({ message: 'Không tìm thấy đơn hàng cho userId đã chỉ định.' });
+      return res.status(404).json({ message: "Người dùng không có đơn hàng" });
     }
 
     res.status(200).json({ orders });
   } catch (err) {
-    console.error('Lỗi truy vấn:', err);
-    res.status(500).json({ message: 'Đã xảy ra lỗi trong quá trình tìm đơn hàng.' });
+    console.error("Lỗi truy vấn:", err);
+
+    res.status(500).json({
+      message: "Đã xảy ra lỗi trong quá trình tìm đơn hàng.",
+    });
   }
 };
 

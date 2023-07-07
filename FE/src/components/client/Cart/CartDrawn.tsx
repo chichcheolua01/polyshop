@@ -8,12 +8,12 @@ import { ICart } from "../../../interface";
 
 type CartDrawnProps = {
   isOpen: boolean;
-  imageUser: string | undefined;
+  isLogin: boolean;
   cart: ICart | null;
   onClose: () => void;
 };
 
-const CartDrawn = ({ isOpen, imageUser, onClose, cart }: CartDrawnProps) => {
+const CartDrawn = ({ isLogin, isOpen, onClose, cart }: CartDrawnProps) => {
   const navigate = useNavigate();
 
   return (
@@ -58,7 +58,7 @@ const CartDrawn = ({ isOpen, imageUser, onClose, cart }: CartDrawnProps) => {
 
             <Button
               label="Thanh toán"
-              disabled={imageUser ? false : true}
+              disabled={!isLogin}
               onClick={() => navigate("/checkout")}
             />
           </div>

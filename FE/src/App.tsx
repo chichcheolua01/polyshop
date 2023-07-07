@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
+  AdminDashboardPage,
+  AdminProductPage,
+  AdminUserPage,
+  BaseAdmin,
   BaseAuth,
   BaseClient,
   CheckoutPage,
@@ -72,6 +76,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
+                isLogin={currentUser !== null}
                 imageUser={currentUser?.image}
                 listCategories={listCategories}
               />
@@ -158,6 +163,13 @@ function App() {
           <Route path="/auth" element={<BaseAuth />}>
             <Route index element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+          </Route>
+
+          <Route path="/admin" element={<BaseAdmin />}>
+            <Route index element={<AdminDashboardPage />} />
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="products" element={<AdminProductPage />} />
+            <Route path="users" element={<AdminUserPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

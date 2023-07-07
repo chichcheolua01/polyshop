@@ -132,14 +132,18 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
   return (
     <>
       <div className="bg-white p-3 py-10 rounded-xl">
-        <Tabs
-          activeKey={step}
-          tabPosition="top"
-          items={items}
-          size="large"
-          type="line"
-          centered
-        />
+        {emailUser ? (
+          <Tabs
+            activeKey={step}
+            tabPosition="top"
+            items={items}
+            size="large"
+            type="line"
+            centered
+          />
+        ) : (
+          <div className="text-center">Bạn chưa đăng nhập</div>
+        )}
       </div>
     </>
   );

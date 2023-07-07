@@ -12,12 +12,14 @@ import { ICategoryProduct } from "../../../interface";
 type NavBarProps = {
   onOpen: () => void;
   cartCount: number;
+  isLogin: boolean;
   imageUser?: string | null;
   listCategories: ICategoryProduct[] | null;
 };
 
 const NavBar = ({
   imageUser,
+  isLogin,
   onOpen,
   cartCount,
   listCategories,
@@ -86,6 +88,7 @@ const NavBar = ({
 
               <UserMenu
                 imageUser={imageUser}
+                isLogin={isLogin}
                 onClick={onOpen}
                 cartCount={cartCount}
               />

@@ -1,3 +1,8 @@
+import BaseAdmin from "./admin/BaseAdmin";
+import AdminDashboardPage from "./admin/AdminDashboard/AdminDashboardPage";
+import AdminProductPage from "./admin/AdminProduct/AdminProduct";
+import AdminUserPage from "./admin/AdminUser/AdminUserPage";
+
 import BaseAuth from "./auth/BaseAuth";
 import LoginPage from "./auth/Login/LoginPage";
 import RegisterPage from "./auth/Register/RegisterPage";
@@ -13,6 +18,10 @@ import ProductDetailPage from "./client/ProductDetail/ProductDetailPage";
 import ProfilePage from "./client/Profile/ProfilePage";
 
 export {
+  BaseAdmin,
+  AdminDashboardPage,
+  AdminProductPage,
+  AdminUserPage,
   BaseAuth,
   LoginPage,
   RegisterPage,

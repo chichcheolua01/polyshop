@@ -1,10 +1,10 @@
 import express from "express";
 import {
-    getSecurityCode,
-    resetPassword,
-    getCode,
-    checkCode,
-    changePassword,
+  getSecurityCode,
+  resetPassword,
+  getCode,
+  checkCode,
+  changePassword,
 } from "../controller/changePassword";
 
 const router = express.Router();

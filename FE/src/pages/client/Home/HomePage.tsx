@@ -35,6 +35,7 @@ const HomePage = ({ favoriteUser, listProducts }: HomePageProps) => {
 
         {phone && phone.length > 0 && (
           <ProductList
+            middle
             title="Điện Thoại"
             products={phone}
             favoriteUser={favoriteUser}
@@ -43,6 +44,7 @@ const HomePage = ({ favoriteUser, listProducts }: HomePageProps) => {
 
         {computer && computer.length > 0 && (
           <ProductList
+            middle
             title="Máy Tính"
             products={computer}
             favoriteUser={favoriteUser}
@@ -51,6 +53,7 @@ const HomePage = ({ favoriteUser, listProducts }: HomePageProps) => {
 
         {watch && watch.length > 0 && (
           <ProductList
+            middle
             title="Đồng Hồ"
             products={watch}
             favoriteUser={favoriteUser}

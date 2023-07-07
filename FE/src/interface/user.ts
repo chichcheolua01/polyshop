@@ -25,13 +25,16 @@ export interface ICardUser {
 
 export interface IOrderUser {
   _id?: string;
+  userId: string;
   products: IProductsOrderUser[];
   totalPrice: number;
+  paymentMethod: string;
+  payment?: string;
   status: string;
 }
 
 export interface IProductsOrderUser {
-  _id?: string;
+  product: string;
   name: string;
   price: number;
   quantity: number;

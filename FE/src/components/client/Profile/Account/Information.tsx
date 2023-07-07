@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { Button, Input } from "../../..";
 
@@ -9,19 +9,10 @@ type InformationProps = {
 };
 
 const Information = ({ currentUser }: InformationProps) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-
-  useEffect(() => {
-    if (currentUser) {
-      setName(currentUser.name || "");
-      setEmail(currentUser.email || "");
-      setAddress(currentUser.address || "");
-      setPhone(currentUser.phone || "");
-    }
-  }, [currentUser]);
+  const [name, setName] = useState(currentUser?.name || "");
+  const [email, setEmail] = useState(currentUser?.email || "");
+  const [address, setAddress] = useState(currentUser?.address || "");
+  const [phone, setPhone] = useState(currentUser?.phone || "");
 
   return (
     <>
@@ -68,7 +59,11 @@ const Information = ({ currentUser }: InformationProps) => {
 
           <div className="mt-5 flex justify-center">
             <div className="w-1/3">
-              <Button label="Cập nhật" onClick={() => alert("Cập nhật")} />
+              <Button
+                label="Cập nhật"
+                disabled={currentUser === null}
+                onClick={() => alert("Cập nhật")}
+              />
             </div>
           </div>
         </div>
