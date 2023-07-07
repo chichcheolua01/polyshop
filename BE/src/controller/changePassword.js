@@ -105,6 +105,7 @@ export const resetPassword = async (req, res) => {
 // Đổi mật khẩu
 export const getCode = async (req, res) => {
   const { email } = req.body;
+
   const user = await User.findOne({ email });
   if (!user) {
     return res.status(404).json({
@@ -116,9 +117,13 @@ export const getCode = async (req, res) => {
 
   sendRestPassword(user.name, user.email, randomCode);
 
-  const code = jwt.sign({ code: randomCode }, process.env.SECRET_KEY, {
-    expiresIn: "3m",
-  });
+  const code = jwt.sign(
+    { email: user.email, code: randomCode },
+    process.env.SECRET_KEY,
+    {
+      expiresIn: "3m",
+    }
+  );
 
   return res.status(200).json({
     message: "Gửi mã thành công",
@@ -161,7 +166,8 @@ export const changePassword = async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    const user = await User.findOne({ _id: decoded.id });
+
+    const user = await User.findOne({ email: decoded.email });
 
     if (!user) {
       return res.status(404).json({
@@ -198,7 +204,7 @@ export const changePassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const userNew = await User.findOneAndUpdate(
-      { _id: decoded.id },
+      { email: decoded.email },
       { password: hashedPassword },
       { new: true }
     );
