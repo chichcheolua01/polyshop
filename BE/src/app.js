@@ -6,14 +6,11 @@ import cors from "cors";
 import ProductRouter from "./router/product";
 import CategoryRouter from "./router/category";
 import AuthRouter from "./router/auth";
-import CommentRouter from './router/comment'
+import CommentRouter from "./router/comment";
 import contactRouter from "./router/contact";
 import ChangePasswordRouter from "./router/changePassword";
-
+import paymentRouter from "./router/payment";
 import FavoriteRouter from "./router/favorites";
-
-
-
 
 dotenv.config();
 
@@ -30,9 +27,7 @@ app.use("/contact", contactRouter);
 // đổi mật khẩu
 app.use("/", ChangePasswordRouter);
 app.use("/favorites", FavoriteRouter);
-
-
-
+app.use("/payment", paymentRouter);
 
 mongoose.connect(process.env.DB_URL);
 
