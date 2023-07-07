@@ -16,6 +16,7 @@ export const users = [
         start_date: "10/18",
         end_date: "10/22",
         cvv: 123,
+        main: true,
       },
       {
         _id: "card2",
@@ -24,6 +25,7 @@ export const users = [
         start_date: "10/19",
         end_date: "10/23",
         cvv: 123,
+        main: false,
       },
     ],
     order: [
@@ -74,7 +76,22 @@ export const users = [
       {
         _id: "favorite3",
         userId: "user1",
-        productId: "product15",
+        productId: "product2",
+      },
+      {
+        _id: "favorite4",
+        userId: "user1",
+        productId: "product3",
+      },
+      {
+        _id: "favorite5",
+        userId: "user1",
+        productId: "product4",
+      },
+      {
+        _id: "favorite6",
+        userId: "user1",
+        productId: "product5",
       },
     ],
     comments: [{ _id: "comment1" }, { _id: "comment2" }],

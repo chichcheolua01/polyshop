@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   BaseAuth,
   BaseClient,
-  CheckOutPage,
+  CheckoutPage,
   ContactPage,
   FaqPage,
   HomePage,
@@ -24,9 +24,7 @@ import {
   Information,
   Order,
   OrderAddress,
-  OrderHistory,
   Payment,
-  Voucher,
 } from "./components";
 
 import { ICart, ICategoryProduct, IProduct, IUser } from "./interface";
@@ -74,7 +72,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
-                currentUser={currentUser}
+                imageUser={currentUser?.image}
                 listCategories={listCategories}
               />
             }
@@ -83,7 +81,7 @@ function App() {
               index
               element={
                 <HomePage
-                  currentUser={currentUser}
+                  favoriteUser={currentUser?.favorite}
                   listProducts={listProducts}
                 />
               }
@@ -92,7 +90,12 @@ function App() {
             <Route path="contact" element={<ContactPage />} />
             <Route
               path="profile"
-              element={<ProfilePage currentUser={currentUser} />}
+              element={
+                <ProfilePage
+                  nameUser={currentUser?.name}
+                  imageUser={currentUser?.image}
+                />
+              }
             >
               <Route index element={<Account currentUser={currentUser} />} />
               <Route
@@ -105,26 +108,37 @@ function App() {
               />
               <Route
                 path="change-password"
-                element={<ChangePassword currentUser={currentUser} />}
+                element={<ChangePassword emailUser={currentUser?.email} />}
               />
               <Route path="orders" element={<Order />} />
-              <Route path="order-history" element={<OrderHistory />} />
               <Route path="order-address" element={<OrderAddress />} />
               <Route path="payment" element={<Payment />} />
-              <Route path="voucher" element={<Voucher />} />
-              <Route path="favorite" element={<Favorite />} />
+              <Route
+                path="favorite"
+                element={
+                  <Favorite
+                    favorites={currentUser?.favorite}
+                    listProducts={listProducts}
+                  />
+                }
+              />
               <Route
                 path="list-card"
-                element={<ListCard currentUser={currentUser} />}
+                element={<ListCard cardUser={currentUser?.cards} />}
               />
             </Route>
-            <Route path="checkout" element={<CheckOutPage />} />
+            <Route
+              path="checkout"
+              element={
+                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
+              }
+            />
             <Route path="introduce" element={<IntroducePage />} />
             <Route
               path="list-product"
               element={
                 <ListProductPage
-                  currentUser={currentUser}
+                  favoriteUser={currentUser?.favorite}
                   listProducts={listProducts}
                   listCategories={listCategories}
                 />
@@ -134,7 +148,7 @@ function App() {
               path="product-detail/:id"
               element={
                 <ProductDetailPage
-                  currentUser={currentUser}
+                  favoriteUser={currentUser?.favorite}
                   listProducts={listProducts}
                 />
               }

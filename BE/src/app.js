@@ -8,6 +8,7 @@ import CategoryRouter from "./router/category";
 import AuthRouter from "./router/auth";
 import CommentRouter from './router/comment'
 import contactRouter from "./router/contact";
+import orderRouter from "./router/order";
 import ChangePasswordRouter from "./router/changePassword";
 import FavoriteRouter from "./router/favorites";
 import VoucherRouter from "./router/voucher";
@@ -33,6 +34,7 @@ app.use("/", ChangePasswordRouter);
 app.use("/favorites", FavoriteRouter);
 app.use("/voucher", VoucherRouter);
 
+app.use("/order", orderRouter);
 
 
 
