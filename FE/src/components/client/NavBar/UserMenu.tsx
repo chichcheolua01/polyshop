@@ -9,12 +9,18 @@ import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
 type UserMenuProps = {
+  isLogin: boolean;
   cartCount: number;
   onClick: () => void;
   imageUser?: string | null;
 };
 
-const UserMenu = ({ imageUser, onClick, cartCount }: UserMenuProps) => {
+const UserMenu = ({
+  isLogin,
+  imageUser,
+  onClick,
+  cartCount,
+}: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,7 +65,7 @@ const UserMenu = ({ imageUser, onClick, cartCount }: UserMenuProps) => {
           {isOpen && (
             <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
               <div className="flex flex-col cursor-pointer">
-                {imageUser ? (
+                {isLogin ? (
                   <>
                     <MenuItem
                       label="Thông tin cá nhân"

@@ -15,11 +15,17 @@ import { ICart, ICategoryProduct } from "../../interface";
 
 type BaseClientProps = {
   cart: ICart | null;
+  isLogin: boolean;
   imageUser: string | undefined;
   listCategories: ICategoryProduct[] | null;
 };
 
-const BaseClient = ({ cart, imageUser, listCategories }: BaseClientProps) => {
+const BaseClient = ({
+  isLogin,
+  cart,
+  imageUser,
+  listCategories,
+}: BaseClientProps) => {
   const location = useLocation();
 
   const [email, setEmail] = useState("");
@@ -94,6 +100,7 @@ const BaseClient = ({ cart, imageUser, listCategories }: BaseClientProps) => {
 
           <NavBar
             onOpen={setDrawn}
+            isLogin={isLogin}
             cartCount={cart?.products.length || 0}
             listCategories={listCategories}
             imageUser={imageUser}
@@ -101,7 +108,7 @@ const BaseClient = ({ cart, imageUser, listCategories }: BaseClientProps) => {
 
           <CartDrawn
             isOpen={openDrawn}
-            imageUser={imageUser}
+            isLogin={isLogin}
             onClose={setDrawn}
             cart={cart}
           />

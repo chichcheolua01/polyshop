@@ -38,6 +38,7 @@ function App() {
   const [listCategories, setListCategories] = useState<
     ICategoryProduct[] | null
   >(null);
+  console.log(currentUser);
 
   useEffect(() => {
     function fetchUsers() {
@@ -72,6 +73,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
+                isLogin={currentUser !== null}
                 imageUser={currentUser?.image}
                 listCategories={listCategories}
               />
