@@ -18,12 +18,8 @@ const commentSchema = new mongoose.Schema(
     },
     feed_back: [
       {
-        prefer: Number,
-        comment: String,
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Feedback",
       },
     ],
   },

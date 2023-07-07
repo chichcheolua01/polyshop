@@ -12,6 +12,7 @@ import {
   FavoriteRouter,
   OrderRouter,
   ProductRouter,
+  VoucherRouter
 } from "./router";
 
 dotenv.config();

@@ -28,11 +28,8 @@ const userSchema = new mongoose.Schema(
     },
     cards: [
       {
-        card_holder_name: String,
-        card_number: Number,
-        start_date: String,
-        end_date: String,
-        cvv: Number,
+        type: mongoose.Types.ObjectId,
+        ref: "Card",
       },
     ],
     order: [
