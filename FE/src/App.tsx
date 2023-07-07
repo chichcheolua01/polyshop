@@ -38,7 +38,6 @@ function App() {
   const [listCategories, setListCategories] = useState<
     ICategoryProduct[] | null
   >(null);
-  console.log(currentUser);
 
   useEffect(() => {
     function fetchUsers() {

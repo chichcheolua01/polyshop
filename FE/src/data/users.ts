@@ -107,8 +107,8 @@ export const users = [
     name: "UserManager",
     email: "user@gmail.com",
     password: "hashPasswordUser",
-    phone: "0367370371",
-    address: "Bắc Giang",
+    phone: "",
+    address: "",
     image:
       "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
     cards: [],
