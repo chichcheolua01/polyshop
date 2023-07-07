@@ -20,9 +20,9 @@ const Favorite = ({ favorites, listProducts }: FavoriteProps) => {
     <>
       <div className="p-3 bg-white rounded-xl">
         <ProductList
+          small
           products={favoriteProducts}
           favoriteUser={favorites}
-          small
         />
       </div>
     </>
