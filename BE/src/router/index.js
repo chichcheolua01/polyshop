@@ -19,5 +19,5 @@ export {
   ChangePasswordRouter,
   FavoriteRouter,
   CardRouter,
-  VoucherRouter
+  VoucherRouter,
 };
