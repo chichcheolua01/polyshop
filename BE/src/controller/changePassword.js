@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { v4 as uuidv4 } from "uuid";
 
 import User from "../module/auth";
-import { sendMail, sendRestPassword } from "../middlewares/sendMail";
+import { sendMail, sendRestPassword } from "../middleware/sendMail";
 import { generateRandomCode } from "../component/function";
 
 dotenv.config();
@@ -43,9 +43,9 @@ export const resetPassword = async (req, res) => {
 
   try {
     const token = req.headers.authorization.split(" ")[1];
-    // console.log(token);
+
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    // console.log(decoded);
+
     const user = await User.findOne({ email: decoded.email });
 
     if (!user) {

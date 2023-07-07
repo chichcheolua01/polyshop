@@ -6,17 +6,20 @@ const getAll = async (req, res) => {
     const data = await Order.find()
       .populate("user")
       .populate("products.product");
-    if (!data || !date.length === 0) {
+
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không có dữ liệu",
       });
     }
+
     return res.status(200).json({
       message: "Thông tin các đơn hàng",
       data,
     });
   } catch (err) {
     console.log(err);
+
     return res.status(500).json({
       message: "Đã có lỗi xảy ra",
     });
@@ -28,17 +31,20 @@ const getOne = async (req, res) => {
     const data = await Order.findById(req.params.id)
       .populate("user")
       .populate("products.product");
+
     if (!data || !date.length === 0) {
       return res.status(404).json({
         message: "Không tìm thấy đơn hàng",
       });
     }
+
     return res.status(200).json({
       message: "Thông tin các đơn hàng",
       data,
     });
   } catch (err) {
     console.log(err);
+
     return res.status(500).json({
       message: "Đã có lỗi xảy ra",
     });
@@ -54,16 +60,20 @@ const create = async (req, res) => {
         message: errors,
       });
     }
+
     let status = "Đang xử lý";
     if (req.body.paymentMethod === "Thanh toán bằng thẻ") {
       status = "Chờ thanh toán";
     }
+
     const order = await Order.create({ ...req.body, status });
+
     if (!order) {
       return res.status(404).json({
-        message: "khong tao được dơn hàng",
+        message: "Tạo đơn hàng thất bại",
       });
     }
+
     return res.status(201).json({
       message: "Tạo đơn hàng thành công",
       orderId: order._id,
@@ -71,6 +81,7 @@ const create = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+
     return res.status(500).json({
       message: "Đã có lỗi xảy ra " + err.message,
     });
@@ -80,6 +91,7 @@ const create = async (req, res) => {
 const edit = async (req, res) => {
   try {
     const { error } = orderSchema.validate(req.body, { abortEarly: false });
+
     if (error) {
       const errors = error.details.map((err) => err.message);
       return res.status(400).json({
@@ -133,7 +145,6 @@ const del = async (req, res) => {
   }
 };
 
-// lấy thông tin đơn hàng
 const findOrdersByUserId = async (req, res) => {
   const { userId } = req.params;
 
@@ -143,17 +154,16 @@ const findOrdersByUserId = async (req, res) => {
     );
 
     if (orders.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy đơn hàng cho userId đã chỉ định." });
+      return res.status(404).json({ message: "Người dùng không có đơn hàng" });
     }
 
     res.status(200).json({ orders });
   } catch (err) {
     console.error("Lỗi truy vấn:", err);
-    res
-      .status(500)
-      .json({ message: "Đã xảy ra lỗi trong quá trình tìm đơn hàng." });
+
+    res.status(500).json({
+      message: "Đã xảy ra lỗi trong quá trình tìm đơn hàng.",
+    });
   }
 };
 

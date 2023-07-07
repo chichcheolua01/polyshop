@@ -42,13 +42,13 @@ export const create = async (req, res) => {
       });
     }
 
-    // const { error } = commentSchema.validate(req.body, { abortEarly: false });
-    // if (error) {
-    //     const errors = error.details.map((err) => err.message);
-    //     return res.status(400).json({
-    //         message: errors,
-    //     });
-    // }
+    const { error } = commentSchema.validate(req.body, { abortEarly: false });
+    if (error) {
+      const errors = error.details.map((err) => err.message);
+      return res.status(400).json({
+        message: errors,
+      });
+    }
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await User.findById(decoded.id);
