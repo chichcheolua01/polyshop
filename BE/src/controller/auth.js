@@ -9,6 +9,30 @@ import Auth from "../module/auth";
 
 config();
 
+export const getAll = async (req, res) => {
+  try {
+    const users = await Auth.find()
+    if (users.length === 0) {
+      return res.status(404).json({ message: "Không lấy được danh sách người dùng" })
+    }
+    return res.status(200).json({ message: "Lấy danh sách người dùng thành công", data: users })
+
+  } catch (error) {
+    return res.status(500).json({ message: "Lỗi server " + error.message });
+  }
+}
+export const getOne = async (req, res) => {
+  try {
+    const users = await Auth.findById(req.params.id).populate('products').populate('comments')
+    if (!users) {
+      return res.status(404).json({ message: "Không lấy được danh sách người dùng" })
+    }
+    return res.status(200).json({ message: "Lấy danh sách người dùng thành công", data: users })
+
+  } catch (error) {
+    return res.status(500).json({ message: "Lỗi server " + error.message });
+  }
+}
 export const register = async (req, res) => {
   try {
     const { error } = registerSchema.validate(req.body, { abortEarly: false });
