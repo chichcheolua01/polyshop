@@ -12,6 +12,7 @@ import {
   FavoriteRouter,
   OrderRouter,
   ProductRouter,
+  VoucherRouter
 } from "./router";
 
 dotenv.config();
@@ -44,6 +45,12 @@ app.use("/", ChangePasswordRouter);
 
 // Yêu thích
 app.use("/favorites", FavoriteRouter);
+app.use("/voucher", VoucherRouter);
+
+app.use("/order", OrderRouter);
+
+
+
 
 mongoose.connect(process.env.DB_URL);
 
