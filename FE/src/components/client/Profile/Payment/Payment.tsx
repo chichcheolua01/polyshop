@@ -1,7 +1,11 @@
 type PaymentProps = {};
 
 const Payment = (props: PaymentProps) => {
-  return <div>Payment</div>;
+  return (
+    <>
+      <div className="bg-white p-5 rounded-xl">Payment</div>
+    </>
+  );
 };
 
 export default Payment;

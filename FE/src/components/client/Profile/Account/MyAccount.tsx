@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 type MyAccountProps = {
   url: string;
   title: string;
-  text: string | null | undefined;
-  email?: string;
-  phone?: string;
+  label?: string | null | undefined;
+  text1?: string;
+  text2?: string;
 };
 
-const MyAccount = ({ title, url, text, email, phone }: MyAccountProps) => {
+const MyAccount = ({ title, url, label, text1, text2 }: MyAccountProps) => {
   return (
     <>
       <div className="shadow bg-white px-4 pt-6 pb-8 rounded-xl">
@@ -21,11 +21,11 @@ const MyAccount = ({ title, url, text, email, phone }: MyAccountProps) => {
         </div>
 
         <div className="space-y-1">
-          <h4 className="text-gray-700 font-medium">{text}</h4>
+          <h4 className="text-gray-700 font-medium">{label}</h4>
 
-          <p className="text-gray-700">{email}</p>
+          <p className="text-gray-700">{text1}</p>
 
-          <p className="text-gray-700">{phone}</p>
+          <p className="text-gray-700">{text2}</p>
         </div>
       </div>
     </>
