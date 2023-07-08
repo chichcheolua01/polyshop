@@ -99,7 +99,15 @@ const ProductDrawer = ({ product, isEdit }: Props) => {
                 { required: true, message: "Danh mục không được để trống" },
               ]}
             >
-              <Select options={slug} onChange={handleSlugChange} />
+              <Select
+                options={slug}
+                onChange={handleSlugChange}
+                bordered={isEdit}
+                className={`mt-5
+                ${isEdit ? "" : "pointer-events-none"}
+                `}
+                suffixIcon={!isEdit ? null : undefined}
+              />
             </Form.Item>
           </Descriptions.Item>
 
@@ -110,7 +118,14 @@ const ProductDrawer = ({ product, isEdit }: Props) => {
                 { required: true, message: "Thương hiệu không được để trống" },
               ]}
             >
-              <Select disabled={!form.getFieldValue(["category", "slug"])}>
+              <Select
+                disabled={isEdit && !form.getFieldValue(["category", "slug"])}
+                bordered={isEdit}
+                suffixIcon={!isEdit ? null : undefined}
+                className={`mt-5
+                ${isEdit ? "" : "pointer-events-none"}
+                `}
+              >
                 {(brand[form.getFieldValue(["category", "slug"])] || []).map(
                   (item) => (
                     <Option key={item} value={item}>

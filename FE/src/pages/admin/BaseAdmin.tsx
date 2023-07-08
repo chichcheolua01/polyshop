@@ -30,11 +30,10 @@ const BaseAdmin = () => {
     getItem("Sản phẩm", "sub2", <LiaProductHunt />, [
       getItem(<Link to="/admin/products">Danh sách</Link>, "2"),
       getItem("Thêm mới", "3"),
-      getItem("Chỉnh sửa", "4"),
     ]),
     getItem("Người dùng", "sub3", <AiOutlineUser />, [
-      getItem(<Link to="/admin/users">Danh sách</Link>, "5"),
-      getItem("Thêm mới", "6"),
+      getItem(<Link to="/admin/users">Danh sách</Link>, "4"),
+      getItem("Thêm mới", "5"),
     ]),
   ];
 
