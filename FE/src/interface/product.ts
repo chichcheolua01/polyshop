@@ -18,6 +18,10 @@ export interface ICategoryProduct {
   slug: string;
 }
 
+export interface IImageProduct {
+  base_url: string;
+}
+
 export interface ICommentsProduct {
   _id: string;
   user: IUserCommentProduct;
@@ -27,12 +31,6 @@ export interface ICommentsProduct {
   feed_back: IFeedBackComment[];
 }
 
-export interface IUserCommentProduct {
-  _id: string;
-  name: string;
-  image: string;
-}
-
 export interface IFeedBackComment {
   _id: string;
   prefer: number;
@@ -40,6 +38,8 @@ export interface IFeedBackComment {
   user: IUserCommentProduct;
 }
 
-export interface IImageProduct {
-  base_url: string;
+export interface IUserCommentProduct {
+  _id: string;
+  name: string;
+  image: string;
 }

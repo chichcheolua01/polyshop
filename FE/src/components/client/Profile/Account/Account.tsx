@@ -13,25 +13,23 @@ const Account = ({ currentUser }: AccountProps) => {
         <MyAccount
           title="Thông tin cá nhân"
           url="information"
-          label={currentUser?.name}
-          text1={currentUser?.email}
-          text2={currentUser?.phone}
+          text={currentUser?.name}
+          email={currentUser?.email}
+          phone={currentUser?.phone}
         />
         <MyAccount
           title="Địa chỉ giao hàng"
           url="order-address"
-          text1={currentUser?.address || "Bạn chưa có địa chỉ giao hàng"}
+          text={currentUser?.address}
         />
         <MyAccount
           title="Thông tin thanh toán"
           url="billing"
-          label={currentUser?.role}
+          text={currentUser?.role}
         />
       </div>
 
-      <div className="bg-white rounded-xl mt-5">
-        <div className="p-3">Đơn hàng gần đây</div>
-      </div>
+      <div className="pt-3">Đơn hàng gần đây</div>
     </>
   );
 };

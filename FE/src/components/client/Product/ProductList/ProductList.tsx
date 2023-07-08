@@ -1,24 +1,14 @@
 import ProductCard from "./ProductCard";
 
-import { IFavoriteUser, IProduct } from "../../../../interface";
+import { IProduct, IUser } from "../../../../interface";
 
 type ProductListProps = {
-  products: IProduct[] | null;
-  favoriteUser: IFavoriteUser[] | undefined;
   title?: string;
-  small?: boolean;
-  middle?: boolean;
-  large?: boolean;
+  products: IProduct[] | null;
+  currentUser?: IUser | null;
 };
 
-const ProductList = ({
-  small,
-  middle,
-  large,
-  title,
-  products,
-  favoriteUser,
-}: ProductListProps) => {
+const ProductList = ({ title, products, currentUser }: ProductListProps) => {
   return (
     <>
       <div className="space-y-4 rounded-xl p-5 mb-8 bg-white">
@@ -28,34 +18,13 @@ const ProductList = ({
           </div>
         )}
 
-        <div
-          className={`grid grid-cols-1 gap-x-7 gap-y-10
-          ${
-            small &&
-            "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-          }
-          ${
-            middle &&
-            "sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
-          }
-          ${
-            large &&
-            "sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7"
-          }
-         ${
-           !small &&
-           !middle &&
-           !large &&
-           " sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
-         }
-          `}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-7 gap-y-10">
           {products &&
             products.map((product) => (
               <ProductCard
                 key={product._id}
                 product={product}
-                favoriteUser={favoriteUser}
+                currentUser={currentUser}
               />
             ))}
         </div>

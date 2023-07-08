@@ -1,7 +1,6 @@
 import { InputNumber } from "antd";
 
 import { IItemCart } from "../../../interface";
-import { Link } from "react-router-dom";
 
 type CartDrawnItemProps = {
   cartItem: IItemCart;
@@ -26,12 +25,9 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
         </div>
 
         <div className="flex flex-col gap-2 w-2/3">
-          <Link
-            to={`/product-detail/${cartItem.product._id}`}
-            className="font-semibold text-sm break-all truncate hover:text-rose-500"
-          >
+          <span className="font-semibold text-sm break-all truncate">
             {cartItem.product.name}
-          </Link>
+          </span>
 
           <span className="font-bold text-[#ff424e] text-base">
             {cartItem.product.price.toLocaleString("vi-VN")}₫

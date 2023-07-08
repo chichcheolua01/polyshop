@@ -13,15 +13,15 @@ import {
   ProductList,
 } from "../../../components";
 
-import { IFavoriteUser, IProduct } from "../../../interface";
+import { IProduct, IUser } from "../../../interface";
 
 type ProductDetailPageProps = {
-  favoriteUser: IFavoriteUser[] | undefined;
+  currentUser: IUser | null;
   listProducts: IProduct[] | null;
 };
 
 const ProductDetailPage = ({
-  favoriteUser,
+  currentUser,
   listProducts,
 }: ProductDetailPageProps) => {
   const { id } = useParams<string>();
@@ -98,13 +98,9 @@ const ProductDetailPage = ({
           </div>
 
           <div className="flex flex-col gap-6">
-            <ProductInfo product={product} favoriteUser={favoriteUser} />
+            <ProductInfo product={product} currentUser={currentUser} />
 
-            <ProductList
-              products={productSimilar}
-              favoriteUser={favoriteUser}
-              title="Sản phẩm cùng loại"
-            />
+            <ProductList products={productSimilar} title="Sản phẩm cùng loại" />
 
             <div className="bg-white rounded-xl p-5">
               <Tabs

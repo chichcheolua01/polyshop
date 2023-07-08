@@ -2,13 +2,9 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
-  AdminDashboardPage,
-  AdminProductPage,
-  AdminUserPage,
-  BaseAdmin,
   BaseAuth,
   BaseClient,
-  CheckoutPage,
+  CheckOutPage,
   ContactPage,
   FaqPage,
   HomePage,
@@ -28,7 +24,9 @@ import {
   Information,
   Order,
   OrderAddress,
+  OrderHistory,
   Payment,
+  Voucher,
 } from "./components";
 
 import { ICart, ICategoryProduct, IProduct, IUser } from "./interface";
@@ -76,8 +74,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
-                isLogin={currentUser !== null}
-                imageUser={currentUser?.image}
+                currentUser={currentUser}
                 listCategories={listCategories}
               />
             }
@@ -86,7 +83,7 @@ function App() {
               index
               element={
                 <HomePage
-                  favoriteUser={currentUser?.favorite}
+                  currentUser={currentUser}
                   listProducts={listProducts}
                 />
               }
@@ -95,12 +92,7 @@ function App() {
             <Route path="contact" element={<ContactPage />} />
             <Route
               path="profile"
-              element={
-                <ProfilePage
-                  nameUser={currentUser?.name}
-                  imageUser={currentUser?.image}
-                />
-              }
+              element={<ProfilePage currentUser={currentUser} />}
             >
               <Route index element={<Account currentUser={currentUser} />} />
               <Route
@@ -113,37 +105,26 @@ function App() {
               />
               <Route
                 path="change-password"
-                element={<ChangePassword emailUser={currentUser?.email} />}
+                element={<ChangePassword currentUser={currentUser} />}
               />
               <Route path="orders" element={<Order />} />
+              <Route path="order-history" element={<OrderHistory />} />
               <Route path="order-address" element={<OrderAddress />} />
               <Route path="payment" element={<Payment />} />
-              <Route
-                path="favorite"
-                element={
-                  <Favorite
-                    favorites={currentUser?.favorite}
-                    listProducts={listProducts}
-                  />
-                }
-              />
+              <Route path="voucher" element={<Voucher />} />
+              <Route path="favorite" element={<Favorite />} />
               <Route
                 path="list-card"
-                element={<ListCard cardUser={currentUser?.cards} />}
+                element={<ListCard currentUser={currentUser} />}
               />
             </Route>
-            <Route
-              path="checkout"
-              element={
-                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
-              }
-            />
+            <Route path="checkout" element={<CheckOutPage />} />
             <Route path="introduce" element={<IntroducePage />} />
             <Route
               path="list-product"
               element={
                 <ListProductPage
-                  favoriteUser={currentUser?.favorite}
+                  currentUser={currentUser}
                   listProducts={listProducts}
                   listCategories={listCategories}
                 />
@@ -153,7 +134,7 @@ function App() {
               path="product-detail/:id"
               element={
                 <ProductDetailPage
-                  favoriteUser={currentUser?.favorite}
+                  currentUser={currentUser}
                   listProducts={listProducts}
                 />
               }
@@ -163,13 +144,6 @@ function App() {
           <Route path="/auth" element={<BaseAuth />}>
             <Route index element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
-          </Route>
-
-          <Route path="/admin" element={<BaseAdmin />}>
-            <Route index element={<AdminDashboardPage />} />
-            <Route path="dashboard" element={<AdminDashboardPage />} />
-            <Route path="products" element={<AdminProductPage />} />
-            <Route path="users" element={<AdminUserPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

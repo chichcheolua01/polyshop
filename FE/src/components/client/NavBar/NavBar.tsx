@@ -7,23 +7,16 @@ import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
-import { ICategoryProduct } from "../../../interface";
+import { ICart, ICategoryProduct, IUser } from "../../../interface";
 
 type NavBarProps = {
   onOpen: () => void;
-  cartCount: number;
-  isLogin: boolean;
-  imageUser?: string | null;
+  cart: ICart | null;
+  currentUser?: IUser | null;
   listCategories: ICategoryProduct[] | null;
 };
 
-const NavBar = ({
-  imageUser,
-  isLogin,
-  onOpen,
-  cartCount,
-  listCategories,
-}: NavBarProps) => {
+const NavBar = ({ currentUser, onOpen, cart, listCategories }: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,10 +80,9 @@ const NavBar = ({
               </div>
 
               <UserMenu
-                imageUser={imageUser}
-                isLogin={isLogin}
+                currentUser={currentUser}
                 onClick={onOpen}
-                cartCount={cartCount}
+                cart={cart}
               />
             </div>
           </Container>

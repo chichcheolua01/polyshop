@@ -24,9 +24,9 @@ const IntroduceCard = ({ item, order }: Props) => {
             {item.text}
           </p>
 
-          <div className="flex gap-10 pt-2 pr-0 md:pr-10 j">
+          <div className="flex gap-10 pt-2 pr-0 md:pr-10">
             {item.description.map((description, i: number) => (
-              <div key={i} className="text-center">
+              <div key={i}>
                 <h4 className="text-rose-500 mb-3 font-bold text-2xl">
                   {description.label}
                 </h4>

@@ -6,14 +6,14 @@ import {
   ProductList,
 } from "../../../components";
 
-import { IFavoriteUser, IProduct } from "../../../interface";
+import { IProduct, IUser } from "../../../interface";
 
 type HomePageProps = {
-  favoriteUser: IFavoriteUser[] | undefined;
+  currentUser: IUser | null;
   listProducts: IProduct[] | null;
 };
 
-const HomePage = ({ favoriteUser, listProducts }: HomePageProps) => {
+const HomePage = ({ currentUser, listProducts }: HomePageProps) => {
   const phone =
     listProducts &&
     listProducts.filter((product) => product.category.slug === "Điện thoại");
@@ -35,28 +35,25 @@ const HomePage = ({ favoriteUser, listProducts }: HomePageProps) => {
 
         {phone && phone.length > 0 && (
           <ProductList
-            middle
             title="Điện Thoại"
             products={phone}
-            favoriteUser={favoriteUser}
+            currentUser={currentUser}
           />
         )}
 
         {computer && computer.length > 0 && (
           <ProductList
-            middle
             title="Máy Tính"
             products={computer}
-            favoriteUser={favoriteUser}
+            currentUser={currentUser}
           />
         )}
 
         {watch && watch.length > 0 && (
           <ProductList
-            middle
             title="Đồng Hồ"
             products={watch}
-            favoriteUser={favoriteUser}
+            currentUser={currentUser}
           />
         )}
 

@@ -1,9 +1,11 @@
+import Breadcrumb from "./Breadcrumb";
+import Button from "./Button";
+import Input from "./Input";
+import Loading from "./Loading";
+import Logo from "./Logo";
+
 import CartDrawn from "./client/Cart/CartDrawn";
 import CartDrawnItem from "./client/Cart/CartDrawnItem";
-
-import CheckoutCard from "./client/Checkout/CheckoutCard";
-import CheckoutDelivery from "./client/Checkout/CheckoutDelivery";
-import CheckoutOrder from "./client/Checkout/CheckoutOrder";
 
 import ShowFaq from "./client/Faq/ShowFaq";
 
@@ -41,10 +43,12 @@ import MyAccount from "./client/Profile/Account/MyAccount";
 
 import Order from "./client/Profile/Order/Order";
 import OrderAddress from "./client/Profile/Order/OrderAddress";
+import OrderHistory from "./client/Profile/Order/OrderHistory";
 
 import Card from "./client/Profile/Payment/Card";
 import ListCard from "./client/Profile/Payment/ListCard";
 import Payment from "./client/Profile/Payment/Payment";
+import Voucher from "./client/Profile/Payment/Voucher";
 
 import Favorite from "./client/Profile/Favorite";
 import NavProfile from "./client/Profile/NavProfile";
@@ -53,21 +57,12 @@ import Avatar from "./client/Avatar";
 import Container from "./client/Container";
 import Modal from "./client/Modal";
 
-import Breadcrumb from "./Breadcrumb";
-import Button from "./Button";
-import Input from "./Input";
-import Loading from "./Loading";
-import Logo from "./Logo";
-
 export {
   Breadcrumb,
-  CheckoutCard,
-  CheckoutOrder,
   Button,
   Input,
   Loading,
   Logo,
-  CheckoutDelivery,
   CartDrawn,
   CartDrawnItem,
   ShowFaq,
@@ -97,8 +92,10 @@ export {
   MyAccount,
   Order,
   OrderAddress,
+  OrderHistory,
   Card,
   ListCard,
+  Voucher,
   Payment,
   Favorite,
   NavProfile,
