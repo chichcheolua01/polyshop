@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-// import { FormEmail } from "../validators/component/formEmail";
 import {
   FormEmail,
   FormRestPassword,

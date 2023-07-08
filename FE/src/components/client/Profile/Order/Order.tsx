@@ -1,7 +1,11 @@
 type OrderProps = {};
 
 const Order = (props: OrderProps) => {
-  return <div>Order</div>;
+  return (
+    <>
+      <div className="bg-white rounded-xl p-5">123</div>
+    </>
+  );
 };
 
 export default Order;

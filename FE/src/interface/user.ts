@@ -13,19 +13,28 @@ export interface IUser {
   role: string;
 }
 
-export interface ICommentUser {
+export interface ICardUser {
   _id?: string;
+  card_holder_name: string;
+  card_number: number;
+  start_date: string;
+  end_date: string;
+  cvv: number;
+  main: boolean;
 }
 
 export interface IOrderUser {
   _id?: string;
+  userId: string;
   products: IProductsOrderUser[];
   totalPrice: number;
+  paymentMethod: string;
+  payment?: string;
   status: string;
 }
 
 export interface IProductsOrderUser {
-  _id?: string;
+  product: string;
   name: string;
   price: number;
   quantity: number;
@@ -37,11 +46,6 @@ export interface IFavoriteUser {
   productId: string;
 }
 
-export interface ICardUser {
+export interface ICommentUser {
   _id?: string;
-  card_holder_name: string;
-  card_number: number;
-  start_date: string;
-  end_date: string;
-  cvv: number;
 }

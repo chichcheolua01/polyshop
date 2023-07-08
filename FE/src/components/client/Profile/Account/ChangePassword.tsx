@@ -5,13 +5,12 @@ import type { TabsProps } from "antd";
 import { BiCheckShield } from "react-icons/bi";
 
 import { Button, Input } from "../../..";
-import { IUser } from "../../../../interface";
 
 type ChangePasswordProps = {
-  currentUser: IUser | null;
+  emailUser: string | undefined;
 };
 
-const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
+const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
   const [step, setStep] = useState("1");
   const [code, setCode] = useState("");
   const [passwordOld, setPasswordOld] = useState("");
@@ -33,7 +32,7 @@ const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
     setStep("1");
     setHidden(false);
     setDisabled(false);
-  }, [currentUser]);
+  }, [emailUser]);
 
   const items: TabsProps["items"] = [
     {
@@ -49,7 +48,7 @@ const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
               Để tăng cường bảo mật, hãy xác minh đây là tài khoản của bạn.
             </h2>
 
-            {currentUser && (
+            {emailUser && (
               <>
                 <div
                   className={`flex md:flex-row flex-col gap-5 border-t p-5 items-center ${
@@ -59,7 +58,7 @@ const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
                   <span className="flex text-lg font-semibold">
                     <span className="mr-1">Email: </span>
 
-                    {hiddenEmail(currentUser?.email)}
+                    {hiddenEmail(emailUser)}
                   </span>
 
                   <Button
@@ -133,14 +132,18 @@ const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
   return (
     <>
       <div className="bg-white p-3 py-10 rounded-xl">
-        <Tabs
-          activeKey={step}
-          tabPosition="top"
-          items={items}
-          size="large"
-          type="line"
-          centered
-        />
+        {emailUser ? (
+          <Tabs
+            activeKey={step}
+            tabPosition="top"
+            items={items}
+            size="large"
+            type="line"
+            centered
+          />
+        ) : (
+          <div className="text-center">Bạn chưa đăng nhập</div>
+        )}
       </div>
     </>
   );

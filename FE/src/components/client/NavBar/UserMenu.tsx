@@ -8,24 +8,25 @@ import { FiShoppingCart } from "react-icons/fi";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
-import { ICart, IUser } from "../../../interface";
-
 type UserMenuProps = {
-  cart: ICart | null;
+  isLogin: boolean;
+  cartCount: number;
   onClick: () => void;
-  currentUser?: IUser | null;
+  imageUser?: string | null;
 };
 
-const UserMenu = ({ currentUser, onClick, cart }: UserMenuProps) => {
+const UserMenu = ({
+  isLogin,
+  imageUser,
+  onClick,
+  cartCount,
+}: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
-
-  const cartCount =
-    cart && cart.products?.length > 0 ? cart.products.length : 0;
 
   const notificationCount = 2;
 
@@ -58,13 +59,13 @@ const UserMenu = ({ currentUser, onClick, cart }: UserMenuProps) => {
             onClick={toggleOpen}
             className="md:px-4 hover:shadow md:py-1 border-neutral-200 rounded-full cursor-pointer transition"
           >
-            <Avatar src={currentUser?.image} />
+            <Avatar src={imageUser} />
           </div>
 
           {isOpen && (
             <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
               <div className="flex flex-col cursor-pointer">
-                {currentUser ? (
+                {isLogin ? (
                   <>
                     <MenuItem
                       label="Thông tin cá nhân"

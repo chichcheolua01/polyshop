@@ -6,16 +6,16 @@ import {
   SelectProduct,
 } from "../../../components";
 
-import { ICategoryProduct, IProduct, IUser } from "../../../interface";
+import { ICategoryProduct, IFavoriteUser, IProduct } from "../../../interface";
 
 type ListProductPageProps = {
-  currentUser: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
   listProducts: IProduct[] | null;
   listCategories: ICategoryProduct[] | null;
 };
 
 const ListProductPage = ({
-  currentUser,
+  favoriteUser,
   listProducts,
   listCategories,
 }: ListProductPageProps) => {
@@ -46,8 +46,9 @@ const ListProductPage = ({
 
               <div className="shadow-2xl rounded-xl">
                 <ProductList
+                  small
                   products={listProducts}
-                  currentUser={currentUser}
+                  favoriteUser={favoriteUser}
                 />
               </div>
             </div>
