@@ -1,3 +1,25 @@
+// danh sách bình luận, lưu vào db
+
+//     _id: lưu _id này trong comments của người dùng để populate
+//     stars: số sao người dùng đánh giá
+//     comment: bình luận của người dùng
+//     prefer: lượt like của comment
+//     feed_back: [
+//       {
+//         _id: "user2",
+//         user: {
+//           _id: lưu id người phản hồi vào đây để populate lấy thông tin
+//           },
+//         },
+//         comment: phản hồi
+//         prefer: số lượt like cho phải hồi
+//       },
+//     ],
+//     user: {
+//       _id: lưu id người bình luận vào đây để populate lấy thông tin
+//       },
+//     },
+
 export const comments = [
   {
     _id: "comment1",
@@ -6,7 +28,7 @@ export const comments = [
     prefer: 10,
     feed_back: [
       {
-        _id: "user2",
+        _id: "feed_back1",
         user: {
           _id: "user2",
           name: "UserManager",

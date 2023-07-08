@@ -1,8 +1,10 @@
+// Import các thư viện
 import { Tabs } from "antd";
 import { useState } from "react";
 import type { TabsProps } from "antd";
 import { useParams } from "react-router-dom";
 
+// Import các component
 import {
   Breadcrumb,
   Button,
@@ -13,26 +15,33 @@ import {
   ProductList,
 } from "../../../components";
 
+// Import các interface
 import { IFavoriteUser, IProduct } from "../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type ProductDetailPageProps = {
   favoriteUser: IFavoriteUser[] | undefined;
   listProducts: IProduct[] | null;
 };
 
+// Khởi tạo component
 const ProductDetailPage = ({
   favoriteUser,
   listProducts,
 }: ProductDetailPageProps) => {
+  // Sử dụng hook
   const { id } = useParams<string>();
   const [comment, setComment] = useState("");
 
+  // Lấy thông tin sản phẩm theo id
   const product = listProducts && listProducts.find((prod) => prod._id === id);
 
+  // Sản phẩm cùng loại
   const productSimilar =
     listProducts &&
     listProducts.filter((prod) => prod.category._id === product?.category._id);
 
+  // Dùng <Tabs/> của ant design, xem thực tế để hiểu
   const items: TabsProps["items"] = [
     {
       key: "1",

@@ -1,3 +1,19 @@
+// giở hàng, không lưu vào db
+
+// products: mảng các sản phẩm muốn mua [
+//     {
+//       product: {
+//         _id: id sản phẩm trong mongoose
+//         inventory: số lượng còn lại trong kho
+//         price: giá sản phẩm, lưu giá bán chứ không lưu giá gốc
+//         name: tên sản phẩm
+//         image: hình ảnh của sản phẩm, chỉ lưu một ảnh
+//       },
+//       quantity: số lượng sản phẩm muốn mua
+//     },
+//   ],
+//   totalPrice: tổng giá trị các sản phẩm trong đơn hàng
+
 export const carts = {
   products: [
     {

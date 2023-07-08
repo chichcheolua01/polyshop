@@ -1,3 +1,28 @@
+// danh sách sản phẩm, lưu vào db
+
+// {
+//   _id: _id của sản phẩm
+//   sold: số lượng sản phẩm đã bán, mặc định 0,
+//        mỗi khi có người mua thì tăng lên
+//   stars: số sao người dùng đánh giá,
+//            dự kiến sẽ db lưu ai đã đánh giá để tính trung bình
+//   price: giá sản phẩm
+//   original_price: giá gốc
+//   inventory: số lượng sản phẩm trong kho, khi người dùng mua thì giảm đi
+//   category: lưu _id của danh mục dùng để populate
+//   name: tên sản phẩm
+//   description: mô tả
+//   image: mảng các ảnh của sản phẩm [
+//     { lưu như dưới là do dùng <Upload/> của Ant design
+//       status: "done",
+//       name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+//       uid: "https://cdn2.cellphones.com.b_c_1_9.png",
+//       url: "https://cdn2.cellphones.com.b_c_1_9.png",
+//     },
+//   ],
+//   comments: mảng các bình luận, lưu _id bình luận để populate [],
+// },
+
 export const products = [
   {
     _id: "product1",

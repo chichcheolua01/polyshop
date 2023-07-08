@@ -1,12 +1,16 @@
+// Import các thư viện
 import { ChangeEvent, useState } from "react";
 
+// Import các icon
 import { FiPhoneCall } from "react-icons/fi";
 import { BiMessageRoundedError } from "react-icons/bi";
 import { FaRegMoneyBillAlt, FaRegNewspaper } from "react-icons/fa";
 
+// Import các component
 import { Breadcrumb, Button, Container, Input } from "../../../components";
 
 const ContactPage = () => {
+  // Sử dụng hook
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

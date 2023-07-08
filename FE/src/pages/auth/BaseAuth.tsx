@@ -1,3 +1,4 @@
+// Import các thư viện
 import { Outlet } from "react-router-dom";
 
 const BaseAuth = () => {

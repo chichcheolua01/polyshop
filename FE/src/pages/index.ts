@@ -1,12 +1,15 @@
+// Trang Admin
 import BaseAdmin from "./admin/BaseAdmin";
 import AdminDashboardPage from "./admin/AdminDashboard/AdminDashboardPage";
 import AdminProductPage from "./admin/AdminProduct/AdminProduct";
 import AdminUserPage from "./admin/AdminUser/AdminUserPage";
 
+// Trang Auth
 import BaseAuth from "./auth/BaseAuth";
 import LoginPage from "./auth/Login/LoginPage";
 import RegisterPage from "./auth/Register/RegisterPage";
 
+// Trang Client
 import BaseClient from "./client/BaseClient";
 import CheckoutPage from "./client/Checkout/CheckoutPage";
 import ContactPage from "./client/Contact/ContactPage";

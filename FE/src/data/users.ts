@@ -1,3 +1,23 @@
+// danh sách người dùng, lưu vào db
+
+//   _id: "user1",
+//   name: "Administrator",
+//   email: "admin@gmail.com",
+//   password: "hashPasswordAdmin",
+//   phone: "0312345678",
+//   address: "Hà nội",
+//   image: { dùng <Upload/> của ant design nên lưu vậy
+//     status: "done",
+//     name: "user1",
+//     uid: "https://res.cloudinary.com/kuvgfv.jpg",
+//     url: "https://res.cloudinary.com/kuvgfv.jpg",
+//   },
+//   cards: mảng các thẻ ngân hàng của người dùng, lưu _id để populate [],
+//   order: mảng các đơn hàng của người dùng, lưu _id để populate [],
+//   favorite: [],
+//   comments: mảng các bình luận của người dùng, lưu _id để populate[],
+//   role: "Admin" và "User" khi đăng kí mặc định là User
+
 export const users = [
   {
     _id: "user1",

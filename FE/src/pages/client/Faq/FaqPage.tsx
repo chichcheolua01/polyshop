@@ -1,5 +1,7 @@
+// Import các component
 import { Container, ShowFaq } from "../../../components";
 
+// Khởi tạo component
 const FaqPage = () => {
   return (
     <Container>

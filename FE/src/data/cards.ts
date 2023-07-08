@@ -1,3 +1,13 @@
+// danh sách thẻ ngân hàng của người dùng, lưu vào db
+
+// _id: lưu id này trong cards của user để populate
+// card_holder_name: tên chủ thẻ
+// card_number: số thẻ
+// start_date: ngày tạo
+// end_date: ngày hết hạn
+// cvv: mã cvv
+// main: có được đặt là thẻ chính không
+
 export const cards = [
   {
     _id: "card1",
