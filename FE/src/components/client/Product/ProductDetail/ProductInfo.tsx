@@ -8,14 +8,14 @@ import Button from "../../../Button";
 import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
-import { IProduct, IUser } from "../../../../interface";
+import { IFavoriteUser, IProduct } from "../../../../interface";
 
 type ProductInfoProps = {
   product?: IProduct | null;
-  currentUser: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
 };
 
-const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
+const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
 
   const onChange = (value: number | null) => {
@@ -30,7 +30,7 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
             <div className="flex flex-col gap-5">
               <Image
                 preview={{ visible: false }}
-                src={product?.image?.[0].base_url}
+                src={product?.image?.[0].url}
                 onClick={() => setVisible(true)}
                 className="border p-2 rounded-lg"
                 width={300}
@@ -44,7 +44,7 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
                   }}
                 >
                   {product?.image.map((img) => (
-                    <Image key={img.base_url} src={img.base_url} />
+                    <Image key={img.url} src={img.url} />
                   ))}
                 </Image.PreviewGroup>
               </div>
@@ -52,8 +52,8 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
               <div className="flex flex-row gap-3">
                 {product?.image.map((img) => (
                   <Image
-                    key={img.base_url}
-                    src={img.base_url}
+                    key={img.url}
+                    src={img.url}
                     width={70}
                     className="border p-3 rounded-lg"
                   />
@@ -63,7 +63,7 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
 
             <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                Thương hiệu: {product?.category.name}
+                Thương hiệu: {product?.category.brand}
               </h2>
 
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1 md:my-5">
@@ -109,10 +109,14 @@ const ProductInfo = ({ product, currentUser }: ProductInfoProps) => {
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
                   onClick={() => alert("Thành công!")}
+                  disabled={product?.inventory === 0}
                 />
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  <HeartButton productId={product?._id} user={currentUser} />
+                  <HeartButton
+                    productId={product?._id}
+                    favoriteUser={favoriteUser}
+                  />
                 </button>
               </div>
             </div>

@@ -4,14 +4,14 @@ import { AiFillStar } from "react-icons/ai";
 
 import HeartButton from "../HeartButton";
 
-import { IProduct, IUser } from "../../../../interface";
+import { IFavoriteUser, IProduct } from "../../../../interface";
 
 type ProductCardProps = {
   product: IProduct;
-  currentUser?: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
 };
 
-const ProductCard = ({ product, currentUser }: ProductCardProps) => {
+const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
   const navigate = useNavigate();
 
   const discount = Math.round(
@@ -34,14 +34,17 @@ const ProductCard = ({ product, currentUser }: ProductCardProps) => {
             )}
 
             <div className="w-auto">
-              <HeartButton productId={product._id} user={currentUser} />
+              <HeartButton
+                productId={product._id}
+                favoriteUser={favoriteUser}
+              />
             </div>
           </div>
 
           <div className="aspect-square w-full relative overflow-hidden">
             <img
               alt="Product"
-              src={product?.image[0].base_url}
+              src={product?.image[0].url}
               onClick={() => navigate(`/product-detail/${product._id}`)}
               className="object-cover h-full w-full transition"
             />
@@ -75,8 +78,8 @@ const ProductCard = ({ product, currentUser }: ProductCardProps) => {
             )}
           </div>
 
-          <div className="flex flex-row gap-3 items-center">
-            <div className="font-bold text-[#ff424e] text-base">
+          <div className="flex flex-row gap-2 items-center">
+            <div className="font-bold text-base text-[#ff424e]">
               {product.price.toLocaleString("vi-VN")}₫
             </div>
 

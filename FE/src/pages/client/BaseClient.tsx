@@ -11,15 +11,21 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICart, ICategoryProduct, IUser } from "../../interface";
+import { ICart, ICategoryProduct } from "../../interface";
 
 type BaseClientProps = {
   cart: ICart | null;
-  currentUser: IUser | null;
+  isLogin: boolean;
+  imageUser: string | undefined;
   listCategories: ICategoryProduct[] | null;
 };
 
-const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
+const BaseClient = ({
+  isLogin,
+  cart,
+  imageUser,
+  listCategories,
+}: BaseClientProps) => {
   const location = useLocation();
 
   const [email, setEmail] = useState("");
@@ -40,6 +46,8 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+
+    setOpenDrawn(false);
   }, [location.pathname]);
 
   const bodyModal = (
@@ -92,12 +100,18 @@ const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
 
           <NavBar
             onOpen={setDrawn}
-            cart={cart}
+            isLogin={isLogin}
+            cartCount={cart?.products.length || 0}
             listCategories={listCategories}
-            currentUser={currentUser}
+            imageUser={imageUser}
           />
 
-          <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
+          <CartDrawn
+            isOpen={openDrawn}
+            isLogin={isLogin}
+            onClose={setDrawn}
+            cart={cart}
+          />
 
           <main className="pt-36">
             <Outlet />

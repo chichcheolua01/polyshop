@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Banner,
   Container,
@@ -6,55 +7,54 @@ import {
   ProductList,
 } from "../../../components";
 
-import { IProduct, IUser } from "../../../interface";
+import { ICategoryProduct, IFavoriteUser, IProduct } from "../../../interface";
 
 type HomePageProps = {
-  currentUser: IUser | null;
+  favoriteUser: IFavoriteUser[] | undefined;
   listProducts: IProduct[] | null;
+  listCategories: ICategoryProduct[] | null;
 };
 
-const HomePage = ({ currentUser, listProducts }: HomePageProps) => {
-  const phone =
-    listProducts &&
-    listProducts.filter((product) => product.category.slug === "Điện thoại");
+const HomePage = ({
+  favoriteUser,
+  listProducts,
+  listCategories,
+}: HomePageProps) => {
+  const [productsBySlug, setProductsBySlug] = useState<{
+    [slug: string]: IProduct[];
+  }>({});
 
-  const computer =
-    listProducts &&
-    listProducts.filter(
-      (product) => product.category.slug === "Máy tính sách tay"
-    );
+  useEffect(() => {
+    if (listCategories && listProducts) {
+      const initialProductsBySlug: { [slug: string]: IProduct[] } = {};
 
-  const watch =
-    listProducts &&
-    listProducts.filter((product) => product.category.slug === "Đồng hồ");
+      listCategories.forEach((category) => {
+        const filteredProducts = listProducts.filter(
+          (product) => product.category.slug === category.slug
+        );
+        initialProductsBySlug[category.slug] = filteredProducts;
+      });
+
+      setProductsBySlug(initialProductsBySlug);
+    }
+  }, [listCategories, listProducts]);
 
   return (
     <>
       <Container>
         <Banner />
 
-        {phone && phone.length > 0 && (
-          <ProductList
-            title="Điện Thoại"
-            products={phone}
-            currentUser={currentUser}
-          />
-        )}
-
-        {computer && computer.length > 0 && (
-          <ProductList
-            title="Máy Tính"
-            products={computer}
-            currentUser={currentUser}
-          />
-        )}
-
-        {watch && watch.length > 0 && (
-          <ProductList
-            title="Đồng Hồ"
-            products={watch}
-            currentUser={currentUser}
-          />
+        {Object.entries(productsBySlug).map(
+          ([slug, products]) =>
+            products.length > 0 && (
+              <ProductList
+                key={slug}
+                middle
+                title={slug}
+                products={products}
+                favoriteUser={favoriteUser}
+              />
+            )
         )}
 
         <Offer />

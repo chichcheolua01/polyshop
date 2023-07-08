@@ -5,6 +5,7 @@ import { comments } from "./comments";
 import { favorites } from "./favorites";
 import { orders } from "./orders";
 import { products } from "./products";
+import { profile } from "./profile";
 import { users } from "./users";
 
 export {
@@ -15,5 +16,6 @@ export {
   favorites,
   orders,
   products,
+  profile,
   users,
 };

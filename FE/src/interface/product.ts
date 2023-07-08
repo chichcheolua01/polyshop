@@ -1,5 +1,5 @@
 export interface IProduct {
-  _id: string;
+  _id?: string;
   sold: number;
   stars: number;
   price: number;
@@ -13,17 +13,13 @@ export interface IProduct {
 }
 
 export interface ICategoryProduct {
-  _id: string;
-  name: string;
-  slug: string;
-}
-
-export interface IImageProduct {
-  base_url: string;
+  _id?: string;
+  slug: string; // danh mục : điện thoại, máy tính ...
+  brand: string; // thương hiệu : iphone, msi ...
 }
 
 export interface ICommentsProduct {
-  _id: string;
+  _id?: string;
   user: IUserCommentProduct;
   stars: number;
   comment: string;
@@ -31,15 +27,23 @@ export interface ICommentsProduct {
   feed_back: IFeedBackComment[];
 }
 
+export interface IUserCommentProduct {
+  _id?: string;
+  name: string;
+  image: string;
+}
+
 export interface IFeedBackComment {
-  _id: string;
+  _id?: string;
   prefer: number;
   comment: string;
   user: IUserCommentProduct;
 }
 
-export interface IUserCommentProduct {
-  _id: string;
+export interface IImageProduct {
+  _id?: string;
+  uid: string;
   name: string;
-  image: string;
+  url: string;
+  status: string;
 }
