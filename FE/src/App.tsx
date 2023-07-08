@@ -76,8 +76,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
-                isLogin={currentUser !== null}
-                imageUser={currentUser?.image}
+                currentUser={currentUser}
                 listCategories={listCategories}
               />
             }
@@ -88,6 +87,7 @@ function App() {
                 <HomePage
                   favoriteUser={currentUser?.favorite}
                   listProducts={listProducts}
+                  listCategories={listCategories}
                 />
               }
             />
@@ -95,12 +95,7 @@ function App() {
             <Route path="contact" element={<ContactPage />} />
             <Route
               path="profile"
-              element={
-                <ProfilePage
-                  nameUser={currentUser?.name}
-                  imageUser={currentUser?.image}
-                />
-              }
+              element={<ProfilePage currentUser={currentUser} />}
             >
               <Route index element={<Account currentUser={currentUser} />} />
               <Route
@@ -163,13 +158,6 @@ function App() {
           <Route path="/auth" element={<BaseAuth />}>
             <Route index element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
-          </Route>
-
-          <Route path="/admin" element={<BaseAdmin />}>
-            <Route index element={<AdminDashboardPage />} />
-            <Route path="dashboard" element={<AdminDashboardPage />} />
-            <Route path="products" element={<AdminProductPage />} />
-            <Route path="users" element={<AdminUserPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

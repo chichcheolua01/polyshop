@@ -44,7 +44,7 @@ const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
           <div className="aspect-square w-full relative overflow-hidden">
             <img
               alt="Product"
-              src={product?.image[0].base_url}
+              src={product?.image[0].url}
               onClick={() => navigate(`/product-detail/${product._id}`)}
               className="object-cover h-full w-full transition"
             />

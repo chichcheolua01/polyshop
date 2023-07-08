@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 type LogoProps = {
-  large: boolean;
+  large?: boolean;
 };
 
 const Logo = ({ large }: LogoProps) => {

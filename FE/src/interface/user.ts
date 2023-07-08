@@ -5,12 +5,20 @@ export interface IUser {
   password: string;
   phone: string;
   address: string;
-  image: string;
+  image: IImageUser;
   cards: ICardUser[];
   order: IOrderUser[];
   favorite: IFavoriteUser[];
   comments: ICommentUser[];
   role: string;
+}
+
+export interface IImageUser {
+  _id?: string;
+  uid: string;
+  name: string;
+  url: string;
+  status: string;
 }
 
 export interface ICardUser {
@@ -34,6 +42,7 @@ export interface IOrderUser {
 }
 
 export interface IProductsOrderUser {
+  _id?: string;
   product: string;
   name: string;
   price: number;
