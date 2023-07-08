@@ -13,7 +13,8 @@ import {
   OrderRouter,
   ProductRouter,
   VoucherRouter,
-  FeedbackRouter
+  FeedbackRouter,
+  CardRouter
 } from "./router";
 
 dotenv.config();
@@ -53,6 +54,9 @@ app.use("/feedback", FeedbackRouter);
 
 
 
+
+// thẻ ngân hàng
+app.use("/card", CardRouter);
 
 
 mongoose.connect(process.env.DB_URL);
