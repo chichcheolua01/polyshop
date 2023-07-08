@@ -5,12 +5,13 @@ import type { TabsProps } from "antd";
 import { BiCheckShield } from "react-icons/bi";
 
 import { Button, Input } from "../../..";
+import { IUser } from "../../../../interface";
 
 type ChangePasswordProps = {
-  emailUser: string | undefined;
+  currentUser: IUser | null;
 };
 
-const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
+const ChangePassword = ({ currentUser }: ChangePasswordProps) => {
   const [step, setStep] = useState("1");
   const [code, setCode] = useState("");
   const [passwordOld, setPasswordOld] = useState("");
@@ -32,7 +33,7 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
     setStep("1");
     setHidden(false);
     setDisabled(false);
-  }, [emailUser]);
+  }, [currentUser]);
 
   const items: TabsProps["items"] = [
     {
@@ -48,7 +49,7 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
               Để tăng cường bảo mật, hãy xác minh đây là tài khoản của bạn.
             </h2>
 
-            {emailUser && (
+            {currentUser && (
               <>
                 <div
                   className={`flex md:flex-row flex-col gap-5 border-t p-5 items-center ${
@@ -58,7 +59,7 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
                   <span className="flex text-lg font-semibold">
                     <span className="mr-1">Email: </span>
 
-                    {hiddenEmail(emailUser)}
+                    {hiddenEmail(currentUser?.email)}
                   </span>
 
                   <Button
@@ -132,18 +133,14 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
   return (
     <>
       <div className="bg-white p-3 py-10 rounded-xl">
-        {emailUser ? (
-          <Tabs
-            activeKey={step}
-            tabPosition="top"
-            items={items}
-            size="large"
-            type="line"
-            centered
-          />
-        ) : (
-          <div className="text-center">Bạn chưa đăng nhập</div>
-        )}
+        <Tabs
+          activeKey={step}
+          tabPosition="top"
+          items={items}
+          size="large"
+          type="line"
+          centered
+        />
       </div>
     </>
   );

@@ -11,21 +11,15 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICart, ICategoryProduct } from "../../interface";
+import { ICart, ICategoryProduct, IUser } from "../../interface";
 
 type BaseClientProps = {
   cart: ICart | null;
-  isLogin: boolean;
-  imageUser: string | undefined;
+  currentUser: IUser | null;
   listCategories: ICategoryProduct[] | null;
 };
 
-const BaseClient = ({
-  isLogin,
-  cart,
-  imageUser,
-  listCategories,
-}: BaseClientProps) => {
+const BaseClient = ({ cart, currentUser, listCategories }: BaseClientProps) => {
   const location = useLocation();
 
   const [email, setEmail] = useState("");
@@ -46,8 +40,6 @@ const BaseClient = ({
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-
-    setOpenDrawn(false);
   }, [location.pathname]);
 
   const bodyModal = (
@@ -100,18 +92,12 @@ const BaseClient = ({
 
           <NavBar
             onOpen={setDrawn}
-            isLogin={isLogin}
-            cartCount={cart?.products.length || 0}
+            cart={cart}
             listCategories={listCategories}
-            imageUser={imageUser}
+            currentUser={currentUser}
           />
 
-          <CartDrawn
-            isOpen={openDrawn}
-            isLogin={isLogin}
-            onClose={setDrawn}
-            cart={cart}
-          />
+          <CartDrawn isOpen={openDrawn} onClose={setDrawn} cart={cart} />
 
           <main className="pt-36">
             <Outlet />

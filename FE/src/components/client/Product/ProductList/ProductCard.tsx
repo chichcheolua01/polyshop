@@ -4,14 +4,14 @@ import { AiFillStar } from "react-icons/ai";
 
 import HeartButton from "../HeartButton";
 
-import { IFavoriteUser, IProduct } from "../../../../interface";
+import { IProduct, IUser } from "../../../../interface";
 
 type ProductCardProps = {
   product: IProduct;
-  favoriteUser: IFavoriteUser[] | undefined;
+  currentUser?: IUser | null;
 };
 
-const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
+const ProductCard = ({ product, currentUser }: ProductCardProps) => {
   const navigate = useNavigate();
 
   const discount = Math.round(
@@ -34,10 +34,7 @@ const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
             )}
 
             <div className="w-auto">
-              <HeartButton
-                productId={product._id}
-                favoriteUser={favoriteUser}
-              />
+              <HeartButton productId={product._id} user={currentUser} />
             </div>
           </div>
 
@@ -78,8 +75,8 @@ const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
             )}
           </div>
 
-          <div className="flex flex-row gap-2 items-center">
-            <div className="font-bold text-base text-[#ff424e]">
+          <div className="flex flex-row gap-3 items-center">
+            <div className="font-bold text-[#ff424e] text-base">
               {product.price.toLocaleString("vi-VN")}₫
             </div>
 

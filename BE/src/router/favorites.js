@@ -8,4 +8,6 @@ router.get("/:userId", getOne);
 
 router.put("/:userId", update);
 
+
+
 export default router;
