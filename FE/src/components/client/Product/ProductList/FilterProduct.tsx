@@ -1,5 +1,5 @@
 import { Radio } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RadioChangeEvent } from "antd/es/radio";
 
 import { ICategoryProduct } from "../../../../interface";
@@ -9,20 +9,40 @@ type FilterProductProps = {
 };
 
 const FilterProduct = ({ categories }: FilterProductProps) => {
-  const [category, setCategory] = useState("");
   const [slug, setSlug] = useState("");
+  const [brand, setBrand] = useState("");
 
-  const onChangeCategory = (e: RadioChangeEvent) => {
-    setCategory(e.target.value);
-  };
+  const [listSlug, setListSlug] = useState<string[]>([]);
+  const [listBrandBySlug, setListBrandBySlug] = useState<
+    ICategoryProduct[] | null
+  >(
+    categories &&
+      categories?.filter((category) => category.slug.includes("Điện thoại"))
+  );
 
   const onChangeSlug = (e: RadioChangeEvent) => {
     setSlug(e.target.value);
+    console.log(e.target.value);
+
+    const filterBrandBySlug =
+      categories &&
+      categories?.filter((category) => category.slug.includes(e.target.value));
+
+    setListBrandBySlug(filterBrandBySlug);
   };
 
-  const filterSlug = [
-    ...new Set(categories && categories.map((category) => category.slug)),
-  ];
+  const onChangeBrand = (e: RadioChangeEvent) => {
+    setBrand(e.target.value);
+    console.log(e.target.value);
+  };
+
+  useEffect(() => {
+    const initialSlug = [
+      ...new Set(categories && categories?.map((category) => category.slug)),
+    ];
+
+    setListSlug(initialSlug);
+  }, [categories]);
 
   return (
     <>
@@ -37,7 +57,7 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
             value={slug}
             className="flex flex-col gap-1"
           >
-            {filterSlug.map((item) => (
+            {listSlug?.map((item) => (
               <Radio key={item} value={item}>
                 <div className="text-gray-600 cursor-pointer">{item}</div>
               </Radio>
@@ -53,15 +73,15 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
 
         <div className="space-y-2">
           <Radio.Group
-            onChange={onChangeCategory}
-            value={category}
+            onChange={onChangeBrand}
+            value={brand}
             className="flex flex-col gap-1"
           >
-            {categories &&
-              categories.map((category) => (
-                <Radio key={category._id} value={category.name}>
+            {listBrandBySlug &&
+              listBrandBySlug.map((brand) => (
+                <Radio key={brand._id} value={brand.brand}>
                   <div className="text-gray-600 cursor-pointer">
-                    {category.name}
+                    {brand.brand}
                   </div>
                 </Radio>
               ))}

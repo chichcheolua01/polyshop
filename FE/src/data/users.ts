@@ -6,8 +6,12 @@ export const users = [
     password: "hashPasswordAdmin",
     phone: "0312345678",
     address: "Hà nội",
-    image:
-      "https://res.cloudinary.com/book-hotel/image/upload/v1687264620/AETT3080_apf04c.jpg",
+    image: {
+      status: "done",
+      name: "user1",
+      uid: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+      url: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+    },
     cards: [
       {
         _id: "card1",
@@ -83,23 +87,8 @@ export const users = [
         userId: "user1",
         productId: "product2",
       },
-      {
-        _id: "favorite4",
-        userId: "user1",
-        productId: "product3",
-      },
-      {
-        _id: "favorite5",
-        userId: "user1",
-        productId: "product4",
-      },
-      {
-        _id: "favorite6",
-        userId: "user1",
-        productId: "product5",
-      },
     ],
-    comments: [{ _id: "comment1" }, { _id: "comment2" }],
+    comments: [],
     role: "Admin",
   },
   {
@@ -109,8 +98,12 @@ export const users = [
     password: "hashPasswordUser",
     phone: "",
     address: "",
-    image:
-      "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+    image: {
+      status: "done",
+      name: "user2",
+      uid: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+      url: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+    },
     cards: [],
     order: [],
     favorite: [],

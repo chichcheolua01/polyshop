@@ -27,6 +27,7 @@ const NavBar = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [listSlug, setListSlug] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,13 +41,19 @@ const NavBar = ({
     };
   }, []);
 
-  const slugs = Array.from(
-    new Set(listCategories && listCategories.map((category) => category.slug))
-  );
+  useEffect(() => {
+    const initialSlug = [
+      ...new Set(
+        listCategories && listCategories?.map((category) => category.slug)
+      ),
+    ];
+
+    setListSlug(initialSlug);
+  }, [listCategories]);
 
   const bodyPopover = (
     <div className="flex flex-row gap-20 p-5">
-      {slugs.map((slug) => (
+      {listSlug.map((slug) => (
         <div key={slug}>
           <Link
             to={`list-product?slug=${slug}`}
@@ -63,9 +70,9 @@ const NavBar = ({
                   <Link
                     key={category._id}
                     className="hover:text-rose-500"
-                    to={`list-product?slug=${category.slug}`}
+                    to={`list-product?slug=${category.slug}?brand=${category.brand}`}
                   >
-                    <span className="">{category.name}</span>
+                    <span className="">{category.brand}</span>
                   </Link>
                 ))}
           </div>

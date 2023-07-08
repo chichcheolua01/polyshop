@@ -1,3 +1,7 @@
+import ProductDrawer from "./admin/AdminProduct/ProductDrawer";
+import ProductTable from "./admin/AdminProduct/ProductTable";
+import UploadImage from "./admin/AdminProduct/UploadImage";
+
 import CartDrawn from "./client/Cart/CartDrawn";
 import CartDrawnItem from "./client/Cart/CartDrawnItem";
 
@@ -60,6 +64,9 @@ import Loading from "./Loading";
 import Logo from "./Logo";
 
 export {
+  UploadImage,
+  ProductDrawer,
+  ProductTable,
   Breadcrumb,
   CheckoutCard,
   CheckoutOrder,

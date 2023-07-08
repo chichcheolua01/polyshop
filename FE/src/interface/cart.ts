@@ -2,6 +2,7 @@ export interface ICart {
   products: IItemCart[];
   totalPrice: number;
 }
+
 export interface IItemCart {
   product: IProductCart;
   quantity: number;
