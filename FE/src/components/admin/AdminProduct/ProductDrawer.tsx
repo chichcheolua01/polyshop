@@ -1,3 +1,4 @@
+// Import các thư viện
 import { useState, useEffect } from "react";
 import {
   Descriptions,
@@ -9,18 +10,23 @@ import {
   Select,
 } from "antd";
 
+// Import các component
 import UploadImage from "./UploadImage";
 
+// Import các interface
 import { IProduct } from "../../../interface";
 
 const { Option } = Select;
 
+// Type để truyền dữ liệu giữa các props
 type Props = {
   product: IProduct | undefined;
   isEdit: boolean;
 };
 
+// Khởi tạo component
 const ProductDrawer = ({ product, isEdit }: Props) => {
+  // Sử dụng hook
   const [form] = Form.useForm();
   const [selectedSlug, setSelectedSlug] = useState("");
 

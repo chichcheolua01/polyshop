@@ -1,16 +1,25 @@
+// Import các thư viện
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Avatar, List, Space, Rate } from "antd";
+
+// Import các icon
 import { AiFillLike, AiFillMessage } from "react-icons/ai";
 
+// Import các component
 import { Button } from "../../..";
+
+// Import các interface
 import { ICommentsProduct } from "../../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type ProductCommentProps = {
   comments: ICommentsProduct[];
 };
 
+// Khởi tạo component
 const ProductComment = ({ comments }: ProductCommentProps) => {
+  // Sử dụng hook
   const [comment, setComment] = useState("");
 
   const listComment = comments.map((cmt) => ({

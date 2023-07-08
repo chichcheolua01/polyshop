@@ -1,17 +1,24 @@
+// Import các thư viện
 import { useNavigate } from "react-router-dom";
 
+// Import các icon
 import { AiFillStar } from "react-icons/ai";
 
+// Import các component
 import HeartButton from "../HeartButton";
 
+// Import các interface
 import { IFavoriteUser, IProduct } from "../../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type ProductCardProps = {
   product: IProduct;
   favoriteUser: IFavoriteUser[] | undefined;
 };
 
+// Khởi tạo component
 const ProductCard = ({ product, favoriteUser }: ProductCardProps) => {
+  // Sử dụng hook
   const navigate = useNavigate();
 
   const discount = Math.round(

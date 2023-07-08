@@ -1,5 +1,7 @@
+// Import css
 import "./Loading.css";
 
+// Khởi tạo component
 const Loading = () => {
   return (
     <>

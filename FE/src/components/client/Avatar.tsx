@@ -1,7 +1,9 @@
+// Type để truyền dữ liệu giữa các props
 type AvatarProps = {
   src?: string | null;
 };
 
+// Khởi tạo component
 const Avatar = ({ src }: AvatarProps) => {
   return (
     <>

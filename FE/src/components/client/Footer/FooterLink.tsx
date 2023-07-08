@@ -1,10 +1,13 @@
+// Import các thư viện
 import { Link } from "react-router-dom";
 
+// Type để truyền dữ liệu giữa các props
 type FooterLinkProps = {
   title: string;
   links: { name: string; url: string }[];
 };
 
+// Khởi tạo component
 const FooterLink = ({ title, links }: FooterLinkProps) => {
   return (
     <>

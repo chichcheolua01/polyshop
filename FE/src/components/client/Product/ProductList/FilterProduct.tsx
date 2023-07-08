@@ -1,17 +1,21 @@
+// Import các thư viện
 import { Radio } from "antd";
 import { useEffect, useState } from "react";
 import { RadioChangeEvent } from "antd/es/radio";
 
+// Import các interface
 import { ICategoryProduct } from "../../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type FilterProductProps = {
   categories: ICategoryProduct[] | null;
 };
 
+// Khởi tạo component
 const FilterProduct = ({ categories }: FilterProductProps) => {
+  // Sử dụng hook
   const [slug, setSlug] = useState("");
   const [brand, setBrand] = useState("");
-
   const [listSlug, setListSlug] = useState<string[]>([]);
   const [listBrandBySlug, setListBrandBySlug] = useState<
     ICategoryProduct[] | null

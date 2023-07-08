@@ -1,4 +1,6 @@
+// Import các thư viện
 import { create } from "zustand";
+// Type để truyền dữ liệu giữa các props
 
 interface ProductDrawerStore {
   isOpen: boolean;
@@ -7,6 +9,7 @@ interface ProductDrawerStore {
   onClose: () => void;
 }
 
+// Khởi tạo hook
 const useProductDrawer = create<ProductDrawerStore>((set) => ({
   isOpen: false,
   isEdit: false,

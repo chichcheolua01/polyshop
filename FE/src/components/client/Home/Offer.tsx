@@ -1,3 +1,4 @@
+// Khởi tạo component
 const Offer = () => {
   return (
     <>

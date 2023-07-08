@@ -1,12 +1,16 @@
+// Import các thư viện
 import { InputNumber } from "antd";
-
-import { IItemCart } from "../../../interface";
 import { Link } from "react-router-dom";
 
+// Import các interface
+import { IItemCart } from "../../../interface";
+
+// Type để truyền dữ liệu giữa các props
 type CartDrawnItemProps = {
   cartItem: IItemCart;
 };
 
+// Khởi tạo component
 const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
   const onChange = (value: number | null) => {
     console.log(value);

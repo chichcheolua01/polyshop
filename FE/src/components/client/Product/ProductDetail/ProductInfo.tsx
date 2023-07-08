@@ -1,21 +1,28 @@
+// Import các thư viện
 import { Image } from "antd";
 import { useState } from "react";
 import { InputNumber } from "antd";
 
+// Import các icon
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
+// Import các component
 import Button from "../../../Button";
 import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
+// Import các interface
 import { IFavoriteUser, IProduct } from "../../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type ProductInfoProps = {
   product?: IProduct | null;
   favoriteUser: IFavoriteUser[] | undefined;
 };
 
+// Khởi tạo component
 const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
+  // Sử dụng hook
   const [visible, setVisible] = useState(false);
 
   const onChange = (value: number | null) => {

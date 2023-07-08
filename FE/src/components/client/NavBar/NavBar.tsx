@@ -1,14 +1,18 @@
+// Import các thư viện
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
+// Import các component
 import Logo from "../../Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
+// Import các interface
 import { ICategoryProduct } from "../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type NavBarProps = {
   onOpen: () => void;
   cartCount: number;
@@ -17,6 +21,7 @@ type NavBarProps = {
   listCategories: ICategoryProduct[] | null;
 };
 
+// Khởi tạo component
 const NavBar = ({
   imageUser,
   isLogin,
@@ -24,6 +29,7 @@ const NavBar = ({
   cartCount,
   listCategories,
 }: NavBarProps) => {
+  // Sử dụng hook
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
