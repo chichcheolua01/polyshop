@@ -27,7 +27,7 @@ app.use("/contact", contactRouter);
 // đổi mật khẩu
 app.use("/", ChangePasswordRouter);
 app.use("/favorites", FavoriteRouter);
-app.use("/payment", paymentRouter);
+app.use("/", paymentRouter);
 
 mongoose.connect(process.env.DB_URL);
 
