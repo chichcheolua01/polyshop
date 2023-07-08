@@ -12,7 +12,8 @@ import {
   FavoriteRouter,
   OrderRouter,
   ProductRouter,
-  VoucherRouter
+  VoucherRouter,
+  FeedbackRouter
 } from "./router";
 
 dotenv.config();
@@ -48,6 +49,8 @@ app.use("/favorites", FavoriteRouter);
 app.use("/voucher", VoucherRouter);
 
 app.use("/order", OrderRouter);
+app.use("/feedback", FeedbackRouter);
+
 
 
 

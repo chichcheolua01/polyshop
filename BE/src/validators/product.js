@@ -24,7 +24,10 @@ export const productSchema = joi
             .items(
                 joi.object({
                     _id: joi.string().optional(),
-                    base_url: joi.string().required().messages(errorMessages("Ảnh gốc")),
+                    name: joi.string().required().messages(errorMessages("Tên")),
+                    uid: joi.string().required().messages(errorMessages("Ảnh")),
+                    url: joi.string().required().messages(errorMessages("Ảnh")),
+
                 })
             )
             .messages(errorMessages("Ảnh")),

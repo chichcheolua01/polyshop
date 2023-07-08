@@ -7,6 +7,8 @@ import FavoriteRouter from "./favorites";
 import OrderRouter from "./order";
 import ProductRouter from "./product";
 import VoucherRouter from "./voucher"
+import FeedbackRouter from "./feedback"
+
 
 export {
   ProductRouter,
@@ -17,5 +19,6 @@ export {
   OrderRouter,
   ChangePasswordRouter,
   FavoriteRouter,
-  VoucherRouter
+  VoucherRouter,
+  FeedbackRouter
 };
