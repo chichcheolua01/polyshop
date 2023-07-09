@@ -32,14 +32,27 @@ const productSchema = new mongoose.Schema(
     },
     image: [
       {
-        base_url: {
+        status: {
+          type: String,
+          default: "done",
+        },
+        name: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Category",
+          required: true,
+        },
+        uid: {
+          type: String,
+          required: true,
+        },
+        url: {
           type: String,
           required: true,
         },
       },
     ],
     category: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
     comments: [

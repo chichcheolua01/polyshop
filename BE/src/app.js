@@ -13,6 +13,7 @@ import {
   OrderRouter,
   ProductRouter,
   VoucherRouter,
+  FeedbackRouter,
   CardRouter
 } from "./router";
 
@@ -49,6 +50,8 @@ app.use("/favorites", FavoriteRouter);
 app.use("/voucher", VoucherRouter);
 
 app.use("/order", OrderRouter);
+app.use("/feedback", FeedbackRouter);
+
 
 
 
