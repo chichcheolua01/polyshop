@@ -1,16 +1,18 @@
-import voucher from "../module/voucher";
 import Voucher from "../module/voucher";
+import User from "../module/auth";
+import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from 'uuid'
 export const create = async (req, res) => {
-    const { discount, expirationDate } = req.body;
-
-    const newVoucher = new Voucher({
-        code: uuidv4(), // Sử dụng UUID để tạo mã voucher duy nhất
-        discount,
-        expirationDate
-    });
-
     try {
+
+        const { discount, expirationDate } = req.body;
+
+        const newVoucher = new Voucher({
+            code: uuidv4(), // Sử dụng UUID để tạo mã voucher duy nhất
+            discount,
+            expirationDate
+        });
+
         await newVoucher.save();
         res.status(201).json({ message: 'Voucher đã được tạo thành công', data: newVoucher });
     } catch (err) {
@@ -72,18 +74,29 @@ export const removeVoucher = async (req, res) => {
 // cập nhật trạng thái voucher
 export const updateVoucher = async (req, res) => {
     try {
-        const voucher = await Voucher.findOne({ _id: req.params.id })
-        if (!voucher) {
-            res.status(404).json({ message: "Voucher không tồn tại" })
-        } else {
+        const token = req.headers.authorization?.split(" ")[1];
+
+        if (!token) {
+            return res.status(401).json({
+                message: "Bạn chưa đăng nhập",
+            });
+        }
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        const user = await User.findById(decoded.id);
+        const voucher = await Voucher.findById(req.params.id)
+        if (voucher.code == req.body.code) {
             const voucherUpdate = {
                 ...req.body,
-                status: req.body.status
+                status: req.body.status,
+                userId: user._id,
+                status: "used"
             }
-            // console.log(voucherUpdate);
             const data = await Voucher.findByIdAndUpdate(voucher._id, voucherUpdate, { new: true })
             return res.status(200).json({ message: 'Cập nhật voucher thành công', data: data })
         }
+        return res.status(404).json({ message: "mã code không đúng" })
+        // console.log(voucherUpdate);
+
     } catch (error) {
         res.status(500).json({ message: 'Lỗi server: ' + error.message });
     }
