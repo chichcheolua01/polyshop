@@ -1,19 +1,25 @@
+// Import các thư viện
 import { useState } from "react";
 import type { MenuProps } from "antd";
 import { Outlet, Link } from "react-router-dom";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 
+// Import các icon
 import { AiOutlineUser, AiOutlineHome } from "react-icons/ai";
 import { LiaProductHunt } from "react-icons/lia";
 import { BsClipboardCheck } from "react-icons/bs";
 
+// Import các component
 import { Logo } from "../../components";
 
+// Destructuring lấy các thuộc tính từ đối tượng Layout của ant design
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
+// Khởi tạo component
 const BaseAdmin = () => {
+  // Sử dụng hook
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState(["sub1"]);
 
@@ -30,11 +36,10 @@ const BaseAdmin = () => {
     getItem("Sản phẩm", "sub2", <LiaProductHunt />, [
       getItem(<Link to="/admin/products">Danh sách</Link>, "2"),
       getItem("Thêm mới", "3"),
-      getItem("Chỉnh sửa", "4"),
     ]),
     getItem("Người dùng", "sub3", <AiOutlineUser />, [
-      getItem(<Link to="/admin/users">Danh sách</Link>, "5"),
-      getItem("Thêm mới", "6"),
+      getItem(<Link to="/admin/users">Danh sách</Link>, "4"),
+      getItem("Thêm mới", "5"),
     ]),
   ];
 

@@ -1,11 +1,15 @@
+// Import các thư viện
 import { Drawer } from "antd";
 import { useNavigate } from "react-router-dom";
 
+// Import các component
 import Button from "../../Button";
 import CartDrawnItem from "./CartDrawnItem";
 
+// Import các interface
 import { ICart } from "../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type CartDrawnProps = {
   isOpen: boolean;
   isLogin: boolean;
@@ -13,7 +17,9 @@ type CartDrawnProps = {
   onClose: () => void;
 };
 
+// Khởi tạo component
 const CartDrawn = ({ isLogin, isOpen, onClose, cart }: CartDrawnProps) => {
+  // Sử dụng hook
   const navigate = useNavigate();
 
   return (

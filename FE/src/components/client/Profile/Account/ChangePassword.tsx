@@ -1,16 +1,24 @@
+// Import các thư viện
 import { Tabs } from "antd";
 import { useEffect, useState } from "react";
-import type { TabsProps } from "antd";
 
+// Import các icon
 import { BiCheckShield } from "react-icons/bi";
 
+// Import các component
 import { Button, Input } from "../../..";
 
+// Import các interface
+import type { TabsProps } from "antd";
+
+// Type để truyền dữ liệu giữa các props
 type ChangePasswordProps = {
   emailUser: string | undefined;
 };
 
+// Khởi tạo component
 const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
+  // Sử dụng hook
   const [step, setStep] = useState("1");
   const [code, setCode] = useState("");
   const [passwordOld, setPasswordOld] = useState("");

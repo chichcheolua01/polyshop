@@ -1,11 +1,14 @@
+// Import các component
 import { Button } from "../..";
 
+// Type để truyền dữ liệu giữa các props
 type CheckoutDeliveryProps = {
   title: string;
   onClick: () => void;
   disabled: boolean;
 };
 
+// Khởi tạo component
 const CheckoutDelivery = ({
   disabled,
   title,

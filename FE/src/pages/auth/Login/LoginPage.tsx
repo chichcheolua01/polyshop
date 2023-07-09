@@ -1,12 +1,16 @@
+// Import các thư viện
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Import các icon
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 
+// Import các component
 import { Button, Input } from "../../../components";
 
 const LoginPage = () => {
+  // Sử dụng hook
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

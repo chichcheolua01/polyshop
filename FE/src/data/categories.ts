@@ -1,27 +1,33 @@
+// danh sách danh mục, lưu vào db
+
+// _id: lưu _id này trong category của product, để dùng populate
+// brand: thương hiệu: iphone, oppo, ...
+// slug: danh mục: điện thoại, đồng hồ, ...
+
 export const categories = [
-  { _id: "cate1", name: "Iphone", slug: "Điện thoại" },
-  { _id: "cate2", name: "Samsung", slug: "Điện thoại" },
-  { _id: "cate3", name: "XiAoMi", slug: "Điện thoại" },
-  { _id: "cate4", name: "OpPo", slug: "Điện thoại" },
-  { _id: "cate5", name: "Vivo", slug: "Điện thoại" },
-  { _id: "cate6", name: "Nokia", slug: "Điện thoại" },
-  { _id: "cate7", name: "RealMe", slug: "Điện thoại" },
-  { _id: "cate8", name: "ASus", slug: "Điện thoại" },
-  { _id: "cate9", name: "OnePlus", slug: "Điện thoại" },
+  { _id: "cate1", brand: "Iphone", slug: "Điện thoại" },
+  { _id: "cate2", brand: "Samsung", slug: "Điện thoại" },
+  { _id: "cate3", brand: "Xiaomi", slug: "Điện thoại" },
+  { _id: "cate4", brand: "Oppo", slug: "Điện thoại" },
+  { _id: "cate5", brand: "Vivo", slug: "Điện thoại" },
+  { _id: "cate6", brand: "Nokia", slug: "Điện thoại" },
+  { _id: "cate7", brand: "Realme", slug: "Điện thoại" },
+  { _id: "cate8", brand: "Asus", slug: "Điện thoại" },
+  { _id: "cate9", brand: "OnePlus", slug: "Điện thoại" },
 
-  { _id: "cate10", name: "Apple", slug: "Máy tính sách tay" },
-  { _id: "cate11", name: "Hp", slug: "Máy tính sách tay" },
-  { _id: "cate12", name: "Dell", slug: "Máy tính sách tay" },
-  { _id: "cate13", name: "ASus", slug: "Máy tính sách tay" },
-  { _id: "cate14", name: "Lenovo", slug: "Máy tính sách tay" },
-  { _id: "cate15", name: "Acer", slug: "Máy tính sách tay" },
-  { _id: "cate16", name: "LG", slug: "Máy tính sách tay" },
-  { _id: "cate17", name: "Huawei", slug: "Máy tính sách tay" },
-  { _id: "cate18", name: "Msi", slug: "Máy tính sách tay" },
+  { _id: "cate10", brand: "Apple", slug: "Máy tính" },
+  { _id: "cate11", brand: "Hp", slug: "Máy tính" },
+  { _id: "cate12", brand: "Dell", slug: "Máy tính" },
+  { _id: "cate13", brand: "Asus", slug: "Máy tính" },
+  { _id: "cate14", brand: "Lenovo", slug: "Máy tính" },
+  { _id: "cate15", brand: "Acer", slug: "Máy tính" },
+  { _id: "cate16", brand: "LG", slug: "Máy tính" },
+  { _id: "cate17", brand: "Huawei", slug: "Máy tính" },
+  { _id: "cate18", brand: "Msi", slug: "Máy tính" },
 
-  { _id: "cate19", name: "Apple", slug: "Đồng hồ" },
-  { _id: "cate20", name: "Samsung", slug: "Đồng hồ" },
-  { _id: "cate21", name: "XiAoMi", slug: "Đồng hồ" },
-  { _id: "cate22", name: "Huawei", slug: "Đồng hồ" },
-  { _id: "cate23", name: "OpPo", slug: "Đồng hồ" },
+  { _id: "cate19", brand: "Apple", slug: "Đồng hồ" },
+  { _id: "cate20", brand: "Samsung", slug: "Đồng hồ" },
+  { _id: "cate21", brand: "Xiaomi", slug: "Đồng hồ" },
+  { _id: "cate22", brand: "Huawei", slug: "Đồng hồ" },
+  { _id: "cate23", brand: "Oppo", slug: "Đồng hồ" },
 ];

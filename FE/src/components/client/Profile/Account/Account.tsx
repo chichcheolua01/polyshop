@@ -1,11 +1,15 @@
+// Import các component
 import MyAccount from "./MyAccount";
 
+// Import các interface
 import { IUser } from "../../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type AccountProps = {
   currentUser: IUser | null;
 };
 
+// Khởi tạo component
 const Account = ({ currentUser }: AccountProps) => {
   return (
     <>

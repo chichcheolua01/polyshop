@@ -1,13 +1,17 @@
+// Import các thư viện
 import { Badge } from "antd";
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Import các icon
 import { AiOutlineBell } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
+// Import các component
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 
+// Type để truyền dữ liệu giữa các props
 type UserMenuProps = {
   isLogin: boolean;
   cartCount: number;
@@ -15,12 +19,14 @@ type UserMenuProps = {
   imageUser?: string | null;
 };
 
+// Khởi tạo component
 const UserMenu = ({
   isLogin,
   imageUser,
   onClick,
   cartCount,
 }: UserMenuProps) => {
+  // Sử dụng hook
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,3 +1,4 @@
+// Import các component
 import {
   Breadcrumb,
   Container,
@@ -6,14 +7,17 @@ import {
   SelectProduct,
 } from "../../../components";
 
+// Import các interface
 import { ICategoryProduct, IFavoriteUser, IProduct } from "../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type ListProductPageProps = {
   favoriteUser: IFavoriteUser[] | undefined;
   listProducts: IProduct[] | null;
   listCategories: ICategoryProduct[] | null;
 };
 
+// Khởi tạo component
 const ListProductPage = ({
   favoriteUser,
   listProducts,

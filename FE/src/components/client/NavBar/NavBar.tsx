@@ -1,14 +1,18 @@
+// Import các thư viện
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
+// Import các component
 import Logo from "../../Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Container from "../Container";
 import NavBarItem from "./NavBarItem";
 
+// Import các interface
 import { ICategoryProduct } from "../../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type NavBarProps = {
   onOpen: () => void;
   cartCount: number;
@@ -17,6 +21,7 @@ type NavBarProps = {
   listCategories: ICategoryProduct[] | null;
 };
 
+// Khởi tạo component
 const NavBar = ({
   imageUser,
   isLogin,
@@ -24,9 +29,11 @@ const NavBar = ({
   cartCount,
   listCategories,
 }: NavBarProps) => {
+  // Sử dụng hook
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [listSlug, setListSlug] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,13 +47,19 @@ const NavBar = ({
     };
   }, []);
 
-  const slugs = Array.from(
-    new Set(listCategories && listCategories.map((category) => category.slug))
-  );
+  useEffect(() => {
+    const initialSlug = [
+      ...new Set(
+        listCategories && listCategories?.map((category) => category.slug)
+      ),
+    ];
+
+    setListSlug(initialSlug);
+  }, [listCategories]);
 
   const bodyPopover = (
     <div className="flex flex-row gap-20 p-5">
-      {slugs.map((slug) => (
+      {listSlug.map((slug) => (
         <div key={slug}>
           <Link
             to={`list-product?slug=${slug}`}
@@ -63,9 +76,9 @@ const NavBar = ({
                   <Link
                     key={category._id}
                     className="hover:text-rose-500"
-                    to={`list-product?slug=${category.slug}`}
+                    to={`list-product?slug=${category.slug}?brand=${category.brand}`}
                   >
-                    <span className="">{category.name}</span>
+                    <span className="">{category.brand}</span>
                   </Link>
                 ))}
           </div>

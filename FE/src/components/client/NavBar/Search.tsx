@@ -1,5 +1,7 @@
+// Import các icon
 import { BiSearch } from "react-icons/bi";
 
+// Khởi tạo component
 const Search = () => {
   return (
     <>

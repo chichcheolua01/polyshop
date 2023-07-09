@@ -1,7 +1,9 @@
+// Import các icon
 import { Ri24HoursFill } from "react-icons/ri";
 import { LiaTruckSolid } from "react-icons/lia";
 import { BiDollarCircle } from "react-icons/bi";
 
+// Khởi tạo component
 const Features = () => {
   return (
     <>

@@ -1,8 +1,13 @@
+// Import các thư viện
 import { Link } from "react-router-dom";
 
-import { IProfileList } from "../../../interface";
+// Import các icon
 import { IconType } from "react-icons";
 
+// Import các interface
+import { IProfileList } from "../../../interface";
+
+// Type để truyền dữ liệu giữa các props
 type MenuItemProps = {
   label: string;
   icon?: IconType;
@@ -11,6 +16,7 @@ type MenuItemProps = {
   onClick: () => void;
 };
 
+// Khởi tạo component
 const MenuItem = ({
   label,
   icon: Icon,

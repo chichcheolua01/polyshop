@@ -1,5 +1,7 @@
+// Import các thư viện
 import { Link } from "react-router-dom";
 
+// Type để truyền dữ liệu giữa các props
 type MyAccountProps = {
   url: string;
   title: string;
@@ -8,6 +10,7 @@ type MyAccountProps = {
   text2?: string;
 };
 
+// Khởi tạo component
 const MyAccount = ({ title, url, label, text1, text2 }: MyAccountProps) => {
   return (
     <>

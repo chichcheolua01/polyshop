@@ -1,3 +1,25 @@
+// danh sách bình luận, lưu vào db
+
+//     _id: lưu _id này trong comments của người dùng để populate
+//     stars: số sao người dùng đánh giá
+//     comment: bình luận của người dùng
+//     prefer: lượt like của comment
+//     feed_back: [
+//       {
+//         _id: "user2",
+//         user: {
+//           _id: lưu id người phản hồi vào đây để populate lấy thông tin
+//           },
+//         },
+//         comment: phản hồi
+//         prefer: số lượt like cho phải hồi
+//       },
+//     ],
+//     user: {
+//       _id: lưu id người bình luận vào đây để populate lấy thông tin
+//       },
+//     },
+
 export const comments = [
   {
     _id: "comment1",
@@ -6,12 +28,16 @@ export const comments = [
     prefer: 10,
     feed_back: [
       {
-        _id: "user2",
+        _id: "feed_back1",
         user: {
           _id: "user2",
           name: "UserManager",
-          image:
-            "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+          image: {
+            status: "done",
+            name: "user1",
+            uid: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+            url: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+          },
         },
         comment: "feed_back user 2",
         prefer: 0,
@@ -20,8 +46,12 @@ export const comments = [
     user: {
       _id: "user1",
       name: "Administrator",
-      image:
-        "https://res.cloudinary.com/book-hotel/image/upload/v1687264620/AETT3080_apf04c.jpg",
+      image: {
+        status: "done",
+        name: "user1",
+        uid: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+        url: "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
+      },
     },
   },
   {
@@ -34,7 +64,7 @@ export const comments = [
       _id: "user2",
       name: "UserManager",
       image:
-        "https://res.cloudinary.com/book-hotel/image/upload/v1687893031/689b4753-0529-46a2-9c6c-cdc66323d727_i4ix5b.jpg",
+        "https://res.cloudinary.com/project-alone/image/upload/v1688804352/Shop/fgsmprpaxtjoxrkuvgfv.jpg",
     },
   },
 ];

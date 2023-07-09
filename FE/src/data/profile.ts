@@ -1,3 +1,5 @@
+// đây là data của FE, không cần lưu vào db
+
 import { BsCreditCard } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
 import { AiOutlineProfile, AiOutlineGift } from "react-icons/ai";

@@ -1,6 +1,8 @@
+// Import các thư viện
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
+// Import các component
 import {
   Button,
   CartDrawn,
@@ -11,8 +13,10 @@ import {
   NavBar,
 } from "../../components";
 
+// Import các interface
 import { ICart, ICategoryProduct } from "../../interface";
 
+// Type để truyền dữ liệu giữa các props
 type BaseClientProps = {
   cart: ICart | null;
   isLogin: boolean;
@@ -20,36 +24,45 @@ type BaseClientProps = {
   listCategories: ICategoryProduct[] | null;
 };
 
+// Khởi tạo component
 const BaseClient = ({
   isLogin,
   cart,
   imageUser,
   listCategories,
 }: BaseClientProps) => {
+  // Sử dụng hook
   const location = useLocation();
-
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Mở đóng giở hàng
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
 
+  // Có phải ở trang chủ không
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
+    // Cuộn lên đầu khi thay đổi url
     window.scrollTo(0, 0);
+
+    // Mở loading
     setIsLoading(true);
 
+    // Sau một giây tắt loading
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
 
+    // Đóng giỏ hàng khi url thay đổi
     setOpenDrawn(false);
   }, [location.pathname]);
 
+  // Truyền vào trong modal
   const bodyModal = (
     <>
       <div className="w-full text-center">
@@ -83,12 +96,16 @@ const BaseClient = ({
 
   return (
     <>
+      {/* Kiểm tra loading */}
+
       {isLoading ? (
         <div className="flex items-center justify-center h-screen">
           <Loading />
         </div>
       ) : (
         <div className="bg-[url(/images/background.avif)] bg-cover bg-fixed bg-center bg-no-repeat">
+          {/* Chỉ mở model ở trang chủ */}
+
           {isHomePage ? (
             <Modal
               isOpen={isOpen}
