@@ -25,7 +25,6 @@ const productSchema = new mongoose.Schema(
       min: 0,
       required: true,
     },
-
     description: {
       type: String,
       required: true,
@@ -37,8 +36,7 @@ const productSchema = new mongoose.Schema(
           default: "done",
         },
         name: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Category",
+          type: String,
           required: true,
         },
         uid: {

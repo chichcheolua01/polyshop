@@ -7,7 +7,7 @@ export const getAll = async (req, res) => {
 
     if (!data || data.length === 0) {
       return res.status(404).json({
-        message: "Không có dữ liệu",
+        message: "Không có dữ liệu sản phẩm",
       });
     }
 
@@ -65,7 +65,7 @@ export const create = async (req, res) => {
     }
 
     return res.status(200).json({
-      message: "Thêm sản phẩm thành công ",
+      message: "Thêm sản phẩm thành công",
       data: data,
     });
   } catch (error) {
@@ -81,7 +81,7 @@ export const remove = async (req, res) => {
 
     if (!data) {
       return res.status(404).json({
-        message: "Xóa thất bại",
+        message: "Xóa sản phẩm thất bại",
       });
     }
 

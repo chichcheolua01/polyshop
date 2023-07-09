@@ -9,7 +9,7 @@ export const getAll = async (req, res) => {
 
     if (!data || data.length === 0) {
       return res.status(404).json({
-        message: "Không tìm thấy yêu thích",
+        message: "Không có danh sách yêu thích",
       });
     }
 
@@ -35,7 +35,7 @@ export const getOne = async (req, res) => {
 
     if (favorite) {
       return res.status(200).json({
-        message: "Danh sách yêu thích của người dùng",
+        message: "Thông tin yêu thích của người dùng",
         data: favorite,
       });
     } else {
@@ -61,12 +61,15 @@ export const update = async (req, res) => {
       const data = await Favorites.create({ userId, productId: [productId] });
 
       if (!data) {
-        return res.status(404).json({ message: "Không thêm được yêu thích" });
+        return res.status(404).json({
+          message: "Không thêm được yêu thích",
+        });
       }
 
-      return res
-        .status(200)
-        .json({ message: "Thêm yêu thích thành công", data });
+      return res.status(200).json({
+        message: "Thêm yêu thích thành công",
+        data,
+      });
     }
 
     if (!favorite.productId.includes(productId)) {

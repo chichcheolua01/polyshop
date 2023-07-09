@@ -83,7 +83,7 @@ export const remove = async (req, res) => {
     }
 
     return res.status(200).json({
-      message: "Xóa danh phẩm thành công ",
+      message: "Xóa danh mục thành công ",
       data: data,
     });
   } catch (error) {
