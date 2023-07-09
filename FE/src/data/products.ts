@@ -38,25 +38,25 @@ export const products = [
     image: [
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "iPhone 14 Pro Max 128GB | Chính hãng VN/A",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/b/_/b_c_1_9.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/b/_/b_c_1_9.png",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "iPhone 14 Pro Max 128GB | Chính hãng VN/A",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/x/_/x_m_24.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/x/_/x_m_24.png",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "iPhone 14 Pro Max 128GB | Chính hãng VN/A",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/v/_/v_ng_18.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/v/_/v_ng_18.png",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "iPhone 14 Pro Max 128GB | Chính hãng VN/A",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/_/t_m_18.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/_/t_m_18.png",
       },
@@ -69,33 +69,33 @@ export const products = [
     stars: 5,
     price: 23990000,
     inventory: 800,
+    name: "Samsung Galaxy S23 Ultra 256GB",
     category: { _id: "cate2", brand: "Samsung", slug: "Điện thoại" },
     original_price: 26990000,
-    name: "Samsung Galaxy S23 Ultra 256GB",
     description:
       "Samsung S23 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 2 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu xuất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2023.",
     image: [
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "Samsung Galaxy S23 Ultra 256GB",
         uid: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/a/galaxys23ultra_front_green_221122_2.jpg",
         url: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/a/galaxys23ultra_front_green_221122_2.jpg",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "Samsung Galaxy S23 Ultra 256GB",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-tim.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-tim.png",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "Samsung Galaxy S23 Ultra 256GB",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-xanh.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-xanh.png",
       },
       {
         status: "done",
-        name: "Laptop MSI Crosshair 15 B12UEZ-460VN",
+        name: "Samsung Galaxy S23 Ultra 256GB",
         uid: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-kem.png",
         url: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/2/s23-ultra-kem.png",
       },

@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-import User from "../module/auth";
 import Comment from "../module/comment";
 import Product from "../module/products";
 
@@ -51,16 +50,15 @@ export const create = async (req, res) => {
     }
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    const user = await User.findById(decoded.id);
 
     const newComment = await Comment.create({
       ...req.body,
-      user: user._id,
+      user: decoded.id,
       comment: req.body.comment,
     });
 
     await Product.findByIdAndUpdate(
-      req.params.id,
+      req.body.product,
       { $push: { comments: newComment._id } },
       { new: true }
     );
@@ -79,7 +77,6 @@ export const create = async (req, res) => {
   }
 };
 
-// cập nhật bình luận
 export const update = async (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
