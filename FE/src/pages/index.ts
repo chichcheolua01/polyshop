@@ -3,6 +3,7 @@ import BaseAdmin from "./admin/BaseAdmin";
 import AdminDashboardPage from "./admin/AdminDashboard/AdminDashboardPage";
 import AdminProductPage from "./admin/AdminProduct/AdminProduct";
 import AdminUserPage from "./admin/AdminUser/AdminUserPage";
+import AdminCategoryPage from "./admin/AdminCategory/AdminCategoryPage";
 
 // Trang Auth
 import BaseAuth from "./auth/BaseAuth";
@@ -26,6 +27,7 @@ export {
   AdminProductPage,
   AdminUserPage,
   BaseAuth,
+  AdminCategoryPage,
   LoginPage,
   RegisterPage,
   BaseClient,

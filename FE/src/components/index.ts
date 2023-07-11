@@ -1,6 +1,8 @@
 import ProductDrawer from "./admin/AdminProduct/ProductDrawer";
 import ProductTable from "./admin/AdminProduct/ProductTable";
 import UploadImage from "./admin/AdminProduct/UploadImage";
+import CategoriesTable from "./admin/AdminCategory/CategoriesTable";
+import CategoriesDrawer from "./admin/AdminCategory/CategoriesDrawer";
 
 import CartDrawn from "./client/Cart/CartDrawn";
 import CartDrawnItem from "./client/Cart/CartDrawnItem";
@@ -70,6 +72,7 @@ export {
   Breadcrumb,
   CheckoutCard,
   CheckoutOrder,
+  CategoriesTable,
   Button,
   Input,
   Loading,
@@ -78,6 +81,7 @@ export {
   CartDrawn,
   CartDrawnItem,
   ShowFaq,
+  CategoriesDrawer,
   Footer,
   FooterLink,
   Banner,

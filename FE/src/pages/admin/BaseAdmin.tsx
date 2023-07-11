@@ -6,6 +6,7 @@ import { Breadcrumb, Layout, Menu, theme } from "antd";
 
 // Import các icon
 import { AiOutlineUser, AiOutlineHome } from "react-icons/ai";
+import {BiCategoryAlt} from 'react-icons/bi'
 import { LiaProductHunt } from "react-icons/lia";
 import { BsClipboardCheck } from "react-icons/bs";
 
@@ -40,6 +41,10 @@ const BaseAdmin = () => {
     getItem("Người dùng", "sub3", <AiOutlineUser />, [
       getItem(<Link to="/admin/users">Danh sách</Link>, "4"),
       getItem("Thêm mới", "5"),
+    ]),
+    getItem("Danh mục", "sub4", <BiCategoryAlt />, [
+      getItem(<Link to="/admin/categories">Danh sách</Link>, "6"),
+      getItem("Thêm mới", "7"),
     ]),
   ];
 
