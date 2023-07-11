@@ -63,6 +63,21 @@ const userSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
+    voucher: [
+      {
+        usedDate: {
+          type: Date
+        },
+        applinedProduct: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        voucherId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Voucher'
+        }
+      }
+    ],
     role: {
       type: String,
       enum: ["User", "Admin"],
