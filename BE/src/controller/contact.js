@@ -16,7 +16,9 @@ const create = async (req, res) => {
     }
 
     const contact = await Contact.create(req.body);
+
     sendContact(req.body);
+
     return res.status(200).json({
       message: "Phản hồi thành công",
       contact,

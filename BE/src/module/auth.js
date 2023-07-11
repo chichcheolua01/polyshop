@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      required: false,
     },
     cards: [
       {
@@ -34,27 +35,14 @@ const userSchema = new mongoose.Schema(
     ],
     order: [
       {
-        products: [
-          {
-            type: mongoose.Types.ObjectId,
-            ref: "Product",
-            quantity: Number,
-          },
-        ],
-        totalPrice: Number,
-        status: String,
+        type: mongoose.Types.ObjectId,
+        ref: "Order",
       },
     ],
     favorite: [
       {
-        userId: {
-          type: mongoose.Types.ObjectId,
-          ref: "User",
-        },
-        productId: {
-          type: mongoose.Types.ObjectId,
-          ref: "Product",
-        },
+        type: mongoose.Types.ObjectId,
+        ref: "Favorite",
       },
     ],
     comments: [

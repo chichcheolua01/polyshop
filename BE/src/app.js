@@ -14,7 +14,7 @@ import {
   ProductRouter,
   VoucherRouter,
   FeedbackRouter,
-  CardRouter
+  CardRouter,
 } from "./router";
 
 dotenv.config();
@@ -47,17 +47,18 @@ app.use("/", ChangePasswordRouter);
 
 // Yêu thích
 app.use("/favorites", FavoriteRouter);
+
+// Voucher
 app.use("/voucher", VoucherRouter);
 
+// Đơn hàng
 app.use("/order", OrderRouter);
+
+// Phản hồi bình luận
 app.use("/feedback", FeedbackRouter);
 
-
-
-
-// thẻ ngân hàng
+// Thẻ ngân hàng
 app.use("/card", CardRouter);
-
 
 mongoose.connect(process.env.DB_URL);
 

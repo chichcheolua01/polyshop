@@ -4,8 +4,7 @@ import { create, getAll, update } from "../controller/comment";
 const router = express.Router();
 
 router.get("/", getAll);
-router.post("/:id", create);
+router.post("/", create);
 router.patch("/:id", update);
-
 
 export default router;

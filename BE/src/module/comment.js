@@ -12,9 +12,11 @@ const commentSchema = new mongoose.Schema(
     },
     stars: {
       type: Number,
+      required: true,
     },
     prefer: {
       type: Number,
+      default: 0,
     },
     feed_back: [
       {

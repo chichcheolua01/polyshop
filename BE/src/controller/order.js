@@ -9,7 +9,7 @@ const getAll = async (req, res) => {
 
     if (!data || data.length === 0) {
       return res.status(404).json({
-        message: "Không có dữ liệu",
+        message: "Không có dữ liệu đơn hàng",
       });
     }
 
@@ -39,7 +39,7 @@ const getOne = async (req, res) => {
     }
 
     return res.status(200).json({
-      message: "Thông tin các đơn hàng",
+      message: "Thông tin đơn hàng",
       data,
     });
   } catch (err) {
@@ -153,8 +153,10 @@ const findOrdersByUserId = async (req, res) => {
       "products.product"
     );
 
-    if (orders.length === 0) {
-      return res.status(404).json({ message: "Người dùng không có đơn hàng" });
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({
+        message: "Người dùng không có đơn hàng",
+      });
     }
 
     res.status(200).json({ orders });
