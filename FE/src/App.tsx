@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
+  AdminCategoryPage,
   AdminDashboardPage,
   AdminProductPage,
   AdminUserPage,
@@ -173,6 +174,7 @@ function App() {
               path="products"
               element={<AdminProductPage listProducts={listProducts} />}
             />
+            <Route path="categories" element={<AdminCategoryPage  listCategories={listCategories} />} />
             <Route path="users" element={<AdminUserPage />} />
           </Route>
         </Routes>
