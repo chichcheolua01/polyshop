@@ -49,6 +49,12 @@ const productSchema = new mongoose.Schema(
         },
       },
     ],
+    voucher: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Voucher",
+      }
+    ],
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
