@@ -33,6 +33,12 @@ const userSchema = new mongoose.Schema(
         ref: "Card",
       },
     ],
+    vouchers: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Voucher",
+      },
+    ],
     order: [
       {
         type: mongoose.Types.ObjectId,
@@ -51,20 +57,11 @@ const userSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
-    voucher: [
+    vouchers: [
       {
-        usedDate: {
-          type: Date
-        },
-        applinedProduct: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
-        },
-        voucherId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Voucher'
-        }
-      }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Voucher",
+      },
     ],
     role: {
       type: String,

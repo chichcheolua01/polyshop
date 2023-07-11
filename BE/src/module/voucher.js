@@ -1,19 +1,37 @@
 import mongoose from "mongoose";
 
-const voucherSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    code: { type: String, required: true },
-    // value: { type: Number, required: true },
-    voucherType: { type: String }, // %, 100k, freeship
-    usageLimit: { type: Number },
-    applicableCategories: { type: [String] },
-    // freeShipping: { type: Boolean },
-    startDate: { type: Date },
-    endDate: { type: Date },
-    status: {
-        type: String,
-        enum: ['active', 'expired'],
-        default: 'active'
+const voucherSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-}, { versionKey: false, timestamps: true });
-export default mongoose.model('Voucher', voucherSchema);
+    code: {
+      type: String,
+      required: true,
+    },
+    discount: {
+      type: String,
+    },
+    limit: {
+      type: Number,
+    },
+    apply: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+    startDate: {
+      type: String,
+    },
+    endDate: {
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: ["active", "expired"],
+      default: "active",
+    },
+  },
+  { versionKey: false, timestamps: true }
+);
+export default mongoose.model("Voucher", voucherSchema);

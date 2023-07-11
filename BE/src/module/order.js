@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        quality: {
+        quantity: {
           type: Number,
           required: true,
         },
@@ -37,6 +37,12 @@ const orderSchema = new mongoose.Schema(
       enum: ["Thanh toán khi nhận hàng", "Thanh toán bằng thẻ"],
       required: true,
     },
+    vouchers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Voucher",
+      },
+    ],
     payment: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",

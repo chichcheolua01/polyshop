@@ -1,11 +1,11 @@
 import Order from "../module/order";
+import User from "../module/auth";
+import Voucher from "../module/voucher";
 import { orderSchema } from "../validators/order";
 
 const getAll = async (req, res) => {
   try {
-    const data = await Order.find()
-      .populate("user")
-      .populate("products.product");
+    const data = await Order.find();
 
     if (!data || data.length === 0) {
       return res.status(404).json({
@@ -28,11 +28,9 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
   try {
-    const data = await Order.findById(req.params.id)
-      .populate("user")
-      .populate("products.product");
+    const data = await Order.findById(req.params.id).populate("vouchers");
 
-    if (!data || !date.length === 0) {
+    if (!data || !data.length === 0) {
       return res.status(404).json({
         message: "Không tìm thấy đơn hàng",
       });
@@ -43,10 +41,8 @@ const getOne = async (req, res) => {
       data,
     });
   } catch (err) {
-    console.log(err);
-
     return res.status(500).json({
-      message: "Đã có lỗi xảy ra",
+      message: "Đã có lỗi xảy ra " + err.message,
     });
   }
 };
@@ -74,14 +70,28 @@ const create = async (req, res) => {
       });
     }
 
+    const voucherIds = req.body.vouchers;
+    for (const voucherId of voucherIds) {
+      const voucher = await Voucher.findById(voucherId);
+
+      if (voucher) {
+        voucher.limit -= 1;
+        await voucher.save();
+      }
+    }
+
+    await User.findOneAndUpdate(
+      { _id: req.body.user },
+      { $push: { order: order._id, vouchers: voucherIds } },
+      { new: true }
+    );
+
     return res.status(201).json({
       message: "Tạo đơn hàng thành công",
       orderId: order._id,
       order,
     });
   } catch (err) {
-    console.log(err);
-
     return res.status(500).json({
       message: "Đã có lỗi xảy ra " + err.message,
     });

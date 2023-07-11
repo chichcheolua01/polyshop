@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const productSchema = new mongoose.Schema(
   {
     sold: {
@@ -48,12 +49,6 @@ const productSchema = new mongoose.Schema(
           required: true,
         },
       },
-    ],
-    voucher: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Voucher",
-      }
     ],
     category: {
       type: mongoose.Schema.Types.ObjectId,
