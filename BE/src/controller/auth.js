@@ -1,11 +1,15 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
 import { config } from "dotenv";
-import { registerSchema } from "../validators/register";
-import { loginSchema } from "../validators/login";
+import { v4 as uuidv4 } from "uuid";
 
 import Auth from "../module/auth";
+
+import { loginSchema } from "../validators/login";
+import { registerSchema } from "../validators/register";
+
+import { sendVerifyEmail } from "../middleware/sendMail";
+import { generateRandomCode } from "../component/function";
 
 config();
 
@@ -83,12 +87,68 @@ export const register = async (req, res) => {
       return res.status(404).json({ message: "Đăng ký thất bại" });
     }
 
+    let randomCode = generateRandomCode();
+    let randomString = uuidv4();
+
+    const token = jwt.sign(
+      {
+        email: req.body.email,
+        randomCode: randomCode,
+        randomString: randomString,
+      },
+      process.env.SECRET_KEY
+    );
+
+    const verifyUrl = `${process.env.APP_URL}/auth/verify-email/${token}`;
+
+    sendVerifyEmail(req.body.email, req.body.name, randomCode, verifyUrl);
+
     return res.status(200).json({
       message: "Đăng ký tài khoản thành công",
       data: data,
+      token: token,
     });
   } catch (error) {
+    console.log(error);
+
     return res.status(500).json({ message: "Lỗi server: " + error.message });
+  }
+};
+
+export const verify = async (req, res) => {
+  const { randomCode, randomString } = req.body;
+
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+    if (
+      randomCode !== decoded.randomCode ||
+      randomString !== decoded.randomString
+    ) {
+      return res.status(500).json({
+        message: "Mã xác minh không chính xác",
+      });
+    }
+    const email = decoded.email;
+
+    const user = await Auth.findOne({ email });
+    if (!user) {
+      return res.status(500).json({
+        message: "Không tìm thấy người dùng",
+      });
+    }
+
+    user.isVerifyEmail = true;
+    await user.save();
+
+    return res.status(200).json({
+      message: "Xác minh email thành công",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
+    });
   }
 };
 
@@ -105,13 +165,17 @@ export const logIn = async (req, res) => {
 
     const user = await Auth.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "Email không tồn tại" });
+      return res.status(404).json({
+        message: "Tài khoản hoặc mật khẩu không đúng",
+      });
     }
 
     const passwordHash = await bcrypt.compare(password, user.password);
 
     if (!passwordHash) {
-      return res.status(404).json({ message: "Mật khẩu không đúng" });
+      return res.status(404).json({
+        message: "Tài khoản hoặc mật khẩu không đúng",
+      });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
@@ -125,6 +189,8 @@ export const logIn = async (req, res) => {
       token: token,
     });
   } catch (error) {
-    return res.status(500).json({ message: "Lỗi server: " + error.message });
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
+    });
   }
 };

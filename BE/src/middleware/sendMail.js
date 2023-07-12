@@ -8,6 +8,7 @@ import {
 
 dotenv.config();
 
+// Quên mật khẩu
 export const sendMail = async (name, email, randomCode, resetPasswordUrl) => {
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -27,6 +28,7 @@ export const sendMail = async (name, email, randomCode, resetPasswordUrl) => {
   });
 };
 
+// Gửi hỗ trợ
 export const sendContact = async ({ name, email, content }) => {
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -53,6 +55,7 @@ export const sendContact = async ({ name, email, content }) => {
   </div>`,
   });
 };
+
 // Kích hoạt email
 export const sendVerifyEmail = async (email, name, randomCode, verifyUrl) => {
   let transporter = nodemailer.createTransport({
