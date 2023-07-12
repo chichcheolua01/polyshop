@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import {
   AuthRouter,
   CategoryRouter,
-  ChangePasswordRouter,
+  ChangePassword,
   CommentRouter,
   ContactRouter,
   FavoriteRouter,
@@ -24,41 +24,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Sản phẩm
-app.use("/products", ProductRouter);
-
-// Danh mục
-app.use("/category", CategoryRouter);
-
-// Đăng nhập, đăng ký
 app.use("/auth", AuthRouter);
-
-// Bình luận
-app.use("/comment", CommentRouter);
-
-// Hỗ trợ
-app.use("/contact", ContactRouter);
-
-// Đơn hàng
-app.use("/order", OrderRouter);
-
-// Đổi mật khẩu
-app.use("/", ChangePasswordRouter);
-
-// Yêu thích
-app.use("/favorites", FavoriteRouter);
-
-// Voucher
-app.use("/voucher", VoucherRouter);
-
-// Đơn hàng
-app.use("/order", OrderRouter);
-
-// Phản hồi bình luận
-app.use("/feedback", FeedbackRouter);
-
-// Thẻ ngân hàng
 app.use("/card", CardRouter);
+app.use("/category", CategoryRouter);
+app.use("/", ChangePassword);
+app.use("/comment", CommentRouter);
+app.use("/contact", ContactRouter);
+app.use("/favorites", FavoriteRouter);
+app.use("/feedback", FeedbackRouter);
+app.use("/order", OrderRouter);
+app.use("/products", ProductRouter);
+app.use("/voucher", VoucherRouter);
 
 mongoose.connect(process.env.DB_URL);
 

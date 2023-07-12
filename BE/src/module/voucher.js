@@ -12,19 +12,24 @@ const voucherSchema = new mongoose.Schema(
     },
     discount: {
       type: String,
+      required: true,
     },
     limit: {
       type: Number,
+      required: true,
     },
     apply: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
     },
     startDate: {
       type: String,
+      required: true,
     },
     endDate: {
       type: String,
+      required: true,
     },
     status: {
       type: String,
@@ -34,4 +39,5 @@ const voucherSchema = new mongoose.Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
 export default mongoose.model("Voucher", voucherSchema);

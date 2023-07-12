@@ -15,4 +15,5 @@ const favorite = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
 export default mongoose.model("Favorite", favorite);

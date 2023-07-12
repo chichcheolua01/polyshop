@@ -197,3 +197,5 @@ export const del = async (req, res) => {
     });
   }
 };
+
+export const getOne = (req, res) => {};

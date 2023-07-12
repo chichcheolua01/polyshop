@@ -4,9 +4,11 @@ const productSchema = new mongoose.Schema(
   {
     sold: {
       type: Number,
+      required: false,
     },
     stars: {
       type: Number,
+      required: false,
     },
     inventory: {
       type: Number,
@@ -53,6 +55,7 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
     },
     comments: [
       {
@@ -63,4 +66,5 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
 export default mongoose.model("Product", productSchema);

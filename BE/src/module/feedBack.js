@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const feedBackSchema = new mongoose.Schema(
   {
     user: {
@@ -16,4 +17,5 @@ const feedBackSchema = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
 export default mongoose.model("Feedback", feedBackSchema);

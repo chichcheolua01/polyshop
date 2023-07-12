@@ -16,6 +16,7 @@ config();
 export const getAll = async (req, res) => {
   try {
     const users = await Auth.find();
+
     if (users.length === 0) {
       return res.status(404).json({
         message: "Không có danh sách người dùng",
@@ -27,6 +28,8 @@ export const getAll = async (req, res) => {
       data: users,
     });
   } catch (error) {
+    console.log(error);
+
     return res.status(500).json({
       message: "Lỗi server " + error.message,
     });
@@ -35,13 +38,9 @@ export const getAll = async (req, res) => {
 
 export const getOne = async (req, res) => {
   try {
-    const users = await Auth.findById(req.params.id)
-      .populate("cards")
-      .populate("comments")
-      .populate("order")
-      .populate("favorite");
+    const users = await Auth.findById(req.params.id);
 
-    if (!users) {
+    if (users.length === 0) {
       return res.status(404).json({
         message: "Không có thông tin người dùng",
       });
@@ -52,6 +51,8 @@ export const getOne = async (req, res) => {
       data: users,
     });
   } catch (error) {
+    console.log(error);
+
     return res.status(500).json({
       message: "Lỗi server " + error.message,
     });

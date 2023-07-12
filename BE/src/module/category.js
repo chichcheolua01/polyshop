@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema(
   {
-    brand: {
+    slug: {
       type: String,
       required: true,
     },
-    slug: {
+    brand: {
       type: String,
       required: true,
     },

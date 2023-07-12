@@ -104,7 +104,7 @@ export const create = async (req, res) => {
   }
 };
 
-export const removeCard = async (req, res) => {
+export const remove = async (req, res) => {
   try {
     const data = await Card.findByIdAndDelete(req.params.id);
 
@@ -118,3 +118,5 @@ export const removeCard = async (req, res) => {
     });
   }
 };
+
+export const update = (req, res) => {};

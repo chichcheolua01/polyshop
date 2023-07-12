@@ -43,13 +43,13 @@ const userSchema = new mongoose.Schema(
         ref: "Voucher",
       },
     ],
-    order: [
+    orders: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Order",
       },
     ],
-    favorite: [
+    favorites: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Favorite",
@@ -59,12 +59,6 @@ const userSchema = new mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Comment",
-      },
-    ],
-    vouchers: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Voucher",
       },
     ],
     role: {

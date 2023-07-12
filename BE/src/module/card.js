@@ -29,4 +29,5 @@ const cardSchema = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
 export default mongoose.model("Card", cardSchema);
