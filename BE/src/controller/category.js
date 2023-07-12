@@ -1,4 +1,5 @@
 import Category from "../module/category";
+
 import { categorySchema } from "../validators/category";
 
 export const getAll = async (req, res) => {
@@ -26,7 +27,7 @@ export const getOne = async (req, res) => {
   try {
     const data = await Category.findById(req.params.id);
 
-    if (!data) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không tìm thấy danh mục",
       });
@@ -55,7 +56,7 @@ export const create = async (req, res) => {
 
     const data = await Category.create(req.body);
 
-    if (!data) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không thêm được danh mục",
       });
@@ -76,7 +77,7 @@ export const remove = async (req, res) => {
   try {
     const data = await Category.findByIdAndDelete(req.params.id);
 
-    if (!data) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Xóa danh mục thất bại",
       });

@@ -9,6 +9,7 @@ import { loginSchema } from "../validators/login";
 import { registerSchema } from "../validators/register";
 
 import { sendVerifyEmail } from "../middleware/sendMail";
+
 import { generateRandomCode } from "../component/function";
 
 config();
@@ -17,7 +18,7 @@ export const getAll = async (req, res) => {
   try {
     const users = await Auth.find();
 
-    if (users.length === 0) {
+    if (!users || users.length === 0) {
       return res.status(404).json({
         message: "Không có danh sách người dùng",
       });
@@ -40,7 +41,7 @@ export const getOne = async (req, res) => {
   try {
     const users = await Auth.findById(req.params.id);
 
-    if (users.length === 0) {
+    if (!users || users.length === 0) {
       return res.status(404).json({
         message: "Không có thông tin người dùng",
       });
