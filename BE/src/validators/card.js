@@ -11,4 +11,5 @@ export const cardSchema = joi.object({
   start_date: joi.string().required().messages(errorMessages("Ngày bắt đầu")),
   end_date: joi.string().required().messages(errorMessages("Ngày kết thúc")),
   cvv: joi.number().required().messages(errorMessages("CVV")),
+  main: joi.boolean().optional(),
 });

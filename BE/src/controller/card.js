@@ -11,7 +11,7 @@ dotenv.config();
 export const getAll = async (req, res) => {
   try {
     const data = await Card.find();
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không có danh sách thẻ ngân hàng",
       });
@@ -30,7 +30,7 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
   try {
     const data = await Card.findById(req.params.id);
-    if (!data) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không có thông tin thẻ ngân hàng",
       });
@@ -56,19 +56,25 @@ export const create = async (req, res) => {
       });
     }
 
+    if (!req.headers.authorization) {
+      return res.status(401).json({
+        message: "Bạn chưa đăng nhập",
+      });
+    }
+
     const token = req.headers.authorization.split(" ")[1];
     const decoded = await jwt.verify(token, process.env.SECRET_KEY);
 
     const card = await Card.findOne({ card_number: req.body.card_number });
     if (card) {
-      return res.status(404).json({
+      return res.status(409).json({
         message: "Thẻ ngân hàng đã tồn tại",
       });
     }
 
     const data = await Card.create(req.body);
     if (!data) {
-      return res.status(404).json({
+      return res.status(500).json({
         message: "Không thêm được thẻ ngân hàng",
       });
     }
@@ -78,14 +84,6 @@ export const create = async (req, res) => {
       return res.status(404).json({
         message: "Người dùng không tồn tại",
       });
-    }
-
-    if (!user.cards) {
-      user.cards = [];
-    }
-
-    if (user.cards.length === 0 && !req.body.hasOwnProperty("main")) {
-      data.main = true;
     }
 
     user.cards.push(data);
@@ -106,7 +104,18 @@ export const create = async (req, res) => {
 
 export const remove = async (req, res) => {
   try {
+    if (!req.headers.authorization) {
+      return res.status(401).json({
+        message: "Bạn chưa đăng nhập",
+      });
+    }
+
     const data = await Card.findByIdAndDelete(req.params.id);
+
+    await User.updateMany(
+      { cards: req.params.id },
+      { $pull: { cards: req.params.id } }
+    );
 
     return res.status(200).json({
       message: "Xóa thẻ ngân hàng thành công",
@@ -119,4 +128,39 @@ export const remove = async (req, res) => {
   }
 };
 
-export const update = (req, res) => {};
+export const update = async (req, res) => {
+  try {
+    if (!req.headers.authorization) {
+      return res.status(401).json({
+        message: "Bạn chưa đăng nhập",
+      });
+    }
+
+    const { error } = cardSchema.validate(req.body, { abortEarly: false });
+    if (error) {
+      const errors = error.details.map((err) => err.message);
+      return res.status(400).json({
+        message: errors,
+      });
+    }
+
+    const card = await Card.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+
+    if (!card) {
+      return res.status(404).json({
+        message: "Cập nhật thẻ ngân hàng thất bại",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Cập nhật thẻ ngân hàng thành công",
+      data: card,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
+    });
+  }
+};

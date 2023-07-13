@@ -109,7 +109,9 @@ export const update = async (req, res) => {
     });
 
     if (!data) {
-      return res.status(404).json({ message: "Cập nhật danh mục thất bại" });
+      return res.status(404).json({
+        message: "Cập nhật danh mục thất bại",
+      });
     }
 
     return res.status(200).json({
