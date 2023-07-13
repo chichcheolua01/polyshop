@@ -1,6 +1,6 @@
-import Voucher from "../module/voucher";
 import User from "../module/auth";
-import jwt from "jsonwebtoken";
+import Voucher from "../module/voucher";
+
 import { voucherSchema } from "../validators/voucher";
 
 export const create = async (req, res) => {
@@ -54,7 +54,7 @@ export const getAll = async (req, res) => {
 
 export const getOne = async (req, res) => {
   try {
-    const data = await Voucher.findById(req.params.id);
+    const data = await Voucher.findById(req.params.id).populate("apply");
 
     if (!data) {
       return res.status(404).json({
@@ -83,16 +83,10 @@ export const checkVoucher = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ vouchers: req.body.voucher });
+    const user = await User.findOne({ vouchers: data._id });
     if (user) {
       return res.status(400).json({
         message: "Bạn đã sử dụng voucher này",
-      });
-    }
-
-    if (data.apply.toString() !== req.body.apply) {
-      return res.status(404).json({
-        message: "Voucher không được áp dụng cho loại sản phẩm này",
       });
     }
 
