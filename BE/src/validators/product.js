@@ -17,7 +17,7 @@ export const productSchema = joi
       .messages(errorMessages("Số lượng")),
     description: joi.string().required().messages(errorMessages("Mô tả")),
     category: joi.string().required().messages(errorMessages("Danh mục")),
-    image: joi
+    images: joi
       .array()
       .min(1)
       .required()

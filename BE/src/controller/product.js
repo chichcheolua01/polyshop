@@ -1,4 +1,5 @@
 import Product from "../module/products";
+
 import { productSchema } from "../validators/product";
 
 export const getAll = async (req, res) => {
@@ -28,7 +29,7 @@ export const getOne = async (req, res) => {
       .populate("category")
       .populate("comments");
 
-    if (!data) {
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: "Không tìm thấy sản phẩm",
       });
