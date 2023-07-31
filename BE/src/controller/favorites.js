@@ -33,16 +33,16 @@ export const getOne = async (req, res) => {
       .populate("productId")
       .exec();
 
-    if (favorite) {
-      return res.status(200).json({
-        message: "Thông tin yêu thích của người dùng",
-        data: favorite,
-      });
-    } else {
+    if (!favorite || favorite.length === 0) {
       return res.status(404).json({
         message: "Chưa có yêu thích",
       });
     }
+
+    return res.status(200).json({
+      message: "Thông tin yêu thích của người dùng",
+      data: favorite,
+    });
   } catch (error) {
     res.status(500).json({
       error: "Lỗi server " + error.message,
