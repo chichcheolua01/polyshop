@@ -39,8 +39,11 @@ import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
 
 function App() {
-  const { data: listProducts } = useGetAllProductsQuery();
-  const { data: listCategories } = useGetAllCategoriesQuery();
+  const { data: products } = useGetAllProductsQuery();
+  const { data: categories } = useGetAllCategoriesQuery();
+
+  const listProducts = products?.data;
+  const listCategories = categories?.data;
 
   const [cart, setCart] = useState<ICart | null>(null);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
@@ -58,7 +61,6 @@ function App() {
     fetchCart();
     fetchUsers();
   }, []);
-  console.log(listCategories);
 
   return (
     <>
