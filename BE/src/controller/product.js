@@ -4,7 +4,7 @@ import { productSchema } from "../validators/product";
 
 export const getAll = async (req, res) => {
   try {
-    const data = await Product.find();
+    const data = await Product.find().populate("category");
 
     if (!data || data.length === 0) {
       return res.status(404).json({

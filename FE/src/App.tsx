@@ -32,17 +32,18 @@ import {
   Payment,
 } from "./components";
 
-import { ICart, ICategoryProduct, IProduct, IUser } from "./interface";
+import { ICart, IUser } from "./interface";
 
-import { users, categories, products, carts } from "./data";
+import { users, carts } from "./data";
+import { useGetAllProductsQuery } from "./api/products";
+import { useGetAllCategoriesQuery } from "./api/categories";
 
 function App() {
+  const { data: listProducts } = useGetAllProductsQuery();
+  const { data: listCategories } = useGetAllCategoriesQuery();
+
   const [cart, setCart] = useState<ICart | null>(null);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-  const [listProducts, seListProducts] = useState<IProduct[] | null>(null);
-  const [listCategories, setListCategories] = useState<
-    ICategoryProduct[] | null
-  >(null);
 
   useEffect(() => {
     function fetchUsers() {
@@ -54,18 +55,8 @@ function App() {
       setCart(carts);
     }
 
-    function fetchListProducts() {
-      seListProducts(products);
-    }
-
-    function fetchListCategories() {
-      setListCategories(categories);
-    }
-
     fetchCart();
     fetchUsers();
-    fetchListProducts();
-    fetchListCategories();
   }, []);
 
   return (
@@ -79,7 +70,7 @@ function App() {
                 cart={cart}
                 isLogin={currentUser !== null}
                 imageUser={currentUser?.image.url}
-                listCategories={listCategories}
+                listCategories={listCategories?.data}
               />
             }
           >
@@ -88,8 +79,8 @@ function App() {
               element={
                 <HomePage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts}
-                  listCategories={listCategories}
+                  listProducts={listProducts?.data}
+                  listCategories={listCategories?.data}
                 />
               }
             />
@@ -125,7 +116,7 @@ function App() {
                 element={
                   <Favorite
                     favorites={currentUser?.favorite}
-                    listProducts={listProducts}
+                    listProducts={listProducts?.data}
                   />
                 }
               />
@@ -146,8 +137,8 @@ function App() {
               element={
                 <ListProductPage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts}
-                  listCategories={listCategories}
+                  listProducts={listProducts?.data}
+                  listCategories={listCategories?.data}
                 />
               }
             />
@@ -156,7 +147,7 @@ function App() {
               element={
                 <ProductDetailPage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts}
+                  listProducts={listProducts?.data}
                 />
               }
             />
@@ -172,9 +163,14 @@ function App() {
             <Route path="dashboard" element={<AdminDashboardPage />} />
             <Route
               path="products"
-              element={<AdminProductPage listProducts={listProducts} />}
+              element={<AdminProductPage listProducts={listProducts?.data} />}
             />
-            <Route path="categories" element={<AdminCategoryPage  listCategories={listCategories} />} />
+            <Route
+              path="categories"
+              element={
+                <AdminCategoryPage listCategories={listCategories?.data} />
+              }
+            />
             <Route path="users" element={<AdminUserPage />} />
           </Route>
         </Routes>

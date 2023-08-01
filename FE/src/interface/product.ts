@@ -9,7 +9,7 @@ export interface IProduct {
   name: string;
   description: string;
   comments: ICommentsProduct[];
-  image: IImageProduct[];
+  images: IImageProduct[];
 }
 
 export interface ICategoryProduct {
