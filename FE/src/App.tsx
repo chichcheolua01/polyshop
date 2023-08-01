@@ -163,7 +163,12 @@ function App() {
             <Route path="dashboard" element={<AdminDashboardPage />} />
             <Route
               path="products"
-              element={<AdminProductPage listProducts={listProducts?.data} />}
+              element={
+                <AdminProductPage
+                  listProducts={listProducts?.data}
+                  listCategories={listCategories?.data}
+                />
+              }
             />
             <Route
               path="categories"
