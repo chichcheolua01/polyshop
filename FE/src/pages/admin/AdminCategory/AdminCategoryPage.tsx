@@ -8,7 +8,7 @@ import {
 import { CategoriesDrawer, CategoriesTable } from "../../../components";
 
 type AdminCategoryProps = {
-  listCategories: ICategoryProduct[] | null;
+  listCategories: ICategoryProduct[] | undefined;
 };
 
 const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {

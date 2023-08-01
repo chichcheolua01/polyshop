@@ -6,7 +6,7 @@ import { IFavoriteUser, IProduct } from "../../../../interface";
 
 // Type để truyền dữ liệu giữa các props
 type ProductListProps = {
-  products: IProduct[] | null;
+  products: IProduct[] | undefined;
   favoriteUser: IFavoriteUser[] | undefined;
   title?: string;
   small?: boolean;

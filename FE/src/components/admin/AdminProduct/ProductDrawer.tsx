@@ -17,7 +17,7 @@ const { Option } = Select;
 
 type Props = {
   product: IProduct | undefined;
-  listCategories: ICategoryProduct[] | null;
+  listCategories: ICategoryProduct[] | undefined;
   isEdit: boolean;
 };
 

@@ -58,6 +58,7 @@ function App() {
     fetchCart();
     fetchUsers();
   }, []);
+  console.log(listCategories);
 
   return (
     <>
@@ -70,7 +71,7 @@ function App() {
                 cart={cart}
                 isLogin={currentUser !== null}
                 imageUser={currentUser?.image.url}
-                listCategories={listCategories?.data}
+                listCategories={listCategories}
               />
             }
           >
@@ -79,8 +80,8 @@ function App() {
               element={
                 <HomePage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts?.data}
-                  listCategories={listCategories?.data}
+                  listProducts={listProducts}
+                  listCategories={listCategories}
                 />
               }
             />
@@ -116,7 +117,7 @@ function App() {
                 element={
                   <Favorite
                     favorites={currentUser?.favorite}
-                    listProducts={listProducts?.data}
+                    listProducts={listProducts}
                   />
                 }
               />
@@ -137,8 +138,8 @@ function App() {
               element={
                 <ListProductPage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts?.data}
-                  listCategories={listCategories?.data}
+                  listProducts={listProducts}
+                  listCategories={listCategories}
                 />
               }
             />
@@ -147,7 +148,7 @@ function App() {
               element={
                 <ProductDetailPage
                   favoriteUser={currentUser?.favorite}
-                  listProducts={listProducts?.data}
+                  listProducts={listProducts}
                 />
               }
             />
@@ -165,16 +166,14 @@ function App() {
               path="products"
               element={
                 <AdminProductPage
-                  listProducts={listProducts?.data}
-                  listCategories={listCategories?.data}
+                  listProducts={listProducts}
+                  listCategories={listCategories}
                 />
               }
             />
             <Route
               path="categories"
-              element={
-                <AdminCategoryPage listCategories={listCategories?.data} />
-              }
+              element={<AdminCategoryPage listCategories={listCategories} />}
             />
             <Route path="users" element={<AdminUserPage />} />
           </Route>

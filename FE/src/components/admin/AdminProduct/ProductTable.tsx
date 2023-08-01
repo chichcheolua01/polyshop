@@ -11,7 +11,7 @@ import { IProduct } from "../../../interface";
 
 type ProductTableProps = {
   isLoading: boolean;
-  listProducts: IProduct[] | null;
+  listProducts: IProduct[] | undefined;
   onAction: (_id: string, action: string) => void;
 };
 

@@ -8,8 +8,8 @@ import { ProductDrawer, ProductTable } from "../../../components";
 import { ICategoryProduct, IProduct } from "../../../interface";
 
 type AdminProductProps = {
-  listProducts: IProduct[] | null;
-  listCategories: ICategoryProduct[] | null;
+  listProducts: IProduct[] | undefined;
+  listCategories: ICategoryProduct[] | undefined;
 };
 
 const AdminProductPage = ({
