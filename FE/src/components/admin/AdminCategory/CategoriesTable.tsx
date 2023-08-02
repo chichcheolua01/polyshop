@@ -88,8 +88,8 @@ const CategoriesTable = ({
               cancelText="Hủy"
               onConfirm={() => onAction(_id, "delete")}
               placement="topRight"
-              title="Xóa sản phẩm?"
-              description="Bạn có chắc chắn xóa sản phẩm này không?"
+              title="Xóa danh mục?"
+              description="Bạn có chắc chắn xóa danh mục này không?"
               icon={
                 <AiOutlineQuestionCircle
                   size={20}

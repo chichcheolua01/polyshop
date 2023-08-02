@@ -12,6 +12,14 @@ export const categoryApi = createApi({
   tagTypes: ["Category"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080",
+    prepareHeaders(headers) {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     getAllCategories: builder.query<CategoriesResponse, void>({
@@ -30,7 +38,7 @@ export const categoryApi = createApi({
       invalidatesTags: ["Category"],
     }),
     deleteCategories: builder.mutation({
-      query: (id: number) => ({
+      query: (id: string) => ({
         url: `/category/${id}`,
         method: "DELETE",
       }),

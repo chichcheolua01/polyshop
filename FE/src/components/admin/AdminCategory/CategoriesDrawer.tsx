@@ -1,24 +1,19 @@
-import { Descriptions, Form, Button, Input, message } from "antd";
+import { Descriptions, Form, Button, Input } from "antd";
 
 import { ICategoryProduct } from "../../../interface";
 import { useUpdateCategoriesMutation } from "../../../api/categories";
 
-type Props = {
+type CategoriesDrawerProps = {
   cate: ICategoryProduct | undefined;
   isEdit: boolean;
 };
 
-const CategoriesDrawer = ({ cate, isEdit }: Props) => {
+const CategoriesDrawer = ({ cate, isEdit }: CategoriesDrawerProps) => {
   const [form] = Form.useForm();
-  const [updateCategories, { isLoading, isError }] =
-    useUpdateCategoriesMutation();
+  const [updateCategories, { isLoading }] = useUpdateCategoriesMutation();
 
   const onFinish = (values: ICategoryProduct) => {
     updateCategories(values);
-
-    if (!isError) {
-      message.success("Sửa thành công");
-    }
   };
 
   return (
