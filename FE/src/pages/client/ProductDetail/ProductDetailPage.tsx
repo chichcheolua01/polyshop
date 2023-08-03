@@ -33,9 +33,7 @@ const ProductDetailPage = ({
 
   const productSimilar =
     listProducts &&
-    listProducts.filter(
-      (prod) => prod.category._id === product.data?.category._id
-    );
+    listProducts.filter((prod) => prod.category._id === product?.category._id);
 
   const items: TabsProps["items"] = [
     {
