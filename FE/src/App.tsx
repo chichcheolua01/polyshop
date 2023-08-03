@@ -13,6 +13,7 @@ import {
   CheckoutPage,
   ContactPage,
   FaqPage,
+  ForgotPage,
   HomePage,
   IntroducePage,
   ListProductPage,
@@ -20,6 +21,7 @@ import {
   ProductDetailPage,
   ProfilePage,
   RegisterPage,
+  ResetPage,
 } from "./pages";
 
 import {
@@ -171,6 +173,11 @@ function App() {
           <Route path="/auth" element={<BaseAuth />}>
             <Route index element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="forgot" element={<ForgotPage />} />
+            <Route
+              path="reset-password/:randomString"
+              element={<ResetPage />}
+            />
           </Route>
 
           <Route path="/admin" element={<BaseAdmin />}>

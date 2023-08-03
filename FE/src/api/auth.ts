@@ -83,6 +83,31 @@ export const authApi = createApi({
         };
       },
     }),
+    forgotPasswordAuth: builder.mutation({
+      query: (data: { email: string }) => ({
+        url: `/forgot-password`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    resetPasswordAuth: builder.mutation({
+      query: (data: {
+        password: string;
+        randomCode: string;
+        randomString: string | undefined;
+      }) => {
+        const forgotToken = localStorage.getItem("forgotToken");
+
+        return {
+          url: `/reset-password`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + forgotToken,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -93,4 +118,6 @@ export const {
   useSendCodeAuthMutation,
   useCheckCodeAuthMutation,
   useChangePasswordAuthMutation,
+  useForgotPasswordAuthMutation,
+  useResetPasswordAuthMutation,
 } = authApi;
