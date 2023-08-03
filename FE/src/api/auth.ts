@@ -44,6 +44,45 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["Auth"],
     }),
+    sendCodeAuth: builder.mutation({
+      query: (data: { email: string | undefined }) => ({
+        url: `/send-code`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    checkCodeAuth: builder.mutation({
+      query: (data: { code: string }) => {
+        const checkToken = localStorage.getItem("tokenChange");
+
+        return {
+          url: `/check-code`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + checkToken,
+          },
+        };
+      },
+    }),
+    changePasswordAuth: builder.mutation({
+      query: (data: {
+        oldPassword: string;
+        password: string;
+        confirmPassword: string;
+      }) => {
+        const checkToken = localStorage.getItem("tokenChange");
+
+        return {
+          url: `/change-pass`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + checkToken,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -51,4 +90,7 @@ export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useGetUserByTokenMutation,
+  useSendCodeAuthMutation,
+  useCheckCodeAuthMutation,
+  useChangePasswordAuthMutation,
 } = authApi;
