@@ -14,6 +14,7 @@ import {
 } from "../../../components";
 
 import { IFavoriteUser, IProduct } from "../../../interface";
+import { useGetOneProductsQuery } from "../../../api/products";
 
 type ProductDetailPageProps = {
   favoriteUser: IFavoriteUser[] | undefined;
@@ -26,12 +27,15 @@ const ProductDetailPage = ({
 }: ProductDetailPageProps) => {
   const { id } = useParams<string>();
   const [comment, setComment] = useState("");
+  const { data } = useGetOneProductsQuery(id);
 
-  const product = listProducts && listProducts.find((prod) => prod._id === id);
+  const product = data?.data;
 
   const productSimilar =
     listProducts &&
-    listProducts.filter((prod) => prod.category._id === product?.category._id);
+    listProducts.filter(
+      (prod) => prod.category._id === product.data?.category._id
+    );
 
   const items: TabsProps["items"] = [
     {

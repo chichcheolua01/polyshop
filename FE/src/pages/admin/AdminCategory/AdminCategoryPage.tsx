@@ -11,6 +11,7 @@ type AdminCategoryProps = {
 
 const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [isAdd, setIsAdd] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const [cate, setCategories] = useState<ICategoryProduct | undefined>();
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -19,13 +20,14 @@ const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
 
   const [deleteCategories, resultDelete] = useDeleteCategoriesMutation();
 
-  const onCancel = () => {
-    setIsEdit(false);
-    setOpenDrawer(false);
-  };
-
   const remove = (_id: string) => {
     deleteCategories(_id);
+  };
+
+  const onCancel = () => {
+    setIsAdd(false);
+    setIsEdit(false);
+    setOpenDrawer(false);
   };
 
   const onAction = (_id: string, action: string) => {
@@ -33,6 +35,8 @@ const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
       ? setOpenDrawer(true)
       : action === "update"
       ? setIsEdit(true)
+      : action === "add"
+      ? setIsAdd(true)
       : action === "delete"
       ? remove(_id)
       : null;
@@ -79,10 +83,16 @@ const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
         key={cate?._id}
         onClose={onCancel}
         getContainer={false}
-        open={openDrawer || isEdit}
-        title={`${isEdit ? "Cập nhật thông tin" : "Thông tin chi tiết"}`}
+        open={openDrawer || isEdit || isAdd}
+        title={`${
+          isEdit
+            ? "Cập nhật thông tin"
+            : isAdd
+            ? "Thêm mới danh mục"
+            : "Thông tin chi tiết"
+        }`}
       >
-        <CategoriesDrawer cate={cate} isEdit={isEdit} />
+        <CategoriesDrawer cate={cate} isEdit={isEdit} isAdd={isAdd} />
       </Drawer>
 
       <CategoriesTable

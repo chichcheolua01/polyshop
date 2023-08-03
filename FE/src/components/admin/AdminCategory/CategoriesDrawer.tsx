@@ -1,19 +1,29 @@
 import { Descriptions, Form, Button, Input } from "antd";
 
 import { ICategoryProduct } from "../../../interface";
-import { useUpdateCategoriesMutation } from "../../../api/categories";
+import {
+  useAddCategoriesMutation,
+  useUpdateCategoriesMutation,
+} from "../../../api/categories";
 
 type CategoriesDrawerProps = {
   cate: ICategoryProduct | undefined;
   isEdit: boolean;
+  isAdd: boolean;
 };
 
-const CategoriesDrawer = ({ cate, isEdit }: CategoriesDrawerProps) => {
+const CategoriesDrawer = ({ cate, isEdit, isAdd }: CategoriesDrawerProps) => {
   const [form] = Form.useForm();
-  const [updateCategories, { isLoading }] = useUpdateCategoriesMutation();
+  const [addCategories, resultAdd] = useAddCategoriesMutation();
+  const [updateCategories, resultUpdate] = useUpdateCategoriesMutation();
 
   const onFinish = (values: ICategoryProduct) => {
-    updateCategories(values);
+    if (isEdit) {
+      updateCategories(values);
+    }
+    if (isAdd) {
+      addCategories(values);
+    }
   };
 
   return (
@@ -52,9 +62,9 @@ const CategoriesDrawer = ({ cate, isEdit }: CategoriesDrawerProps) => {
               ]}
             >
               <Input
-                bordered={isEdit}
-                readOnly={!isEdit}
-                disabled={isLoading}
+                bordered={isEdit || isAdd}
+                readOnly={!isEdit || !isAdd}
+                disabled={resultUpdate.isLoading || resultAdd.isLoading}
               />
             </Form.Item>
           </Descriptions.Item>
@@ -67,9 +77,9 @@ const CategoriesDrawer = ({ cate, isEdit }: CategoriesDrawerProps) => {
               ]}
             >
               <Input
-                bordered={isEdit}
-                readOnly={!isEdit}
-                disabled={isLoading}
+                bordered={isEdit || isAdd}
+                readOnly={!isEdit || !isAdd}
+                disabled={resultUpdate.isLoading || resultAdd.isLoading}
               />
             </Form.Item>
           </Descriptions.Item>
