@@ -31,6 +31,7 @@ import {
   Order,
   OrderAddress,
   Payment,
+  Loading,
 } from "./components";
 
 import { ICart, IUser } from "./interface";
@@ -64,6 +65,16 @@ function App() {
     }
   }, [getUser, token]);
 
+  if (resultGet.isLoading) {
+    return (
+      <>
+        <div className="flex items-center justify-center h-screen">
+          <Loading />
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -73,8 +84,7 @@ function App() {
             element={
               <BaseClient
                 cart={cart}
-                isLogin={currentUser !== null}
-                imageUser={currentUser?.image?.url}
+                currentUser={currentUser}
                 listCategories={listCategories}
               />
             }

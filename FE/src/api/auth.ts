@@ -24,6 +24,7 @@ export const authApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Auth"],
     }),
     registerUser: builder.mutation({
       query: (data: IRegister) => ({
@@ -31,6 +32,7 @@ export const authApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Auth"],
     }),
     getUserByToken: builder.mutation({
       query: (token: string | null) => ({
@@ -40,6 +42,7 @@ export const authApi = createApi({
           Authorization: "Bearer " + token,
         },
       }),
+      invalidatesTags: ["Auth"],
     }),
   }),
 });
