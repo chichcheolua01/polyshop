@@ -93,7 +93,7 @@ function App() {
               index
               element={
                 <HomePage
-                  favoriteUser={currentUser?.favorite}
+                  favoriteUser={currentUser?.favorites}
                   listProducts={listProducts}
                   listCategories={listCategories}
                 />
@@ -130,7 +130,7 @@ function App() {
                 path="favorite"
                 element={
                   <Favorite
-                    favorites={currentUser?.favorite}
+                    favorites={currentUser?.favorites}
                     listProducts={listProducts}
                   />
                 }
@@ -151,7 +151,7 @@ function App() {
               path="list-product"
               element={
                 <ListProductPage
-                  favoriteUser={currentUser?.favorite}
+                  favoriteUser={currentUser?.favorites}
                   listProducts={listProducts}
                   listCategories={listCategories}
                 />
@@ -161,7 +161,7 @@ function App() {
               path="product-detail/:id"
               element={
                 <ProductDetailPage
-                  favoriteUser={currentUser?.favorite}
+                  favoriteUser={currentUser?.favorites}
                   listProducts={listProducts}
                 />
               }
