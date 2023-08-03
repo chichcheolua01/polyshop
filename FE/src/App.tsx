@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { message } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
@@ -34,13 +35,15 @@ import {
 
 import { ICart, IUser } from "./interface";
 
-import { users, carts } from "./data";
 import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
+import { useGetUserByTokenMutation } from "./api/auth";
 
 function App() {
   const { data: products } = useGetAllProductsQuery();
   const { data: categories } = useGetAllCategoriesQuery();
+  const [getUser, resultGet] = useGetUserByTokenMutation();
+  const token = localStorage.getItem("token");
 
   const listProducts = products?.data;
   const listCategories = categories?.data;
@@ -49,12 +52,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    function fetchCart() {
-      setCart(carts);
+    if (token) {
+      getUser(token)
+        .unwrap()
+        .then((response) => {
+          setCurrentUser(response?.data);
+        })
+        .catch((error) => {
+          message.error(error.data.message);
+        });
     }
-
-    fetchCart();
-  }, []);
+  }, [getUser, token]);
 
   return (
     <>
@@ -66,7 +74,7 @@ function App() {
               <BaseClient
                 cart={cart}
                 isLogin={currentUser !== null}
-                imageUser={currentUser?.image.url}
+                imageUser={currentUser?.image?.url}
                 listCategories={listCategories}
               />
             }
@@ -88,7 +96,7 @@ function App() {
               element={
                 <ProfilePage
                   nameUser={currentUser?.name}
-                  imageUser={currentUser?.image.url}
+                  imageUser={currentUser?.image?.url}
                 />
               }
             >
