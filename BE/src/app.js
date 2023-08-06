@@ -36,7 +36,7 @@ app.use("/feedback", FeedbackRouter);
 app.use("/order", OrderRouter);
 app.use("/products", ProductRouter);
 app.use("/voucher", VoucherRouter);
-app.use("/payment", PaymentRouter);
+app.use("/", PaymentRouter);
 
 mongoose.connect(process.env.DB_URL);
 

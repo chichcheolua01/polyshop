@@ -3,6 +3,8 @@
 - FE: React
 - BE: NodeJs
 
+<!-- --------------------BE-------------------- -->
+
 - Auth
 
   - getAll: Lấy tất cả người dùng ( admin )
@@ -81,7 +83,7 @@
   - remove: xóa thẻ ngân hàng ( login )
   - update: cập nhật thẻ ngân hàng ( login )
 
-  <!-- --------------------Success-------------------- -->
+  <!-- --------------------BE Success-------------------- -->
 
 - Order
 - Payment

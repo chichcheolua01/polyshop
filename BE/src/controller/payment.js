@@ -1,7 +1,8 @@
-import Payment from "../models/payment";
-import Order from "../models/order";
-import Discount from "../models/discount";
-import { paymentSchema } from "../validate/payment";
+import Payment from "../module/payment";
+import Order from "../module/order";
+import Discount from "../module/voucher";
+
+import { paymentSchema } from "../validators/payment";
 
 export const processPayment = async (req, res) => {
   try {
