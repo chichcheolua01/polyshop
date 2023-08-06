@@ -3,6 +3,7 @@ import { Drawer, message } from "antd";
 
 import { ProductDrawer, ProductTable } from "../../../components";
 import { ICategoryProduct, IProduct } from "../../../interface";
+import { useDeleteProductsMutation } from "../../../api/products";
 
 type AdminProductProps = {
   listProducts: IProduct[] | undefined;
@@ -22,6 +23,8 @@ const AdminProductPage = ({
 
   const key = "delete";
 
+  const [deleteProducts, resultDelete] = useDeleteProductsMutation();
+
   const onCancel = () => {
     setIsAdd(false);
     setIsEdit(false);
@@ -29,7 +32,7 @@ const AdminProductPage = ({
   };
 
   const remove = (_id: string) => {
-    alert(_id);
+    deleteProducts(_id);
   };
 
   const onAction = (_id: string, action: string) => {
@@ -45,6 +48,32 @@ const AdminProductPage = ({
 
     setSelectedId(_id);
   };
+
+  useEffect(() => {
+    if (resultDelete.isLoading) {
+      messageApi.open({
+        key,
+        type: "loading",
+        content: "Loading...",
+      });
+    }
+    if (resultDelete.isSuccess) {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Xóa thành công!",
+        duration: 2,
+      });
+    }
+    if (resultDelete.isError) {
+      messageApi.open({
+        key,
+        type: "error",
+        content: "Đã có lỗi xảy ra!",
+        duration: 2,
+      });
+    }
+  }, [resultDelete, messageApi]);
 
   useEffect(() => {
     const fetchProduct = listProducts?.find(

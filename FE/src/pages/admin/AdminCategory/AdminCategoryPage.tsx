@@ -45,27 +45,29 @@ const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
     setSelectedId(_id);
   };
 
-  if (resultDelete.isLoading) {
-    messageApi.open({
-      key,
-      type: "loading",
-      content: "Loading...",
-    });
-  }
-  if (resultDelete.isSuccess) {
-    messageApi.open({
-      key,
-      type: "success",
-      content: "Xóa thành công!",
-    });
-  }
-  if (resultDelete.isError) {
-    messageApi.open({
-      key,
-      type: "error",
-      content: "Đã có lỗi xảy ra!",
-    });
-  }
+  useEffect(() => {
+    if (resultDelete.isLoading) {
+      messageApi.open({
+        key,
+        type: "loading",
+        content: "Loading...",
+      });
+    }
+    if (resultDelete.isSuccess) {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Xóa thành công!",
+      });
+    }
+    if (resultDelete.isError) {
+      messageApi.open({
+        key,
+        type: "error",
+        content: "Đã có lỗi xảy ra!",
+      });
+    }
+  }, [resultDelete, messageApi]);
 
   useEffect(() => {
     const fetchListCategories = listCategories?.find(
