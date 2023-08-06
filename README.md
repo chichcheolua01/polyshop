@@ -72,7 +72,16 @@
 - Favorite
 
   - favorite: Yêu thích sản phẩm ( login )
-  <!-- --------------------Success-------------------- -->
 
 - Card
+
+  - getAll: lấy tất cả thẻ ngân hàng
+  - getOne: lấy một thẻ ngân hàng
+  - create: thêm mới thẻ ngân hàng ( login )
+  - remove: xóa thẻ ngân hàng ( login )
+  - update: cập nhật thẻ ngân hàng ( login )
+
+  <!-- --------------------Success-------------------- -->
+
 - Order
+- Payment
