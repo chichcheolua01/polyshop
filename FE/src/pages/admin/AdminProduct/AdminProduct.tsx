@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Drawer,
-  //  message
-} from "antd";
+import { Drawer, message } from "antd";
 
 import { ProductDrawer, ProductTable } from "../../../components";
 import { ICategoryProduct, IProduct } from "../../../interface";
@@ -17,14 +14,22 @@ const AdminProductPage = ({
   listCategories,
 }: AdminProductProps) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [isAdd, setIsAdd] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const [product, setProduct] = useState<IProduct | undefined>();
   const [openDrawer, setOpenDrawer] = useState(false);
-  // const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const key = "delete";
 
   const onCancel = () => {
+    setIsAdd(false);
     setIsEdit(false);
     setOpenDrawer(false);
+  };
+
+  const remove = (_id: string) => {
+    alert(_id);
   };
 
   const onAction = (_id: string, action: string) => {
@@ -32,31 +37,14 @@ const AdminProductPage = ({
       ? setOpenDrawer(true)
       : action === "update"
       ? setIsEdit(true)
+      : action === "add"
+      ? (setIsAdd(true), setIsEdit(true))
       : action === "delete"
-      ? "action delete"
+      ? remove(_id)
       : null;
 
     setSelectedId(_id);
   };
-
-  // const onSuccessAction = (action: string) => {
-  //   const key = action === "update" ? "update" : "delete";
-
-  //   messageApi.open({
-  //     key,
-  //     type: "loading",
-  //     content: "Vui lòng chờ",
-  //   });
-
-  //   setTimeout(() => {
-  //     messageApi.open({
-  //       key,
-  //       type: "success",
-  //       content: "Thành công",
-  //       duration: 2,
-  //     });
-  //   }, 2000);
-  // };
 
   useEffect(() => {
     const fetchProduct = listProducts?.find(
@@ -67,7 +55,7 @@ const AdminProductPage = ({
 
   return (
     <>
-      {/* {contextHolder} */}
+      {contextHolder}
 
       <Drawer
         size="large"
@@ -75,13 +63,20 @@ const AdminProductPage = ({
         key={product?._id}
         onClose={onCancel}
         getContainer={false}
-        open={openDrawer || isEdit}
-        title={`${isEdit ? "Cập nhật thông tin" : "Thông tin chi tiết"}`}
+        open={openDrawer || isEdit || isAdd}
+        title={`${
+          isAdd
+            ? "Cập nhật sản phẩm"
+            : isEdit
+            ? "Chỉnh sửa sản phẩm"
+            : "Thông tin chi tiết"
+        }`}
       >
         <ProductDrawer
           product={product}
           listCategories={listCategories}
           isEdit={isEdit}
+          isAdd={isAdd}
         />
       </Drawer>
 

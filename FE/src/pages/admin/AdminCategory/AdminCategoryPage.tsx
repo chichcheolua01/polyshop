@@ -85,13 +85,13 @@ const AdminCategoryPage = ({ listCategories }: AdminCategoryProps) => {
         onClose={onCancel}
         getContainer={false}
         open={openDrawer || isEdit || isAdd}
-        title={`${
-          isEdit
-            ? "Cập nhật thông tin"
-            : isAdd
-            ? "Thêm mới danh mục"
+        title={
+          isAdd
+            ? "Cập nhật danh mục"
+            : isEdit
+            ? "Chỉnh sửa danh mục"
             : "Thông tin chi tiết"
-        }`}
+        }
       >
         <CategoriesDrawer cate={cate} isEdit={isEdit} isAdd={isAdd} />
       </Drawer>

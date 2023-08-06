@@ -19,9 +19,10 @@ type Props = {
   product: IProduct | undefined;
   listCategories: ICategoryProduct[] | undefined;
   isEdit: boolean;
+  isAdd: boolean;
 };
 
-const ProductDrawer = ({ product, listCategories, isEdit }: Props) => {
+const ProductDrawer = ({ product, listCategories, isEdit, isAdd }: Props) => {
   const [form] = Form.useForm();
   const [selectedSlug, setSelectedSlug] = useState("");
 
