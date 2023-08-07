@@ -138,10 +138,7 @@ function App() {
                   />
                 }
               />
-              <Route
-                path="list-card"
-                element={<ListCard cardUser={currentUser?.cards} />}
-              />
+              <Route path="list-card" element={<ListCard />} />
             </Route>
             <Route
               path="checkout"

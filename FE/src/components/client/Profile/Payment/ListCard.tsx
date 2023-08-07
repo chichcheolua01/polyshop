@@ -1,10 +1,11 @@
 import Card from "./Card";
 
-import { ICardUser } from "../../../../interface";
+import { useGetCardsByUserQuery } from "../../../../api/auth";
 
-type ListCardProps = { cardUser: ICardUser[] | undefined };
+const ListCard = () => {
+  const { data: listCards } = useGetCardsByUserQuery();
+  const cardUser = listCards?.listCards;
 
-const ListCard = ({ cardUser }: ListCardProps) => {
   return (
     <>
       <div className="bg-white p-5 rounded-xl">
