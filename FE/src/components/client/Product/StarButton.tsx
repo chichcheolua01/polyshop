@@ -1,17 +1,20 @@
-// Import các thư viện
 import { Rate } from "antd";
 
-// Type để truyền dữ liệu giữa các props
 type StarButtonProps = {
   star: number | undefined;
   disabled?: boolean;
+  setStar?: (star: number) => void;
 };
 
-// Khởi tạo component
-const StarButton = ({ star, disabled }: StarButtonProps) => {
+const StarButton = ({ star, disabled, setStar }: StarButtonProps) => {
   return (
     <>
-      <Rate allowHalf disabled={disabled} defaultValue={star} />
+      <Rate
+        allowHalf
+        disabled={disabled}
+        defaultValue={star}
+        onChange={setStar}
+      />
     </>
   );
 };

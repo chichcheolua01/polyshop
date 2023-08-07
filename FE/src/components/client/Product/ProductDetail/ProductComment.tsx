@@ -1,23 +1,66 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import { Avatar, List, Space, Rate } from "antd";
+import React, { useEffect, useState } from "react";
+import { Avatar, List, Space, Rate, message, Popconfirm } from "antd";
 
 import { AiFillLike, AiFillMessage } from "react-icons/ai";
 
-import { Button } from "../../..";
+import { Button, StarButton } from "../../..";
 import { ICommentsProduct } from "../../../../interface";
+import {
+  useCreateCommentsMutation,
+  useDeleteCommentsMutation,
+} from "../../../../api/products";
 
 type ProductCommentProps = {
   comments: ICommentsProduct[];
+  product: string;
 };
 
-const ProductComment = ({ comments }: ProductCommentProps) => {
+const ProductComment = ({ comments, product }: ProductCommentProps) => {
   const [isFeedback, setIsFeedback] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState<
     string | undefined
   >("");
   const [comment, setComment] = useState("");
+  const [stars, setStars] = useState(0);
   const [feedBack, setFeedback] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
+  const key = "delete";
+
+  const [createComment, resultCreate] = useCreateCommentsMutation();
+  const [deleteComment, resultDelete] = useDeleteCommentsMutation();
+
+  const onFinish = () => {
+    const data = {
+      product,
+      stars,
+      comment,
+    };
+
+    if (stars === 0) {
+      message.warning("Đánh giá không được để trống");
+      return;
+    }
+
+    createComment(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setComment("");
+        setStars(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onDeleteComment = (_id: string | undefined) => {
+    deleteComment(_id);
+  };
+
+  const onFeedback = (_id: string | undefined) => {
+    alert(_id);
+  };
 
   const listComment = comments.map((cmt) => ({
     href: "/profile",
@@ -44,12 +87,38 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
     </Space>
   );
 
+  useEffect(() => {
+    if (resultDelete.isLoading) {
+      messageApi.open({
+        key,
+        type: "loading",
+        content: "Loading...",
+      });
+    }
+    if (resultDelete.isSuccess) {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Xóa thành công!",
+      });
+    }
+    if (resultDelete.isError) {
+      messageApi.open({
+        key,
+        type: "error",
+        content: "Đã có lỗi xảy ra!",
+      });
+    }
+  }, [resultDelete, messageApi]);
+
   return (
     <>
+      {contextHolder}
+
       <List
         size="large"
         itemLayout="vertical"
-        pagination={{ pageSize: 2 }}
+        pagination={{ pageSize: 10 }}
         dataSource={listComment}
         footer={
           <>
@@ -60,7 +129,6 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
               >
                 Bình luận
               </label>
-
               <textarea
                 id="comment"
                 value={comment}
@@ -70,11 +138,17 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
                 onChange={(e) => setComment(e.target.value)}
                 className="px-0 w-full text-sm text-gray-900 border-0 pt-3 focus:ring-0 focus:outline-none"
               />
+
+              <StarButton star={stars} setStar={setStars} />
             </div>
 
             <div className="flex justify-center">
               <div>
-                <Button label="Bình luận" onClick={() => alert("Bình luận")} />
+                <Button
+                  label="Bình luận"
+                  onClick={onFinish}
+                  disabled={resultCreate.isLoading}
+                />
               </div>
             </div>
           </>
@@ -84,17 +158,34 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
             <List.Item
               key={item.title}
               extra={
-                <button
-                  onClick={() => {
-                    setIsFeedback(!isFeedback);
-                    setSelectedCommentId(item._id);
-                  }}
-                  className="hover:text-blue-500"
-                >
-                  {isFeedback && selectedCommentId === item._id
-                    ? "Hủy"
-                    : "Phản hồi"}
-                </button>
+                <div className="flex gap-3">
+                  <Button
+                    label={
+                      isFeedback && selectedCommentId === item._id
+                        ? "Hủy"
+                        : "Phản hồi"
+                    }
+                    small
+                    onClick={() => {
+                      setIsFeedback(!isFeedback);
+                      setSelectedCommentId(item._id);
+                    }}
+                    unBackground
+                  />
+
+                  <Popconfirm
+                    okType="danger"
+                    placement="top"
+                    title="Bạn có muốn xóa bình luận này?"
+                    description="Xóa bình luận"
+                    onConfirm={() => onDeleteComment(item._id)}
+                    okText="Đồng ý"
+                    cancelText="Hủy"
+                    disabled={resultDelete.isLoading}
+                  >
+                    <Button label="Xóa" small unBackground />
+                  </Popconfirm>
+                </div>
               }
               actions={[
                 <IconText
@@ -162,7 +253,7 @@ const ProductComment = ({ comments }: ProductCommentProps) => {
                         <div>
                           <Button
                             label="Phản hồi"
-                            onClick={() => alert(item._id)}
+                            onClick={() => onFeedback(item._id)}
                           />
                         </div>
                       </div>

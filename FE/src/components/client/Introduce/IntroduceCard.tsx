@@ -1,13 +1,10 @@
-// Import các interface
 import { IIntroduce } from "../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type Props = {
   item: IIntroduce;
   order?: boolean;
 };
 
-// Khởi tạo component
 const IntroduceCard = ({ item, order }: Props) => {
   return (
     <>

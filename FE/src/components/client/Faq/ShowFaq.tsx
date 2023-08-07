@@ -1,18 +1,13 @@
-// Import các thư viện
 import { useState } from "react";
 
-// Import các icon
 import { AiOutlineDown } from "react-icons/ai";
 
-// Type để truyền dữ liệu giữa các props
 type ShowFaqProps = {
   text: string;
   header: string;
 };
 
-// Khởi tạo component
 const ShowFaq = ({ header, text }: ShowFaqProps) => {
-  // Sử dụng hook
   const [active, setActive] = useState(false);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {

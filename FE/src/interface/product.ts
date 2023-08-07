@@ -14,8 +14,8 @@ export interface IProduct {
 
 export interface ICategoryProduct {
   _id?: string;
-  slug: string; // danh mục : điện thoại, máy tính ...
-  brand: string; // thương hiệu : iphone, msi ...
+  slug: string;
+  brand: string;
 }
 
 export interface ICommentsProduct {

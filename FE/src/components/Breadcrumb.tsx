@@ -1,13 +1,10 @@
-// Import các icon
 import { GoHome } from "react-icons/go";
 import { AiOutlineRight } from "react-icons/ai";
 
-// Type để truyền dữ liệu giữa các props
 type BreadcrumbProps = {
   text: string;
 };
 
-// Khởi tạo component
 const Breadcrumb = ({ text }: BreadcrumbProps) => {
   return (
     <>

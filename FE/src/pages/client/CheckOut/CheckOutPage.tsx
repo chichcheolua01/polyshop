@@ -1,7 +1,5 @@
-// Import các thư viện
 import { useState } from "react";
 
-// Import các component
 import {
   Breadcrumb,
   CheckoutCard,
@@ -10,37 +8,28 @@ import {
   Container,
 } from "../../../components";
 
-// Import các interface
 import { ICart, ICardUser } from "../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type CheckoutPageProps = {
   cardUser: ICardUser[] | undefined;
   cart: ICart | null;
 };
 
-// Khởi tạo component
 const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
-  // Sử dụng hook, mắc định là "Thẻ ngân hàng"
   const [active, setActive] = useState("Thẻ ngân hàng");
 
-  // Lấy thông tin thẻ ngân hàng được đặt là main của người dùng
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
 
-  // Nếu cart rỗng thì disabled
   const disabled = cart ? false : true;
 
-  // Cập nhật lại state
   const toggleActive = (text: string) => {
     setActive(text);
   };
 
-  // Xử lý sự kiện
   const handlePayment = () => {
     alert("Thanh toán");
   };
 
-  // Mảng chứa các đối tượng
   const paymentMethod = [
     {
       name: "Thẻ ngân hàng",
@@ -68,7 +57,6 @@ const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
                 Chọn phương thức thanh toán
               </h4>
               <div className="mt-10 flex flex-row gap-5">
-                {/* Duyệt qua từng phần tử của paymentMethod */}
                 {paymentMethod.map((method) => (
                   <div
                     key={method.name}
@@ -88,7 +76,6 @@ const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
                 ))}
               </div>
 
-              {/* Nếu active là "Thẻ ngân hàng" thì hiển thị component */}
               {active === "Thẻ ngân hàng" && (
                 <CheckoutCard
                   cardMain={cardMain}

@@ -1,7 +1,5 @@
-// Type để truyền dữ liệu giữa các props
 type PaymentProps = {};
 
-// Khởi tạo component
 const Payment = (props: PaymentProps) => {
   return (
     <>

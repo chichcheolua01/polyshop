@@ -9,6 +9,6 @@ router.get("/", getAll);
 router.get("/:id", getOne);
 router.post("/", loginMiddleware, create);
 router.patch("/:id", loginMiddleware, update);
-router.delete("/", loginMiddleware, del);
+router.delete("/:id", loginMiddleware, del);
 
 export default router;

@@ -1,7 +1,5 @@
-// Type để truyền dữ liệu giữa các props
 type OrderProps = {};
 
-// Khởi tạo component
 const Order = (props: OrderProps) => {
   return (
     <>

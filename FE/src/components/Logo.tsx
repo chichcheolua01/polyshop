@@ -1,14 +1,10 @@
-// Import các thư viện
 import { useNavigate } from "react-router-dom";
 
-// Type để truyền dữ liệu giữa các props
 type LogoProps = {
   large?: boolean;
 };
 
-// Khởi tạo component
 const Logo = ({ large }: LogoProps) => {
-  // Sử dụng hook
   const navigate = useNavigate();
 
   return (

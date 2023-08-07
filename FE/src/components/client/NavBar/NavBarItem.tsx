@@ -1,8 +1,6 @@
-// Import các thư viện
 import { Popover } from "antd";
 import { ReactNode } from "react";
 
-// Type để truyền dữ liệu giữa các props
 type NavBarItemProps = {
   label: string;
   active?: boolean;
@@ -10,7 +8,6 @@ type NavBarItemProps = {
   bodyPopover?: ReactNode;
 };
 
-// Khởi tạo component
 const NavBarItem = ({
   label,
   onClick,
