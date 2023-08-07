@@ -11,14 +11,32 @@ import {
 
 const { Option } = Select;
 
-type Props = {
+type ProductDrawerProps = {
   product: IProduct | undefined;
   listCategories: ICategoryProduct[] | undefined;
   isEdit: boolean;
   isAdd: boolean;
 };
 
-const ProductDrawer = ({ product, listCategories, isEdit, isAdd }: Props) => {
+type IProductData = {
+  _id?: string;
+  sold: number;
+  stars: number;
+  price: number;
+  category: string | undefined;
+  inventory: number;
+  original_price: number;
+  name: string;
+  description: string;
+  images: IImageProduct[] | undefined;
+};
+
+const ProductDrawer = ({
+  product,
+  listCategories,
+  isEdit,
+  isAdd,
+}: ProductDrawerProps) => {
   const [form] = Form.useForm();
   const [selectedSlug, setSelectedSlug] = useState("");
   const [images, setImages] = useState<IImageProduct[]>([]);
@@ -42,7 +60,7 @@ const ProductDrawer = ({ product, listCategories, isEdit, isAdd }: Props) => {
       category = matchingCategory._id;
     }
 
-    const newValues: IProduct = {
+    const newValues: IProductData = {
       ...values,
       category,
       images,

@@ -1,13 +1,9 @@
-// Import các thư viện
 import { useState } from "react";
 
-// Import các component
 import { Button, Input } from "../..";
 
-// Import các interface
 import { ICardUser } from "../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type CheckoutCardProps = {
   title: string;
   cardMain: ICardUser | undefined;
@@ -15,14 +11,12 @@ type CheckoutCardProps = {
   disabled: boolean;
 };
 
-// Khởi tạo component
 const CheckoutCard = ({
   disabled,
   title,
   cardMain,
   onClick,
 }: CheckoutCardProps) => {
-  // Sử dụng hook
   const [name, setName] = useState(cardMain?.card_holder_name || "");
   const [number, setNumber] = useState(cardMain?.card_number || "");
   const [startDate, setStartDate] = useState(cardMain?.start_date || "");

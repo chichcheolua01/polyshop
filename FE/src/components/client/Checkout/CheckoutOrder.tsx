@@ -1,21 +1,15 @@
-// Import các thư viện
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// Import các component
 import { Button, Input } from "../..";
 
-// Import các interface
 import { ICart } from "../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type CheckoutOrderProps = {
   cart: ICart | null;
 };
 
-// Khởi tạo component
 const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
-  // Sử dụng hook
   const [discount, setDiscount] = useState("");
 
   const total = cart && cart?.totalPrice;

@@ -1,17 +1,12 @@
-// Import các thư viện
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Import các icon
 import { AiOutlineMenu } from "react-icons/ai";
 
-// Import các component
 import { Avatar, MenuItem } from "../..";
 
-// Import các interface
 import { IProfile } from "../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type NavProfileProps = {
   nameUser: string | undefined;
   imageUser: string | undefined;
@@ -19,14 +14,12 @@ type NavProfileProps = {
   path?: string;
 };
 
-// Khởi tạo component
 const NavProfile = ({
   nameUser,
   imageUser,
   path,
   profile,
 }: NavProfileProps) => {
-  // Sử dụng hook
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,7 +1,5 @@
-// Import type icon
 import { IconType } from "react-icons";
 
-// Type để truyền dữ liệu giữa các props
 interface ButtonProps {
   label: string;
   onClick: () => void;
@@ -11,7 +9,6 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-// Khởi tạo component
 const Button: React.FC<ButtonProps> = ({
   label,
   onClick,

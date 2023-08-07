@@ -1,7 +1,5 @@
-// Import các thư viện
 import { Carousel } from "antd";
 
-// Khởi tạo component
 const Banner = () => {
   return (
     <>

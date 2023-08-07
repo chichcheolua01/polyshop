@@ -1,13 +1,9 @@
-// Import các component
 import Card from "./Card";
 
-// Import các interface
 import { ICardUser } from "../../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type ListCardProps = { cardUser: ICardUser[] | undefined };
 
-// Khởi tạo component
 const ListCard = ({ cardUser }: ListCardProps) => {
   return (
     <>

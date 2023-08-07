@@ -1,10 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IProduct } from "../interface";
+import { IImageProduct, IProduct } from "../interface";
 
 type ProductsResponse = {
   message: string;
   data: IProduct[];
+};
+
+type IProductData = {
+  _id?: string;
+  sold: number;
+  stars: number;
+  price: number;
+  category: string | undefined;
+  inventory: number;
+  original_price: number;
+  name: string;
+  description: string;
+  images: IImageProduct[] | undefined;
 };
 
 export const productApi = createApi({
@@ -31,7 +44,7 @@ export const productApi = createApi({
       providesTags: ["Product"],
     }),
     addProducts: builder.mutation({
-      query: (data: IProduct) => ({
+      query: (data: IProductData) => ({
         url: `/products`,
         method: "POST",
         body: data,
@@ -39,7 +52,7 @@ export const productApi = createApi({
       invalidatesTags: ["Product"],
     }),
     updateProducts: builder.mutation({
-      query: (data: IProduct) => {
+      query: (data: IProductData) => {
         const { _id, ...newData } = data;
         return {
           url: `/products/${_id}`,

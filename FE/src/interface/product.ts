@@ -3,13 +3,13 @@ export interface IProduct {
   sold: number;
   stars: number;
   price: number;
-  category: ICategoryProduct | string | undefined;
+  category: ICategoryProduct;
   inventory: number;
   original_price: number;
   name: string;
   description: string;
   comments: ICommentsProduct[];
-  images: IImageProduct[] | undefined;
+  images: IImageProduct[];
 }
 
 export interface ICategoryProduct {

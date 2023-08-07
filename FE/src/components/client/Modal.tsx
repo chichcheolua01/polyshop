@@ -1,13 +1,9 @@
-// Import các thư viện
 import { useCallback, useEffect, useState } from "react";
 
-// Import các icon
 import { IoMdClose } from "react-icons/io";
 
-// Import các component
 import { Button } from "..";
 
-// Type để truyền dữ liệu giữa các props
 interface ModalProps {
   isOpen: boolean;
   background?: boolean;
@@ -22,7 +18,6 @@ interface ModalProps {
   secondaryActionLabel?: string;
 }
 
-// Khởi tạo component
 const Modal: React.FC<ModalProps> = ({
   isOpen,
   background,

@@ -1,7 +1,5 @@
-// Import các component
 import { Breadcrumb, Container, IntroduceCard } from "../../../components";
 
-// Khởi tạo component
 const IntroducePage = () => {
   const items = [
     {

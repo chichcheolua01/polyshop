@@ -1,12 +1,9 @@
-// Import các thư viện
 import React from "react";
 
-// Type để truyền dữ liệu giữa các props
 type ContainerProps = {
   children: React.ReactNode;
 };
 
-// Khởi tạo component
 const Container = ({ children }: ContainerProps) => {
   return (
     <>

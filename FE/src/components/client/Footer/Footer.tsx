@@ -1,19 +1,14 @@
-// Import các thư viện
 import { Link } from "react-router-dom";
 
-// Import các icon
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
 
-// Import các component
 import Container from "../Container";
 import FooterLink from "./FooterLink";
 
-// Import css
 import "./Footer.css";
 
-// Khởi tạo component
 const Footer = () => {
   const link1 = [
     { name: "Tra thông tin bảo hành", url: "/" },
