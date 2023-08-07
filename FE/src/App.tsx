@@ -165,6 +165,7 @@ function App() {
                 <ProductDetailPage
                   favoriteUser={currentUser?.favorites}
                   listProducts={listProducts}
+                  userId={currentUser?._id}
                 />
               }
             />

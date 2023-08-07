@@ -50,6 +50,7 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
   return (
     <>
       {contextHolder}
+
       <div
         onClick={toggleFavorite}
         className="relative hover:opacity-50 transition cursor-pointer"

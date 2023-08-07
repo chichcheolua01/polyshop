@@ -19,11 +19,13 @@ import { useGetOneProductsQuery } from "../../../api/products";
 type ProductDetailPageProps = {
   favoriteUser: IFavoriteUser[] | undefined;
   listProducts: IProduct[] | undefined;
+  userId: string | undefined;
 };
 
 const ProductDetailPage = ({
   favoriteUser,
   listProducts,
+  userId,
 }: ProductDetailPageProps) => {
   const { id } = useParams<string>();
   const [comment, setComment] = useState("");
@@ -54,7 +56,11 @@ const ProductDetailPage = ({
       ),
       children:
         product && product.comments.length > 0 ? (
-          <ProductComment comments={product.comments} product={product._id} />
+          <ProductComment
+            comments={product.comments}
+            product={product._id}
+            userId={userId}
+          />
         ) : (
           <>
             <div className="text-center p-10">
