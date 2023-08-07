@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ICardUser, IProduct } from "../interface";
+import { ICardUser, IProduct, IUser } from "../interface";
 
 type ILogin = {
   email: string;
@@ -15,6 +15,11 @@ type IRegister = {
 type CardsResponse = {
   message: string;
   listCards: ICardUser[];
+};
+
+type UsersResponse = {
+  message: string;
+  data: IUser[];
 };
 
 type FavoritesResponse = {
@@ -54,6 +59,20 @@ export const authApi = createApi({
         body: data,
       }),
       invalidatesTags: ["Auth"],
+    }),
+    getAllUser: builder.query<UsersResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/auth`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
     }),
     getUserByToken: builder.mutation({
       query: (token: string | null) => ({
@@ -209,4 +228,5 @@ export const {
   useGetCardsByUserQuery,
   useUploadCardMutation,
   useGetFavoritesByUserQuery,
+  useGetAllUserQuery,
 } = authApi;

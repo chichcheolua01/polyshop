@@ -185,7 +185,9 @@ function App() {
                 </>
               ) : (
                 <>
-                  {currentUser && currentUser?.role === "Admin" ? (
+                  {resultGet.isLoading === false &&
+                  currentUser &&
+                  currentUser?.role === "Admin" ? (
                     <BaseAdmin />
                   ) : (
                     <ErrorPage />
