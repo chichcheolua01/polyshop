@@ -1,7 +1,7 @@
 import UserModel from "../module/auth";
 
 export const favorite = async (req, res) => {
-  const { productId } = req.body;
+  const productId = req.params.id;
 
   try {
     const isFavorite = req.user.favorites.some(

@@ -108,6 +108,19 @@ export const authApi = createApi({
         };
       },
     }),
+    favoriteProducts: builder.mutation({
+      query: (id) => {
+        const token = localStorage.getItem("token");
+        return {
+          url: `/favorites/${id}`,
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -120,4 +133,5 @@ export const {
   useChangePasswordAuthMutation,
   useForgotPasswordAuthMutation,
   useResetPasswordAuthMutation,
+  useFavoriteProductsMutation,
 } = authApi;

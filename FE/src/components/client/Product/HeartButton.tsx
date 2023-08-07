@@ -4,6 +4,7 @@ import { message, notification } from "antd";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import { IFavoriteUser } from "../../../interface";
+import { useFavoriteProductsMutation } from "../../../api/auth";
 
 type HeartButtonProps = {
   productId: string | undefined;
@@ -12,7 +13,7 @@ type HeartButtonProps = {
 
 const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
   const [hasFavorite, setHasFavorite] = useState(false);
-
+  const [favoriteProduct] = useFavoriteProductsMutation();
   const [api, contextHolder] = notification.useNotification();
 
   const toggleFavorite = () => {
@@ -26,15 +27,15 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
       return;
     }
 
-    if (hasFavorite) {
-      message.warning("Hủy yêu thích thành công!");
-
-      setHasFavorite(false);
-    } else {
-      message.success("Yêu thích thành công!");
-
-      setHasFavorite(true);
-    }
+    favoriteProduct(productId)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setHasFavorite(!hasFavorite);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
