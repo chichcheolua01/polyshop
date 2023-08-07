@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import {
   FLUSH,
   PAUSE,
@@ -14,22 +14,38 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import { productApi } from "../api/products";
 import { categoryApi } from "../api/categories";
 import { authApi } from "../api/auth";
+import { cartSlice } from "../cartSlice/cart";
 
 // Cấu hình persist ( lưu localStorage )
 const persistConfig = {
-  key: "root",
+  key: "cart",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["items"],
 };
+const persistedReducer = persistReducer(persistConfig, cartSlice.reducer);
 export const store = configureStore({
   reducer: {
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    cart: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
       .concat(productApi.middleware)
       .concat(categoryApi.middleware)
       .concat(authApi.middleware),
 });
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+export default persistStore(store);

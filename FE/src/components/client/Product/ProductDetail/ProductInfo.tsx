@@ -1,4 +1,4 @@
-import { Image } from "antd";
+import { Form, Image } from "antd";
 import { useState } from "react";
 import { InputNumber } from "antd";
 
@@ -9,6 +9,8 @@ import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
 import { IFavoriteUser, IProduct } from "../../../../interface";
+import { useAppDispatch, useAppSelector } from "../../../../store/hook";
+import { add } from "../../../../cartSlice/cart";
 
 type ProductInfoProps = {
   product?: IProduct | null;
@@ -17,13 +19,17 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
-
-  const onChange = (value: number | null) => {
+  const dispatch = useAppDispatch()
+  // const cart = useAppSelector((state) => state.cart)
+  // console.log(cart);
+  const onChange = (value: any) => {
     console.log(value);
   };
 
+
   return (
     <>
+
       <section className="text-gray-700 body-font overflow-hidden bg-white border rounded-xl shadow-lg">
         <div className="p-5 mx-auto">
           <div className="mx-auto flex flex-wrap">
@@ -94,7 +100,9 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                 <div className="flex">
                   <span className="mr-3">
                     Số lượng:{" "}
+
                     <InputNumber
+
                       min={1}
                       max={product?.inventory}
                       defaultValue={1}
@@ -108,7 +116,7 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                 <Button
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
-                  onClick={() => alert("Thành công!")}
+                  onClick={() => dispatch(add({ product, quantity: 1 }))}
                   disabled={product?.inventory === 0}
                 />
 
