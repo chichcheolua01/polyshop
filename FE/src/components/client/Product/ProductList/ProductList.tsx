@@ -1,10 +1,7 @@
-// Import các component
 import ProductCard from "./ProductCard";
 
-// Import các interface
 import { IFavoriteUser, IProduct } from "../../../../interface";
 
-// Type để truyền dữ liệu giữa các props
 type ProductListProps = {
   products: IProduct[] | undefined;
   favoriteUser: IFavoriteUser[] | undefined;
@@ -14,7 +11,6 @@ type ProductListProps = {
   large?: boolean;
 };
 
-// Khởi tạo component
 const ProductList = ({
   small,
   middle,

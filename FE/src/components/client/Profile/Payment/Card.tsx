@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Checkbox } from "antd";
+import { Checkbox, message } from "antd";
 
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { ICardUser } from "../../../../interface";
+import { useUploadCardMutation } from "../../../../api/auth";
 
 type CardProps = {
   card?: ICardUser;
@@ -12,12 +13,15 @@ type CardProps = {
 const Card = ({ card, add }: CardProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const [newName, setNewName] = useState(card?.card_holder_name);
+  const _id = card?._id || "";
+  const [newName, setNewName] = useState(card?.card_holder_name || "");
   const [newNumber, setNewNumber] = useState(card?.card_number || "");
-  const [newStartDate, setNewStartDate] = useState(card?.start_date);
-  const [newEndDate, setNewEndDate] = useState(card?.end_date);
+  const [newStartDate, setNewStartDate] = useState(card?.start_date || "");
+  const [newEndDate, setNewEndDate] = useState(card?.end_date || "");
   const [newCvv, setNewCvv] = useState(card?.cvv || "");
   const [newMain, setNewMain] = useState(card?.main);
+
+  const [uploadCard, resultCard] = useUploadCardMutation();
 
   const toggleEdit = () => {
     setIsEdit(!isEdit);
@@ -25,6 +29,28 @@ const Card = ({ card, add }: CardProps) => {
 
   const onChange = (e: CheckboxChangeEvent) => {
     setNewMain(e.target.checked);
+  };
+
+  const onFinish = () => {
+    const data = {
+      _id,
+      card_holder_name: newName,
+      card_number: newNumber,
+      start_date: newStartDate,
+      end_date: newEndDate,
+      cvv: newCvv,
+      main: newMain,
+    };
+
+    uploadCard(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setIsEdit(!isEdit);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -168,13 +194,18 @@ const Card = ({ card, add }: CardProps) => {
         {isEdit ? (
           <div className="absolute bottom-8 right-10 flex justify-end gap-5">
             <button
-              className="mt-3 hover:text-rose-500"
-              onClick={() => alert("Sửa")}
+              className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"
+              onClick={onFinish}
+              disabled={resultCard.isLoading}
             >
               Lưu
             </button>
 
-            <button className="mt-3 hover:text-rose-500" onClick={toggleEdit}>
+            <button
+              className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"
+              onClick={toggleEdit}
+              disabled={resultCard.isLoading}
+            >
               Hủy
             </button>
           </div>

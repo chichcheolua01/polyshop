@@ -12,6 +12,7 @@ import {
   BaseClient,
   CheckoutPage,
   ContactPage,
+  ErrorPage,
   FaqPage,
   ForgotPage,
   HomePage,
@@ -50,9 +51,9 @@ function App() {
 
   const listProducts = products?.data;
   const listCategories = categories?.data;
+  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   const [cart, setCart] = useState<ICart | null>(null);
-  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -130,17 +131,9 @@ function App() {
               <Route path="payment" element={<Payment />} />
               <Route
                 path="favorite"
-                element={
-                  <Favorite
-                    favorites={currentUser?.favorites}
-                    listProducts={listProducts}
-                  />
-                }
+                element={<Favorite favorites={currentUser?.favorites} />}
               />
-              <Route
-                path="list-card"
-                element={<ListCard cardUser={currentUser?.cards} />}
-              />
+              <Route path="list-card" element={<ListCard />} />
             </Route>
             <Route
               path="checkout"
@@ -165,6 +158,7 @@ function App() {
                 <ProductDetailPage
                   favoriteUser={currentUser?.favorites}
                   listProducts={listProducts}
+                  userId={currentUser?._id}
                 />
               }
             />
@@ -180,7 +174,28 @@ function App() {
             />
           </Route>
 
-          <Route path="/admin" element={<BaseAdmin />}>
+          <Route
+            path="/admin"
+            element={
+              resultGet.isLoading ? (
+                <>
+                  <div className="flex items-center justify-center h-screen">
+                    <Loading />
+                  </div>
+                </>
+              ) : (
+                <>
+                  {resultGet.isLoading === false &&
+                  currentUser &&
+                  currentUser?.role === "Admin" ? (
+                    <BaseAdmin />
+                  ) : (
+                    <ErrorPage />
+                  )}
+                </>
+              )
+            }
+          >
             <Route index element={<AdminDashboardPage />} />
             <Route path="dashboard" element={<AdminDashboardPage />} />
             <Route

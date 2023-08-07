@@ -90,6 +90,21 @@ export const productApi = createApi({
       }),
       invalidatesTags: ["Product"],
     }),
+    createFeedbacks: builder.mutation({
+      query: (data) => ({
+        url: `/feedback`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    deleteFeedbacks: builder.mutation({
+      query: (id: string | undefined) => ({
+        url: `/feedback/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Product"],
+    }),
   }),
 });
 
@@ -101,4 +116,6 @@ export const {
   useDeleteProductsMutation,
   useCreateCommentsMutation,
   useDeleteCommentsMutation,
+  useCreateFeedbacksMutation,
+  useDeleteFeedbacksMutation,
 } = productApi;

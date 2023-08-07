@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 import Card from "../module/card";
@@ -6,46 +5,6 @@ import User from "../module/auth";
 import { cardSchema } from "../validators/card";
 
 dotenv.config();
-
-export const getAll = async (req, res) => {
-  try {
-    const data = await Card.find();
-    if (!data || data.length === 0) {
-      return res.status(404).json({
-        message: "Không có danh sách",
-      });
-    }
-
-    return res.status(200).json({
-      message: "Danh sách thẻ ngân hàng",
-      data: data,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: "Lỗi server: " + error.message,
-    });
-  }
-};
-
-export const getOne = async (req, res) => {
-  try {
-    const data = await Card.findById(req.params.id);
-    if (!data || data.length === 0) {
-      return res.status(404).json({
-        message: "Không có thông tin",
-      });
-    }
-
-    return res.status(200).json({
-      message: "Thông tin thẻ ngân hàng",
-      data: data,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: "Lỗi server: " + error.message,
-    });
-  }
-};
 
 export const create = async (req, res) => {
   try {
@@ -137,6 +96,23 @@ export const update = async (req, res) => {
     return res.status(200).json({
       message: "Cập nhật thẻ ngân hàng thành công",
       data: card,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
+    });
+  }
+};
+
+export const getCardByUser = async (req, res) => {
+  try {
+    const cards = req.user.cards;
+
+    const listCards = await Promise.all(cards.map((id) => Card.findById(id)));
+
+    return res.status(200).json({
+      message: "Danh sách thẻ ngân hàng",
+      listCards,
     });
   } catch (error) {
     return res.status(500).json({

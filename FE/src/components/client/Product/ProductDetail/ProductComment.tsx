@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Avatar, List, Space, Rate, message, Popconfirm } from "antd";
+import {
+  Avatar,
+  List,
+  Space,
+  Rate,
+  message,
+  Popconfirm,
+  notification,
+} from "antd";
 
 import { AiFillLike, AiFillMessage } from "react-icons/ai";
 
@@ -8,15 +16,18 @@ import { Button, StarButton } from "../../..";
 import { ICommentsProduct } from "../../../../interface";
 import {
   useCreateCommentsMutation,
+  useCreateFeedbacksMutation,
   useDeleteCommentsMutation,
+  useDeleteFeedbacksMutation,
 } from "../../../../api/products";
 
 type ProductCommentProps = {
   comments: ICommentsProduct[];
   product: string;
+  userId: string | undefined;
 };
 
-const ProductComment = ({ comments, product }: ProductCommentProps) => {
+const ProductComment = ({ comments, product, userId }: ProductCommentProps) => {
   const [isFeedback, setIsFeedback] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState<
     string | undefined
@@ -26,9 +37,12 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
   const [feedBack, setFeedback] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
   const key = "delete";
+  const [api, contextHolder1] = notification.useNotification();
 
   const [createComment, resultCreate] = useCreateCommentsMutation();
   const [deleteComment, resultDelete] = useDeleteCommentsMutation();
+  const [createFeedback, resultCreateFeedback] = useCreateFeedbacksMutation();
+  const [deleteFeedback, resultDeleteFeedback] = useDeleteFeedbacksMutation();
 
   const onFinish = () => {
     const data = {
@@ -36,6 +50,21 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
       stars,
       comment,
     };
+
+    if (!userId) {
+      api.warning({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
+      });
+
+      return;
+    }
+
+    if (comment === "") {
+      message.warning("Bình luận không được để trống");
+      return;
+    }
 
     if (stars === 0) {
       message.warning("Đánh giá không được để trống");
@@ -55,11 +84,77 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
   };
 
   const onDeleteComment = (_id: string | undefined) => {
-    deleteComment(_id);
+    if (!userId) {
+      api.warning({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
+      });
+
+      return;
+    }
+
+    deleteComment(_id)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onDeleteFeedback = (_id: string | undefined) => {
+    if (!userId) {
+      api.warning({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
+      });
+
+      return;
+    }
+
+    deleteFeedback(_id)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onFeedback = (_id: string | undefined) => {
-    alert(_id);
+    if (!userId) {
+      api.warning({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
+      });
+
+      return;
+    }
+
+    if (feedBack === "") {
+      message.warning("Phản hồi không được để trống");
+      return;
+    }
+
+    const data = {
+      comment: feedBack,
+      commentId: _id,
+    };
+
+    createFeedback(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setFeedback("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const listComment = comments.map((cmt) => ({
@@ -67,6 +162,7 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
     _id: cmt._id,
     prefer: cmt.prefer,
     feed_back: cmt.feed_back,
+    idUser: cmt.user._id,
     title: cmt.user.name,
     avatar: cmt.user.image,
     description: (
@@ -114,6 +210,7 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
   return (
     <>
       {contextHolder}
+      {contextHolder1}
 
       <List
         size="large"
@@ -173,18 +270,24 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
                     unBackground
                   />
 
-                  <Popconfirm
-                    okType="danger"
-                    placement="top"
-                    title="Bạn có muốn xóa bình luận này?"
-                    description="Xóa bình luận"
-                    onConfirm={() => onDeleteComment(item._id)}
-                    okText="Đồng ý"
-                    cancelText="Hủy"
-                    disabled={resultDelete.isLoading}
-                  >
-                    <Button label="Xóa" small unBackground />
-                  </Popconfirm>
+                  {userId === item.idUser ? (
+                    <>
+                      <Popconfirm
+                        okType="danger"
+                        placement="top"
+                        title="Bạn có muốn xóa bình luận này?"
+                        description="Xóa bình luận"
+                        onConfirm={() => onDeleteComment(item._id)}
+                        okText="Đồng ý"
+                        cancelText="Hủy"
+                        disabled={resultDelete.isLoading}
+                      >
+                        <Button label="Xóa" small unBackground />
+                      </Popconfirm>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
               }
               actions={[
@@ -217,6 +320,28 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
                       key="list-vertical-like-o"
                     />,
                   ]}
+                  extra={
+                    <>
+                      {feedback.user._id === userId ? (
+                        <>
+                          <Popconfirm
+                            okType="danger"
+                            placement="top"
+                            title="Bạn có muốn xóa phản hồi này?"
+                            description="Xóa phản hồi"
+                            onConfirm={() => onDeleteFeedback(feedback._id)}
+                            okText="Đồng ý"
+                            cancelText="Hủy"
+                            disabled={resultDeleteFeedback.isLoading}
+                          >
+                            <Button label="Xóa" small unBackground />
+                          </Popconfirm>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </>
+                  }
                 >
                   <List.Item.Meta
                     avatar={<Avatar src={feedback.user.image} />}
@@ -254,6 +379,7 @@ const ProductComment = ({ comments, product }: ProductCommentProps) => {
                           <Button
                             label="Phản hồi"
                             onClick={() => onFeedback(item._id)}
+                            disabled={resultCreateFeedback.isLoading}
                           />
                         </div>
                       </div>

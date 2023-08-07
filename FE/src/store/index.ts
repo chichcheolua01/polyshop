@@ -15,6 +15,7 @@ import { productApi } from "../api/products";
 import { categoryApi } from "../api/categories";
 import { authApi } from "../api/auth";
 import { cartSlice } from "../cartSlice/cart";
+import { contactApi } from "../api/contact";
 
 // Cấu hình persist ( lưu localStorage )
 const persistConfig = {
@@ -29,6 +30,7 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     cart: persistedReducer,
+    [contactApi.reducerPath]: contactApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -38,7 +40,8 @@ export const store = configureStore({
     })
       .concat(productApi.middleware)
       .concat(categoryApi.middleware)
-      .concat(authApi.middleware),
+      .concat(authApi.middleware)
+      .concat(contactApi.middleware),
 });
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

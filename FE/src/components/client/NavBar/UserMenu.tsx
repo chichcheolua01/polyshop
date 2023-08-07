@@ -25,6 +25,11 @@ const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
 
   const notificationCount = 2;
 
+  const logOut = () => {
+    localStorage.removeItem("token");
+    navigate("/auth");
+  };
+
   return (
     <>
       <div className="relative">
@@ -75,10 +80,7 @@ const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
                       onClick={() => navigate("/profile/favorite")}
                     />
                     <hr />
-                    <MenuItem
-                      label="Đăng xuất"
-                      onClick={() => alert("Đăng xuất")}
-                    />
+                    <MenuItem label="Đăng xuất" onClick={logOut} />
                   </>
                 ) : (
                   <>

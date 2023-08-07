@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ICardUser, IProduct, IUser } from "../interface";
 
 type ILogin = {
   email: string;
@@ -9,6 +10,31 @@ type IRegister = {
   name: string;
   email: string;
   password: string;
+};
+
+type CardsResponse = {
+  message: string;
+  listCards: ICardUser[];
+};
+
+type UsersResponse = {
+  message: string;
+  data: IUser[];
+};
+
+type FavoritesResponse = {
+  message: string;
+  listProducts: IProduct[];
+};
+
+type CardData = {
+  _id: string;
+  card_holder_name: string;
+  card_number: string | number;
+  start_date: string;
+  end_date: string;
+  cvv: string | number;
+  main: boolean | undefined;
 };
 
 export const authApi = createApi({
@@ -33,6 +59,20 @@ export const authApi = createApi({
         body: data,
       }),
       invalidatesTags: ["Auth"],
+    }),
+    getAllUser: builder.query<UsersResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/auth`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
     }),
     getUserByToken: builder.mutation({
       query: (token: string | null) => ({
@@ -108,6 +148,70 @@ export const authApi = createApi({
         };
       },
     }),
+    favoriteProducts: builder.mutation({
+      query: (id) => {
+        const token = localStorage.getItem("token");
+        return {
+          url: `/favorites/${id}`,
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+    getFavoritesByUser: builder.query<FavoritesResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/favorites`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
+    addCards: builder.mutation({
+      query: (data) => ({
+        url: `/card`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    getCardsByUser: builder.query<CardsResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/card`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
+    uploadCard: builder.mutation({
+      query: (data: CardData) => {
+        const token = localStorage.getItem("token");
+        const { _id, ...newData } = data;
+        return {
+          url: `/card/${_id}`,
+          method: "PATCH",
+          body: newData,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -120,4 +224,9 @@ export const {
   useChangePasswordAuthMutation,
   useForgotPasswordAuthMutation,
   useResetPasswordAuthMutation,
+  useFavoriteProductsMutation,
+  useGetCardsByUserQuery,
+  useUploadCardMutation,
+  useGetFavoritesByUserQuery,
+  useGetAllUserQuery,
 } = authApi;

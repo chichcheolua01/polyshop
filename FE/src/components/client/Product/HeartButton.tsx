@@ -4,6 +4,7 @@ import { message, notification } from "antd";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import { IFavoriteUser } from "../../../interface";
+import { useFavoriteProductsMutation } from "../../../api/auth";
 
 type HeartButtonProps = {
   productId: string | undefined;
@@ -12,7 +13,7 @@ type HeartButtonProps = {
 
 const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
   const [hasFavorite, setHasFavorite] = useState(false);
-
+  const [favoriteProduct, resultFavorite] = useFavoriteProductsMutation();
   const [api, contextHolder] = notification.useNotification();
 
   const toggleFavorite = () => {
@@ -26,15 +27,15 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
       return;
     }
 
-    if (hasFavorite) {
-      message.warning("Hủy yêu thích thành công!");
-
-      setHasFavorite(false);
-    } else {
-      message.success("Yêu thích thành công!");
-
-      setHasFavorite(true);
-    }
+    favoriteProduct(productId)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setHasFavorite(!hasFavorite);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -50,9 +51,11 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
   return (
     <>
       {contextHolder}
-      <div
+
+      <button
         onClick={toggleFavorite}
-        className="relative hover:opacity-50 transition cursor-pointer"
+        className="relative hover:opacity-50 transition cursor-pointer disabled:cursor-not-allowed"
+        disabled={resultFavorite.isLoading}
       >
         <AiOutlineHeart
           size={28}
@@ -63,7 +66,7 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
           size={24}
           className={hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"}
         />
-      </div>
+      </button>
     </>
   );
 };

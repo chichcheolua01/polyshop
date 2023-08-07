@@ -5,14 +5,40 @@ import { BiMessageRoundedError } from "react-icons/bi";
 import { FaRegMoneyBillAlt, FaRegNewspaper } from "react-icons/fa";
 
 import { Breadcrumb, Button, Container, Input } from "../../../components";
+import { useAddContactsMutation } from "../../../api/contact";
+import { message } from "antd";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [content, setContent] = useState("");
+
+  const [createContact, resultContact] = useAddContactsMutation();
 
   const sendContact = () => {
-    alert("Gửi hỗ trợ");
+    const data = {
+      name,
+      email,
+      phone,
+      address,
+      content,
+    };
+
+    createContact(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setAddress("");
+        setContent("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -54,14 +80,36 @@ const ContactPage = () => {
                 />
               </div>
               <div className="relative mb-6">
+                <Input
+                  id="phone"
+                  type="phone"
+                  value={phone}
+                  label="Phone"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setPhone(e.target.value)
+                  }
+                />
+              </div>
+              <div className="relative mb-6">
+                <Input
+                  id="address"
+                  type="address"
+                  value={address}
+                  label="Address"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setAddress(e.target.value)
+                  }
+                />
+              </div>
+              <div className="relative mb-6">
                 <textarea
                   className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-black bg-white border appearance-none focus:outline-none focus:ring-0 invalid:border-b-1 peer"
                   id="textarea"
                   onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                    setMessage(e.target.value)
+                    setContent(e.target.value)
                   }
                   placeholder=" "
-                  value={message}
+                  value={content}
                 ></textarea>
                 <label
                   htmlFor="textarea"
@@ -71,7 +119,11 @@ const ContactPage = () => {
                 </label>
               </div>
 
-              <Button label="Gửi" onClick={sendContact} />
+              <Button
+                label="Gửi"
+                onClick={sendContact}
+                disabled={resultContact.isLoading}
+              />
             </div>
 
             <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
