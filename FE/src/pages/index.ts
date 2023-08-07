@@ -23,6 +23,9 @@ import ListProductPage from "./client/ListProduct/ListProductPage";
 import ProductDetailPage from "./client/ProductDetail/ProductDetailPage";
 import ProfilePage from "./client/Profile/ProfilePage";
 
+// Trang Error
+import ErrorPage from "./error/ErrorPage";
+
 export {
   BaseAdmin,
   ForgotPage,
@@ -43,4 +46,5 @@ export {
   ListProductPage,
   ProductDetailPage,
   ProfilePage,
+  ErrorPage,
 };

@@ -12,6 +12,7 @@ import {
   BaseClient,
   CheckoutPage,
   ContactPage,
+  ErrorPage,
   FaqPage,
   ForgotPage,
   HomePage,
@@ -50,9 +51,9 @@ function App() {
 
   const listProducts = products?.data;
   const listCategories = categories?.data;
+  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   const [cart, setCart] = useState<ICart | null>(null);
-  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -181,7 +182,16 @@ function App() {
             />
           </Route>
 
-          <Route path="/admin" element={<BaseAdmin />}>
+          <Route
+            path="/admin"
+            element={
+              currentUser && currentUser?.role === "Admin" ? (
+                <BaseAdmin />
+              ) : (
+                <ErrorPage />
+              )
+            }
+          >
             <Route index element={<AdminDashboardPage />} />
             <Route path="dashboard" element={<AdminDashboardPage />} />
             <Route
