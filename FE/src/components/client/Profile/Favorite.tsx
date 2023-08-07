@@ -1,5 +1,6 @@
-import { ProductList } from "../..";
+import { useEffect, useState } from "react";
 
+import { ProductList } from "../..";
 import { IFavoriteUser, IProduct } from "../../../interface";
 
 type FavoriteProps = {
@@ -8,14 +9,20 @@ type FavoriteProps = {
 };
 
 const Favorite = ({ favorites, listProducts }: FavoriteProps) => {
-  const favoriteProducts =
-    listProducts && favorites
-      ? listProducts.filter((product) => {
-          return favorites.some((fav) => {
-            return product._id === fav.productId;
-          });
-        })
-      : [];
+  const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    const initialFavorite =
+      listProducts && favorites
+        ? listProducts.filter((product) => {
+            return favorites.some((fav) => {
+              return product._id === fav;
+            });
+          })
+        : [];
+
+    setFavoriteProducts(initialFavorite);
+  }, [favorites, listProducts]);
 
   return (
     <>
