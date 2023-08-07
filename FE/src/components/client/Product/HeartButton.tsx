@@ -13,7 +13,7 @@ type HeartButtonProps = {
 
 const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
   const [hasFavorite, setHasFavorite] = useState(false);
-  const [favoriteProduct] = useFavoriteProductsMutation();
+  const [favoriteProduct, resultFavorite] = useFavoriteProductsMutation();
   const [api, contextHolder] = notification.useNotification();
 
   const toggleFavorite = () => {
@@ -52,9 +52,10 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
     <>
       {contextHolder}
 
-      <div
+      <button
         onClick={toggleFavorite}
-        className="relative hover:opacity-50 transition cursor-pointer"
+        className="relative hover:opacity-50 transition cursor-pointer disabled:cursor-not-allowed"
+        disabled={resultFavorite.isLoading}
       >
         <AiOutlineHeart
           size={28}
@@ -65,7 +66,7 @@ const HeartButton = ({ productId, favoriteUser }: HeartButtonProps) => {
           size={24}
           className={hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"}
         />
-      </div>
+      </button>
     </>
   );
 };
