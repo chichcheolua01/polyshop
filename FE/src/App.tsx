@@ -177,10 +177,20 @@ function App() {
           <Route
             path="/admin"
             element={
-              currentUser && currentUser?.role === "Admin" ? (
-                <BaseAdmin />
+              resultGet.isLoading ? (
+                <>
+                  <div className="flex items-center justify-center h-screen">
+                    <Loading />
+                  </div>
+                </>
               ) : (
-                <ErrorPage />
+                <>
+                  {currentUser && currentUser?.role === "Admin" ? (
+                    <BaseAdmin />
+                  ) : (
+                    <ErrorPage />
+                  )}
+                </>
               )
             }
           >
