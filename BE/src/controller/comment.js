@@ -129,11 +129,11 @@ export const update = async (req, res) => {
 
 export const del = async (req, res) => {
   try {
-    const commentId = req.body.commentId;
+    const commentId = req.params.id;
 
     const comment = await Comment.findById(commentId);
 
-    if (comment && comment.user.toString() === req.user._id) {
+    if (comment && comment.user.toString() === req.user._id.toString()) {
       await Comment.findByIdAndDelete(commentId);
 
       await User.updateMany(

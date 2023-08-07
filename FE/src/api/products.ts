@@ -20,6 +20,12 @@ type IProductData = {
   images: IImageProduct[] | undefined;
 };
 
+type ICommentData = {
+  product: string;
+  stars: number;
+  comment: string;
+};
+
 export const productApi = createApi({
   reducerPath: "products",
   tagTypes: ["Product"],
@@ -69,6 +75,21 @@ export const productApi = createApi({
       }),
       invalidatesTags: ["Product"],
     }),
+    createComments: builder.mutation({
+      query: (data: ICommentData) => ({
+        url: `/comment`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    deleteComments: builder.mutation({
+      query: (id: string | undefined) => ({
+        url: `/comment/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Product"],
+    }),
   }),
 });
 
@@ -78,4 +99,6 @@ export const {
   useAddProductsMutation,
   useUpdateProductsMutation,
   useDeleteProductsMutation,
+  useCreateCommentsMutation,
+  useDeleteCommentsMutation,
 } = productApi;

@@ -54,7 +54,7 @@ const ProductDetailPage = ({
       ),
       children:
         product && product.comments.length > 0 ? (
-          <ProductComment comments={product.comments} />
+          <ProductComment comments={product.comments} product={product._id} />
         ) : (
           <>
             <div className="text-center p-10">
@@ -70,7 +70,6 @@ const ProductDetailPage = ({
               >
                 Bình luận
               </label>
-
               <textarea
                 id="comment"
                 value={comment}
