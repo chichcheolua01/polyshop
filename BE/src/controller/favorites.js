@@ -1,4 +1,5 @@
 import UserModel from "../module/auth";
+import ProductModel from "../module/products";
 
 export const favorite = async (req, res) => {
   const productId = req.params.id;
@@ -32,6 +33,25 @@ export const favorite = async (req, res) => {
 
     res.status(500).json({
       error: "Lỗi server: " + error.message,
+    });
+  }
+};
+
+export const getFavoriteByUser = async (req, res) => {
+  try {
+    const favorites = req.user.favorites;
+
+    const listProducts = await Promise.all(
+      favorites.map((id) => ProductModel.findById(id))
+    );
+
+    return res.status(200).json({
+      message: "Danh sách sản phẩm yêu thích",
+      listProducts,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
     });
   }
 };

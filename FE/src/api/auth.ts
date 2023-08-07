@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ICardUser } from "../interface";
+import { ICardUser, IProduct } from "../interface";
 
 type ILogin = {
   email: string;
@@ -15,6 +15,21 @@ type IRegister = {
 type CardsResponse = {
   message: string;
   listCards: ICardUser[];
+};
+
+type FavoritesResponse = {
+  message: string;
+  listProducts: IProduct[];
+};
+
+type CardData = {
+  _id: string;
+  card_holder_name: string;
+  card_number: string | number;
+  start_date: string;
+  end_date: string;
+  cvv: string | number;
+  main: boolean | undefined;
 };
 
 export const authApi = createApi({
@@ -127,6 +142,20 @@ export const authApi = createApi({
       },
       invalidatesTags: ["Auth"],
     }),
+    getFavoritesByUser: builder.query<FavoritesResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/favorites`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
     addCards: builder.mutation({
       query: (data) => ({
         url: `/card`,
@@ -149,6 +178,21 @@ export const authApi = createApi({
       },
       providesTags: ["Auth"],
     }),
+    uploadCard: builder.mutation({
+      query: (data: CardData) => {
+        const token = localStorage.getItem("token");
+        const { _id, ...newData } = data;
+        return {
+          url: `/card/${_id}`,
+          method: "PATCH",
+          body: newData,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -163,4 +207,6 @@ export const {
   useResetPasswordAuthMutation,
   useFavoriteProductsMutation,
   useGetCardsByUserQuery,
+  useUploadCardMutation,
+  useGetFavoritesByUserQuery,
 } = authApi;

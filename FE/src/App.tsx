@@ -131,12 +131,7 @@ function App() {
               <Route path="payment" element={<Payment />} />
               <Route
                 path="favorite"
-                element={
-                  <Favorite
-                    favorites={currentUser?.favorites}
-                    listProducts={listProducts}
-                  />
-                }
+                element={<Favorite favorites={currentUser?.favorites} />}
               />
               <Route path="list-card" element={<ListCard />} />
             </Route>
