@@ -42,7 +42,7 @@ const ProductDetailPage = ({
   const key = "delete";
 
   const onFinish = () => {
-    const data = {
+    const data: any = {
       product: id,
       stars,
       comment,
@@ -137,7 +137,11 @@ const ProductDetailPage = ({
             </div>
             <div className="flex justify-center">
               <div>
-                <Button label="Bình luận" onClick={onFinish} />
+                <Button
+                  label="Bình luận"
+                  disabled={resultCreate.isLoading}
+                  onClick={onFinish}
+                />
               </div>
             </div>
           </>
