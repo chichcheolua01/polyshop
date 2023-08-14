@@ -33,7 +33,7 @@ const ListCard = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {cardUser.map((card) => (
-                      <Card key={card._id} card={card} />
+                      <Card key={card?._id} card={card} />
                     ))}
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Tabs } from "antd";
+import { Tabs, message, notification } from "antd";
 import { useState } from "react";
 import type { TabsProps } from "antd";
 import { useParams } from "react-router-dom";
@@ -11,10 +11,14 @@ import {
   ProductDescription,
   ProductInfo,
   ProductList,
+  StarButton,
 } from "../../../components";
 
 import { IFavoriteUser, IProduct } from "../../../interface";
-import { useGetOneProductsQuery } from "../../../api/products";
+import {
+  useCreateCommentsMutation,
+  useGetOneProductsQuery,
+} from "../../../api/products";
 
 type ProductDetailPageProps = {
   favoriteUser: IFavoriteUser[] | undefined;
@@ -28,10 +32,53 @@ const ProductDetailPage = ({
   userId,
 }: ProductDetailPageProps) => {
   const { id } = useParams<string>();
+  const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
   const { data } = useGetOneProductsQuery(id);
-
+  const [createComment, resultCreate] = useCreateCommentsMutation();
   const product = data?.data;
+  const [messageApi, contextHolder] = message.useMessage();
+  const [api, contextHolder1] = notification.useNotification();
+  const key = "delete";
+
+  const onFinish = () => {
+    const data: any = {
+      product: id,
+      stars,
+      comment,
+    };
+
+    if (!userId) {
+      api.warning({
+        message: "Bạn chưa đăng nhập",
+        description: "Vui lòng đăng nhập để thực hiện hành động này!",
+        placement: "topRight",
+      });
+
+      return;
+    }
+
+    if (comment === "") {
+      message.warning("Bình luận không được để trống");
+      return;
+    }
+
+    if (stars === 0) {
+      message.warning("Đánh giá không được để trống");
+      return;
+    }
+
+    createComment(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setComment("");
+        setStars(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const productSimilar =
     listProducts &&
@@ -85,10 +132,16 @@ const ProductDetailPage = ({
                 onChange={(e) => setComment(e.target.value)}
                 className="px-0 w-full text-sm text-gray-900 border-0 pt-3 focus:ring-0 focus:outline-none"
               />
+
+              <StarButton star={stars} setStar={setStars} />
             </div>
             <div className="flex justify-center">
               <div>
-                <Button label="Bình luận" onClick={() => alert("Bình luận")} />
+                <Button
+                  label="Bình luận"
+                  disabled={resultCreate.isLoading}
+                  onClick={onFinish}
+                />
               </div>
             </div>
           </>
@@ -98,6 +151,9 @@ const ProductDetailPage = ({
 
   return (
     <>
+      {contextHolder}
+      {contextHolder1}
+
       <Container>
         <div className="max-w-screen-xl mx-auto">
           <div className="mb-5 mt-2">
