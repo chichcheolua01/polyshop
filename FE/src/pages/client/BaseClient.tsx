@@ -13,7 +13,7 @@ import {
 import { ICart, ICategoryProduct, IUser } from "../../interface";
 
 type BaseClientProps = {
-  cart: ICart | null;
+  cart: any | null;
   currentUser: IUser | null;
   listCategories: ICategoryProduct[] | undefined;
 };
@@ -27,6 +27,7 @@ const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
+  // console.log(cart);
 
   const isHomePage = location.pathname === "/";
 
@@ -81,7 +82,7 @@ const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
-          cartCount={cart?.products.length || 0}
+          cartCount={cart?.products?.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />

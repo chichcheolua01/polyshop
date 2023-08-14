@@ -42,6 +42,7 @@ import { ICart, IUser } from "./interface";
 import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
 import { useGetUserByTokenMutation } from "./api/auth";
+import { useAppSelector } from "./store/hook";
 
 function App() {
   const { data: products } = useGetAllProductsQuery();
@@ -52,15 +53,16 @@ function App() {
   const listProducts = products?.data;
   const listCategories = categories?.data;
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-
+  const pro = useAppSelector((state) => state.cartData)
   const [cart, setCart] = useState<ICart | null>(null);
-
+  console.log(pro);
   useEffect(() => {
     if (token) {
       getUser(token)
         .unwrap()
         .then((response) => {
           setCurrentUser(response?.data);
+          setCart(pro)
         })
         .catch((error) => {
           message.error(error.data.message);
@@ -186,8 +188,8 @@ function App() {
               ) : (
                 <>
                   {resultGet.isLoading === false &&
-                  currentUser &&
-                  currentUser?.role === "Admin" ? (
+                    currentUser &&
+                    currentUser?.role === "Admin" ? (
                     <BaseAdmin />
                   ) : (
                     <ErrorPage />

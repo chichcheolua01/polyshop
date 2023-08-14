@@ -21,7 +21,7 @@ import { contactApi } from "../api/contact";
 const persistConfig = {
   key: "cart",
   storage,
-  whitelist: ["items"],
+  whitelist: ["products"],
 };
 const persistedReducer = persistReducer(persistConfig, cartSlice.reducer);
 export const store = configureStore({
@@ -29,7 +29,7 @@ export const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    cart: persistedReducer,
+    cartData: persistedReducer,
     [contactApi.reducerPath]: contactApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -17,7 +17,7 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
       <div className="flex flex-row gap-2 w-full mb-1 border rounded-xl p-2">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
           <img
-            src={cartItem.product.image}
+            src={cartItem.product.images[0]?.uid}
             width={100}
             height={100}
             alt="Product"
