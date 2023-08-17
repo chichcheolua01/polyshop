@@ -12,8 +12,12 @@ type CheckoutOrderProps = {
 const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
   const [discount, setDiscount] = useState("");
 
-  const total = cart && cart?.totalPrice;
-
+  const totalPrice = cart?.products?.reduce((total: any, products: any) => {
+    // console.log({ total });
+    // console.log({ products });
+    const productPrice = products?.product?.price;
+    return total + productPrice * products?.quantity;
+  }, 0)
   return (
     <>
       <h4 className="text-base font-medium pl-6 bg-gray-200 rounded p-3">
@@ -33,7 +37,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
                 className="grid grid-cols-3 gap-5 mt-5 border p-3 shadow rounded-xl"
               >
                 <div className="col-span-1">
-                  <img src={product.product.image} alt="Product" />
+                  <img src={product?.product?.images?.[0].uid} alt="Product" />
                 </div>
                 <div className="col-span-2 flex flex-col gap-2">
                   <Link
@@ -61,7 +65,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
             <h4 className="uppercase font-normal text-base">Tổng phụ: </h4>
 
             <span className="text-lg font-semibold text-rose-500">
-              {cart?.totalPrice.toLocaleString("vi-VN") || 0}₫
+              {cart?.totalPrice?.toLocaleString("vi-VN") || 0}₫
             </span>
           </div>
 
@@ -93,7 +97,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
           <h4 className="uppercase font-bold text-base">Tổng: </h4>
 
           <span className="text-lg font-semibold text-rose-500">
-            {total ? total.toLocaleString("vi-VN") : 0}₫
+            {totalPrice ? totalPrice?.toLocaleString("vi-VN") : 0}₫
           </span>
         </div>
       </div>

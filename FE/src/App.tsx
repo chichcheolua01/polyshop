@@ -43,6 +43,7 @@ import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
 import { useGetUserByTokenMutation } from "./api/auth";
 import { useAppSelector } from "./store/hook";
+import { useGetOneCartQuery } from "./api/cart";
 
 function App() {
   const { data: products } = useGetAllProductsQuery();
@@ -53,16 +54,20 @@ function App() {
   const listProducts = products?.data;
   const listCategories = categories?.data;
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-  const pro = useAppSelector((state) => state.cartData)
-  const [cart, setCart] = useState<ICart | null>(null);
-  console.log(pro);
+  // const pro = useAppSelector((state) => state.cartData)
+  // const [cart, setCart] = useState<any>();
+  // console.log(data);
+  // console.log(pro);
   useEffect(() => {
     if (token) {
       getUser(token)
         .unwrap()
         .then((response) => {
+          console.log(response?.data?._id);
           setCurrentUser(response?.data);
-          setCart(pro)
+
+
+
         })
         .catch((error) => {
           message.error(error.data.message);
@@ -70,6 +75,9 @@ function App() {
     }
   }, [getUser, token]);
 
+  const { data: cart } = useGetOneCartQuery(currentUser?._id)
+  // setCart(data);
+  // console.log(data?.data);
   if (resultGet.isLoading) {
     return (
       <>
@@ -88,10 +96,9 @@ function App() {
             path="/"
             element={
               <BaseClient
-                cart={cart}
+                cart={cart?.data}
                 currentUser={currentUser}
-                listCategories={listCategories}
-              />
+                listCategories={listCategories} />
             }
           >
             <Route
@@ -140,7 +147,7 @@ function App() {
             <Route
               path="checkout"
               element={
-                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
+                <CheckoutPage cardUser={currentUser?.cards} cart={cart?.data} />
               }
             />
             <Route path="introduce" element={<IntroducePage />} />

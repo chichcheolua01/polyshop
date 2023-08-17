@@ -1,21 +1,39 @@
 import { InputNumber } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../Button";
 
 import { IItemCart } from "../../../interface";
+import React, { useState } from "react";
+import { useRemoveCartMutation, useUpdateQuantityMutation } from "../../../api/cart";
+import { AiOutlineClose } from "react-icons/ai";
 
 type CartDrawnItemProps = {
-  cartItem: IItemCart;
+  cartItem: any;
 };
 
 const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
-  const onChange = (value: number | null) => {
-    console.log(value);
+  // const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+  const navigate = useNavigate()
+  const handleQuantityChange = (value: number) => {
+    setQuantity(value);
   };
-
+  console.log(cartItem);
+  const [updateQuantity] = useUpdateQuantityMutation()
+  const [removeCart] = useRemoveCartMutation()
+  console.log(cartItem?._id);
+  console.log(cartItem.product?._id);
+  const updateCarts = () => {
+    updateQuantity(cartItem)
+  }
+  const removeCarts = () => {
+    removeCart({ idCart: cartItem?._id, idPro: cartItem.product?._id })
+  }
   return (
     <>
       <div className="flex flex-row gap-2 w-full mb-1 border rounded-xl p-2">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
+          <span onClick={() => removeCarts()}><AiOutlineClose /></span>
           <img
             src={cartItem.product.images[0]?.uid}
             width={100}
@@ -43,8 +61,9 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
             <InputNumber
               min={1}
               max={cartItem.product.inventory}
+              value={quantity}
               defaultValue={cartItem.quantity}
-              onChange={onChange}
+              onChange={(value: any) => handleQuantityChange(value)}
             />
           </div>
         </div>
@@ -53,4 +72,4 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
   );
 };
 
-export default CartDrawnItem;
+export default React.memo(CartDrawnItem);

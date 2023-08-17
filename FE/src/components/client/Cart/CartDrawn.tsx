@@ -13,9 +13,17 @@ type CartDrawnProps = {
   onClose: () => void;
 };
 
+
 const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
   const navigate = useNavigate();
-
+  // console.log(cart);
+  const totalPrice = cart?.products?.reduce((total: any, products: any) => {
+    // console.log({ total });
+    // console.log({ products });
+    const productPrice = products?.product?.price;
+    return total + productPrice * products?.quantity;
+  }, 0)
+  // console.log(totalPrice);
   return (
     <>
       <Drawer
@@ -47,9 +55,7 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
               <div className="flex justify-between">
                 <span className="font-bold">Tổng phụ:</span>
                 <span className="text-gray-500">
-                  {(cart &&
-                    cart.totalPrice &&
-                    cart.totalPrice.toLocaleString("vi-VN")) ||
+                  {(totalPrice?.toLocaleString("vi-VN")) ||
                     0}
                   ₫
                 </span>

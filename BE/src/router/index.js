@@ -10,6 +10,7 @@ import CardRouter from "./card";
 import VoucherRouter from "./voucher";
 import FeedbackRouter from "./feedback";
 import PaymentRouter from "./payment";
+import CartRouter from "./cart"
 
 export {
   ProductRouter,
@@ -24,4 +25,5 @@ export {
   FeedbackRouter,
   CardRouter,
   PaymentRouter,
+  CartRouter
 };

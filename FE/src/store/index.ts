@@ -14,8 +14,8 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import { productApi } from "../api/products";
 import { categoryApi } from "../api/categories";
 import { authApi } from "../api/auth";
-import { cartSlice } from "../cartSlice/cart";
 import { contactApi } from "../api/contact";
+import cartApi from "../api/cart";
 
 // Cấu hình persist ( lưu localStorage )
 const persistConfig = {
@@ -23,14 +23,14 @@ const persistConfig = {
   storage,
   whitelist: ["products"],
 };
-const persistedReducer = persistReducer(persistConfig, cartSlice.reducer);
+// const persistedReducer = persistReducer(persistConfig, cartSlice.reducer);
 export const store = configureStore({
   reducer: {
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    cartData: persistedReducer,
     [contactApi.reducerPath]: contactApi.reducer,
+    [cartApi.reducerPath]: cartApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -41,7 +41,8 @@ export const store = configureStore({
       .concat(productApi.middleware)
       .concat(categoryApi.middleware)
       .concat(authApi.middleware)
-      .concat(contactApi.middleware),
+      .concat(contactApi.middleware)
+      .concat(cartApi.middleware),
 });
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

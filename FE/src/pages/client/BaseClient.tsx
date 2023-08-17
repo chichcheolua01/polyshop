@@ -11,6 +11,7 @@ import {
 } from "../../components";
 
 import { ICart, ICategoryProduct, IUser } from "../../interface";
+import { useGetOneCartQuery } from "../../api/cart";
 
 type BaseClientProps = {
   cart: any | null;
@@ -18,12 +19,13 @@ type BaseClientProps = {
   listCategories: ICategoryProduct[] | undefined;
 };
 
-const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
+const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
-
+  // const { data: cart } = useGetOneCartQuery(currentUser?._id!)
+  // console.log(cart);
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
@@ -82,7 +84,7 @@ const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
-          cartCount={cart?.products?.length || 0}
+          cartCount={cart?.data?.products?.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />

@@ -1,5 +1,5 @@
 import { Form, Image } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
 import { InputNumber } from "antd";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -9,23 +9,30 @@ import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
 import { IFavoriteUser, IProduct } from "../../../../interface";
-import { useAppDispatch, useAppSelector } from "../../../../store/hook";
-import { add } from "../../../../cartSlice/cart";
+import { useAddCartMutation, useGetOneCartQuery } from "../../../../api/cart";
 
 type ProductInfoProps = {
   product?: IProduct | null;
   favoriteUser: IFavoriteUser[] | undefined;
+  userId: any
 };
 
-const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
+const ProductInfo = ({ product, favoriteUser, userId }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
+  const [add] = useAddCartMutation()
   // const cart = useAppSelector((state) => state.cart)
   // console.log(cart);
-  const onChange = (value: any) => {
-    console.log(value);
-  };
+  const [quantity, setQuantity] = useState(1);
 
+  const { data: cart } = useGetOneCartQuery(userId)
+  const onAddToCart = () => {
+
+    add({ products: [{ product: product?._id, quantity }] })
+  };
+  const quanti = cart?.data?.products?.find((pro: any) => {
+    return pro?.product?._id === product?._id
+  })
 
   return (
     <>
@@ -101,13 +108,14 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                   <span className="mr-3">
                     Số lượng:{" "}
 
-                    <InputNumber
+                    {quanti?.quantity == product?.inventory ? (<div>Bạn đã thêm tối đa số lượng sản phẩm</div>) : (<InputNumber
 
                       min={1}
-                      max={product?.inventory}
+                      max={product?.inventory - quanti?.quantity}
                       defaultValue={1}
-                      onChange={onChange}
-                    />
+                      value={quantity}
+                      onChange={(value: any) => setQuantity(value)}
+                    />)}
                   </span>
                 </div>
               </div>
@@ -116,8 +124,8 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                 <Button
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
-                  onClick={() => dispatch(add({ product, quantity: 1 }))}
-                  disabled={product?.inventory === 0}
+                  onClick={() => onAddToCart()}
+                  disabled={product?.inventory === 0 || quanti?.quantity == product?.inventory}
                 />
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -135,4 +143,4 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   );
 };
 
-export default ProductInfo;
+export default React.memo(ProductInfo);
