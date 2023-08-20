@@ -24,7 +24,7 @@ type UsersResponse = {
 
 type CartResponse = {
   message: string;
-  data: any;
+  cart: any;
 };
 
 type FavoritesResponse = {
