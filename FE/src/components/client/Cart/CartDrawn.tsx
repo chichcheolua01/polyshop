@@ -5,25 +5,36 @@ import Button from "../../Button";
 import CartDrawnItem from "./CartDrawnItem";
 
 import { ICart, IUser } from "../../../interface";
+import { useUpdateQuantityMutation } from "../../../api/cart";
+import { useState } from "react";
 
 type CartDrawnProps = {
   isOpen: boolean;
   currentUser: IUser | null;
-  cart: ICart | null;
+  cart: any;
   onClose: () => void;
 };
 
 
 const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
-  const navigate = useNavigate();
-  // console.log(cart);
+  const [updateCart] = useUpdateQuantityMutation();
+  const navigate = useNavigate()
+
+
+  const updateProductQuantity = (product: string, quantity: number) => {
+    console.log(quantity);
+    // Gọi API để cập nhật số lượng sản phẩm trong giỏ hàng trên server
+    updateCart({ _id: cart._id, products: [{ product, quantity }] })
+  };
+  const handleCheckout = () => {
+    // updateCart({ _id: cart._id, products: carts.products });
+    navigate("/checkout");
+  };
   const totalPrice = cart?.products?.reduce((total: any, products: any) => {
-    // console.log({ total });
-    // console.log({ products });
+
     const productPrice = products?.product?.price;
     return total + productPrice * products?.quantity;
   }, 0)
-  // console.log(totalPrice);
   return (
     <>
       <Drawer
@@ -34,8 +45,8 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
       >
         <div className="h-[65vh] overflow-y-auto">
           {cart && cart.products && cart.products.length > 0 ? (
-            cart.products.map((cartItem) => (
-              <CartDrawnItem key={cartItem.product._id} cartItem={cartItem} />
+            cart.products.map((cartItem: any) => (
+              <CartDrawnItem key={cartItem.product._id} idCart={cart?._id} cartItem={cartItem} onChange={updateProductQuantity} />
             ))
           ) : (
             <div className="flex justify-center">
@@ -65,7 +76,7 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
             <Button
               label="Thanh toán"
               disabled={!currentUser}
-              onClick={() => navigate("/checkout")}
+              onClick={() => handleCheckout()}
             />
           </div>
         </div>

@@ -43,19 +43,20 @@ import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
 import { useGetUserByTokenMutation } from "./api/auth";
 import { useAppSelector } from "./store/hook";
-import { useGetOneCartQuery } from "./api/cart";
+import { useGetOneCartMutation } from "./api/cart";
 
 function App() {
   const { data: products } = useGetAllProductsQuery();
   const { data: categories } = useGetAllCategoriesQuery();
   const [getUser, resultGet] = useGetUserByTokenMutation();
+  const [getCartByUser] = useGetOneCartMutation()
   const token = localStorage.getItem("token");
 
   const listProducts = products?.data;
   const listCategories = categories?.data;
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   // const pro = useAppSelector((state) => state.cartData)
-  // const [cart, setCart] = useState<any>();
+  const [cart, setCart] = useState<any>();
   // console.log(data);
   // console.log(pro);
   useEffect(() => {
@@ -63,11 +64,11 @@ function App() {
       getUser(token)
         .unwrap()
         .then((response) => {
-          console.log(response?.data?._id);
-          setCurrentUser(response?.data);
-
-
-
+          setCurrentUser(response?.data)
+          getCartByUser(response?.data?._id)
+            .unwrap().then((response) => {
+              setCart(response?.data)
+            })
         })
         .catch((error) => {
           message.error(error.data.message);
@@ -75,9 +76,8 @@ function App() {
     }
   }, [getUser, token]);
 
-  const { data: cart } = useGetOneCartQuery(currentUser?._id)
-  // setCart(data);
-  // console.log(data?.data);
+
+  // console.log(cart);
   if (resultGet.isLoading) {
     return (
       <>
@@ -96,7 +96,7 @@ function App() {
             path="/"
             element={
               <BaseClient
-                cart={cart?.data}
+                cart={cart}
                 currentUser={currentUser}
                 listCategories={listCategories} />
             }
@@ -147,7 +147,7 @@ function App() {
             <Route
               path="checkout"
               element={
-                <CheckoutPage cardUser={currentUser?.cards} cart={cart?.data} />
+                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
               }
             />
             <Route path="introduce" element={<IntroducePage />} />

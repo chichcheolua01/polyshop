@@ -1,6 +1,6 @@
 import { Form, Image } from "antd";
-import React, { useState } from "react";
-import { InputNumber } from "antd";
+import React, { useEffect, useState } from "react";
+import { InputNumber, message, Space } from "antd";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -9,7 +9,8 @@ import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
 import { IFavoriteUser, IProduct } from "../../../../interface";
-import { useAddCartMutation, useGetOneCartQuery } from "../../../../api/cart";
+import { useAddCartMutation, useGetOneCartMutation } from "../../../../api/cart";
+import { useNavigate } from "react-router-dom";
 
 type ProductInfoProps = {
   product?: IProduct | null;
@@ -19,18 +20,39 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product, favoriteUser, userId }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
-  // const dispatch = useAppDispatch()
   const [add] = useAddCartMutation()
-  // const cart = useAppSelector((state) => state.cart)
-  // console.log(cart);
+  const [cart, setCart] = useState(null)
   const [quantity, setQuantity] = useState(1);
+  const [getCart] = useGetOneCartMutation()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (userId) {
+      getCart(userId)
+        .unwrap().then((res) => setCart(res?.data))
+    }
+  }, [userId])
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Thêm sản phẩm vào giỏ hàng thành công',
+    });
+  };
 
-  const { data: cart } = useGetOneCartQuery(userId)
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Thêm sản phẩm vào giỏ hàng thất bại',
+    });
+  };
   const onAddToCart = () => {
 
     add({ products: [{ product: product?._id, quantity }] })
+      .unwrap()
+      .then(() => success())
+      .catch(() => error())
   };
-  const quanti = cart?.data?.products?.find((pro: any) => {
+  const quanti = cart?.products?.find((pro: any) => {
     return pro?.product?._id === product?._id
   })
 
@@ -119,14 +141,19 @@ const ProductInfo = ({ product, favoriteUser, userId }: ProductInfoProps) => {
                   </span>
                 </div>
               </div>
-
+              {contextHolder}
               <div className="flex">
-                <Button
+                {userId ? (<Button
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
                   onClick={() => onAddToCart()}
                   disabled={product?.inventory === 0 || quanti?.quantity == product?.inventory}
-                />
+                />) : (<Button
+                  label="Thêm vào giỏ hàng"
+                  icon={AiOutlineShoppingCart}
+                  onClick={() => navigate('/auth')}
+                  disabled={product?.inventory === 0 || quanti?.quantity == product?.inventory}
+                />)}
 
                 <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <HeartButton

@@ -16,6 +16,7 @@ type CheckoutPageProps = {
 };
 
 const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
+  console.log(cart)
   const [active, setActive] = useState("Thẻ ngân hàng");
 
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
@@ -61,9 +62,8 @@ const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
                   <div
                     key={method.name}
                     className={`p-3 cursor-pointer rounded text-center flex flex-col items-center w-[150px]
-                  ${
-                    active === method.name ? "border border-rose-500" : "border"
-                  }
+                  ${active === method.name ? "border border-rose-500" : "border"
+                      }
                   `}
                     onClick={() => toggleActive(method.name)}
                   >

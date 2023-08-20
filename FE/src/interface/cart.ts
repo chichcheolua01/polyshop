@@ -1,6 +1,7 @@
 export interface ICart {
   products: IItemCart[];
   totalPrice: number;
+  _id?: string;
 }
 
 export interface IItemCart {

@@ -18,9 +18,13 @@ const cartApi = createApi({
       query: () => `/cart`,
       providesTags: ["Cart"],
     }),
-    getOneCart: builder.query<any, any>({
-      query: (id) => `/cart/${id}`,
-      providesTags: ["Cart"],
+    getOneCart: builder.mutation<any, any>({
+      query: (id) => ({
+        url: `/cart/${id}`,
+        method: "POST",
+        body: id,
+      }),
+      invalidatesTags: ["Cart"],
     }),
     addCart: builder.mutation<any, any>({
       query: (pro) => ({
@@ -30,12 +34,10 @@ const cartApi = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
-    removeCart: builder.mutation<any, { idCart: string; idPro: string }>({
-      query: ({ idCart, idPro }) => {
-        console.log({ idCart });
-        console.log({ idPro });
+    removeCart: builder.mutation<any, any>({
+      query: (cart) => {
         return {
-          url: `/cart/${idCart}/${idPro}`,
+          url: `/cart/${cart.cartId}/${cart.productId}`,
           method: "DELETE",
         };
       },
@@ -53,7 +55,7 @@ const cartApi = createApi({
 });
 export const {
   useGetAllCartQuery,
-  useGetOneCartQuery,
+  useGetOneCartMutation,
   useAddCartMutation,
   useRemoveCartMutation,
   useUpdateQuantityMutation,

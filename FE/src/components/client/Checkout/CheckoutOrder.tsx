@@ -13,8 +13,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
   const [discount, setDiscount] = useState("");
 
   const totalPrice = cart?.products?.reduce((total: any, products: any) => {
-    // console.log({ total });
-    // console.log({ products });
+
     const productPrice = products?.product?.price;
     return total + productPrice * products?.quantity;
   }, 0)
@@ -48,7 +47,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
                   </Link>
                   <p className="text-gray-500 text-base">x{product.quantity}</p>
                   <p className="text-rose-500 text-base font-semibold">
-                    {product.product.price}
+                    {product.product.price?.toLocaleString("vi-VN")}₫
                   </p>
                 </div>
               </div>

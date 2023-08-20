@@ -11,7 +11,7 @@ import {
 } from "../../components";
 
 import { ICart, ICategoryProduct, IUser } from "../../interface";
-import { useGetOneCartQuery } from "../../api/cart";
+// import { useGetOneCartQuery } from "../../api/cart";
 
 type BaseClientProps = {
   cart: any | null;
@@ -84,7 +84,7 @@ const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
-          cartCount={cart?.data?.products?.length || 0}
+          cartCount={cart?.products?.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />

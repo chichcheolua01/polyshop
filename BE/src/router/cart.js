@@ -8,9 +8,9 @@ import { loginMiddleware } from "../middleware/loginPermission";
 const router = express.Router();
 
 router.get("/", loginMiddleware, getAll);
-router.get("/:id", loginMiddleware, getOne);
+router.post("/:id", loginMiddleware, getOne);
 router.post("/", loginMiddleware, create);
 router.patch("/:cartId", checkPermission, updateCartItemQuantity);
-router.delete("/", loginMiddleware, removeCart);
+router.delete("/:cartId/:productId", loginMiddleware, removeCart);
 
 export default router;
