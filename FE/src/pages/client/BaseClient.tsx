@@ -10,26 +10,22 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICart, ICategoryProduct, IUser } from "../../interface";
-// import { useGetOneCartQuery } from "../../api/cart";
+import { ICategoryProduct, IUser } from "../../interface";
 
 type BaseClientProps = {
-  cart: any | null;
   currentUser: IUser | null;
   listCategories: ICategoryProduct[] | undefined;
 };
 
-const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
+const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [openDrawn, setOpenDrawn] = useState(false);
-  // const { data: cart } = useGetOneCartQuery(currentUser?._id!)
-  // console.log(cart);
+
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
-  // console.log(cart);
 
   const isHomePage = location.pathname === "/";
 
@@ -84,7 +80,6 @@ const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
-          cartCount={cart?.products?.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />
@@ -93,7 +88,6 @@ const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
           isOpen={openDrawn}
           currentUser={currentUser}
           onClose={setDrawn}
-          cart={cart}
         />
 
         <main className="pt-36">

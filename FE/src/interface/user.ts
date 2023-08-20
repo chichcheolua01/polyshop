@@ -6,6 +6,7 @@ export interface IUser {
   phone: string;
   address: string;
   image: IImageUser;
+  cart: any;
   cards: ICardUser[];
   order: IOrderUser[];
   favorites: string[];

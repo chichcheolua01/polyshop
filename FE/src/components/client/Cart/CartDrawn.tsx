@@ -4,37 +4,21 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../Button";
 import CartDrawnItem from "./CartDrawnItem";
 
-import { ICart, IUser } from "../../../interface";
-import { useUpdateQuantityMutation } from "../../../api/cart";
-import { useState } from "react";
+import { IUser } from "../../../interface";
+import { useGetCartByUserQuery } from "../../../api/auth";
 
 type CartDrawnProps = {
   isOpen: boolean;
   currentUser: IUser | null;
-  cart: any;
   onClose: () => void;
 };
 
+const CartDrawn = ({ currentUser, isOpen, onClose }: CartDrawnProps) => {
+  const navigate = useNavigate();
 
-const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
-  const [updateCart] = useUpdateQuantityMutation();
-  const navigate = useNavigate()
+  const { data } = useGetCartByUserQuery();
+  const cart = data?.cart;
 
-
-  const updateProductQuantity = (product: string, quantity: number) => {
-    console.log(quantity);
-    // Gọi API để cập nhật số lượng sản phẩm trong giỏ hàng trên server
-    updateCart({ _id: cart._id, products: [{ product, quantity }] })
-  };
-  const handleCheckout = () => {
-    // updateCart({ _id: cart._id, products: carts.products });
-    navigate("/checkout");
-  };
-  const totalPrice = cart?.products?.reduce((total: any, products: any) => {
-
-    const productPrice = products?.product?.price;
-    return total + productPrice * products?.quantity;
-  }, 0)
   return (
     <>
       <Drawer
@@ -46,7 +30,7 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
         <div className="h-[65vh] overflow-y-auto">
           {cart && cart.products && cart.products.length > 0 ? (
             cart.products.map((cartItem: any) => (
-              <CartDrawnItem key={cartItem.product._id} idCart={cart?._id} cartItem={cartItem} onChange={updateProductQuantity} />
+              <CartDrawnItem key={cartItem.product._id} cartItem={cartItem} />
             ))
           ) : (
             <div className="flex justify-center">
@@ -66,7 +50,9 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
               <div className="flex justify-between">
                 <span className="font-bold">Tổng phụ:</span>
                 <span className="text-gray-500">
-                  {(totalPrice?.toLocaleString("vi-VN")) ||
+                  {(cart &&
+                    cart.totalPrice &&
+                    cart.totalPrice.toLocaleString("vi-VN")) ||
                     0}
                   ₫
                 </span>
@@ -76,7 +62,7 @@ const CartDrawn = ({ currentUser, isOpen, onClose, cart }: CartDrawnProps) => {
             <Button
               label="Thanh toán"
               disabled={!currentUser}
-              onClick={() => handleCheckout()}
+              onClick={() => navigate("/checkout")}
             />
           </div>
         </div>
