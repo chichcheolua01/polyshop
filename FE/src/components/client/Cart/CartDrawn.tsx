@@ -19,6 +19,11 @@ const CartDrawn = ({ currentUser, isOpen, onClose }: CartDrawnProps) => {
   const { data } = useGetCartByUserQuery();
   const cart = data?.cart;
 
+  const totalPrice = cart?.products?.reduce((total: any, products: any) => {
+    const productPrice = products?.product?.price;
+    return total + productPrice * products?.quantity;
+  }, 0);
+
   return (
     <>
       <Drawer
@@ -30,7 +35,11 @@ const CartDrawn = ({ currentUser, isOpen, onClose }: CartDrawnProps) => {
         <div className="h-[65vh] overflow-y-auto">
           {cart && cart.products && cart.products.length > 0 ? (
             cart.products.map((cartItem: any) => (
-              <CartDrawnItem key={cartItem.product._id} cartItem={cartItem} />
+              <CartDrawnItem
+                key={cartItem.product._id}
+                cartItem={cartItem}
+                cartId={cart._id}
+              />
             ))
           ) : (
             <div className="flex justify-center">
@@ -44,17 +53,13 @@ const CartDrawn = ({ currentUser, isOpen, onClose }: CartDrawnProps) => {
             <div className="flex flex-col gap-3">
               <div className="flex justify-between">
                 <span className="font-bold">Giảm giá:</span>
-                <span className="text-gray-500">10%</span>
+                <span className="text-gray-500">0%</span>
               </div>
 
               <div className="flex justify-between">
                 <span className="font-bold">Tổng phụ:</span>
                 <span className="text-gray-500">
-                  {(cart &&
-                    cart.totalPrice &&
-                    cart.totalPrice.toLocaleString("vi-VN")) ||
-                    0}
-                  ₫
+                  {totalPrice ? totalPrice.toLocaleString("vi-VN") : 0}₫
                 </span>
               </div>
             </div>

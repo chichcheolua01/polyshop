@@ -2,29 +2,31 @@ import { InputNumber, message } from "antd";
 import { Link } from "react-router-dom";
 
 import { IItemCart } from "../../../interface";
-import { useAddCartMutation } from "../../../api/auth";
+import { useUpdateCartMutation } from "../../../api/auth";
 
 type CartDrawnItemProps = {
   cartItem: IItemCart;
+  cartId: string;
 };
 
-const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
-  const [addCart, resultAdd] = useAddCartMutation();
+const CartDrawnItem = ({ cartItem, cartId }: CartDrawnItemProps) => {
+  const [updateCart, resultUpdate] = useUpdateCartMutation();
 
   const onChange = (value: number | null) => {
     if (value !== null) {
       const data = {
-        product: cartItem.product._id,
+        cartId,
+        productId: cartItem.product._id,
         quantity: value,
       };
 
-      addCart(data)
+      updateCart(data)
         .unwrap()
         .then((response) => {
           message.success(response.message);
         })
         .catch(() => {
-          message.error("Thêm thất bại");
+          message.error("Cập nhật thất bại");
         });
     }
   };
@@ -59,7 +61,7 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
 
             <InputNumber
               min={1}
-              disabled={resultAdd.isLoading}
+              disabled={resultUpdate.isLoading}
               max={cartItem.product.inventory}
               defaultValue={cartItem.quantity}
               onChange={onChange}

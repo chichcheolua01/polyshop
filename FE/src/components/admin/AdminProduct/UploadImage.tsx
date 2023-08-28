@@ -56,7 +56,6 @@ const UploadImage = ({
       status: file.status as string,
       url: file.response?.url || file.url,
     }));
-    console.log(newImages);
 
     handleImageChange(newImages);
   };

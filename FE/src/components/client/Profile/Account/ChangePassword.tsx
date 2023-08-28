@@ -62,7 +62,6 @@ const ChangePassword = ({ emailUser }: ChangePasswordProps) => {
     checkCodeAuth(data)
       .unwrap()
       .then((response) => {
-        console.log(response);
         setStep("2");
         setDisabled(true);
       })

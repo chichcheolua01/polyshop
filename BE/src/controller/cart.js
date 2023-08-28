@@ -39,7 +39,7 @@ export const addCart = async (req, res) => {
       );
 
       if (existingProduct) {
-        existingProduct.quantity = quantity;
+        existingProduct.quantity += quantity;
       } else {
         cart.products.push({ product: productId, quantity: quantity });
       }
@@ -49,6 +49,44 @@ export const addCart = async (req, res) => {
 
     return res.status(200).json({
       message: "Sản phẩm đã được thêm vào giỏ hàng",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Lỗi server: " + error.message,
+    });
+  }
+};
+
+export const updateCart = async (req, res) => {
+  const cartId = req.body.cartId;
+  const productId = req.body.productId;
+  const quantity = req.body.quantity;
+
+  try {
+    const cart = await Cart.findById(cartId);
+
+    if (!cart) {
+      return res.status(404).json({
+        message: "Không tìm thấy giỏ hàng",
+      });
+    }
+
+    const cartItem = cart.products.find(
+      (item) => item.product.toString() === productId
+    );
+
+    if (!cartItem) {
+      return res.status(404).json({
+        message: "Không tìm thấy sản phẩm trong giỏ hàng",
+      });
+    }
+
+    cartItem.quantity = quantity;
+
+    await cart.save();
+
+    return res.status(200).json({
+      message: "Cập nhật thành công",
     });
   } catch (error) {
     return res.status(500).json({

@@ -2,21 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Input } from "../..";
-
 import { ICart } from "../../../interface";
 
 type CheckoutOrderProps = {
-  cart: ICart | null;
+  cart: ICart;
 };
 
 const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
   const [discount, setDiscount] = useState("");
 
-  const totalPrice = cart?.products?.reduce((total: any, products: any) => {
-
+  const totalPrice = cart?.products?.reduce((total: number, products: any) => {
     const productPrice = products?.product?.price;
     return total + productPrice * products?.quantity;
-  }, 0)
+  }, 0);
+
   return (
     <>
       <h4 className="text-base font-medium pl-6 bg-gray-200 rounded p-3">
@@ -30,7 +29,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
 
         <div className="mb-5 h-[65vh] overflow-y-auto">
           {cart ? (
-            cart?.products.map((product, i) => (
+            cart?.products.map((product: any, i: number) => (
               <div
                 key={i}
                 className="grid grid-cols-3 gap-5 mt-5 border p-3 shadow rounded-xl"
@@ -64,7 +63,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
             <h4 className="uppercase font-normal text-base">Tổng phụ: </h4>
 
             <span className="text-lg font-semibold text-rose-500">
-              {cart?.totalPrice?.toLocaleString("vi-VN") || 0}₫
+              {(0).toLocaleString("vi-VN")}₫
             </span>
           </div>
 

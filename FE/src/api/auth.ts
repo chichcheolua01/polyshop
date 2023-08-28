@@ -223,6 +223,21 @@ export const authApi = createApi({
 
         return {
           url: `/cart`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+    updateCart: builder.mutation({
+      query: (data) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
           method: "PATCH",
           body: data,
           headers: {
@@ -264,5 +279,6 @@ export const {
   useGetFavoritesByUserQuery,
   useGetAllUserQuery,
   useAddCartMutation,
+  useUpdateCartMutation,
   useGetCartByUserQuery,
 } = authApi;
