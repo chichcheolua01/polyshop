@@ -22,6 +22,11 @@ type UsersResponse = {
   data: IUser[];
 };
 
+type CartResponse = {
+  message: string;
+  cart: any;
+};
+
 type FavoritesResponse = {
   message: string;
   listProducts: IProduct[];
@@ -212,6 +217,35 @@ export const authApi = createApi({
       },
       invalidatesTags: ["Auth"],
     }),
+    addCart: builder.mutation({
+      query: (data) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
+          method: "PATCH",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+    getCartByUser: builder.query<CartResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -229,4 +263,6 @@ export const {
   useUploadCardMutation,
   useGetFavoritesByUserQuery,
   useGetAllUserQuery,
+  useAddCartMutation,
+  useGetCartByUserQuery,
 } = authApi;

@@ -1,65 +1,40 @@
-import { Button, InputNumber, Popconfirm, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { InputNumber, message } from "antd";
+import { Link } from "react-router-dom";
 
 import { IItemCart } from "../../../interface";
-import React, { useState } from "react";
-import { useRemoveCartMutation, useUpdateQuantityMutation } from "../../../api/cart";
-import { AiOutlineClose } from "react-icons/ai";
+import { useAddCartMutation } from "../../../api/auth";
 
 type CartDrawnItemProps = {
-  cartItem: any;
-  idCart: string
-  onChange: (productId: string, quantity: number) => void;
+  cartItem: IItemCart;
 };
 
-const CartDrawnItem = ({ idCart, cartItem, onChange }: CartDrawnItemProps) => {
-  const [quantity, setQuantity] = useState(cartItem.quantity)
-  const [remove] = useRemoveCartMutation()
-  const [messageApi, contextHolder] = message.useMessage();
+const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
+  const [addCart, resultAdd] = useAddCartMutation();
 
-  const success = () => {
-    messageApi.open({
-      type: 'success',
-      content: 'Xóa sản phẩm trong giỏ hàng thành công',
-    });
+  const onChange = (value: number | null) => {
+    if (value !== null) {
+      const data = {
+        product: cartItem.product._id,
+        quantity: value,
+      };
+
+      addCart(data)
+        .unwrap()
+        .then((response) => {
+          message.success(response.message);
+        })
+        .catch(() => {
+          message.error("Thêm thất bại");
+        });
+    }
   };
 
-  const error = () => {
-    messageApi.open({
-      type: 'error',
-      content: 'Xóa sản phẩm trong giỏ hàng thất bại',
-    });
-  };
-  const removeCarts = () => {
-    remove({ cartId: idCart, productId: cartItem?.product?._id })
-      .unwrap()
-      .then(() => success())
-      .catch(() => error())
-  }
-  const text = 'Are you sure to delete this task?';
-  const description = 'Delete the task';
-
-  const handleQuantityChange = (value: number) => {
-    setQuantity(value)
-    onChange(cartItem.product._id, value);
-  };
   return (
     <>
       <div className="flex flex-row gap-2 w-full mb-1 border rounded-xl p-2">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
-          {contextHolder}
-          <Popconfirm
-            placement="topLeft"
-            title={text}
-            description={description}
-            onConfirm={removeCarts}
-            okText="Yes"
-            cancelText="No"
-          >
-            <span><AiOutlineClose /></span>
-          </Popconfirm>
           <img
-            src={cartItem.product.images[0]?.uid}
+            src={cartItem.product.images[0].url}
             width={100}
             height={100}
             alt="Product"
@@ -84,10 +59,10 @@ const CartDrawnItem = ({ idCart, cartItem, onChange }: CartDrawnItemProps) => {
 
             <InputNumber
               min={1}
-              max={cartItem.product.inventory - cartItem.quantity}
-              value={quantity}
+              disabled={resultAdd.isLoading}
+              max={cartItem.product.inventory}
               defaultValue={cartItem.quantity}
-              onChange={(value) => handleQuantityChange(value)}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -96,4 +71,4 @@ const CartDrawnItem = ({ idCart, cartItem, onChange }: CartDrawnItemProps) => {
   );
 };
 
-export default React.memo(CartDrawnItem);
+export default CartDrawnItem;

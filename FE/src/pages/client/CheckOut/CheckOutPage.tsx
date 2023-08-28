@@ -16,7 +16,7 @@ type CheckoutPageProps = {
 };
 
 const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
-  // console.log(cart)
+  console.log(cart)
   const [active, setActive] = useState("Thẻ ngân hàng");
 
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
