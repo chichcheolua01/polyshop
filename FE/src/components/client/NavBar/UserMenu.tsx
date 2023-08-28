@@ -11,10 +11,11 @@ import { IUser } from "../../../interface";
 
 type UserMenuProps = {
   currentUser: IUser | null;
+  cartCount: number;
   onClick: () => void;
 };
 
-const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +47,7 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block cursor-pointer transition px-4"
           >
-            <Badge count={1} size="small">
+            <Badge count={cartCount} size="small">
               <FiShoppingCart
                 size={22}
                 className="hover:text-rose-300 text-black"

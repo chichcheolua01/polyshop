@@ -14,13 +14,5 @@ export interface IProductCart {
   name: string;
   price: number;
   inventory: number;
-  images: IImageProduct[];
-}
-
-export interface IImageProduct {
-  _id?: string;
-  uid: string;
-  name: string;
-  url: string;
-  status: string;
+  images: string;
 }

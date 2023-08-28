@@ -1,6 +1,6 @@
-import { Image, message } from "antd";
-import { useState } from "react";
-import { InputNumber } from "antd";
+import { Form, Image } from "antd";
+import React, { useEffect, useState } from "react";
+import { InputNumber, message, Space } from "antd";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -9,41 +9,56 @@ import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
 import { IFavoriteUser, IProduct } from "../../../../interface";
-import { useAddCartMutation } from "../../../../api/auth";
+import { useAddCartMutation, useGetOneCartMutation } from "../../../../api/cart";
+import { useNavigate } from "react-router-dom";
 
 type ProductInfoProps = {
   product?: IProduct | null;
   favoriteUser: IFavoriteUser[] | undefined;
+  userId: any
 };
 
-const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
+const ProductInfo = ({ product, favoriteUser, userId }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
-  const [quantity, setQuantity] = useState<number | null>(1);
+  const [add] = useAddCartMutation()
+  const [cart, setCart] = useState(null)
+  const [quantity, setQuantity] = useState(1);
+  const [getCart] = useGetOneCartMutation()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (userId) {
+      getCart(userId)
+        .unwrap().then((res) => setCart(res?.data))
+    }
+  }, [userId])
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Thêm sản phẩm vào giỏ hàng thành công',
+    });
+  };
 
-  const [addCart, resultAdd] = useAddCartMutation();
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Thêm sản phẩm vào giỏ hàng thất bại',
+    });
+  };
+  const onAddToCart = () => {
 
-  const add = (_id: string | undefined) => {
-    const data = {
-      product: _id,
-      quantity: quantity,
-    };
-
-    addCart(data)
+    add({ products: [{ product: product?._id, quantity }] })
       .unwrap()
-      .then((response) => {
-        message.success(response.message);
-      })
-      .catch(() => {
-        message.error("Thêm thất bại");
-      });
+      .then(() => success())
+      .catch(() => error())
   };
-
-  const onChange = (value: number | null) => {
-    setQuantity(value);
-  };
+  const quanti = cart?.products?.find((pro: any) => {
+    return pro?.product?._id === product?._id
+  })
 
   return (
     <>
+
       <section className="text-gray-700 body-font overflow-hidden bg-white border rounded-xl shadow-lg">
         <div className="p-5 mx-auto">
           <div className="mx-auto flex flex-wrap">
@@ -114,30 +129,38 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                 <div className="flex">
                   <span className="mr-3">
                     Số lượng:{" "}
-                    <InputNumber
+
+                    {quanti?.quantity == product?.inventory ? (<div>Bạn đã thêm tối đa số lượng sản phẩm</div>) : (<InputNumber
+
                       min={1}
-                      max={product?.inventory}
-                      defaultValue={quantity || 1}
-                      onChange={onChange}
-                    />
+                      max={product?.inventory - quanti?.quantity}
+                      defaultValue={1}
+                      value={quantity}
+                      onChange={(value: any) => setQuantity(value)}
+                    />)}
                   </span>
                 </div>
               </div>
-
+              {contextHolder}
               <div className="flex">
-                <Button
+                {userId ? (<Button
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
-                  onClick={() => add(product?._id)}
-                  disabled={product?.inventory === 0 || resultAdd.isLoading}
-                />
+                  onClick={() => onAddToCart()}
+                  disabled={product?.inventory === 0 || quanti?.quantity == product?.inventory}
+                />) : (<Button
+                  label="Thêm vào giỏ hàng"
+                  icon={AiOutlineShoppingCart}
+                  onClick={() => navigate('/auth')}
+                  disabled={product?.inventory === 0 || quanti?.quantity == product?.inventory}
+                />)}
 
-                <div className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <HeartButton
                     productId={product?._id}
                     favoriteUser={favoriteUser}
                   />
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -147,4 +170,4 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   );
 };
 
-export default ProductInfo;
+export default React.memo(ProductInfo);

@@ -10,14 +10,16 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICategoryProduct, IUser } from "../../interface";
+import { ICart, ICategoryProduct, IUser } from "../../interface";
+// import { useGetOneCartQuery } from "../../api/cart";
 
 type BaseClientProps = {
+  cart: any | null;
   currentUser: IUser | null;
   listCategories: ICategoryProduct[] | undefined;
 };
 
-const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
+const BaseClient = ({ currentUser, listCategories, cart }: BaseClientProps) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
@@ -26,6 +28,7 @@ const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
   const setDrawn = () => {
     setOpenDrawn(!openDrawn);
   };
+  // console.log(cart);
 
   const isHomePage = location.pathname === "/";
 
@@ -80,6 +83,7 @@ const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
+          cartCount={cart?.products?.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />
@@ -88,6 +92,7 @@ const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
           isOpen={openDrawn}
           currentUser={currentUser}
           onClose={setDrawn}
+          cart={cart}
         />
 
         <main className="pt-36">

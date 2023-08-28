@@ -11,11 +11,17 @@ import { ICategoryProduct, IUser } from "../../../interface";
 
 type NavBarProps = {
   onOpen: () => void;
+  cartCount: number;
   currentUser: IUser | null;
   listCategories: ICategoryProduct[] | undefined;
 };
 
-const NavBar = ({ currentUser, onOpen, listCategories }: NavBarProps) => {
+const NavBar = ({
+  currentUser,
+  onOpen,
+  cartCount,
+  listCategories,
+}: NavBarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -85,7 +91,11 @@ const NavBar = ({ currentUser, onOpen, listCategories }: NavBarProps) => {
                 <Search />
               </div>
 
-              <UserMenu currentUser={currentUser} onClick={onOpen} />
+              <UserMenu
+                currentUser={currentUser}
+                onClick={onOpen}
+                cartCount={cartCount}
+              />
             </div>
           </Container>
         </div>
