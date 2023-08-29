@@ -1,6 +1,7 @@
 export interface ICart {
   products: IItemCart[];
   totalPrice: number;
+  _id?: string;
 }
 
 export interface IItemCart {
@@ -13,5 +14,13 @@ export interface IProductCart {
   name: string;
   price: number;
   inventory: number;
-  image: string;
+  images: IImageProduct[];
+}
+
+export interface IImageProduct {
+  _id?: string;
+  uid: string;
+  name: string;
+  url: string;
+  status: string;
 }

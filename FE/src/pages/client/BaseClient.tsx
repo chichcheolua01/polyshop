@@ -10,15 +10,14 @@ import {
   NavBar,
 } from "../../components";
 
-import { ICart, ICategoryProduct, IUser } from "../../interface";
+import { ICategoryProduct, IUser } from "../../interface";
 
 type BaseClientProps = {
-  cart: ICart | null;
   currentUser: IUser | null;
   listCategories: ICategoryProduct[] | undefined;
 };
 
-const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
+const BaseClient = ({ currentUser, listCategories }: BaseClientProps) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
@@ -81,7 +80,6 @@ const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
 
         <NavBar
           onOpen={setDrawn}
-          cartCount={cart?.products.length || 0}
           listCategories={listCategories}
           currentUser={currentUser}
         />
@@ -90,7 +88,6 @@ const BaseClient = ({ currentUser, cart, listCategories }: BaseClientProps) => {
           isOpen={openDrawn}
           currentUser={currentUser}
           onClose={setDrawn}
-          cart={cart}
         />
 
         <main className="pt-36">

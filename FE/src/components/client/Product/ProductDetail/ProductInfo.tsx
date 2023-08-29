@@ -1,4 +1,4 @@
-import { Image } from "antd";
+import { Image, message } from "antd";
 import { useState } from "react";
 import { InputNumber } from "antd";
 
@@ -9,6 +9,7 @@ import StarButton from "../StarButton";
 import HeartButton from "../HeartButton";
 
 import { IFavoriteUser, IProduct } from "../../../../interface";
+import { useAddCartMutation } from "../../../../api/auth";
 
 type ProductInfoProps = {
   product?: IProduct | null;
@@ -17,9 +18,28 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
   const [visible, setVisible] = useState(false);
+  const [quantity, setQuantity] = useState<number | null>(1);
+
+  const [addCart, resultAdd] = useAddCartMutation();
+
+  const add = (_id: string | undefined) => {
+    const data = {
+      product: _id,
+      quantity: quantity,
+    };
+
+    addCart(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+      })
+      .catch(() => {
+        message.error("Thêm thất bại");
+      });
+  };
 
   const onChange = (value: number | null) => {
-    console.log(value);
+    setQuantity(value);
   };
 
   return (
@@ -97,7 +117,7 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                     <InputNumber
                       min={1}
                       max={product?.inventory}
-                      defaultValue={1}
+                      defaultValue={quantity || 1}
                       onChange={onChange}
                     />
                   </span>
@@ -108,16 +128,16 @@ const ProductInfo = ({ product, favoriteUser }: ProductInfoProps) => {
                 <Button
                   label="Thêm vào giỏ hàng"
                   icon={AiOutlineShoppingCart}
-                  onClick={() => alert("Thành công!")}
-                  disabled={product?.inventory === 0}
+                  onClick={() => add(product?._id)}
+                  disabled={product?.inventory === 0 || resultAdd.isLoading}
                 />
 
-                <button className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                <div className="rounded-full w-16 h-14 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <HeartButton
                     productId={product?._id}
                     favoriteUser={favoriteUser}
                   />
-                </button>
+                </div>
               </div>
             </div>
           </div>

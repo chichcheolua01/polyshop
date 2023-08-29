@@ -22,13 +22,18 @@ type UsersResponse = {
   data: IUser[];
 };
 
+type CartResponse = {
+  message: string;
+  cart: any;
+};
+
 type FavoritesResponse = {
   message: string;
   listProducts: IProduct[];
 };
 
 type CardData = {
-  _id: string;
+  _id?: string;
   card_holder_name: string;
   card_number: string | number;
   start_date: string;
@@ -197,6 +202,21 @@ export const authApi = createApi({
       },
       providesTags: ["Auth"],
     }),
+    createCard: builder.mutation({
+      query: (data: CardData) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/card`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
     uploadCard: builder.mutation({
       query: (data: CardData) => {
         const token = localStorage.getItem("token");
@@ -212,6 +232,50 @@ export const authApi = createApi({
       },
       invalidatesTags: ["Auth"],
     }),
+    addCart: builder.mutation({
+      query: (data) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+    updateCart: builder.mutation({
+      query: (data) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
+          method: "PATCH",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
+    getCartByUser: builder.query<CartResponse, void>({
+      query: () => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/cart`,
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      providesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -226,7 +290,11 @@ export const {
   useResetPasswordAuthMutation,
   useFavoriteProductsMutation,
   useGetCardsByUserQuery,
+  useCreateCardMutation,
   useUploadCardMutation,
   useGetFavoritesByUserQuery,
   useGetAllUserQuery,
+  useAddCartMutation,
+  useUpdateCartMutation,
+  useGetCartByUserQuery,
 } = authApi;

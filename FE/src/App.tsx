@@ -37,7 +37,7 @@ import {
   Loading,
 } from "./components";
 
-import { ICart, IUser } from "./interface";
+import { IUser } from "./interface";
 
 import { useGetAllProductsQuery } from "./api/products";
 import { useGetAllCategoriesQuery } from "./api/categories";
@@ -52,8 +52,6 @@ function App() {
   const listProducts = products?.data;
   const listCategories = categories?.data;
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-
-  const [cart, setCart] = useState<ICart | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -86,7 +84,6 @@ function App() {
             path="/"
             element={
               <BaseClient
-                cart={cart}
                 currentUser={currentUser}
                 listCategories={listCategories}
               />
@@ -137,9 +134,7 @@ function App() {
             </Route>
             <Route
               path="checkout"
-              element={
-                <CheckoutPage cardUser={currentUser?.cards} cart={cart} />
-              }
+              element={<CheckoutPage cardUser={currentUser?.cards} />}
             />
             <Route path="introduce" element={<IntroducePage />} />
             <Route

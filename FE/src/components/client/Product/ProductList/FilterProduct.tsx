@@ -21,7 +21,6 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
 
   const onChangeSlug = (e: RadioChangeEvent) => {
     setSlug(e.target.value);
-    console.log(e.target.value);
 
     const filterBrandBySlug =
       categories &&
@@ -32,7 +31,6 @@ const FilterProduct = ({ categories }: FilterProductProps) => {
 
   const onChangeBrand = (e: RadioChangeEvent) => {
     setBrand(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {

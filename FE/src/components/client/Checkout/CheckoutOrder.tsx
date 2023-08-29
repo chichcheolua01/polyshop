@@ -2,17 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Input } from "../..";
-
 import { ICart } from "../../../interface";
 
 type CheckoutOrderProps = {
-  cart: ICart | null;
+  cart: ICart;
 };
 
 const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
   const [discount, setDiscount] = useState("");
 
-  const total = cart && cart?.totalPrice;
+  const totalPrice = cart?.products?.reduce((total: number, products: any) => {
+    const productPrice = products?.product?.price;
+    return total + productPrice * products?.quantity;
+  }, 0);
 
   return (
     <>
@@ -27,13 +29,13 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
 
         <div className="mb-5 h-[65vh] overflow-y-auto">
           {cart ? (
-            cart?.products.map((product, i) => (
+            cart?.products.map((product: any, i: number) => (
               <div
                 key={i}
                 className="grid grid-cols-3 gap-5 mt-5 border p-3 shadow rounded-xl"
               >
                 <div className="col-span-1">
-                  <img src={product.product.image} alt="Product" />
+                  <img src={product?.product?.images?.[0].uid} alt="Product" />
                 </div>
                 <div className="col-span-2 flex flex-col gap-2">
                   <Link
@@ -44,7 +46,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
                   </Link>
                   <p className="text-gray-500 text-base">x{product.quantity}</p>
                   <p className="text-rose-500 text-base font-semibold">
-                    {product.product.price}
+                    {product.product.price?.toLocaleString("vi-VN")}₫
                   </p>
                 </div>
               </div>
@@ -61,7 +63,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
             <h4 className="uppercase font-normal text-base">Tổng phụ: </h4>
 
             <span className="text-lg font-semibold text-rose-500">
-              {cart?.totalPrice.toLocaleString("vi-VN") || 0}₫
+              {(0).toLocaleString("vi-VN")}₫
             </span>
           </div>
 
@@ -93,7 +95,7 @@ const CheckoutOrder = ({ cart }: CheckoutOrderProps) => {
           <h4 className="uppercase font-bold text-base">Tổng: </h4>
 
           <span className="text-lg font-semibold text-rose-500">
-            {total ? total.toLocaleString("vi-VN") : 0}₫
+            {totalPrice ? totalPrice?.toLocaleString("vi-VN") : 0}₫
           </span>
         </div>
       </div>

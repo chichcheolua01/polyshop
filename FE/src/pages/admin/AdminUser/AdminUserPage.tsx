@@ -39,7 +39,7 @@ const AdminUserPage = () => {
     <>
       <Table
         columns={columns}
-        dataSource={data && dataUser}
+        dataSource={dataUser}
         rowKey="_id"
         bordered
         size="middle"

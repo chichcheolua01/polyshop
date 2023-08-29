@@ -1,4 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistStore,
+} from "redux-persist";
 
 import { productApi } from "../api/products";
 import { categoryApi } from "../api/categories";
@@ -13,9 +22,22 @@ export const store = configureStore({
     [contactApi.reducerPath]: contactApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
       .concat(productApi.middleware)
       .concat(categoryApi.middleware)
       .concat(authApi.middleware)
       .concat(contactApi.middleware),
 });
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+export default persistStore(store);

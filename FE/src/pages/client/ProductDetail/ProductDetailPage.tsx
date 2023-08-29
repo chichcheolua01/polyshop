@@ -161,7 +161,7 @@ const ProductDetailPage = ({
           </div>
 
           <div className="flex flex-col gap-6">
-            <ProductInfo product={product} favoriteUser={favoriteUser} />
+            <ProductInfo product={product} favoriteUser={favoriteUser} userId={userId} />
 
             <ProductList
               products={productSimilar}

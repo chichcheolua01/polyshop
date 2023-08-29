@@ -1,15 +1,34 @@
-import { InputNumber } from "antd";
+import { InputNumber, message } from "antd";
 import { Link } from "react-router-dom";
 
 import { IItemCart } from "../../../interface";
+import { useUpdateCartMutation } from "../../../api/auth";
 
 type CartDrawnItemProps = {
   cartItem: IItemCart;
+  cartId: string;
 };
 
-const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
+const CartDrawnItem = ({ cartItem, cartId }: CartDrawnItemProps) => {
+  const [updateCart, resultUpdate] = useUpdateCartMutation();
+
   const onChange = (value: number | null) => {
-    console.log(value);
+    if (value !== null) {
+      const data = {
+        cartId,
+        productId: cartItem.product._id,
+        quantity: value,
+      };
+
+      updateCart(data)
+        .unwrap()
+        .then((response) => {
+          message.success(response.message);
+        })
+        .catch(() => {
+          message.error("Cập nhật thất bại");
+        });
+    }
   };
 
   return (
@@ -17,7 +36,7 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
       <div className="flex flex-row gap-2 w-full mb-1 border rounded-xl p-2">
         <div className="aspect-square w-auto relative overflow-hidden my-auto">
           <img
-            src={cartItem.product.image}
+            src={cartItem.product.images[0].url}
             width={100}
             height={100}
             alt="Product"
@@ -42,6 +61,7 @@ const CartDrawnItem = ({ cartItem }: CartDrawnItemProps) => {
 
             <InputNumber
               min={1}
+              disabled={resultUpdate.isLoading}
               max={cartItem.product.inventory}
               defaultValue={cartItem.quantity}
               onChange={onChange}

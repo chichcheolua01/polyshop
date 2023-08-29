@@ -8,18 +8,19 @@ import {
   Container,
 } from "../../../components";
 
-import { ICart, ICardUser } from "../../../interface";
+import { ICardUser } from "../../../interface";
+import { useGetCartByUserQuery } from "../../../api/auth";
 
 type CheckoutPageProps = {
   cardUser: ICardUser[] | undefined;
-  cart: ICart | null;
 };
 
-const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
+const CheckoutPage = ({ cardUser }: CheckoutPageProps) => {
+  const { data } = useGetCartByUserQuery();
+  const cart = data?.cart;
+
   const [active, setActive] = useState("Thẻ ngân hàng");
-
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
-
   const disabled = cart ? false : true;
 
   const toggleActive = (text: string) => {
@@ -27,7 +28,7 @@ const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
   };
 
   const handlePayment = () => {
-    alert("Thanh toán");
+    console.log(cardMain);
   };
 
   const paymentMethod = [
@@ -94,7 +95,7 @@ const CheckoutPage = ({ cardUser, cart }: CheckoutPageProps) => {
               )}
             </div>
 
-            <div className="col-span-1 ">
+            <div className="col-span-1">
               <CheckoutOrder cart={cart} />
             </div>
           </div>

@@ -3,7 +3,10 @@ import { Checkbox, message } from "antd";
 
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { ICardUser } from "../../../../interface";
-import { useUploadCardMutation } from "../../../../api/auth";
+import {
+  useCreateCardMutation,
+  useUploadCardMutation,
+} from "../../../../api/auth";
 
 type CardProps = {
   card?: ICardUser;
@@ -22,6 +25,7 @@ const Card = ({ card, add }: CardProps) => {
   const [newMain, setNewMain] = useState(card?.main);
 
   const [uploadCard, resultCard] = useUploadCardMutation();
+  const [createCard] = useCreateCardMutation();
 
   const toggleEdit = () => {
     setIsEdit(!isEdit);
@@ -29,6 +33,27 @@ const Card = ({ card, add }: CardProps) => {
 
   const onChange = (e: CheckboxChangeEvent) => {
     setNewMain(e.target.checked);
+  };
+
+  const onAdd = () => {
+    const data = {
+      card_holder_name: newName,
+      card_number: newNumber,
+      start_date: newStartDate,
+      end_date: newEndDate,
+      cvv: newCvv,
+      main: newMain,
+    };
+
+    createCard(data)
+      .unwrap()
+      .then((response) => {
+        message.success(response.message);
+        setIsEdit(!isEdit);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onFinish = () => {
@@ -193,13 +218,23 @@ const Card = ({ card, add }: CardProps) => {
 
         {isEdit ? (
           <div className="absolute bottom-8 right-10 flex justify-end gap-5">
-            <button
-              className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"
-              onClick={onFinish}
-              disabled={resultCard.isLoading}
-            >
-              Lưu
-            </button>
+            {add ? (
+              <button
+                className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"
+                onClick={onAdd}
+                disabled={resultCard.isLoading}
+              >
+                Thêm
+              </button>
+            ) : (
+              <button
+                className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"
+                onClick={onFinish}
+                disabled={resultCard.isLoading}
+              >
+                Lưu
+              </button>
+            )}
 
             <button
               className="mt-3 hover:text-rose-500 disabled:cursor-not-allowed"

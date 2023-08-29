@@ -11,19 +11,16 @@ import { IUser } from "../../../interface";
 
 type UserMenuProps = {
   currentUser: IUser | null;
-  cartCount: number;
   onClick: () => void;
 };
 
-const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
+const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
-
-  const notificationCount = 2;
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -35,7 +32,7 @@ const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
       <div className="relative">
         <div className="flex flex-row items-center gap-3 ">
           <div className="hidden md:block cursor-pointer transition ">
-            <Badge count={notificationCount} size="small">
+            <Badge count={0} size="small">
               <AiOutlineBell
                 size={26}
                 className="hover:text-rose-300 text-black"
@@ -47,7 +44,7 @@ const UserMenu = ({ currentUser, onClick, cartCount }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block cursor-pointer transition px-4"
           >
-            <Badge count={cartCount} size="small">
+            <Badge count={0} size="small">
               <FiShoppingCart
                 size={22}
                 className="hover:text-rose-300 text-black"
