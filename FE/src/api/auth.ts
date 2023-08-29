@@ -33,7 +33,7 @@ type FavoritesResponse = {
 };
 
 type CardData = {
-  _id: string;
+  _id?: string;
   card_holder_name: string;
   card_number: string | number;
   start_date: string;
@@ -202,6 +202,21 @@ export const authApi = createApi({
       },
       providesTags: ["Auth"],
     }),
+    createCard: builder.mutation({
+      query: (data: CardData) => {
+        const token = localStorage.getItem("token");
+
+        return {
+          url: `/card`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        };
+      },
+      invalidatesTags: ["Auth"],
+    }),
     uploadCard: builder.mutation({
       query: (data: CardData) => {
         const token = localStorage.getItem("token");
@@ -275,6 +290,7 @@ export const {
   useResetPasswordAuthMutation,
   useFavoriteProductsMutation,
   useGetCardsByUserQuery,
+  useCreateCardMutation,
   useUploadCardMutation,
   useGetFavoritesByUserQuery,
   useGetAllUserQuery,

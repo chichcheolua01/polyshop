@@ -22,12 +22,13 @@ const CheckoutPage = ({ cardUser }: CheckoutPageProps) => {
   const [active, setActive] = useState("Thẻ ngân hàng");
   const cardMain = cardUser && cardUser.find((card) => card.main === true);
   const disabled = cart ? false : true;
+
   const toggleActive = (text: string) => {
     setActive(text);
   };
 
   const handlePayment = () => {
-    alert("Thanh toán");
+    console.log(cardMain);
   };
 
   const paymentMethod = [

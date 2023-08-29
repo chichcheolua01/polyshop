@@ -22,8 +22,6 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
     setIsOpen((value) => !value);
   }, []);
 
-  const notificationCount = 2;
-
   const logOut = () => {
     localStorage.removeItem("token");
     navigate("/auth");
@@ -34,7 +32,7 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
       <div className="relative">
         <div className="flex flex-row items-center gap-3 ">
           <div className="hidden md:block cursor-pointer transition ">
-            <Badge count={notificationCount} size="small">
+            <Badge count={0} size="small">
               <AiOutlineBell
                 size={26}
                 className="hover:text-rose-300 text-black"
@@ -46,7 +44,7 @@ const UserMenu = ({ currentUser, onClick }: UserMenuProps) => {
             onClick={onClick}
             className="hidden md:block cursor-pointer transition px-4"
           >
-            <Badge count={1} size="small">
+            <Badge count={0} size="small">
               <FiShoppingCart
                 size={22}
                 className="hover:text-rose-300 text-black"
